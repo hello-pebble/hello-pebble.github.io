@@ -39,6 +39,8 @@ h1, h2, h3, h4, h5, h6 {
 .wrapper {
   display: flex;
   min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .sidebar {
@@ -46,7 +48,6 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--sidebar-bg);
   border-right: 1px solid var(--border-color);
   color: var(--text-color);
-  position: fixed;
   height: 100vh;
   padding: 40px 20px;
   box-sizing: border-box;
@@ -54,6 +55,9 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
 }
 
 .sidebar-nav {
@@ -142,7 +146,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .page-content {
   flex: 1;
-  margin-left: 200px;
   padding: 60px 80px;
   min-height: 100vh;
   display: flex;
@@ -154,6 +157,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 900px;
   width: 100%;
   flex: 1;
+  margin: 0 auto;
 }
 
 .site-footer {
@@ -162,6 +166,24 @@ h1, h2, h3, h4, h5, h6 {
   border-top: 1px solid var(--border-color);
   color: var(--sidebar-text);
   font-size: 0.9em;
+}
+
+.print-button {
+  float: right;
+  padding: 8px 16px;
+  background-color: var(--toggle-bg);
+  color: var(--toggle-text);
+  border: 1px solid var(--toggle-bg);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: all 0.3s;
+  margin-bottom: 20px;
+}
+
+.print-button:hover {
+  opacity: 0.8;
 }
 
 /* Mobile Responsive */
@@ -221,5 +243,40 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     margin-top: 2px;
     color: var(--sidebar-text);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sidebar, .theme-toggle, .print-button {
+    display: none !important;
+  }
+
+  .page-content {
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+
+  .main-content {
+    max-width: 100% !important;
+  }
+
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  [data-theme="dark"] body {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: black !important;
+  }
+
+  .wrapper {
+    display: block !important;
   }
 }
