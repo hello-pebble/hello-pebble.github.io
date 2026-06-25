@@ -5,19 +5,29 @@
   </div>
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">이력서</a>
-    
+
     <div class="sidebar-nav-group">
-      <a class="sidebar-nav-item{% if page.url contains '/portfolio' %} active{% endif %}" href="javascript:void(0)" id="portfolio-toggle">포트폴리오</a>
+      <a class="sidebar-nav-item{% if page.url contains '/portfolio' %} active{% endif %}" href="javascript:void(0)"
+        id="portfolio-toggle">포트폴리오</a>
       <div class="sidebar-submenu" id="portfolio-submenu">
-<!--
-        <a class="sidebar-nav-item submenu-item" href="{{ '/portfolio/tech-focus-backend/' | relative_url }}">백엔드 고도화 (New)</a>
--->
-        <a class="sidebar-nav-item submenu-item" href="{{ '/portfolio/1/' | relative_url }}">DelayNoMore</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/oauth-sso-backend/' %} active{% endif %}"
+          href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">통합 인증(OAuth SSO) 시스템</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/tech-focus-backend/' %} active{% endif %}"
+          href="{{ '/portfolio/tech-focus-backend/' | relative_url }}">고성능 분산 캐시 시스템</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/1/' %} active{% endif %}"
+          href="{{ '/portfolio/1/' | relative_url }}">DelayNoMore</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/db-management-system/' %} active{% endif %}"
+          href="{{ '/portfolio/db-management-system/' | relative_url }}">개방DB 관리 시스템</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/process-management-solution/' %} active{% endif %}"
+          href="{{ '/portfolio/process-management-solution/' | relative_url }}">공정 관리 솔루션(PMS)</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/gov-document-ai-data-service/' %} active{% endif %}"
+          href="{{ '/portfolio/gov-document-ai-data-service/' | relative_url }}">정부 공문서 AI 조회 서비스</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/learning-management-system/' %} active{% endif %}"
+          href="{{ '/portfolio/learning-management-system/' | relative_url }}">사내 교육 플랫폼(LMS)</a>
       </div>
     </div>
-<!--
-    <a class="sidebar-nav-item{% if page.url == '/study/' %} active{% endif %}" href="{{ '/study/' | relative_url }}">스터디</a>
--->
+    <a class="sidebar-nav-item" href="https://github.com/hello-pebble/study/wiki" target="_blank"
+      rel="noopener noreferrer">스터디</a>
   </nav>
   <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">DARK</button>
 </div>
@@ -27,7 +37,7 @@
   const portfolioToggle = document.getElementById('portfolio-toggle');
   const portfolioSubmenu = document.getElementById('portfolio-submenu');
   const currentTheme = localStorage.getItem('theme') || 'light';
-  
+
   // Theme Toggle Logic
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
