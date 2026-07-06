@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <rect width="800" height="300" fill="#ffffff" rx="12"/>
+  <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">도입 성과</text>
+
+  <text x="220" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">TPS (Transactions Per Second)</text>
+  <line x1="80" y1="240" x2="360" y2="240" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="130" y="210" width="70" height="30" rx="4" fill="#cbd5e1"/>
+  <text x="165" y="200" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">1,200</text>
+  <text x="165" y="260" text-anchor="middle" font-size="12" fill="#64748b">도입 전</text>
+  <rect x="250" y="90" width="70" height="150" rx="4" fill="#2563eb"/>
+  <text x="285" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">6,000</text>
+  <text x="285" y="260" text-anchor="middle" font-size="12" fill="#64748b">도입 후</text>
+  <text x="225" y="160" text-anchor="middle" font-size="15" font-weight="bold" fill="#2563eb">5배</text>
+
+  <line x1="400" y1="70" x2="400" y2="260" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="590" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">DB 평균 CPU 사용률 (상대치)</text>
+  <line x1="460" y1="240" x2="740" y2="240" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="510" y="100" width="70" height="140" rx="4" fill="#cbd5e1"/>
+  <text x="545" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">100 (기준)</text>
+  <text x="545" y="260" text-anchor="middle" font-size="12" fill="#64748b">도입 전</text>
+  <rect x="630" y="156" width="70" height="84" rx="4" fill="#2563eb"/>
+  <text x="665" y="146" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">60</text>
+  <text x="665" y="260" text-anchor="middle" font-size="12" fill="#64748b">도입 후</text>
+  <text x="605" y="130" text-anchor="middle" font-size="15" font-weight="bold" fill="#2563eb">-40%</text>
+
+  <text x="400" y="288" text-anchor="middle" font-size="12" fill="#64748b">반복 조회의 대부분이 캐시 계층에서 흡수되어 DB가 원래 할 일(변경 데이터 처리)에 집중</text>
+</svg>
