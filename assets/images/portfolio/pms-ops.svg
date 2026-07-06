@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="800" height="250" fill="#ffffff" rx="12"/>
+  <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">장애 대응 표준화 — 사람의 기억을 조직의 자산으로</text>
+
+  <rect x="30" y="80" width="160" height="70" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="110" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">장애 로그 수집·분석</text>
+  <text x="110" y="132" text-anchor="middle" font-size="11" fill="#64748b">과거 장애 내역 전수 조사</text>
+
+  <rect x="230" y="80" width="150" height="70" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="305" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">에러 패턴 분류</text>
+  <text x="305" y="132" text-anchor="middle" font-size="11" fill="#64748b">빈발 유형 시나리오화</text>
+
+  <rect x="420" y="80" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="500" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">대응 매뉴얼 문서화</text>
+  <text x="500" y="132" text-anchor="middle" font-size="11" fill="#64748b">Troubleshooting Guide</text>
+
+  <rect x="620" y="80" width="150" height="70" rx="8" fill="#2563eb" stroke="#1d4ed8"/>
+  <text x="695" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">전사 세미나 전파</text>
+  <text x="695" y="132" text-anchor="middle" font-size="11" fill="#dbeafe">1인 의존도 분산</text>
+
+  <line x1="190" y1="115" x2="225" y2="115" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="115" x2="415" y2="115" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="580" y1="115" x2="615" y2="115" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="245" y="190" width="310" height="34" rx="17" fill="#2563eb"/>
+  <text x="400" y="212" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">단순 운영 문의 90% 감소 (월 20건 → 1건 내외)</text>
+</svg>

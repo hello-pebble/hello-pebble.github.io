@@ -18,7 +18,6 @@ permalink: /portfolio/tech-focus-backend/
 - **기간**: 2026.03 ~ 2026.05
 - **기술 스택**: Spring Boot, Redis, Caffeine Cache, Docker
 - **핵심 목표**: 반복적인 DB 조회 쿼리를 줄여 전체 시스템의 TPS(Transactions Per Second) 향상
-- **GitHub**: [github.com/hello-pebble/distributed-cache-project](https://github.com/hello-pebble/distributed-cache-project)
 
 ---
 
@@ -46,6 +45,8 @@ permalink: /portfolio/tech-focus-backend/
 2. **L2 Cache (Redis)**: 분산 환경에서 여러 노드가 공유하는 캐시 서버로 데이터 정합성을 유지합니다.
 3. **Cache Aside Pattern**: 데이터 조회 시 L1 → L2 → DB 순으로 탐색하고, 결과를 역순으로 캐싱합니다.
 
+![L1-L2 계층형 캐시 조회 흐름](/assets/images/portfolio/cache-tiered.svg)
+
 ---
 
 ## Implementation Details (기술적 도전)
@@ -58,9 +59,13 @@ permalink: /portfolio/tech-focus-backend/
 
 데이터 수정 시 **Redis Pub/Sub**을 활용하여 모든 WAS 노드의 L1 캐시를 즉시 무효화(Invalidation)하는 동기화 메커니즘을 구현했습니다.
 
+![Redis Pub/Sub 기반 L1 캐시 동기화](/assets/images/portfolio/cache-invalidation.svg)
+
 ---
 
 ## Results (성과)
+
+![도입 성과 - TPS 5배 향상, DB CPU 40% 감소](/assets/images/portfolio/cache-results.svg)
 
 - **성능**: TPS 약 **5배 향상 (1,200 → 6,000)**
 - **DB 부하**: 평균 CPU 사용률 **40% 감소**

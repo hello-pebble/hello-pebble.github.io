@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+  <rect width="800" height="340" fill="#ffffff" rx="12"/>
+  <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">Refresh Token Rotation (RTR) — 탈취 감지 설계</text>
+
+  <text x="40" y="85" font-size="13" font-weight="bold" fill="#2563eb">정상 갱신 흐름</text>
+  <rect x="40" y="100" width="180" height="56" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="130" y="124" text-anchor="middle" font-size="12" fill="#334155">Access Token 만료</text>
+  <text x="130" y="143" text-anchor="middle" font-size="12" fill="#334155">RT-1로 갱신 요청</text>
+  <rect x="300" y="100" width="180" height="56" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="390" y="124" text-anchor="middle" font-size="12" fill="#334155">새 AT-2 + RT-2 발급</text>
+  <text x="390" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">RT-1 즉시 폐기</text>
+  <rect x="560" y="100" width="200" height="56" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="660" y="124" text-anchor="middle" font-size="12" fill="#334155">갱신할 때마다 회전</text>
+  <text x="660" y="143" text-anchor="middle" font-size="12" fill="#334155">장기 토큰 노출 시간 최소화</text>
+  <line x1="220" y1="128" x2="295" y2="128" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="480" y1="128" x2="555" y2="128" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="210" font-size="13" font-weight="bold" fill="#dc2626">탈취 감지 흐름</text>
+  <rect x="40" y="225" width="180" height="56" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="130" y="249" text-anchor="middle" font-size="12" fill="#7f1d1d">이미 폐기된 RT-1이</text>
+  <text x="130" y="268" text-anchor="middle" font-size="12" fill="#7f1d1d">다시 유입됨</text>
+  <rect x="300" y="225" width="180" height="56" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="390" y="249" text-anchor="middle" font-size="12" font-weight="bold" fill="#b91c1c">탈취 상황으로 간주</text>
+  <text x="390" y="268" text-anchor="middle" font-size="12" fill="#7f1d1d">재사용 = 공격 신호</text>
+  <rect x="560" y="225" width="200" height="56" rx="8" fill="#dc2626" stroke="#b91c1c"/>
+  <text x="660" y="249" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">해당 유저의 모든 토큰</text>
+  <text x="660" y="268" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">세션 강제 무효화</text>
+  <line x1="220" y1="253" x2="295" y2="253" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <line x1="480" y1="253" x2="555" y2="253" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+
+  <text x="400" y="318" text-anchor="middle" font-size="12" fill="#64748b">정상 유저와 공격자 중 누가 먼저 갱신하든, 한쪽이 폐기된 토큰을 쓰는 순간 전체 세션이 차단되어 피해 확산을 막습니다</text>
+</svg>

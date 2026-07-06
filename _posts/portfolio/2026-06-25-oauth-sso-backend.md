@@ -41,6 +41,8 @@ permalink: /portfolio/oauth-sso-backend/
 
 중앙 인증 서버(Authorization Server)를 구축하고, API 게이트웨이를 단일 진입점으로 두는 무상태 통합 인증 인프라를 설계했습니다.
 
+![무상태 통합 인증 아키텍처](/assets/images/portfolio/oauth-architecture.svg)
+
 1. **OAuth 2.0 / OIDC 표준 준수**: RFC 6749 표준 사양을 준수하여 신뢰할 수 있는 **Authorization Code Grant Flow**를 구현했습니다.
 2. **JWT 기반 무상태 인증**: 세션 상태를 서버에 저장하지 않는 Stateless 아키텍처로 설계하여 게이트웨이 영역에서 빠른 토큰 검증을 처리했습니다.
 3. **중앙 집중식 토큰 관리**: Redis를 활용해 Refresh Token과 블랙리스트 토큰을 고속으로 제어하고 데이터 일관성을 보장했습니다.
@@ -57,9 +59,13 @@ permalink: /portfolio/oauth-sso-backend/
 
 긴 유효기간을 가진 Refresh Token의 탈취 위험을 제거하기 위해, Access Token 발급 시 Refresh Token도 무조건 재발급하는 **RTR 기법**을 설계했습니다. 이미 사용된 Refresh Token이 다시 유입되면 탈취 상황으로 간주하고, Redis에 저장된 해당 유저의 **모든 토큰 세션을 강제 무효화**하여 피해 확산을 차단했습니다.
 
+![Refresh Token Rotation 탈취 감지 설계](/assets/images/portfolio/oauth-rtr-flow.svg)
+
 ### 3. Redis 기반 분산 환경 토큰 블랙리스트
 
 로그아웃 시 기존 발행 JWT의 만료 전 접근을 차단하기 위해, 로그아웃된 토큰을 남은 유효 시간 동안 Redis에 블랙리스트로 캐싱·대조하는 무효화 아키텍처를 구축했습니다.
+
+![로그아웃 토큰 블랙리스트 흐름](/assets/images/portfolio/oauth-blacklist.svg)
 
 ---
 
@@ -68,3 +74,11 @@ permalink: /portfolio/oauth-sso-backend/
 - **생산성 향상**: 개별 마이크로서비스 개발 단계에서 인증 로직 설계 비용을 **100% 제거**하여 비즈니스 로직에 집중할 수 있게 되었습니다.
 - **성능 향상**: 게이트웨이의 무상태 검증 아키텍처로 개별 API 서버의 인증 관련 DB 쿼리 부하가 **40% 이상 감소**했습니다.
 - **학습 포인트**: 표준 사양(RFC) 기반 구현 경험을 통해, 인증을 소비자가 아닌 **설계자의 관점**에서 판단할 수 있는 기준을 갖추게 되었습니다.
+
+---
+
+## Source Code
+
+프로젝트의 전체 소스 코드는 GitHub 저장소에서 확인하실 수 있습니다.
+
+- **[github.com/hello-pebble/oauth2-authorization](https://github.com/hello-pebble/oauth2-authorization)**

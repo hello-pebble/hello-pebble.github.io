@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <rect width="800" height="340" fill="#ffffff" rx="12"/>
+  <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">파일 저장 방식 비교 — 로컬 디스크 vs Oracle BLOB</text>
+
+  <text x="210" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#94a3b8">기존 — 로컬 디스크 저장</text>
+  <rect x="60" y="95" width="140" height="60" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="130" y="120" text-anchor="middle" font-size="12" fill="#334155">WAS 로컬 디스크</text>
+  <text x="130" y="140" text-anchor="middle" font-size="11" fill="#64748b">첨부파일 실체</text>
+  <rect x="220" y="95" width="140" height="60" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="290" y="120" text-anchor="middle" font-size="12" fill="#334155">DB</text>
+  <text x="290" y="140" text-anchor="middle" font-size="11" fill="#64748b">파일 경로 · 메타데이터</text>
+  <text x="130" y="185" text-anchor="middle" font-size="11" fill="#64748b">파일 백업 (시점 A)</text>
+  <text x="290" y="185" text-anchor="middle" font-size="11" fill="#64748b">DB 백업 (시점 B)</text>
+  <rect x="60" y="205" width="300" height="50" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="210" y="226" text-anchor="middle" font-size="12" font-weight="bold" fill="#b91c1c">백업 시점 불일치 (A ≠ B)</text>
+  <text x="210" y="246" text-anchor="middle" font-size="11" fill="#dc2626">복구 시 파일-데이터 정합성 붕괴 · 유실 위험</text>
+
+  <line x1="400" y1="70" x2="400" y2="280" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="590" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">개선 — Oracle BLOB 통합 저장</text>
+  <rect x="440" y="95" width="300" height="110" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="590" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">단일 DB 트랜잭션 (@Transactional)</text>
+  <rect x="460" y="130" width="125" height="56" rx="6" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="522" y="154" text-anchor="middle" font-size="12" fill="#334155">파일 (BLOB)</text>
+  <text x="522" y="174" text-anchor="middle" font-size="11" fill="#64748b">이진 데이터 직접 저장</text>
+  <rect x="595" y="130" width="125" height="56" rx="6" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="657" y="154" text-anchor="middle" font-size="12" fill="#334155">비즈니스 데이터</text>
+  <text x="657" y="174" text-anchor="middle" font-size="11" fill="#64748b">게시글 · 메타데이터</text>
+  <rect x="440" y="220" width="300" height="50" rx="8" fill="#2563eb"/>
+  <text x="590" y="241" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">원자적 커밋 — 함께 저장되고 함께 롤백</text>
+  <text x="590" y="261" text-anchor="middle" font-size="11" fill="#dbeafe">백업도 DB 하나로 단일화 · 유실 가능성 원천 차단</text>
+
+  <text x="400" y="315" text-anchor="middle" font-size="12" fill="#64748b">파일과 데이터가 서로 다른 저장소에 살면 언젠가 어긋납니다 — 같은 트랜잭션에 넣는 것이 근본 해결</text>
+</svg>
