@@ -10,12 +10,14 @@
       <a class="sidebar-nav-item{% if page.url contains '/portfolio' %} active{% endif %}" href="javascript:void(0)"
         id="portfolio-toggle">포트폴리오</a>
       <div class="sidebar-submenu" id="portfolio-submenu">
+        <span class="submenu-label">개인 프로젝트</span>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/oauth-sso-backend/' %} active{% endif %}"
           href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">통합 인증(OAuth SSO) 시스템</a>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/tech-focus-backend/' %} active{% endif %}"
           href="{{ '/portfolio/tech-focus-backend/' | relative_url }}">고성능 분산 캐시 시스템</a>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/1/' %} active{% endif %}"
           href="{{ '/portfolio/1/' | relative_url }}">DelayNoMore</a>
+        <span class="submenu-label">회사 프로젝트</span>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/db-management-system/' %} active{% endif %}"
           href="{{ '/portfolio/db-management-system/' | relative_url }}">개방DB 관리 시스템</a>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/process-management-solution/' %} active{% endif %}"
