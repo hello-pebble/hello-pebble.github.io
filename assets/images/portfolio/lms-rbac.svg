@@ -4,7 +4,7 @@
       <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
     </marker>
     <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/>
+      <path d="M0,0 L8,4 L0,8 z" fill="#334155"/>
     </marker>
     <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
       <path d="M0,0 L8,4 L0,8 z" fill="#dc2626"/>
@@ -21,13 +21,13 @@
   <text x="295" y="150" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">SSO 세션 연동</text>
   <text x="295" y="172" text-anchor="middle" font-size="11" fill="#64748b">사내 계정 · 역할 식별</text>
 
-  <rect x="420" y="105" width="180" height="100" rx="8" fill="#2563eb" stroke="#1d4ed8"/>
+  <rect x="420" y="105" width="180" height="100" rx="8" fill="#334155" stroke="#0f172a"/>
   <text x="510" y="135" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">공통 권한 검증</text>
   <text x="510" y="155" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">인터셉터</text>
-  <text x="510" y="178" text-anchor="middle" font-size="11" fill="#dbeafe">Spring Security 계층</text>
-  <text x="510" y="196" text-anchor="middle" font-size="11" fill="#dbeafe">역할(Role) 기반 판정</text>
+  <text x="510" y="178" text-anchor="middle" font-size="11" fill="#cbd5e1">Spring Security 계층</text>
+  <text x="510" y="196" text-anchor="middle" font-size="11" fill="#cbd5e1">역할(Role) 기반 판정</text>
 
-  <rect x="650" y="75" width="120" height="64" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <rect x="650" y="75" width="120" height="64" rx="8" fill="#f1f5f9" stroke="#334155"/>
   <text x="710" y="102" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">인가된 요청</text>
   <text x="710" y="122" text-anchor="middle" font-size="11" fill="#64748b">API 엔드포인트 실행</text>
 
@@ -37,7 +37,7 @@
 
   <line x1="170" y1="155" x2="215" y2="155" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
   <line x1="370" y1="155" x2="415" y2="155" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="600" y1="135" x2="645" y2="112" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="600" y1="135" x2="645" y2="112" stroke="#334155" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
   <line x1="600" y1="175" x2="645" y2="198" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
 
   <text x="400" y="275" text-anchor="middle" font-size="12" fill="#64748b">개별 API가 아닌 공통 인터셉터에서 인가를 판정 — 엔드포인트가 늘어나도 검증 로직은 한 곳에서 관리</text>

@@ -10,13 +10,13 @@
   <rect width="800" height="340" fill="#ffffff" rx="12"/>
   <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">Refresh Token Rotation (RTR) — 탈취 감지 설계</text>
 
-  <text x="40" y="85" font-size="13" font-weight="bold" fill="#2563eb">정상 갱신 흐름</text>
+  <text x="40" y="85" font-size="13" font-weight="bold" fill="#334155">정상 갱신 흐름</text>
   <rect x="40" y="100" width="180" height="56" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
   <text x="130" y="124" text-anchor="middle" font-size="12" fill="#334155">Access Token 만료</text>
   <text x="130" y="143" text-anchor="middle" font-size="12" fill="#334155">RT-1로 갱신 요청</text>
-  <rect x="300" y="100" width="180" height="56" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <rect x="300" y="100" width="180" height="56" rx="8" fill="#f1f5f9" stroke="#334155"/>
   <text x="390" y="124" text-anchor="middle" font-size="12" fill="#334155">새 AT-2 + RT-2 발급</text>
-  <text x="390" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">RT-1 즉시 폐기</text>
+  <text x="390" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">RT-1 즉시 폐기</text>
   <rect x="560" y="100" width="200" height="56" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
   <text x="660" y="124" text-anchor="middle" font-size="12" fill="#334155">갱신할 때마다 회전</text>
   <text x="660" y="143" text-anchor="middle" font-size="12" fill="#334155">장기 토큰 노출 시간 최소화</text>

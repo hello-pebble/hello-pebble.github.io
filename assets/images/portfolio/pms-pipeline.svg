@@ -4,7 +4,7 @@
       <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
     </marker>
     <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/>
+      <path d="M0,0 L8,4 L0,8 z" fill="#334155"/>
     </marker>
   </defs>
   <rect width="800" height="320" fill="#ffffff" rx="12"/>
@@ -14,22 +14,22 @@
   <text x="90" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">git push</text>
   <text x="90" y="142" text-anchor="middle" font-size="11" fill="#64748b">개발자는 여기까지만</text>
 
-  <rect x="190" y="70" width="420" height="110" rx="10" fill="#eff6ff" stroke="#2563eb"/>
-  <text x="400" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">GitLab CI 파이프라인 (전 과정 자동)</text>
-  <rect x="210" y="110" width="110" height="50" rx="6" fill="#ffffff" stroke="#93c5fd"/>
+  <rect x="190" y="70" width="420" height="110" rx="10" fill="#f1f5f9" stroke="#334155"/>
+  <text x="400" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">GitLab CI 파이프라인 (전 과정 자동)</text>
+  <rect x="210" y="110" width="110" height="50" rx="6" fill="#ffffff" stroke="#94a3b8"/>
   <text x="265" y="140" text-anchor="middle" font-size="12" fill="#334155">소스 빌드</text>
-  <rect x="345" y="110" width="110" height="50" rx="6" fill="#ffffff" stroke="#93c5fd"/>
+  <rect x="345" y="110" width="110" height="50" rx="6" fill="#ffffff" stroke="#94a3b8"/>
   <text x="400" y="133" text-anchor="middle" font-size="12" fill="#334155">Docker 이미지</text>
   <text x="400" y="151" text-anchor="middle" font-size="12" fill="#334155">빌드</text>
-  <rect x="480" y="110" width="110" height="50" rx="6" fill="#ffffff" stroke="#93c5fd"/>
+  <rect x="480" y="110" width="110" height="50" rx="6" fill="#ffffff" stroke="#94a3b8"/>
   <text x="535" y="133" text-anchor="middle" font-size="12" fill="#334155">컨테이너</text>
   <text x="535" y="151" text-anchor="middle" font-size="12" fill="#334155">배포</text>
-  <line x1="320" y1="135" x2="340" y2="135" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
-  <line x1="455" y1="135" x2="475" y2="135" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="320" y1="135" x2="340" y2="135" stroke="#334155" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <line x1="455" y1="135" x2="475" y2="135" stroke="#334155" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
 
-  <rect x="650" y="90" width="120" height="70" rx="8" fill="#2563eb" stroke="#1d4ed8"/>
+  <rect x="650" y="90" width="120" height="70" rx="8" fill="#334155" stroke="#0f172a"/>
   <text x="710" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">운영 환경</text>
-  <text x="710" y="142" text-anchor="middle" font-size="11" fill="#dbeafe">규격화된 릴리즈</text>
+  <text x="710" y="142" text-anchor="middle" font-size="11" fill="#cbd5e1">규격화된 릴리즈</text>
 
   <line x1="150" y1="125" x2="185" y2="125" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
   <line x1="610" y1="125" x2="645" y2="125" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -37,6 +37,6 @@
   <rect x="120" y="215" width="560" height="38" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
   <text x="400" y="239" text-anchor="middle" font-size="12" fill="#334155">개발 · 스테이징 · 운영에 동일한 Docker 이미지 배포 — 환경 불일치로 인한 장애 원천 제거</text>
 
-  <rect x="255" y="270" width="290" height="34" rx="17" fill="#2563eb"/>
+  <rect x="255" y="270" width="290" height="34" rx="17" fill="#334155"/>
   <text x="400" y="292" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">배포 수작업 개입 제거 — 인적 오류 여지 차단</text>
 </svg>
