@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/>
+      <path d="M0,0 L8,4 L0,8 z" fill="#334155"/>
     </marker>
   </defs>
   <rect width="800" height="280" fill="#ffffff" rx="12"/>
@@ -13,13 +13,13 @@
   <text x="180" y="146" text-anchor="middle" font-size="11" fill="#dc2626">Vite 빌드 경고 발생</text>
   <text x="180" y="185" text-anchor="middle" font-size="11" fill="#94a3b8">앱 코드 한 줄만 바뀌어도 전체 재다운로드</text>
 
-  <line x1="340" y1="128" x2="420" y2="128" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="380" y="115" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="bold">rollupOptions</text>
+  <line x1="340" y1="128" x2="420" y2="128" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="380" y="115" text-anchor="middle" font-size="11" fill="#334155" font-weight="bold">rollupOptions</text>
 
-  <text x="610" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">최적화 후</text>
+  <text x="610" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">최적화 후</text>
   <rect x="440" y="100" width="270" height="42" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
   <text x="575" y="126" text-anchor="middle" font-size="12" fill="#334155">vendor.js — 라이브러리 격리 (장기 캐싱)</text>
-  <rect x="440" y="152" width="120" height="42" rx="8" fill="#2563eb" stroke="#1d4ed8"/>
+  <rect x="440" y="152" width="120" height="42" rx="8" fill="#334155" stroke="#0f172a"/>
   <text x="500" y="178" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">앱 44.53kB</text>
   <text x="620" y="178" font-size="11" fill="#64748b">초기 파싱 속도 확보</text>
 

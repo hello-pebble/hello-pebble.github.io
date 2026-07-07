@@ -9,8 +9,6 @@
   --border-color: #eeeeee;
   --toggle-bg: #000000;
   --toggle-text: #ffffff;
-  --accent-color: #2563eb;
-  --accent-soft: rgba(37, 99, 235, 0.08);
 }
 
 [data-theme="dark"] {
@@ -22,8 +20,6 @@
   --border-color: #333333;
   --toggle-bg: #ffffff;
   --toggle-text: #000000;
-  --accent-color: #6ea8ff;
-  --accent-soft: rgba(110, 168, 255, 0.12);
 }
 
 body {
@@ -132,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 .submenu-label {
   font-size: 0.72em;
   font-weight: bold;
-  color: var(--accent-color);
+  color: var(--sidebar-text);
   margin-top: 8px;
   padding: 2px 4px;
   letter-spacing: 0.05em;
@@ -173,25 +169,20 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
 }
 
-/* Point Color (Blue Accent) */
-.main-content strong {
-  color: var(--accent-color);
-}
-
+/* Emphasis: bold text only, monochrome accents */
 .main-content a {
-  color: var(--accent-color);
+  color: var(--text-color);
 }
 
 .main-content h2 {
-  border-bottom: 2px solid var(--accent-color);
+  border-bottom: 2px solid var(--border-color);
   padding-bottom: 6px;
 }
 
 .main-content blockquote {
   margin: 16px 0;
   padding: 12px 16px;
-  border-left: 4px solid var(--accent-color);
-  background-color: var(--accent-soft);
+  border-left: 4px solid var(--text-color);
   color: var(--text-color);
 }
 
@@ -205,15 +196,15 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 12px;
   font-size: 0.78em;
   font-weight: bold;
-  color: #ffffff;
-  background-color: var(--accent-color);
+  color: var(--toggle-text);
+  background-color: var(--toggle-bg);
   vertical-align: middle;
 }
 
 .badge.outline {
   background-color: transparent;
-  color: var(--accent-color);
-  border: 1px solid var(--accent-color);
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
 }
 
 .main-content img {
@@ -339,11 +330,6 @@ h1, h2, h3, h4, h5, h6 {
   a {
     text-decoration: none !important;
     color: black !important;
-  }
-
-  .main-content strong,
-  .badge.outline {
-    color: var(--accent-color) !important;
   }
 
   .badge {
