@@ -44,5 +44,5 @@
   <line x1="660" y1="278" x2="685" y2="278" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
 
   <rect x="250" y="345" width="300" height="34" rx="17" fill="#2563eb"/>
-  <text x="400" y="367" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">신규 조회 API 개발 공수 0건 — 코드 변경 없이 흡수</text>
+  <text x="400" y="367" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">신규 조회 요구사항을 코드 변경 없이 흡수</text>
 </svg>
