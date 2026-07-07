@@ -38,5 +38,5 @@
   <text x="400" y="239" text-anchor="middle" font-size="12" fill="#334155">개발 · 스테이징 · 운영에 동일한 Docker 이미지 배포 — 환경 불일치로 인한 장애 원천 제거</text>
 
   <rect x="255" y="270" width="290" height="34" rx="17" fill="#2563eb"/>
-  <text x="400" y="292" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">배포 과정 인적 오류(Human Error) 0건</text>
+  <text x="400" y="292" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">배포 수작업 개입 제거 — 인적 오류 여지 차단</text>
 </svg>
