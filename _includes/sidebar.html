@@ -2,6 +2,12 @@
   <div class="sidebar-header">
     <span class="sidebar-title">dada</span>
     <span class="sidebar-tagline">backend developer</span>
+    <div class="sidebar-actions">
+      <button id="theme-toggle" class="icon-btn" aria-label="테마 전환" title="테마 전환"></button>
+      <button class="icon-btn" onclick="window.print()" aria-label="PDF 인쇄" title="PDF 인쇄">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      </button>
+    </div>
   </div>
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">이력서</a>
@@ -31,7 +37,6 @@
     <a class="sidebar-nav-item" href="https://velog.io/@hello-pebble/series/Study-with-AI" target="_blank"
       rel="noopener noreferrer">스터디</a>
   </nav>
-  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">DARK</button>
 </div>
 
 <script>
@@ -40,12 +45,15 @@
   const portfolioSubmenu = document.getElementById('portfolio-submenu');
   const currentTheme = localStorage.getItem('theme') || 'light';
 
-  // Theme Toggle Logic
+  const moonIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  const sunIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+
+  // Theme Toggle Logic (moon = 라이트 상태, sun = 다크 상태)
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
-    toggle.textContent = 'LIGHT';
+    toggle.innerHTML = sunIcon;
   } else {
-    toggle.textContent = 'DARK';
+    toggle.innerHTML = moonIcon;
   }
 
   toggle.addEventListener('click', () => {
@@ -53,11 +61,11 @@
     if (theme === 'dark') {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('theme', 'light');
-      toggle.textContent = 'DARK';
+      toggle.innerHTML = moonIcon;
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
-      toggle.textContent = 'LIGHT';
+      toggle.innerHTML = sunIcon;
     }
   });
 
