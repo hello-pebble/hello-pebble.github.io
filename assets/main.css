@@ -180,6 +180,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   flex: 1;
   margin: 0 auto;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* Emphasis: bold text only, monochrome accents */
@@ -201,6 +203,61 @@ h1, h2, h3, h4, h5, h6 {
 
 .main-content blockquote p {
   margin: 0;
+}
+
+.main-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.95em;
+}
+
+.main-content th,
+.main-content td {
+  border: 1px solid var(--border-color);
+  padding: 8px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.main-content th {
+  background-color: var(--border-color);
+}
+
+.section-note {
+  font-size: 0.85em;
+  color: var(--sidebar-text);
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 20px;
+}
+
+.entry-header h3 {
+  margin: 0;
+}
+
+.entry-header h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.entry-header h3 a:hover {
+  text-decoration: underline;
+}
+
+.entry-date {
+  font-size: 0.85em;
+  color: var(--sidebar-text);
+  font-weight: normal;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .badge {
@@ -237,12 +294,23 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.9em;
 }
 
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 8px;
+}
+
+.resume-header h1 {
+  margin: 0;
+}
+
 .contact-icons {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 22px;
-  margin: 16px 0 28px;
 }
 
 .contact-icons a {
