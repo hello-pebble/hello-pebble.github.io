@@ -384,22 +384,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  display: flex;
+  flex-direction: column;
 }
 
 .portfolio-card {
-  display: flex;
-  flex-direction: column;
-  min-height: 260px;
-  padding: 24px;
+  display: grid;
+  grid-template-columns: 136px minmax(0, 1fr);
+  column-gap: 28px;
+  padding: 26px 6px;
   box-sizing: border-box;
-  border: 1px solid var(--border-color);
-  border-radius: 14px;
+  border-bottom: 1px solid var(--border-color);
   color: var(--text-color);
   text-decoration: none;
-  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition: padding-left 0.2s, background-color 0.2s;
 }
 
 .main-content .portfolio-card {
@@ -408,42 +406,41 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-card:hover,
 .portfolio-card:focus-visible {
-  transform: translateY(-3px);
-  border-color: var(--text-color);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  padding-left: 12px;
+  background-color: var(--border-color);
   outline: none;
-}
-
-[data-theme="dark"] .portfolio-card:hover,
-[data-theme="dark"] .portfolio-card:focus-visible {
-  box-shadow: 0 10px 28px rgba(255, 255, 255, 0.08);
 }
 
 .portfolio-card-top {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 18px;
+  grid-column: 1;
+  grid-row: 1 / span 5;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .portfolio-card-number {
   color: var(--sidebar-text);
-  font-size: 0.8em;
+  font-size: 1.05em;
+  font-weight: bold;
   font-variant-numeric: tabular-nums;
 }
 
 .portfolio-card h3 {
-  margin: 0 0 12px;
-  font-size: 1.22em;
+  grid-column: 2;
+  margin: 0 0 10px;
+  font-size: 1.25em;
   line-height: 1.4;
 }
 
 .portfolio-keywords {
   display: flex;
+  grid-column: 2;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .portfolio-keywords span {
@@ -458,8 +455,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-highlights {
   display: grid;
+  grid-column: 2;
   gap: 7px;
-  margin: 0 0 20px;
+  margin: 0 0 14px;
   padding-left: 1.15em;
   color: var(--sidebar-text);
   font-size: 0.88em;
@@ -471,7 +469,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-stack {
-  margin-top: auto;
+  grid-column: 2;
   color: var(--sidebar-text);
   font-size: 0.8em;
   line-height: 1.55;
@@ -479,6 +477,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-card-link {
   display: block;
+  grid-column: 2;
   margin-top: 12px;
   font-size: 0.86em;
   font-weight: bold;
@@ -536,11 +535,34 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .portfolio-grid {
-    grid-template-columns: 1fr;
+    display: flex;
   }
 
   .portfolio-card {
-    min-height: auto;
+    grid-template-columns: 1fr;
+    padding: 22px 2px;
+  }
+
+  .portfolio-card:hover,
+  .portfolio-card:focus-visible {
+    padding-left: 8px;
+  }
+
+  .portfolio-card-top {
+    grid-column: 1;
+    grid-row: auto;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .portfolio-card h3,
+  .portfolio-keywords,
+  .portfolio-highlights,
+  .portfolio-stack,
+  .portfolio-card-link {
+    grid-column: 1;
   }
 
   .resume-title {
