@@ -13,7 +13,8 @@
     <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">이력서</a>
 
     <div class="sidebar-nav-group">
-      <a class="sidebar-nav-item{% if page.url contains '/portfolio' %} active{% endif %}" href="javascript:void(0)"
+      <a class="sidebar-nav-item{% if page.url contains '/portfolio' %} active{% endif %}"
+        href="{{ '/portfolio/' | relative_url }}"
         id="portfolio-toggle">포트폴리오</a>
       <div class="sidebar-submenu" id="portfolio-submenu">
         <span class="submenu-label">개인 프로젝트</span>
@@ -67,12 +68,6 @@
       localStorage.setItem('theme', 'dark');
       toggle.innerHTML = sunIcon;
     }
-  });
-
-  // Portfolio Submenu Toggle Logic
-  portfolioToggle.addEventListener('click', () => {
-    portfolioSubmenu.classList.toggle('show');
-    portfolioToggle.classList.toggle('open');
   });
 
   // Keep submenu open if active
