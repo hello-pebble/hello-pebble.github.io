@@ -415,10 +415,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   grid-column: 1;
   grid-row: 1 / span 5;
-  flex-direction: column-reverse;
   align-items: flex-start;
   justify-content: flex-end;
-  gap: 10px;
 }
 
 .portfolio-card-number {
@@ -465,6 +463,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-highlights li::marker {
+  color: var(--text-color);
+}
+
+.portfolio-highlights strong {
+  display: inline-block;
+  min-width: 2.4em;
+  margin-right: 6px;
   color: var(--text-color);
 }
 
@@ -551,7 +556,6 @@ h1, h2, h3, h4, h5, h6 {
   .portfolio-card-top {
     grid-column: 1;
     grid-row: auto;
-    flex-direction: row-reverse;
     justify-content: flex-end;
     align-items: center;
     margin-bottom: 12px;

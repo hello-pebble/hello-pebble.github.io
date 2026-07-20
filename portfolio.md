@@ -18,7 +18,6 @@ permalink: /portfolio/
   <div class="portfolio-grid">
     <a class="portfolio-card" href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="badge">개인 프로젝트</span>
         <span class="portfolio-card-number">01</span>
       </div>
       <h3>통합 인증(OAuth SSO) 시스템</h3>
@@ -26,9 +25,9 @@ permalink: /portfolio/
         <span>MSA 통합 인증</span><span>OAuth 2.0</span><span>보안 설계</span>
       </div>
       <ul class="portfolio-highlights">
-        <li>서비스마다 반복되던 인증 로직을 중앙 인증 서버로 통합</li>
-        <li>Gateway · JWT · Redis 기반 Stateless 아키텍처 설계</li>
-        <li>RTR · 블랙리스트로 토큰 탈취 대응 체계 구축</li>
+        <li><strong>목표</strong> MSA 환경의 서비스별 중복 인증과 세션 확장성 문제 해결</li>
+        <li><strong>담당</strong> 개인 설계·개발 · OAuth 2.0, Gateway, JWT, Redis 인증 아키텍처 구현</li>
+        <li><strong>성과</strong> 중앙 인증 표준화 · RTR와 블랙리스트 기반 토큰 탈취 대응 체계 구축</li>
       </ul>
       <span class="portfolio-stack">Spring Boot · Spring Security · Gateway · Redis</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
@@ -36,7 +35,6 @@ permalink: /portfolio/
 
     <a class="portfolio-card" href="{{ '/portfolio/1/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="badge">개인 프로젝트</span>
         <span class="portfolio-card-number">02</span>
       </div>
       <h3>DelayNoMore</h3>
@@ -44,9 +42,9 @@ permalink: /portfolio/
         <span>AI 서비스</span><span>상태 영속화</span><span>성능 최적화</span>
       </div>
       <ul class="portfolio-highlights">
-        <li>Immutable Lock으로 계획 수정에서 비롯되는 지연 행동 차단</li>
-        <li>AI 계획 코치 · Firestore 기반 사용자 상태 영속화</li>
-        <li>스트리밍과 번들 분리로 체감 속도 개선, 메인 소스 44.53kB 달성</li>
+        <li><strong>목표</strong> 계획 수정이 미루기를 만든다는 가설을 Immutable Lock 서비스로 구현</li>
+        <li><strong>담당</strong> 기획·설계·개발·배포 · AI 계획 코치와 Firestore 상태 영속화 구축</li>
+        <li><strong>성과</strong> 스트리밍으로 체감 대기시간 개선 · 번들 분리로 메인 소스 44.53kB 달성</li>
       </ul>
       <span class="portfolio-stack">React · Vite · Firebase · OpenRouter</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
@@ -62,7 +60,6 @@ permalink: /portfolio/
   <div class="portfolio-grid">
     <a class="portfolio-card" href="{{ '/portfolio/db-management-system/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="badge outline">회사 프로젝트</span>
         <span class="portfolio-card-number">03</span>
       </div>
       <h3>개방DB 관리 시스템</h3>
@@ -70,9 +67,9 @@ permalink: /portfolio/
         <span>Generic API</span><span>메타데이터</span><span>레거시 개선</span>
       </div>
       <ul class="portfolio-highlights">
-        <li>조회 API를 반복 개발하던 하드코딩 구조 개선</li>
-        <li>스키마 추상화 · 동적 SQL 변환 엔진 설계</li>
-        <li>신규 요구사항을 코드 변경 없이 설정으로 수용</li>
+        <li><strong>목표</strong> 조회 API를 요구사항마다 반복 개발하던 하드코딩 구조 개선</li>
+        <li><strong>담당</strong> 2024.09–2025.01 · 스키마 추상화, Generic SQL 엔진, 버전 관리 설계</li>
+        <li><strong>성과</strong> 신규 조회 요구사항을 코드 변경 없이 설정으로 수용 · 온보딩 부담 완화</li>
       </ul>
       <span class="portfolio-stack">Java · Spring MVC · MyBatis · MariaDB</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
@@ -80,7 +77,6 @@ permalink: /portfolio/
 
     <a class="portfolio-card" href="{{ '/portfolio/process-management-solution/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="badge outline">회사 프로젝트</span>
         <span class="portfolio-card-number">04</span>
       </div>
       <h3>공정 관리 솔루션(PMS)</h3>
@@ -88,9 +84,9 @@ permalink: /portfolio/
         <span>CI/CD</span><span>Docker</span><span>운영 표준화</span>
       </div>
       <ul class="portfolio-highlights">
-        <li>담당자에게 의존하던 수동 배포 · 장애 대응 구조 개선</li>
-        <li>Docker · GitLab CI 기반 빌드·배포 자동화</li>
-        <li>대응 매뉴얼 표준화로 인적 오류와 운영 문의 감소</li>
+        <li><strong>목표</strong> 담당자에게 의존하던 수동 배포와 장애 대응 프로세스 표준화</li>
+        <li><strong>담당</strong> 2022.11–2024.12 · Docker 격리, GitLab CI/CD, 장애 패턴 분석</li>
+        <li><strong>성과</strong> 배포 인적 오류 제거 · 대응 매뉴얼 도입 후 반복 운영 문의 감소</li>
       </ul>
       <span class="portfolio-stack">Java · Spring Boot · Docker · GitLab CI</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
@@ -98,7 +94,6 @@ permalink: /portfolio/
 
     <a class="portfolio-card" href="{{ '/portfolio/gov-document-ai-data-service/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="badge outline">회사 프로젝트</span>
         <span class="portfolio-card-number">05</span>
       </div>
       <h3>정부 공문서 AI 조회 서비스</h3>
@@ -106,9 +101,9 @@ permalink: /portfolio/
         <span>폐쇄망</span><span>Java–Python 연동</span><span>업무 자동화</span>
       </div>
       <ul class="portfolio-highlights">
-        <li>보안 규제로 중단 위기에 놓인 HWP 파싱 문제 해결</li>
-        <li>ProcessBuilder 기반 Java–Python 브릿지 설계</li>
-        <li>규제 준수와 문서 정제·등록 자동화로 시범 사업 완수</li>
+        <li><strong>목표</strong> 외부 통신이 차단된 폐쇄망에서 정부 HWP 문서 파싱 자동화</li>
+        <li><strong>담당</strong> 2023.08–2024.02 · ProcessBuilder 기반 Java–Python 브릿지 설계</li>
+        <li><strong>성과</strong> 보안 규제를 준수하며 문서 정제·등록을 자동화해 시범 사업 완수</li>
       </ul>
       <span class="portfolio-stack">Java · Spring MVC · Python · MariaDB</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
@@ -116,7 +111,6 @@ permalink: /portfolio/
 
     <a class="portfolio-card" href="{{ '/portfolio/learning-management-system/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="badge outline">회사 프로젝트</span>
         <span class="portfolio-card-number">06</span>
       </div>
       <h3>사내 교육 플랫폼(LMS)</h3>
@@ -124,9 +118,9 @@ permalink: /portfolio/
         <span>SSO · RBAC</span><span>데이터 정합성</span><span>보안</span>
       </div>
       <ul class="portfolio-highlights">
-        <li>다부서 환경의 비인가 접근과 파일 유실 위험 해결</li>
-        <li>SSO 연동 RBAC · 공통 권한 검증 체계 구축</li>
-        <li>Oracle BLOB 단일 트랜잭션으로 백업 정합성 확보</li>
+        <li><strong>목표</strong> 다부서 교육 플랫폼의 비인가 접근과 첨부파일 유실 위험 해결</li>
+        <li><strong>담당</strong> 2020.12–2021.03 · SSO 연동 RBAC, 공통 권한 검증, BLOB 저장 구현</li>
+        <li><strong>성과</strong> API 접근 보안 강화 · 파일과 업무 데이터를 단일 트랜잭션으로 관리</li>
       </ul>
       <span class="portfolio-stack">Java · Spring Boot · JPA · Oracle</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
