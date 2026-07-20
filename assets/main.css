@@ -338,7 +338,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-index-header h1 {
-  margin-bottom: 12px;
+  margin: 6px 0 12px;
+  font-size: 2.15em;
+  letter-spacing: -0.035em;
+}
+
+.portfolio-eyebrow {
+  color: var(--sidebar-text);
+  font-size: 0.76em;
+  font-weight: bold;
+  letter-spacing: 0.14em;
 }
 
 .portfolio-index-header p {
@@ -430,11 +439,35 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.4;
 }
 
-.portfolio-summary {
+.portfolio-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.portfolio-keywords span {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background-color: var(--border-color);
+  color: var(--text-color);
+  font-size: 0.75em;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+.portfolio-highlights {
+  display: grid;
+  gap: 7px;
   margin: 0 0 20px;
+  padding-left: 1.15em;
   color: var(--sidebar-text);
-  font-size: 0.94em;
-  line-height: 1.7;
+  font-size: 0.88em;
+  line-height: 1.55;
+}
+
+.portfolio-highlights li::marker {
+  color: var(--text-color);
 }
 
 .portfolio-stack {
@@ -496,6 +529,10 @@ h1, h2, h3, h4, h5, h6 {
 
   .portfolio-index-header {
     margin-bottom: 34px;
+  }
+
+  .portfolio-index-header h1 {
+    font-size: 1.75em;
   }
 
   .portfolio-grid {

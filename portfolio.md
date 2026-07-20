@@ -5,8 +5,9 @@ permalink: /portfolio/
 ---
 
 <header class="portfolio-index-header">
-  <h1>Portfolio</h1>
-  <p>문제를 기능으로 덮기보다 구조를 바꾸는 해법을 고민해 왔습니다. 개인 프로젝트와 실무 프로젝트에서 맡은 역할, 기술적 선택, 결과를 한눈에 확인해 보세요.</p>
+  <span class="portfolio-eyebrow">BACKEND DEVELOPER</span>
+  <h1>문제를 구조로 해결한 경험</h1>
+  <p>인증·데이터·배포·운영의 복잡한 문제를 구조적으로 개선해 온 백엔드 개발자입니다.</p>
 </header>
 
 <section class="portfolio-section" aria-labelledby="personal-projects">
@@ -21,7 +22,14 @@ permalink: /portfolio/
         <span class="portfolio-card-number">01</span>
       </div>
       <h3>통합 인증(OAuth SSO) 시스템</h3>
-      <p class="portfolio-summary">OAuth 2.0과 JWT를 기반으로 다중 서비스가 공유하는 무상태 인증 구조를 설계했습니다. Gateway 전역 검증, Refresh Token Rotation, Redis 블랙리스트를 적용해 확장성과 토큰 탈취 대응을 함께 확보했습니다.</p>
+      <div class="portfolio-keywords" aria-label="핵심 키워드">
+        <span>MSA 통합 인증</span><span>OAuth 2.0</span><span>보안 설계</span>
+      </div>
+      <ul class="portfolio-highlights">
+        <li>서비스마다 반복되던 인증 로직을 중앙 인증 서버로 통합</li>
+        <li>Gateway · JWT · Redis 기반 Stateless 아키텍처 설계</li>
+        <li>RTR · 블랙리스트로 토큰 탈취 대응 체계 구축</li>
+      </ul>
       <span class="portfolio-stack">Spring Boot · Spring Security · Gateway · Redis</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
     </a>
@@ -32,7 +40,14 @@ permalink: /portfolio/
         <span class="portfolio-card-number">02</span>
       </div>
       <h3>DelayNoMore</h3>
-      <p class="portfolio-summary">계획 확정 후 수정과 삭제를 막는 Immutable Lock으로 지연 행동을 줄이는 웹 서비스입니다. AI 계획 코치와 Firestore 영속화를 구현하고, 스트리밍 응답과 번들 분리로 체감 속도와 초기 로딩 성능을 개선했습니다.</p>
+      <div class="portfolio-keywords" aria-label="핵심 키워드">
+        <span>AI 서비스</span><span>상태 영속화</span><span>성능 최적화</span>
+      </div>
+      <ul class="portfolio-highlights">
+        <li>Immutable Lock으로 계획 수정에서 비롯되는 지연 행동 차단</li>
+        <li>AI 계획 코치 · Firestore 기반 사용자 상태 영속화</li>
+        <li>스트리밍과 번들 분리로 체감 속도 개선, 메인 소스 44.53kB 달성</li>
+      </ul>
       <span class="portfolio-stack">React · Vite · Firebase · OpenRouter</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
     </a>
@@ -51,7 +66,14 @@ permalink: /portfolio/
         <span class="portfolio-card-number">03</span>
       </div>
       <h3>개방DB 관리 시스템</h3>
-      <p class="portfolio-summary">반복되는 조회 API 개발을 없애기 위해 데이터 스키마를 메타데이터로 추상화했습니다. 선택한 컬럼과 조건을 SQL로 변환하는 Generic API 엔진과 버전 관리 체계를 설계해 신규 요구사항을 설정만으로 수용하도록 개선했습니다.</p>
+      <div class="portfolio-keywords" aria-label="핵심 키워드">
+        <span>Generic API</span><span>메타데이터</span><span>레거시 개선</span>
+      </div>
+      <ul class="portfolio-highlights">
+        <li>조회 API를 반복 개발하던 하드코딩 구조 개선</li>
+        <li>스키마 추상화 · 동적 SQL 변환 엔진 설계</li>
+        <li>신규 요구사항을 코드 변경 없이 설정으로 수용</li>
+      </ul>
       <span class="portfolio-stack">Java · Spring MVC · MyBatis · MariaDB</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
     </a>
@@ -62,7 +84,14 @@ permalink: /portfolio/
         <span class="portfolio-card-number">04</span>
       </div>
       <h3>공정 관리 솔루션(PMS)</h3>
-      <p class="portfolio-summary">담당자에게 의존하던 배포와 장애 대응을 표준화한 프로젝트입니다. Docker와 GitLab CI로 빌드·배포 파이프라인을 자동화하고, 장애 패턴 분석과 대응 매뉴얼을 통해 운영 공수와 인적 오류를 줄였습니다.</p>
+      <div class="portfolio-keywords" aria-label="핵심 키워드">
+        <span>CI/CD</span><span>Docker</span><span>운영 표준화</span>
+      </div>
+      <ul class="portfolio-highlights">
+        <li>담당자에게 의존하던 수동 배포 · 장애 대응 구조 개선</li>
+        <li>Docker · GitLab CI 기반 빌드·배포 자동화</li>
+        <li>대응 매뉴얼 표준화로 인적 오류와 운영 문의 감소</li>
+      </ul>
       <span class="portfolio-stack">Java · Spring Boot · Docker · GitLab CI</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
     </a>
@@ -73,7 +102,14 @@ permalink: /portfolio/
         <span class="portfolio-card-number">05</span>
       </div>
       <h3>정부 공문서 AI 조회 서비스</h3>
-      <p class="portfolio-summary">외부 통신이 불가능한 폐쇄망에서 HWP 문서 파싱 문제를 해결했습니다. Java ProcessBuilder와 로컬 Python 환경을 연결하는 브릿지 파이프라인을 설계해 규제를 준수하면서 문서 정제·등록 과정을 자동화했습니다.</p>
+      <div class="portfolio-keywords" aria-label="핵심 키워드">
+        <span>폐쇄망</span><span>Java–Python 연동</span><span>업무 자동화</span>
+      </div>
+      <ul class="portfolio-highlights">
+        <li>보안 규제로 중단 위기에 놓인 HWP 파싱 문제 해결</li>
+        <li>ProcessBuilder 기반 Java–Python 브릿지 설계</li>
+        <li>규제 준수와 문서 정제·등록 자동화로 시범 사업 완수</li>
+      </ul>
       <span class="portfolio-stack">Java · Spring MVC · Python · MariaDB</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
     </a>
@@ -84,7 +120,14 @@ permalink: /portfolio/
         <span class="portfolio-card-number">06</span>
       </div>
       <h3>사내 교육 플랫폼(LMS)</h3>
-      <p class="portfolio-summary">여러 부서가 사용하는 교육 플랫폼의 접근 권한과 파일 정합성을 강화했습니다. SSO 연동 RBAC 검증을 공통화하고, 첨부파일을 Oracle BLOB에 저장해 비즈니스 데이터와 동일한 트랜잭션·백업 주기를 보장했습니다.</p>
+      <div class="portfolio-keywords" aria-label="핵심 키워드">
+        <span>SSO · RBAC</span><span>데이터 정합성</span><span>보안</span>
+      </div>
+      <ul class="portfolio-highlights">
+        <li>다부서 환경의 비인가 접근과 파일 유실 위험 해결</li>
+        <li>SSO 연동 RBAC · 공통 권한 검증 체계 구축</li>
+        <li>Oracle BLOB 단일 트랜잭션으로 백업 정합성 확보</li>
+      </ul>
       <span class="portfolio-stack">Java · Spring Boot · JPA · Oracle</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
     </a>
