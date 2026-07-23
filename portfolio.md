@@ -39,14 +39,14 @@ permalink: /portfolio/
       </div>
       <h3>DelayNoMore</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
-        <span>AI 서비스</span><span>상태 영속화</span><span>성능 최적화</span>
+        <span>풀스택 백엔드</span><span>서버 규칙 소유</span><span>데이터 영속화</span>
       </div>
       <ul class="portfolio-highlights">
         <li><strong>목표</strong> 계획 수정이 미루기를 만든다는 가설을 Immutable Lock 서비스로 구현</li>
-        <li><strong>담당</strong> 기획·설계·개발·배포 · AI 계획 코치와 Firestore 상태 영속화 구축</li>
-        <li><strong>성과</strong> 스트리밍으로 체감 대기시간 개선 · 번들 분리로 메인 소스 44.53kB 달성</li>
+        <li><strong>담당</strong> 기획·설계·개발·배포 단독 수행 · Spring Boot + React 풀스택 재구현</li>
+        <li><strong>성과</strong> 13개 릴리스로 규칙·데이터 소유권을 서버로 이관 · PostgreSQL 영속화·SSE 스트리밍</li>
       </ul>
-      <span class="portfolio-stack">React · Vite · Firebase · OpenRouter</span>
+      <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · OpenRouter</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
     </a>
   </div>
