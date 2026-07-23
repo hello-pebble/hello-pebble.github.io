@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="800" height="300" fill="#ffffff" rx="12"/>
+  <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">AI 토큰 절약 — 요청당 대부분 $0.001 미만</text>
+
+  <!-- Left: 5 technique pills -->
+  <rect x="20" y="68" width="440" height="32" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="240" y="88" text-anchor="middle" font-size="12" fill="#1e293b">전체 계획 재전송 → 변경된 날짜만 (patch)</text>
+
+  <rect x="20" y="108" width="440" height="32" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="240" y="128" text-anchor="middle" font-size="12" fill="#1e293b">id·completed 제거 → 날짜:문자열 배열 (compact)</text>
+
+  <rect x="20" y="148" width="440" height="32" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="240" y="168" text-anchor="middle" font-size="12" fill="#1e293b">대화 이력 12턴 → 6턴</text>
+
+  <rect x="20" y="188" width="440" height="32" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="240" y="208" text-anchor="middle" font-size="12" fill="#1e293b">추론 모드 OFF (요청당 약 95초·4천 토큰 절감)</text>
+
+  <rect x="20" y="228" width="440" height="32" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="240" y="248" text-anchor="middle" font-size="12" fill="#1e293b">max_tokens 상한 (폭주 생성 방어)</text>
+
+  <!-- Right: emphasis result tile -->
+  <rect x="480" y="68" width="300" height="192" rx="12" fill="#334155"/>
+  <text x="630" y="102" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">요청당 비용</text>
+  <text x="630" y="152" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff">$0.0002–$0.0022</text>
+  <text x="630" y="176" text-anchor="middle" font-size="12" fill="#cbd5e1">/ 요청</text>
+  <text x="630" y="206" text-anchor="middle" font-size="11" fill="#cbd5e1">입력 364–1,645 토큰</text>
+
+  <text x="400" y="285" text-anchor="middle" font-size="12" fill="#64748b">모델 품질은 유지한 채 전송량만 줄여 비용을 구조적으로 절감</text>
+</svg>
