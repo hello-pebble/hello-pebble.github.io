@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <rect width="800" height="300" fill="#ffffff" rx="12"/>
+  <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">기술 스택 (레이어드)</text>
+
+  <!-- 프론트엔드 -->
+  <rect x="20" y="55" width="760" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="45" y="80" text-anchor="start" font-size="13" font-weight="bold" fill="#1e293b">프론트엔드</text>
+  <text x="755" y="80" text-anchor="end" font-size="12" fill="#334155">React · Vite (SPA, 단일 번들 44.53kB)</text>
+
+  <!-- 백엔드 (emphasis) -->
+  <rect x="20" y="103" width="760" height="40" rx="8" fill="#334155"/>
+  <text x="45" y="128" text-anchor="start" font-size="13" font-weight="bold" fill="#ffffff">백엔드</text>
+  <text x="755" y="128" text-anchor="end" font-size="12" fill="#ffffff">Spring Boot 4 · Java 21 · REST /api/v1 · SSE</text>
+
+  <!-- AI -->
+  <rect x="20" y="151" width="760" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="45" y="176" text-anchor="start" font-size="13" font-weight="bold" fill="#1e293b">AI</text>
+  <text x="755" y="176" text-anchor="end" font-size="12" fill="#334155">OpenRouter LLM 프록시 · 서버 보관 키</text>
+
+  <!-- 데이터 -->
+  <rect x="20" y="199" width="760" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="45" y="224" text-anchor="start" font-size="13" font-weight="bold" fill="#1e293b">데이터</text>
+  <text x="755" y="224" text-anchor="end" font-size="12" fill="#334155">PostgreSQL (Supabase) · Flyway · JSONB</text>
+
+  <!-- 인프라 -->
+  <rect x="20" y="247" width="760" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="45" y="272" text-anchor="start" font-size="13" font-weight="bold" fill="#1e293b">인프라</text>
+  <text x="755" y="272" text-anchor="end" font-size="12" fill="#334155">Docker 단일 컨테이너 · GitHub Actions · Oracle Cloud</text>
+</svg>
