@@ -58,6 +58,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
   position: sticky;
   top: 0;
+  overflow-y: auto;
 }
 
 .sidebar-nav {
@@ -136,6 +137,33 @@ h1, h2, h3, h4, h5, h6 {
 
 .submenu-item:hover, .submenu-item.active {
   color: var(--sidebar-active);
+}
+
+.project-menu-title {
+  padding-bottom: 1px;
+}
+
+.project-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 0 5px 10px;
+  padding-left: 9px;
+  border-left: 1px solid var(--border-color);
+}
+
+.project-submenu a {
+  padding: 3px 0;
+  color: var(--sidebar-text);
+  font-size: 0.76em;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.project-submenu a:hover,
+.project-submenu a.active {
+  color: var(--sidebar-active);
+  font-weight: bold;
 }
 
 .sidebar-actions {
@@ -231,6 +259,57 @@ h1, h2, h3, h4, h5, h6 {
 .section-note {
   font-size: 0.85em;
   color: var(--sidebar-text);
+}
+
+.project-context {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--sidebar-text);
+  font-size: 0.82em;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+.project-page-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 26px 0 38px;
+}
+
+.main-content .project-page-nav a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.main-content .project-page-nav a:hover,
+.main-content .project-page-nav a:focus-visible,
+.main-content .project-page-nav a.active {
+  border-color: var(--sidebar-text);
+  background-color: var(--border-color);
+  outline: none;
+}
+
+.project-page-nav span {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.project-page-nav small {
+  overflow: hidden;
+  color: var(--sidebar-text);
+  font-size: 0.72em;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .entry-header {
@@ -520,6 +599,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: auto;
     position: relative;
+    overflow-y: visible;
     padding: 30px 20px;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
@@ -555,6 +635,15 @@ h1, h2, h3, h4, h5, h6 {
 
   .portfolio-index-header {
     margin-bottom: 34px;
+  }
+
+  .project-page-nav {
+    grid-template-columns: 1fr;
+    margin: 22px 0 30px;
+  }
+
+  .project-page-nav small {
+    white-space: normal;
   }
 
   .portfolio-index-header h1 {
