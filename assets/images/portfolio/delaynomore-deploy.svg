@@ -1,43 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 215" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
       <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
     </marker>
   </defs>
-  <rect width="800" height="250" fill="#ffffff" rx="12"/>
-  <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">배포 파이프라인 — 빌드 1회, 어디서든 Pull</text>
+  <rect x="0" y="0" width="800" height="215" rx="12" fill="#ffffff"/>
+  <text x="400" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">배포 파이프라인 — VM은 빌드하지 않는다</text>
 
-  <rect x="20" y="78" width="150" height="64" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="95" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">git push / v* 태그</text>
-  <text x="95" y="126" text-anchor="middle" font-size="11" fill="#64748b">GitHub</text>
+  <rect x="30" y="85" width="165" height="70" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="112" y="116" text-anchor="middle" font-size="16" fill="#1e293b">git push</text>
+  <text x="112" y="138" text-anchor="middle" font-size="14" fill="#64748b">v* 태그</text>
 
-  <rect x="194" y="78" width="150" height="64" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="269" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">GitHub Actions</text>
-  <text x="269" y="126" text-anchor="middle" font-size="11" fill="#64748b">Docker 이미지 빌드</text>
+  <line x1="195" y1="120" x2="222" y2="120" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <rect x="368" y="78" width="140" height="64" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="438" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">ghcr.io</text>
-  <text x="438" y="126" text-anchor="middle" font-size="11" fill="#64748b">이미지 레지스트리</text>
+  <rect x="225" y="85" width="165" height="70" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="307" y="116" text-anchor="middle" font-size="16" fill="#1e293b">GitHub Actions</text>
+  <text x="307" y="138" text-anchor="middle" font-size="14" fill="#64748b">이미지 빌드</text>
 
-  <rect x="532" y="74" width="248" height="72" rx="8" fill="#334155" stroke="#0f172a"/>
-  <text x="656" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">OCI VM</text>
-  <text x="656" y="118" text-anchor="middle" font-size="11" fill="#cbd5e1">이미지 Pull·실행</text>
-  <text x="656" y="133" text-anchor="middle" font-size="11" fill="#cbd5e1">(단일 컨테이너)</text>
+  <line x1="390" y1="120" x2="417" y2="120" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <line x1="170" y1="110" x2="192" y2="110" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="344" y1="110" x2="366" y2="110" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="508" y1="110" x2="530" y2="110" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="420" y="85" width="140" height="70" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="490" y="116" text-anchor="middle" font-size="16" fill="#1e293b">ghcr.io</text>
+  <text x="490" y="138" text-anchor="middle" font-size="14" fill="#64748b">이미지 저장</text>
 
-  <rect x="571" y="170" width="170" height="50" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="656" y="192" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">PostgreSQL</text>
-  <text x="656" y="208" text-anchor="middle" font-size="11" fill="#64748b">(Supabase)</text>
-  <line x1="656" y1="146" x2="656" y2="168" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="663" y="161" text-anchor="start" font-size="10" fill="#94a3b8">DB_URL 주입</text>
+  <line x1="560" y1="120" x2="587" y2="120" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <rect x="390" y="170" width="160" height="50" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
-  <text x="470" y="192" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">프로필 전환</text>
-  <text x="470" y="208" text-anchor="middle" font-size="10" fill="#64748b">postgres ↔ in-memory</text>
-  <line x1="598" y1="146" x2="486" y2="168" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="590" y="85" width="180" height="70" rx="8" fill="#334155" stroke="#0f172a"/>
+  <text x="680" y="114" text-anchor="middle" font-size="17" font-weight="bold" fill="#ffffff">무료 VM</text>
+  <text x="680" y="138" text-anchor="middle" font-size="14" fill="#cbd5e1">Pull · 실행만 (빌드 X)</text>
 
-  <text x="400" y="238" text-anchor="middle" font-size="12" fill="#64748b">저사양 VM에서 빌드하지 않고 ghcr.io 이미지를 받아 실행 — 빌드로 인한 마비 방지</text>
+  <text x="400" y="192" text-anchor="middle" font-size="14" fill="#64748b">저사양 VM이 빌드로 마비되던 문제 해결 · 같은 이미지로 영속/인메모리 전환</text>
 </svg>

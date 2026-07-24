@@ -4,36 +4,28 @@
       <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
     </marker>
   </defs>
-  <rect width="800" height="260" fill="#ffffff" rx="12"/>
-  <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">Immutable Lock — 서버 원자 가드</text>
+  <rect x="0" y="0" width="800" height="260" rx="12" fill="#ffffff"/>
+  <text x="400" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">Immutable Lock — 확정 계획을 서버·트랜잭션에서 잠금</text>
 
-  <rect x="20" y="93" width="150" height="64" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="95" y="118" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">PUT /plans/{id}</text>
-  <text x="95" y="138" text-anchor="middle" font-size="11" fill="#64748b">수정 요청</text>
+  <rect x="30" y="100" width="175" height="64" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="117" y="128" text-anchor="middle" font-size="16" fill="#1e293b">PUT /plans/{id}</text>
+  <text x="117" y="150" text-anchor="middle" font-size="14" fill="#64748b">수정 요청</text>
 
-  <line x1="170" y1="125" x2="188" y2="125" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="205" y1="132" x2="248" y2="132" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <rect x="190" y="65" width="260" height="120" rx="8" fill="#334155" stroke="#0f172a"/>
-  <text x="320" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">computeIfPresent 원자 구간</text>
-  <text x="320" y="108" text-anchor="middle" font-size="10" fill="#cbd5e1">조회·검사·교체 사이 끼어들 수 없음</text>
-  <rect x="225" y="118" width="190" height="40" rx="6" fill="#475569" stroke="#64748b"/>
-  <text x="320" y="142" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">CONFIRMED(고정) 계획인가?</text>
+  <rect x="253" y="90" width="225" height="84" rx="8" fill="#334155" stroke="#0f172a"/>
+  <text x="365" y="124" text-anchor="middle" font-size="18" font-weight="bold" fill="#ffffff">트랜잭션 + 행 잠금</text>
+  <text x="365" y="150" text-anchor="middle" font-size="14" fill="#cbd5e1">SELECT … FOR UPDATE</text>
 
-  <line x1="415" y1="128" x2="486" y2="88" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="415" y1="148" x2="486" y2="193" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="478" y1="122" x2="525" y2="100" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="478" y1="150" x2="525" y2="167" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <rect x="490" y="60" width="160" height="56" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="570" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">완료 토글 / no-op</text>
-  <text x="570" y="102" text-anchor="middle" font-size="11" fill="#64748b">허용</text>
+  <rect x="530" y="72" width="240" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="650" y="104" text-anchor="middle" font-size="16" fill="#1e293b">완료 토글 → 허용</text>
 
-  <rect x="490" y="165" width="140" height="56" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="560" y="198" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">구조·내용 변경</text>
+  <rect x="530" y="140" width="240" height="58" rx="8" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="650" y="163" text-anchor="middle" font-size="15" fill="#334155">구조·내용 변경</text>
+  <text x="650" y="185" text-anchor="middle" font-size="15" font-weight="bold" fill="#334155">→ 409 PLAN_LOCKED</text>
 
-  <line x1="630" y1="193" x2="648" y2="193" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <rect x="650" y="165" width="140" height="56" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-  <text x="720" y="190" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">409 PLAN_LOCKED</text>
-  <text x="720" y="207" text-anchor="middle" font-size="11" fill="#334155">(거부)</text>
-
-  <text x="400" y="245" text-anchor="middle" font-size="12" fill="#64748b">고정 후에는 완료 체크만 허용 — check-then-act 레이스 없이 서버가 잠금 강제</text>
+  <text x="400" y="230" text-anchor="middle" font-size="14" fill="#64748b">생성 한도·회고 업서트의 원자성은 본문 참조 — 이 그림은 확정 계획 잠금만 다룸</text>
 </svg>

@@ -1,52 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 330" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
-  <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
-    </marker>
-  </defs>
-  <rect width="800" height="330" fill="#ffffff" rx="12"/>
-  <text x="400" y="38" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">데이터 스키마 — 3 테이블</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 235" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <rect x="0" y="0" width="800" height="235" rx="12" fill="#ffffff"/>
+  <text x="400" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">데이터 스키마 — 목적에 맞춘 3가지 판단</text>
 
   <!-- Card 1: plans -->
-  <rect x="20" y="70" width="230" height="170" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <rect x="20" y="70" width="230" height="30" rx="8" fill="#334155"/>
-  <text x="135" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">plans</text>
-  <text x="34" y="118" font-size="11" fill="#334155">id · owner</text>
-  <text x="34" y="136" font-size="11" fill="#334155">tasks  (JSONB)</text>
-  <text x="34" y="154" font-size="11" fill="#334155">startDate · endDate  (TEXT)</text>
-  <text x="34" y="172" font-size="11" fill="#334155">saved_at  (BIGINT)</text>
-  <text x="34" y="190" font-size="11" fill="#334155">status</text>
-  <text x="34" y="208" font-size="9" fill="#94a3b8">idx (owner, saved_at DESC, id DESC)</text>
+  <rect x="30" y="78" width="235" height="112" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect x="30" y="78" width="235" height="34" rx="8" fill="#f1f5f9"/>
+  <text x="147" y="101" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">plans</text>
+  <text x="147" y="143" text-anchor="middle" font-size="17" fill="#1e293b">tasks = JSONB</text>
+  <text x="147" y="169" text-anchor="middle" font-size="14" fill="#64748b">형태가 변하는 할 일 저장</text>
 
   <!-- Card 2: reflections -->
-  <rect x="275" y="70" width="230" height="170" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <rect x="275" y="70" width="230" height="30" rx="8" fill="#334155"/>
-  <text x="390" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">reflections</text>
-  <text x="289" y="118" font-size="11" fill="#334155">plan_id  (FK)</text>
-  <text x="289" y="136" font-size="11" fill="#334155">date  (TEXT)</text>
-  <text x="289" y="154" font-size="11" fill="#334155">difficulty · reason</text>
-  <text x="289" y="172" font-size="9" fill="#94a3b8">idx (plan_id, date DESC)</text>
+  <rect x="283" y="78" width="235" height="112" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect x="283" y="78" width="235" height="34" rx="8" fill="#f1f5f9"/>
+  <text x="400" y="101" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">reflections</text>
+  <text x="400" y="143" text-anchor="middle" font-size="17" fill="#1e293b">ON DELETE CASCADE</text>
+  <text x="400" y="169" text-anchor="middle" font-size="14" fill="#64748b">계획 삭제 시 함께 정리</text>
 
-  <!-- Card 3: audit_events -->
-  <rect x="530" y="70" width="230" height="170" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <rect x="530" y="70" width="230" height="30" rx="8" fill="#334155"/>
-  <text x="645" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">audit_events</text>
-  <text x="544" y="118" font-size="11" fill="#334155">id · plan_id  (FK 없음)</text>
-  <text x="544" y="136" font-size="11" fill="#334155">owner_id</text>
-  <text x="544" y="154" font-size="11" fill="#334155">type · detail · ts</text>
-  <text x="544" y="172" font-size="9" fill="#94a3b8">계획 삭제 후에도 생존</text>
+  <!-- Card 3: audit_events (emphasis) -->
+  <rect x="536" y="78" width="235" height="112" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+  <rect x="536" y="78" width="235" height="34" rx="8" fill="#334155"/>
+  <text x="653" y="101" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">audit_events</text>
+  <text x="653" y="143" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">FK 없음</text>
+  <text x="653" y="169" text-anchor="middle" font-size="14" fill="#334155">계획 삭제 후에도 이력 생존</text>
 
-  <!-- plans -> reflections cascade -->
-  <line x1="250" y1="222" x2="273" y2="222" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="262" y="235" text-anchor="middle" font-size="9" fill="#64748b">ON DELETE CASCADE</text>
-
-  <!-- audit_events: no FK dashed link back toward plans -->
-  <polyline points="250,240 250,258 530,258 530,240" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
-  <text x="390" y="253" text-anchor="middle" font-size="9" fill="#94a3b8">FK 없음</text>
-
-  <!-- RLS note -->
-  <rect x="20" y="270" width="760" height="30" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
-  <text x="400" y="289" text-anchor="middle" font-size="11" fill="#334155">세 테이블 모두 RLS ON (정책 없음) — Supabase 자동 API 차단, 앱은 특권 역할로 직접 접속</text>
-
-  <text x="400" y="316" text-anchor="middle" font-size="12" fill="#64748b">tasks는 JSONB로 유연 보관 · 인덱스는 조회 패턴에 맞춤 · 이력은 FK 없이 삭제를 견딤</text>
+  <text x="400" y="216" text-anchor="middle" font-size="14" fill="#64748b">형태 · 수명 · 감사 요구가 서로 달라 테이블마다 다른 규칙을 적용</text>
 </svg>

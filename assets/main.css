@@ -290,6 +290,28 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 12px;
 }
 
+/* 포트폴리오 이미지 크기 제어 (기본 .main-content img 규칙을 확실히 덮도록 img.클래스로 지정) */
+.main-content img.portfolio-diagram { max-width: min(100%, 720px); }
+.main-content img.portfolio-detail-shot { width: auto; max-width: min(100%, 480px); }
+.main-content img.portfolio-hero-shot { width: 100%; max-width: 100%; }
+
+/* 서비스 화면 위 3칸 안내 줄 (이미지를 가리지 않음) */
+.main-content .shot-labels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 20px auto 0;
+  text-align: center;
+}
+.main-content .shot-labels span {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: var(--toggle-text);
+  background-color: var(--toggle-bg);
+  border-radius: 8px;
+  padding: 4px 6px;
+}
+
 .site-footer {
   margin-top: 60px;
   padding-top: 20px;

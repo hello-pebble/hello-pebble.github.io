@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="800" height="240" rx="12" fill="#ffffff"/>
+  <text x="400" y="40" text-anchor="middle" font-size="20" font-weight="bold" fill="#1e293b">AI 응답 최적화 — 전송량과 체감 대기를 함께 줄임</text>
+
+  <rect x="40" y="95" width="185" height="80" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="132" y="128" text-anchor="middle" font-size="14" fill="#64748b">기존</text>
+  <text x="132" y="153" text-anchor="middle" font-size="17" fill="#1e293b">계획 전체 재전송</text>
+
+  <line x1="228" y1="135" x2="273" y2="135" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="280" y="88" width="240" height="94" rx="8" fill="#334155" stroke="#0f172a"/>
+  <text x="400" y="126" text-anchor="middle" font-size="18" font-weight="bold" fill="#ffffff">patch diff</text>
+  <text x="400" y="154" text-anchor="middle" font-size="15" fill="#cbd5e1">+ SSE 토큰 스트리밍</text>
+
+  <line x1="523" y1="135" x2="568" y2="135" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="575" y="95" width="185" height="80" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="667" y="128" text-anchor="middle" font-size="17" fill="#1e293b">전송 토큰 ↓</text>
+  <text x="667" y="153" text-anchor="middle" font-size="15" fill="#334155">무응답 구간 제거</text>
+
+  <text x="400" y="214" text-anchor="middle" font-size="14" fill="#64748b">요청당 대부분 $0.001 미만 · Day 1부터 생성 결과를 노출</text>
+</svg>
