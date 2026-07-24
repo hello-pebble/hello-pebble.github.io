@@ -3,19 +3,19 @@
     <span class="sidebar-title">dada</span>
     <span class="sidebar-tagline">backend developer</span>
     <div class="sidebar-actions">
-      <button id="theme-toggle" class="icon-btn" aria-label="테마 전환" title="테마 전환"></button>
-      <button class="icon-btn" onclick="window.print()" aria-label="PDF 인쇄" title="PDF 인쇄">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme"></button>
+      <button class="icon-btn" onclick="window.print()" aria-label="Print PDF" title="Print PDF">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       </button>
     </div>
   </div>
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">이력서</a>
+    <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">Resume</a>
 
     <div class="sidebar-nav-group">
       <a class="sidebar-nav-item{% if page.url contains '/portfolio' %} active{% endif %}"
         href="{{ '/portfolio/' | relative_url }}"
-        id="portfolio-toggle">포트폴리오</a>
+        id="portfolio-toggle">Portfolio</a>
       <div class="sidebar-submenu" id="portfolio-submenu">
         <span class="submenu-label">개인 프로젝트</span>
         <a class="sidebar-nav-item submenu-item project-menu-title{% if page.url contains '/portfolio/oauth-sso-backend/' %} active{% endif %}"
@@ -43,10 +43,8 @@
           href="{{ '/portfolio/learning-management-system/' | relative_url }}">사내 교육 플랫폼(LMS)</a>
       </div>
     </div>
-    <a class="sidebar-nav-item{% if page.url == '/ai/' %} active{% endif %}"
-      href="{{ '/ai/' | relative_url }}">AI 활용</a>
     <a class="sidebar-nav-item" href="https://velog.io/@hello-pebble/series/Study-with-AI" target="_blank"
-      rel="noopener noreferrer">스터디</a>
+      rel="noopener noreferrer">Study</a>
   </nav>
 </div>
 
