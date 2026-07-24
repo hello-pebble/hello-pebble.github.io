@@ -10,6 +10,30 @@ permalink: /portfolio/
   <p>인증·데이터·배포·운영의 복잡한 문제를 구조적으로 개선해 온 백엔드 개발자입니다.</p>
 </header>
 
+<section class="portfolio-section" aria-labelledby="technical-skills">
+  <div class="portfolio-section-heading">
+    <h2 id="technical-skills">기술 스택</h2>
+  </div>
+  <div class="portfolio-skill-list">
+    <div class="portfolio-skill-row">
+      <strong>Backend</strong>
+      <span>Java, Python · Spring Boot, Security, JPA, MyBatis</span>
+    </div>
+    <div class="portfolio-skill-row">
+      <strong>Data</strong>
+      <span>MariaDB, Oracle, Redis</span>
+    </div>
+    <div class="portfolio-skill-row">
+      <strong>Infra</strong>
+      <span>Docker, GitLab CI/CD, Tomcat, WildFly</span>
+    </div>
+    <div class="portfolio-skill-row">
+      <strong>Frontend & AI</strong>
+      <span>JavaScript, React, Vite · OpenRouter API 연동 · <a href="{{ '/ai/' | relative_url }}">AI 활용 상세</a></span>
+    </div>
+  </div>
+</section>
+
 <section class="portfolio-section" aria-labelledby="personal-projects">
   <div class="portfolio-section-heading">
     <h2 id="personal-projects">개인 프로젝트</h2>

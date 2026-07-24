@@ -488,6 +488,33 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.85em;
 }
 
+.portfolio-skill-list {
+  border-top: 1px solid var(--border-color);
+}
+
+.portfolio-skill-row {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 24px;
+  padding: 13px 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.portfolio-skill-row strong {
+  font-size: 0.9em;
+}
+
+.portfolio-skill-row span {
+  color: var(--sidebar-text);
+  font-size: 0.92em;
+  line-height: 1.55;
+}
+
+.main-content .portfolio-skill-row a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
 .portfolio-grid {
   display: flex;
   flex-direction: column;
@@ -652,6 +679,12 @@ h1, h2, h3, h4, h5, h6 {
 
   .portfolio-index-header h1 {
     font-size: 1.75em;
+  }
+
+  .portfolio-skill-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 11px 2px;
   }
 
   .portfolio-grid {
