@@ -20,7 +20,7 @@ permalink: /portfolio/
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">01</span>
       </div>
-      <h3>기능별 변경 경계를 분리한 MSA 백엔드</h3>
+      <h3>변경 경계로 나눈 서비스 아키텍처</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
         <span>변경 경계 분리</span><span>Gateway 통합</span><span>분산 JWT 검증</span>
       </div>

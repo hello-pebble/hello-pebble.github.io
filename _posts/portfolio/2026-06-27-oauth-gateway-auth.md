@@ -6,7 +6,7 @@ category: portfolio
 tags: [SpringCloudGateway, SpringSecurity, OAuth2, JWT, JWKS]
 ---
 
-<span class="project-context">기능별 변경 경계를 분리한 MSA · 02</span>
+<span class="project-context">변경 경계로 나눈 MSA · 02</span>
 
 # Gateway 통합 접근과 분산 인증
 

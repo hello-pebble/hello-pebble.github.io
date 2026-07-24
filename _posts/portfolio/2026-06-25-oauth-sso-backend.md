@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "기능별 변경 경계를 분리하고 Gateway로 통합한 MSA 백엔드"
+title: "변경 경계로 나눈 서비스 — 인증부터 통신까지 검증한 MSA 실험"
 permalink: /portfolio/oauth-sso-backend/
 category: portfolio
 tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
@@ -8,7 +8,7 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 <span class="project-context">개인 프로젝트 · 2026.05 — 2026.07</span>
 
-# 기능별 변경 경계를 분리하고 Gateway로 통합한 MSA 백엔드
+# 변경 경계로 나눈 서비스 — 인증부터 통신까지 검증한 MSA 실험
 
 - PMS 운영에서 경험한 코드 혼재·변경 충돌·계정 API 결합 문제에서 출발
 - 6개 실행 모듈과 Gateway 단일 진입점, JWT 중앙 발급·분산 검증 구조 구현

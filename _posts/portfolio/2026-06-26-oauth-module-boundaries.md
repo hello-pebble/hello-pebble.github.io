@@ -6,7 +6,7 @@ category: portfolio
 tags: [Kotlin, SpringBoot, MSA, Modularization, Docker]
 ---
 
-<span class="project-context">기능별 변경 경계를 분리한 MSA · 01</span>
+<span class="project-context">변경 경계로 나눈 MSA · 01</span>
 
 # 컨테이너 분리에서 변경 경계 분리로
 
