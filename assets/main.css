@@ -703,22 +703,98 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Print Styles */
 @media print {
+  @page {
+    size: A4;
+    margin: 12mm 14mm;
+  }
+
   .sidebar {
     display: none !important;
   }
 
   .page-content {
+    display: block !important;
     margin-left: 0 !important;
     padding: 0 !important;
   }
 
   .main-content {
     max-width: 100% !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
   }
 
   body {
     background-color: white !important;
     color: black !important;
+  }
+
+  .resume-header {
+    margin-bottom: 4px;
+  }
+
+  .resume-header h1 {
+    font-size: 22pt;
+  }
+
+  .main-content h2 {
+    margin: 18px 0 8px;
+    padding-bottom: 4px;
+    font-size: 15pt;
+    break-after: avoid;
+  }
+
+  .print-page-start {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  .entry-header {
+    margin-top: 12px;
+    break-after: avoid;
+  }
+
+  .entry-header h3 {
+    font-size: 11.5pt;
+  }
+
+  .entry-date {
+    font-size: 9pt;
+  }
+
+  .main-content blockquote {
+    margin: 6px 0;
+    padding: 5px 10px;
+    break-inside: avoid;
+  }
+
+  .main-content p {
+    margin: 6px 0;
+  }
+
+  .main-content ul {
+    margin: 6px 0 10px;
+    padding-left: 20px;
+  }
+
+  .main-content li {
+    margin: 3px 0;
+  }
+
+  .main-content table {
+    margin: 8px 0;
+    font-size: 9.5pt;
+  }
+
+  .main-content th,
+  .main-content td {
+    padding: 4px 8px;
+  }
+
+  .entry-header,
+  .main-content blockquote,
+  .main-content table {
+    break-inside: avoid;
   }
 
   [data-theme="dark"] body {
