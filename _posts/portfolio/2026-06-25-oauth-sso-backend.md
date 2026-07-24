@@ -45,9 +45,9 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 이 네 가지가 성립하면 "어떤 경로는 열려 있고, 어떤 경로는 인증이 필요하며, 내부 경로는 외부에서 보이지 않는다"는 접근 규칙을 화면이 아닌 서버 구성이 보장하게 됩니다.
 
-## 01. 테스트 베드 — 전체 구조와 6개 모듈 {#testbed}
+![Gateway 인증/인가 분기 — 공개·보호·관리자·내부 경로가 서로 다른 응답을 보장](/assets/images/portfolio/oauth-architecture.svg)
 
-![기능별 변경 경계와 통합 접근 구조](/assets/images/portfolio/oauth-architecture.svg)
+## 01. 테스트 베드 — 전체 구조와 6개 모듈 {#testbed}
 
 | 설계 판단 | 적용 방식 |
 | :--- | :--- |
