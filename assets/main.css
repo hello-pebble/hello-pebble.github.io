@@ -7,6 +7,7 @@
   --sidebar-text: #666666;
   --sidebar-active: #000000;
   --border-color: #eeeeee;
+  --surface-color: #f6f6f6;
   --toggle-bg: #000000;
   --toggle-text: #ffffff;
 }
@@ -18,6 +19,7 @@
   --sidebar-text: #999999;
   --sidebar-active: #ffffff;
   --border-color: #333333;
+  --surface-color: #151515;
   --toggle-bg: #ffffff;
   --toggle-text: #000000;
 }
@@ -257,7 +259,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-note {
-  font-size: 0.85em;
+  display: block;
+  margin: 10px 0 28px;
+  font-size: 0.9rem;
+  line-height: 1.65;
   color: var(--sidebar-text);
 }
 
@@ -341,6 +346,98 @@ h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
   flex-shrink: 0;
   margin-left: auto;
+}
+
+.resume-section-title {
+  margin: 52px 0 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--text-color);
+  font-size: 1.7rem;
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+}
+
+.experience-company {
+  margin: 0 0 42px;
+  padding: 0 0 4px 24px;
+  border-left: 2px solid var(--border-color);
+}
+
+.company-header {
+  margin: 0 0 22px -24px;
+  padding: 17px 20px;
+  align-items: center;
+  background: var(--surface-color);
+  border-radius: 0 10px 10px 0;
+}
+
+.company-header h3 {
+  font-size: 1.3rem;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
+.company-header .entry-date {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.experience-subheading {
+  margin: 24px 0 10px;
+  color: var(--sidebar-text);
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+}
+
+.experience-company > ul {
+  margin: 0 0 26px;
+  padding-left: 1.25rem;
+}
+
+.experience-company li {
+  margin: 7px 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.project-header {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  gap: 6px 18px;
+}
+
+.experience-subheading + .project-header {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.project-header h3 {
+  flex: 1 1 480px;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+}
+
+.project-header .entry-date {
+  font-size: 0.82rem;
+}
+
+.project-role {
+  display: flex;
+  gap: 10px;
+  margin: 9px 0 10px;
+  color: var(--sidebar-text);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.project-role strong {
+  flex: 0 0 auto;
+  color: var(--text-color);
 }
 
 .badge {
@@ -631,6 +728,55 @@ h1, h2, h3, h4, h5, h6 {
   .page-content {
     margin-left: 0;
     padding: 30px 20px;
+  }
+
+  .resume-section-title {
+    margin-top: 40px;
+    font-size: 1.45rem;
+  }
+
+  .section-note {
+    margin-bottom: 22px;
+    font-size: 0.86rem;
+  }
+
+  .experience-company {
+    margin-bottom: 34px;
+    padding-left: 14px;
+  }
+
+  .company-header {
+    margin-left: -14px;
+    padding: 14px 15px;
+    align-items: flex-start;
+  }
+
+  .company-header h3 {
+    width: 100%;
+    font-size: 1.14rem;
+  }
+
+  .company-header .entry-date,
+  .project-header .entry-date {
+    width: 100%;
+    margin-left: 0;
+    font-size: 0.8rem;
+  }
+
+  .project-header h3 {
+    flex-basis: 100%;
+    font-size: 1rem;
+  }
+
+  .experience-company li {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .project-role {
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.88rem;
   }
 
   .portfolio-index-header {
