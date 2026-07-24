@@ -20,16 +20,16 @@ permalink: /portfolio/
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">01</span>
       </div>
-      <h3>통합 인증(OAuth SSO) 시스템</h3>
+      <h3>인증에서 확장한 MSA 백엔드</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
-        <span>MSA 통합 인증</span><span>OAuth 2.0</span><span>보안 설계</span>
+        <span>6개 모듈</span><span>분산 JWT 검증</span><span>서비스 간 통신</span>
       </div>
       <ul class="portfolio-highlights">
-        <li><strong>목표</strong> MSA 환경의 서비스별 중복 인증과 세션 확장성 문제 해결</li>
-        <li><strong>담당</strong> 개인 설계·개발 · OAuth 2.0, Gateway, JWT, Redis 인증 아키텍처 구현</li>
-        <li><strong>성과</strong> 중앙 인증 표준화 · RTR와 블랙리스트 기반 토큰 탈취 대응 체계 구축</li>
+        <li><strong>목표</strong> OAuth2 인증을 출발점으로 MSA의 서비스 경계와 통신 방식 검증</li>
+        <li><strong>담당</strong> 개인 설계·개발 · Auth, Gateway, 4개 서비스의 책임과 인증 흐름 구성</li>
+        <li><strong>성과</strong> JWKS 기반 독립 검증 · 관리자 내부 호출 · 6개 앱 Compose 재현</li>
       </ul>
-      <span class="portfolio-stack">Spring Boot · Spring Security · Gateway · Redis</span>
+      <span class="portfolio-stack">Kotlin · Spring Boot · Spring Security · Gateway · Docker Compose</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
     </a>
 
