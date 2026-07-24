@@ -17,8 +17,8 @@
   </defs>
 
   <rect width="1000" height="620" rx="18" fill="#f8fafc"/>
-  <text x="50" y="50" font-size="22" font-weight="700" fill="#0f172a">6개 실행 모듈의 책임과 통신 구조</text>
-  <text x="50" y="78" font-size="13" fill="#64748b">외부 요청은 Gateway 하나로 진입하고, 인증 정책은 각 Resource Server가 소유합니다.</text>
+  <text x="50" y="50" font-size="22" font-weight="700" fill="#0f172a">기능별 변경 경계와 통합 접근 구조</text>
+  <text x="50" y="78" font-size="13" fill="#64748b">각 모듈은 자신의 기능을 소유하고, 외부 요청은 Gateway 하나로 진입합니다.</text>
 
   <rect x="45" y="235" width="130" height="92" rx="14" fill="#fff" stroke="#cbd5e1" filter="url(#shadow)"/>
   <text x="110" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">Client</text>

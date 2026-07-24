@@ -1,0 +1,22 @@
+<nav class="project-page-nav" aria-label="기능별 변경 경계를 분리한 MSA 프로젝트">
+  <a class="{% if page.url == '/portfolio/oauth-sso-backend/' %}active{% endif %}"
+    href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">
+    <span>Overview</span>
+    <small>배경과 전체 구조</small>
+  </a>
+  <a class="{% if page.url == '/portfolio/oauth-sso-backend/01-module-boundaries/' %}active{% endif %}"
+    href="{{ '/portfolio/oauth-sso-backend/01-module-boundaries/' | relative_url }}">
+    <span>01. 변경 경계</span>
+    <small>모듈 분리 기준</small>
+  </a>
+  <a class="{% if page.url == '/portfolio/oauth-sso-backend/02-gateway-auth/' %}active{% endif %}"
+    href="{{ '/portfolio/oauth-sso-backend/02-gateway-auth/' | relative_url }}">
+    <span>02. 통합 인증</span>
+    <small>Gateway와 JWT</small>
+  </a>
+  <a class="{% if page.url == '/portfolio/oauth-sso-backend/03-verification/' %}active{% endif %}"
+    href="{{ '/portfolio/oauth-sso-backend/03-verification/' | relative_url }}">
+    <span>03. 검증과 한계</span>
+    <small>재현 결과와 다음 단계</small>
+  </a>
+</nav>

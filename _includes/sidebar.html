@@ -18,8 +18,18 @@
         id="portfolio-toggle">포트폴리오</a>
       <div class="sidebar-submenu" id="portfolio-submenu">
         <span class="submenu-label">개인 프로젝트</span>
-        <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/oauth-sso-backend/' %} active{% endif %}"
-          href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">인증에서 확장한 MSA 백엔드</a>
+        <a class="sidebar-nav-item submenu-item project-menu-title{% if page.url contains '/portfolio/oauth-sso-backend/' %} active{% endif %}"
+          href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">기능별 경계를 분리한 MSA</a>
+        <div class="project-submenu">
+          <a class="{% if page.url == '/portfolio/oauth-sso-backend/' %}active{% endif %}"
+            href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">Overview</a>
+          <a class="{% if page.url == '/portfolio/oauth-sso-backend/01-module-boundaries/' %}active{% endif %}"
+            href="{{ '/portfolio/oauth-sso-backend/01-module-boundaries/' | relative_url }}">01. 변경 경계</a>
+          <a class="{% if page.url == '/portfolio/oauth-sso-backend/02-gateway-auth/' %}active{% endif %}"
+            href="{{ '/portfolio/oauth-sso-backend/02-gateway-auth/' | relative_url }}">02. 통합 인증</a>
+          <a class="{% if page.url == '/portfolio/oauth-sso-backend/03-verification/' %}active{% endif %}"
+            href="{{ '/portfolio/oauth-sso-backend/03-verification/' | relative_url }}">03. 검증과 한계</a>
+        </div>
         <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/1/' %} active{% endif %}"
           href="{{ '/portfolio/1/' | relative_url }}">DelayNoMore</a>
         <span class="submenu-label">회사 프로젝트</span>
