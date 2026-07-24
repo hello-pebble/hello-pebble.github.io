@@ -44,14 +44,14 @@ permalink: /portfolio/
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">01</span>
       </div>
-      <h3>변경 경계로 나눈 서비스 아키텍처</h3>
+      <h3>Gateway 단일 진입점 인증/인가 검증</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
-        <span>변경 경계 분리</span><span>Gateway 통합</span><span>분산 JWT 검증</span>
+        <span>단일 진입점</span><span>공개·보호 라우트 분리</span><span>JWT 분산 검증</span>
       </div>
       <ul class="portfolio-highlights">
-        <li><strong>목표</strong> PMS 운영에서 겪은 코드 혼재·변경 충돌·계정 API 결합 문제를 서비스 경계로 분리</li>
-        <li><strong>담당</strong> 개인 설계·개발 · 기능별 6개 실행 모듈과 Gateway 단일 진입점 구성</li>
-        <li><strong>검증</strong> 모듈별 빌드·실행 · JWKS 독립 검증 · 서비스 간 권한 전달 · Compose 재현</li>
+        <li><strong>목표</strong> 단일 진입점 뒤에서 공개·보호·내부 경로가 각각 다른 응답을 보장하는지 검증</li>
+        <li><strong>담당</strong> 개인 설계·개발 · Gateway 단일 공개와 JWT 중앙 발급·JWKS 분산 검증 구성</li>
+        <li><strong>검증</strong> 공개 라우트 접근 · 무토큰 401 · Admin 경유 양측 인가 · 내부 경로 404 확인</li>
       </ul>
       <span class="portfolio-stack">Kotlin · Spring Boot · Spring Security · Gateway · Docker Compose</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
