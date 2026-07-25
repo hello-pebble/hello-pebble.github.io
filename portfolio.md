@@ -37,12 +37,29 @@ permalink: /portfolio/
 <section class="portfolio-section" aria-labelledby="personal-projects">
   <div class="portfolio-section-heading">
     <h2 id="personal-projects">개인 프로젝트</h2>
-    <span class="portfolio-count">2 projects</span>
+    <span class="portfolio-count">3 projects</span>
   </div>
   <div class="portfolio-grid">
-    <a class="portfolio-card" href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/matchsimulation-backend/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">01</span>
+      </div>
+      <h3>MatchSimulation — 매칭 서비스 백엔드</h3>
+      <div class="portfolio-keywords" aria-label="핵심 키워드">
+        <span>교체 가능한 경계</span><span>전략 패턴 매칭 엔진</span><span>AI 연동 접점 설계</span>
+      </div>
+      <ul class="portfolio-highlights">
+        <li><strong>목표</strong> 추천 엔진·DB·인증을 나중에 교체할 수 있도록 경계를 먼저 설계한 매칭 백엔드 구현</li>
+        <li><strong>담당</strong> 개인 설계·개발 · 7개 기능 모듈과 MatchingEngine 설정 기반 전환 구조 구성</li>
+        <li><strong>검증</strong> 가입→추천→매칭 수락 전이 · QnA·알림·관리자 통계까지 전체 API 스모크 확인</li>
+      </ul>
+      <span class="portfolio-stack">Java 21 · Spring Boot 4 · Spring Data JPA · H2 · Gradle</span>
+      <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
+    </a>
+
+    <a class="portfolio-card" href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">
+      <div class="portfolio-card-top">
+        <span class="portfolio-card-number">02</span>
       </div>
       <h3>Gateway 단일 진입점 인증/인가 검증</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
@@ -59,7 +76,7 @@ permalink: /portfolio/
 
     <a class="portfolio-card" href="{{ '/portfolio/1/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="portfolio-card-number">02</span>
+        <span class="portfolio-card-number">03</span>
       </div>
       <h3>DelayNoMore</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
@@ -84,7 +101,7 @@ permalink: /portfolio/
   <div class="portfolio-grid">
     <a class="portfolio-card" href="{{ '/portfolio/db-management-system/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="portfolio-card-number">03</span>
+        <span class="portfolio-card-number">04</span>
       </div>
       <h3>개방DB 관리 시스템</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
@@ -101,7 +118,7 @@ permalink: /portfolio/
 
     <a class="portfolio-card" href="{{ '/portfolio/process-management-solution/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="portfolio-card-number">04</span>
+        <span class="portfolio-card-number">05</span>
       </div>
       <h3>공정 관리 솔루션(PMS)</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
@@ -118,7 +135,7 @@ permalink: /portfolio/
 
     <a class="portfolio-card" href="{{ '/portfolio/gov-document-ai-data-service/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="portfolio-card-number">05</span>
+        <span class="portfolio-card-number">06</span>
       </div>
       <h3>정부 공문서 AI 조회 서비스</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
@@ -135,7 +152,7 @@ permalink: /portfolio/
 
     <a class="portfolio-card" href="{{ '/portfolio/learning-management-system/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="portfolio-card-number">06</span>
+        <span class="portfolio-card-number">07</span>
       </div>
       <h3>사내 교육 플랫폼(LMS)</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
