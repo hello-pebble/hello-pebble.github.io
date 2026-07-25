@@ -36,44 +36,10 @@ permalink: /portfolio/
 
 <section class="portfolio-section" aria-labelledby="personal-projects">
   <div class="portfolio-section-heading">
-    <h2 id="personal-projects">개인 프로젝트</h2>
+    <h2 id="personal-projects">Personal Projects</h2>
     <span class="portfolio-count">3 projects</span>
   </div>
   <div class="portfolio-grid">
-    <a class="portfolio-card" href="{{ '/portfolio/matchsimulation-backend/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">01</span>
-      </div>
-      <h3>MatchSimulation — 매칭 서비스 백엔드</h3>
-      <div class="portfolio-keywords" aria-label="핵심 키워드">
-        <span>교체 가능한 경계</span><span>전략 패턴 매칭 엔진</span><span>AI 연동 접점 설계</span>
-      </div>
-      <ul class="portfolio-highlights">
-        <li><strong>목표</strong> 추천 엔진·DB·인증을 나중에 교체할 수 있도록 경계를 먼저 설계한 매칭 백엔드 구현</li>
-        <li><strong>담당</strong> 개인 설계·개발 · 7개 기능 모듈과 MatchingEngine 설정 기반 전환 구조 구성</li>
-        <li><strong>검증</strong> 가입→추천→매칭 수락 전이 · QnA·알림·관리자 통계까지 전체 API 스모크 확인</li>
-      </ul>
-      <span class="portfolio-stack">Java 21 · Spring Boot 4 · Spring Data JPA · H2 · Gradle</span>
-      <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
-    </a>
-
-    <a class="portfolio-card" href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">02</span>
-      </div>
-      <h3>Gateway 단일 진입점 인증/인가 검증</h3>
-      <div class="portfolio-keywords" aria-label="핵심 키워드">
-        <span>단일 진입점</span><span>공개·보호 라우트 분리</span><span>JWT 분산 검증</span>
-      </div>
-      <ul class="portfolio-highlights">
-        <li><strong>목표</strong> 단일 진입점 뒤에서 공개·보호·내부 경로가 각각 다른 응답을 보장하는지 검증</li>
-        <li><strong>담당</strong> 개인 설계·개발 · Gateway 단일 공개와 JWT 중앙 발급·JWKS 분산 검증 구성</li>
-        <li><strong>검증</strong> 공개 라우트 접근 · 무토큰 401 · Admin 경유 양측 인가 · 내부 경로 404 확인</li>
-      </ul>
-      <span class="portfolio-stack">Kotlin · Spring Boot · Spring Security · Gateway · Docker Compose</span>
-      <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
-    </a>
-
     <a class="portfolio-card" href="{{ '/portfolio/1/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">03</span>
@@ -90,12 +56,44 @@ permalink: /portfolio/
       <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · OpenRouter</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
     </a>
+    <a class="portfolio-card" href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">
+      <div class="portfolio-card-top">
+        <span class="portfolio-card-number">02</span>
+      </div>
+      <h3>Gateway 단일 진입점 인증/인가 검증</h3>
+      <div class="portfolio-keywords" aria-label="핵심 키워드">
+        <span>단일 진입점</span><span>공개·보호 라우트 분리</span><span>JWT 분산 검증</span>
+      </div>
+      <ul class="portfolio-highlights">
+        <li><strong>목표</strong> 단일 진입점 뒤에서 공개·보호·내부 경로가 각각 다른 응답을 보장하는지 검증</li>
+        <li><strong>담당</strong> 개인 설계·개발 · Gateway 단일 공개와 JWT 중앙 발급·JWKS 분산 검증 구성</li>
+        <li><strong>검증</strong> 공개 라우트 접근 · 무토큰 401 · Admin 경유 양측 인가 · 내부 경로 404 확인</li>
+      </ul>
+      <span class="portfolio-stack">Kotlin · Spring Boot · Spring Security · Gateway · Docker Compose</span>
+      <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
+    </a>
+    <a class="portfolio-card" href="{{ '/portfolio/matchsimulation-backend/' | relative_url }}">
+      <div class="portfolio-card-top">
+        <span class="portfolio-card-number">01</span>
+      </div>
+      <h3>MatchSimulation — 매칭 서비스 백엔드</h3>
+      <div class="portfolio-keywords" aria-label="핵심 키워드">
+        <span>교체 가능한 경계</span><span>전략 패턴 매칭 엔진</span><span>AI 연동 접점 설계</span>
+      </div>
+      <ul class="portfolio-highlights">
+        <li><strong>목표</strong> 추천 엔진·DB·인증을 나중에 교체할 수 있도록 경계를 먼저 설계한 매칭 백엔드 구현</li>
+        <li><strong>담당</strong> 개인 설계·개발 · 7개 기능 모듈과 MatchingEngine 설정 기반 전환 구조 구성</li>
+        <li><strong>검증</strong> 가입→추천→매칭 수락 전이 · QnA·알림·관리자 통계까지 전체 API 스모크 확인</li>
+      </ul>
+      <span class="portfolio-stack">Java 21 · Spring Boot 4 · Spring Data JPA · H2 · Gradle</span>
+      <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
+    </a>
   </div>
 </section>
 
 <section class="portfolio-section" aria-labelledby="company-projects">
   <div class="portfolio-section-heading">
-    <h2 id="company-projects">회사 프로젝트</h2>
+    <h2 id="company-projects">Work Experience</h2>
     <span class="portfolio-count">4 projects</span>
   </div>
   <div class="portfolio-grid">
