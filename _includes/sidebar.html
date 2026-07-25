@@ -18,6 +18,8 @@
         id="portfolio-toggle">Portfolio</a>
       <div class="sidebar-submenu" id="portfolio-submenu">
         <span class="submenu-label">Personal Projects</span>
+        <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/matchsimulation-backend/' %} active{% endif %}"
+          href="{{ '/portfolio/matchsimulation-backend/' | relative_url }}">MatchSimulation 매칭 백엔드</a>
         <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/oauth-sso-backend/' %} active{% endif %}"
           href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">Gateway 통합 인증 검증</a>
         <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/1/' %} active{% endif %}"
