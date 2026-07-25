@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 330" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="arrow-current" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-next" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="330" rx="12" fill="#ffffff"/>
+  <text x="400" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#1e293b">다음 계획 추천 — 검증 가능한 기준선에서 맞춤 판단으로</text>
+
+  <rect x="24" y="58" width="752" height="100" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect x="40" y="76" width="72" height="24" rx="12" fill="#334155"/>
+  <text x="76" y="93" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">현재</text>
+
+  <rect x="136" y="86" width="128" height="52" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="200" y="108" text-anchor="middle" font-size="14" font-weight="600" fill="#1e293b">실행·회고 집계</text>
+  <text x="200" y="126" text-anchor="middle" font-size="11" fill="#64748b">최근 같은 목표 3건</text>
+
+  <line x1="264" y1="112" x2="292" y2="112" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-current)"/>
+
+  <rect x="296" y="86" width="128" height="52" rx="8" fill="#334155"/>
+  <text x="360" y="108" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">서버 규칙</text>
+  <text x="360" y="126" text-anchor="middle" font-size="11" fill="#cbd5e1">분량 결정·폴백</text>
+
+  <line x1="424" y1="112" x2="452" y2="112" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-current)"/>
+
+  <rect x="456" y="86" width="128" height="52" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="520" y="108" text-anchor="middle" font-size="14" font-weight="600" fill="#1e293b">AI 이유 설명</text>
+  <text x="520" y="126" text-anchor="middle" font-size="11" fill="#64748b">숫자 변경 권한 없음</text>
+
+  <line x1="584" y1="112" x2="612" y2="112" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow-current)"/>
+
+  <rect x="616" y="86" width="128" height="52" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="680" y="108" text-anchor="middle" font-size="14" font-weight="600" fill="#1e293b">미리보기·승인</text>
+  <text x="680" y="126" text-anchor="middle" font-size="11" fill="#64748b">승인 전 미저장</text>
+
+  <rect x="24" y="174" width="752" height="132" rx="10" fill="#eff6ff" stroke="#93c5fd"/>
+  <rect x="40" y="192" width="72" height="24" rx="12" fill="#2563eb"/>
+  <text x="76" y="209" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">다음</text>
+
+  <rect x="136" y="214" width="128" height="60" rx="8" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="200" y="237" text-anchor="middle" font-size="14" font-weight="600" fill="#1e3a8a">추천 컨텍스트</text>
+  <text x="200" y="256" text-anchor="middle" font-size="11" fill="#475569">수행 추세·시간·수준</text>
+
+  <line x1="264" y1="244" x2="292" y2="244" stroke="#2563eb" stroke-width="1.7" marker-end="url(#arrow-next)"/>
+
+  <rect x="296" y="214" width="128" height="60" rx="8" fill="#2563eb"/>
+  <text x="360" y="237" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">AI 구조화 추천</text>
+  <text x="360" y="256" text-anchor="middle" font-size="11" fill="#dbeafe">숫자·이유·신뢰도</text>
+
+  <line x1="424" y1="244" x2="452" y2="244" stroke="#2563eb" stroke-width="1.7" marker-end="url(#arrow-next)"/>
+
+  <rect x="456" y="214" width="128" height="60" rx="8" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="520" y="237" text-anchor="middle" font-size="14" font-weight="600" fill="#1e3a8a">서버 검증</text>
+  <text x="520" y="256" text-anchor="middle" font-size="11" fill="#475569">1~5·±1·타임아웃</text>
+
+  <line x1="584" y1="244" x2="612" y2="244" stroke="#2563eb" stroke-width="1.7" marker-end="url(#arrow-next)"/>
+
+  <rect x="616" y="214" width="128" height="60" rx="8" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="680" y="237" text-anchor="middle" font-size="14" font-weight="600" fill="#1e3a8a">추천 ID·승인</text>
+  <text x="680" y="256" text-anchor="middle" font-size="11" fill="#475569">서버 기록으로 판정</text>
+
+  <text x="400" y="296" text-anchor="middle" font-size="12" fill="#2563eb">AI 실패 시 현재 서버 규칙으로 즉시 복귀 · 외부 호출 횟수는 1회 유지</text>
+</svg>

@@ -63,12 +63,12 @@ permalink: /portfolio/
       </div>
       <h3>DelayNoMore</h3>
       <div class="portfolio-keywords" aria-label="핵심 키워드">
-        <span>Spring Boot 백엔드</span><span>단일 컨테이너 배포</span><span>AI 토큰 최적화</span>
+        <span>Spring Boot 백엔드</span><span>회고 기반 추천</span><span>AI 토큰 최적화</span>
       </div>
       <ul class="portfolio-highlights">
         <li><strong>목표</strong> 계획 수정이 미루기를 만든다는 가설을 Immutable Lock 서비스로 구현</li>
         <li><strong>담당</strong> 기획·설계·개발·배포 단독 수행 · 계층형 백엔드 설계와 단일 컨테이너 배포</li>
-        <li><strong>성과</strong> PostgreSQL 스키마·동시성 설계 · SSE 스트리밍 · AI 요청당 대부분 $0.001 미만</li>
+        <li><strong>성과</strong> 회고→다음 계획 피드백 루프 · PostgreSQL 동시성 설계 · SSE 스트리밍 · AI 요청당 대부분 $0.001 미만</li>
       </ul>
       <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · OpenRouter</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>

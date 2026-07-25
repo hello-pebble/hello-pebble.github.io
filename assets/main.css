@@ -245,6 +245,16 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.95em;
 }
 
+.main-content pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.main-content pre code {
+  display: block;
+  min-width: 0;
+}
+
 .main-content th,
 .main-content td {
   border: 1px solid var(--border-color);
