@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif" role="img" aria-labelledby="title desc">
   <title id="title">Gateway부터 서비스 간 호출까지의 인증 흐름</title>
-  <desc id="desc">클라이언트의 관리자 요청이 Gateway, Admin, Matching을 통과하며 각 Resource Server에서 JWT와 역할을 검증하는 순서</desc>
+  <desc id="desc">클라이언트의 관리자 요청이 Gateway, 호출 서비스, 호출받은 서비스를 통과하며 각 서비스에서 JWT와 역할을 검증하는 순서</desc>
   <defs>
     <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
       <path d="M0 0L9 4.5 0 9Z" fill="#334155"/>
@@ -12,7 +12,7 @@
 
   <rect width="1000" height="540" rx="18" fill="#f8fafc"/>
   <text x="50" y="48" font-size="22" font-weight="700" fill="#0f172a">관리자 요청은 두 서비스 경계에서 검증됩니다</text>
-  <text x="50" y="76" font-size="13" fill="#64748b">Gateway는 전달하고, Admin과 Matching이 각자의 접근 정책을 소유합니다.</text>
+  <text x="50" y="76" font-size="13" fill="#64748b">Gateway는 전달하고, 호출 서비스와 호출받은 서비스가 각자의 접근 정책을 소유합니다.</text>
 
   <g>
     <rect x="45" y="112" width="170" height="64" rx="12" fill="#fff" stroke="#cbd5e1"/>
@@ -22,8 +22,10 @@
 
     <text x="130" y="151" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">Client</text>
     <text x="370" y="151" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Gateway</text>
-    <text x="630" y="151" text-anchor="middle" font-size="15" font-weight="700" fill="#713f12">Admin</text>
-    <text x="875" y="151" text-anchor="middle" font-size="15" font-weight="700" fill="#064e3b">Matching</text>
+    <text x="630" y="144" text-anchor="middle" font-size="15" font-weight="700" fill="#713f12">호출 서비스</text>
+    <text x="630" y="164" text-anchor="middle" font-size="11" fill="#854d0e">관리자 API</text>
+    <text x="875" y="144" text-anchor="middle" font-size="15" font-weight="700" fill="#064e3b">호출받은 서비스</text>
+    <text x="875" y="164" text-anchor="middle" font-size="11" fill="#065f46">내부 API</text>
 
     <line x1="130" y1="176" x2="130" y2="485" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5 5"/>
     <line x1="370" y1="176" x2="370" y2="485" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="5 5"/>
@@ -46,7 +48,7 @@
     <circle cx="470" cy="350" r="17" fill="#2563eb"/>
     <text x="470" y="355" text-anchor="middle" font-weight="700" fill="#fff">3</text>
     <line x1="370" y1="350" x2="622" y2="350" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
-    <text x="500" y="337" text-anchor="middle" fill="#334155">Bearer JWT와 함께 Admin으로 라우팅</text>
+    <text x="500" y="337" text-anchor="middle" fill="#334155">Bearer JWT와 함께 관리자 API로 라우팅</text>
 
     <rect x="582" y="374" width="96" height="58" rx="8" fill="#fef9c3"/>
     <text x="630" y="398" text-anchor="middle" fill="#713f12">JWT 서명·만료</text>
