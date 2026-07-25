@@ -5,9 +5,7 @@ permalink: /portfolio/
 ---
 
 <header class="portfolio-index-header">
-  <span class="portfolio-eyebrow">BACKEND DEVELOPER</span>
-  <h1>문제를 구조로 해결한 경험</h1>
-  <p>인증·데이터·배포·운영의 복잡한 문제를 구조적으로 개선해 온 백엔드 개발자입니다.</p>
+  <span class="portfolio-eyebrow">portfolio</span>
 </header>
 
 <section class="portfolio-section" aria-labelledby="technical-skills">
