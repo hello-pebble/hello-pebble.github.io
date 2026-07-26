@@ -6,7 +6,7 @@ category: portfolio
 tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 ---
 
-<span class="project-context">개인 프로젝트 · 2026.05 — 2026.07</span>
+<span class="project-context">개인 프로젝트 · 2026.01 — 2026.03</span>
 
 # Gateway 단일 진입점에서의 인증/인가 검증 — 공개·보호 라우트 분리와 JWT 분산 검증 실험
 

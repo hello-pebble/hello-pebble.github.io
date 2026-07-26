@@ -15,11 +15,11 @@ permalink: /portfolio/
   <div class="portfolio-skill-list">
     <div class="portfolio-skill-row">
       <strong>Backend</strong>
-      <span>Java, Python · Spring Boot, Security, JPA, MyBatis</span>
+      <span>Java, Python · Spring Boot, Security, JPA, MyBatis, JUnit</span>
     </div>
     <div class="portfolio-skill-row">
       <strong>Data</strong>
-      <span>MariaDB, Oracle, Redis</span>
+      <span>MariaDB, Oracle</span>
     </div>
     <div class="portfolio-skill-row">
       <strong>Infra</strong>
@@ -48,7 +48,7 @@ permalink: /portfolio/
       </div>
       <ul class="portfolio-highlights">
         <li><strong>목표</strong> 계획 수정이 미루기를 만든다는 가설을 Immutable Lock 서비스로 구현</li>
-        <li><strong>담당</strong> 기획·설계·개발·배포 단독 수행 · 계층형 백엔드 설계와 단일 컨테이너 배포</li>
+        <li><strong>담당</strong> 2026.04–2026.06 · 기획·설계·개발·배포 단독 수행 · 계층형 백엔드 설계와 단일 컨테이너 배포</li>
         <li><strong>성과</strong> 회고→다음 계획 피드백 루프 · PostgreSQL 동시성 설계 · SSE 스트리밍 · AI 요청당 대부분 $0.001 미만</li>
       </ul>
       <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · OpenRouter</span>
@@ -64,7 +64,7 @@ permalink: /portfolio/
       </div>
       <ul class="portfolio-highlights">
         <li><strong>목표</strong> 단일 진입점 뒤에서 공개·보호·내부 경로가 각각 다른 응답을 보장하는지 검증</li>
-        <li><strong>담당</strong> 개인 설계·개발 · Gateway 단일 공개와 JWT 중앙 발급·JWKS 분산 검증 구성</li>
+        <li><strong>담당</strong> 2026.01–2026.03 · 개인 설계·개발 · Gateway 단일 공개와 JWT 중앙 발급·JWKS 분산 검증 구성</li>
         <li><strong>검증</strong> 공개 라우트 접근 · 무토큰 401 · Admin 경유 양측 인가 · 내부 경로 404 확인</li>
       </ul>
       <span class="portfolio-stack">Kotlin · Spring Boot · Spring Security · Gateway · Docker Compose</span>
@@ -80,7 +80,7 @@ permalink: /portfolio/
       </div>
       <ul class="portfolio-highlights">
         <li><strong>목표</strong> 추천 엔진·DB·인증을 나중에 교체할 수 있도록 경계를 먼저 설계한 매칭 백엔드 구현</li>
-        <li><strong>담당</strong> 개인 설계·개발 · 7개 기능 모듈과 MatchingEngine 설정 기반 전환 구조 구성</li>
+        <li><strong>담당</strong> 2026.06– 진행 중 · 개인 설계·개발 · 7개 기능 모듈과 MatchingEngine 설정 기반 전환 구조 구성</li>
         <li><strong>검증</strong> 가입→추천→매칭 수락 전이 · QnA·알림·관리자 통계까지 전체 API 스모크 확인</li>
       </ul>
       <span class="portfolio-stack">Java 21 · Spring Boot 4 · Spring Data JPA · H2 · Gradle</span>
@@ -104,9 +104,10 @@ permalink: /portfolio/
         <span>Generic API</span><span>메타데이터</span><span>레거시 개선</span>
       </div>
       <ul class="portfolio-highlights">
-        <li><strong>목표</strong> 조회 API를 요구사항마다 반복 개발하던 하드코딩 구조 개선</li>
-        <li><strong>담당</strong> 2024.09–2025.01 · 스키마 추상화, Generic SQL 엔진, 버전 관리 설계</li>
-        <li><strong>성과</strong> 신규 조회 요구사항을 코드 변경 없이 설정으로 수용 · 온보딩 부담 완화</li>
+        <li><strong>목표</strong> 요구사항마다 조회 API를 반복 개발하던 하드코딩 레거시 구조를, 신규 인력이 파악하기 쉬운 형태로 재설계</li>
+        <li><strong>담당</strong> 2024.09–2025.01 · <strong>설계 및 프로토타입</strong> · 스키마 추상화, Generic SQL 엔진, 버전 관리 설계</li>
+        <li><strong>검증 범위</strong> 로컬 환경에서 관리자 설정만으로 조회 API가 생성되는 동작 확인</li>
+        <li><strong>한계</strong> 운영 반영 전 퇴사. 실 트래픽·동시성 검증 미수행</li>
       </ul>
       <span class="portfolio-stack">Java · Spring MVC · MyBatis · MariaDB</span>
       <span class="portfolio-card-link">프로젝트 자세히 보기 →</span>
