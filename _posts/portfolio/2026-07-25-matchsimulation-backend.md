@@ -6,7 +6,7 @@ category: portfolio
 tags: [Java21, SpringBoot4, JPA, H2, Gradle, StrategyPattern]
 ---
 
-<span class="project-context">개인 프로젝트 · 2026.07 — 진행 중</span>
+<span class="project-context">개인 프로젝트 · 2026.06 — 진행 중</span>
 
 # 교체 가능한 경계를 먼저 설계한 매칭 서비스 백엔드 — 규칙 기반 엔진에서 외부 AI로의 전환 접점 실험
 
