@@ -500,19 +500,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-skill-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .portfolio-skill-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 16px 18px;
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 24px;
+  padding: 9px 6px;
 }
 
 .portfolio-skill-row strong {
@@ -531,20 +526,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 20px;
 }
 
 .portfolio-card {
-  display: grid;
-  grid-template-columns: 136px minmax(0, 1fr);
-  column-gap: 28px;
-  padding: 26px 6px;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px;
   box-sizing: border-box;
-  border-bottom: 1px solid var(--border-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
   color: var(--text-color);
   text-decoration: none;
-  transition: padding-left 0.2s, background-color 0.2s;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
 .main-content .portfolio-card {
@@ -553,17 +550,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-card:hover,
 .portfolio-card:focus-visible {
-  padding-left: 12px;
+  transform: translateY(-2px);
   background-color: var(--border-color);
   outline: none;
 }
 
 .portfolio-card-top {
   display: flex;
-  grid-column: 1;
-  grid-row: 1 / span 5;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  margin-bottom: 8px;
 }
 
 .portfolio-card-number {
@@ -574,15 +570,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-card h3 {
-  grid-column: 2;
   margin: 0 0 10px;
-  font-size: 1.25em;
+  font-size: 1.12em;
   line-height: 1.4;
 }
 
 .portfolio-keywords {
   display: flex;
-  grid-column: 2;
   flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 14px;
@@ -600,7 +594,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-highlights {
   display: grid;
-  grid-column: 2;
   gap: 7px;
   margin: 0 0 14px;
   padding-left: 1.15em;
@@ -621,7 +614,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-stack {
-  grid-column: 2;
+  margin-top: auto;
   color: var(--sidebar-text);
   font-size: 0.8em;
   line-height: 1.55;
@@ -629,7 +622,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-card-link {
   display: block;
-  grid-column: 2;
   margin-top: 12px;
   font-size: 0.86em;
   font-weight: bold;
@@ -696,44 +688,19 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.75em;
   }
 
-  .portfolio-skill-list {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
   .portfolio-skill-row {
+    grid-template-columns: 1fr;
     gap: 4px;
-    padding: 13px 14px;
+    padding: 9px 2px;
   }
 
   .portfolio-grid {
-    display: flex;
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .portfolio-card {
-    grid-template-columns: 1fr;
-    padding: 22px 2px;
-  }
-
-  .portfolio-card:hover,
-  .portfolio-card:focus-visible {
-    padding-left: 8px;
-  }
-
-  .portfolio-card-top {
-    grid-column: 1;
-    grid-row: auto;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .portfolio-card h3,
-  .portfolio-keywords,
-  .portfolio-highlights,
-  .portfolio-stack,
-  .portfolio-card-link {
-    grid-column: 1;
+    padding: 20px 16px;
   }
 
   .resume-title {
