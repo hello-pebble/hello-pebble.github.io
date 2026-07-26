@@ -446,6 +446,22 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
+.resume-tech {
+  margin: 6px 0 0;
+  color: var(--sidebar-text);
+  font-size: 0.85em;
+  line-height: 1.55;
+}
+
+.resume-placeholder {
+  display: inline-block;
+  padding: 1px 8px;
+  border: 1px dashed var(--sidebar-text);
+  border-radius: 4px;
+  color: var(--sidebar-text);
+  font-size: 0.85em;
+}
+
 .contact-icons {
   display: flex;
   align-items: center;
@@ -738,8 +754,8 @@ h1, h2, h3, h4, h5, h6 {
 
   .main-content {
     max-width: 100% !important;
-    font-size: 10.5pt;
-    line-height: 1.45;
+    font-size: 10pt;
+    line-height: 1.42;
   }
 
   body {
@@ -771,11 +787,32 @@ h1, h2, h3, h4, h5, h6 {
     color: black !important;
   }
 
+  .resume-placeholder {
+    display: none !important;
+  }
+
+  .resume-tech {
+    margin: 4px 0 0;
+    font-size: 9pt;
+  }
+
+  .portfolio-skill-row {
+    padding: 2px 0;
+  }
+
+  .main-content blockquote {
+    margin: 5px 0;
+  }
+
   .main-content h2 {
-    margin: 18px 0 8px;
+    margin: 14px 0 6px;
     padding-bottom: 4px;
-    font-size: 15pt;
+    font-size: 14pt;
     break-after: avoid;
+  }
+
+  .resume-draft {
+    display: none !important;
   }
 
   .print-page-start {
@@ -784,7 +821,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .entry-header {
-    margin-top: 12px;
+    margin-top: 10px;
     break-after: avoid;
   }
 
@@ -803,16 +840,16 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .main-content p {
-    margin: 6px 0;
+    margin: 5px 0;
   }
 
   .main-content ul {
-    margin: 6px 0 10px;
-    padding-left: 20px;
+    margin: 5px 0 8px;
+    padding-left: 18px;
   }
 
   .main-content li {
-    margin: 3px 0;
+    margin: 2px 0;
   }
 
   .main-content table {
