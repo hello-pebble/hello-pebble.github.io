@@ -38,29 +38,29 @@ permalink: /portfolio/
     <span class="portfolio-count">3 projects</span>
   </div>
   <div class="portfolio-grid">
-    <a class="portfolio-card" href="{{ '/portfolio/matchsimulation/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/delaynomore/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">01</span>
       </div>
-      <h3>MatchSimulation — 매칭 서비스 백엔드 <span class="portfolio-period">2026.06– 진행 중</span></h3>
-      <p class="portfolio-summary">추천 엔진·DB·인증을 나중에 교체할 수 있도록 경계를 먼저 설계 · 전체 API 스모크 확인</p>
-      <span class="portfolio-stack">Java 21 · Spring Boot 4 · Spring Data JPA · H2 · Gradle</span>
-    </a>
-    <a class="portfolio-card" href="{{ '/portfolio/delaynomore/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">02</span>
-      </div>
       <h3>DelayNoMore <span class="portfolio-period">2026.04–2026.06</span></h3>
-      <p class="portfolio-summary">계획 수정을 차단하는 잠금 모델과 AI 코치를 기획부터 배포까지 단독 구현 · SSE 스트리밍으로 20~30초 대기 이탈 구간 해소</p>
+      <p class="portfolio-summary">계획 수정을 차단하는 잠금 모델과 AI 코치를 기획부터 데모 배포까지 단독 구현 · SSE 스트리밍으로 20~30초 생성 과정을 바로 표시</p>
       <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · OpenRouter</span>
     </a>
     <a class="portfolio-card" href="{{ '/portfolio/oauth-sso/' | relative_url }}">
       <div class="portfolio-card-top">
-        <span class="portfolio-card-number">03</span>
+        <span class="portfolio-card-number">02</span>
       </div>
       <h3>Gateway 단일 진입점 인증/인가 검증 <span class="portfolio-period">2026.01–2026.03</span></h3>
       <p class="portfolio-summary">단일 진입점 뒤 공개·보호·내부 경로의 응답 분리를 설계 · 무토큰 401과 내부 경로 404를 실제 요청으로 확인</p>
       <span class="portfolio-stack">Kotlin · Spring Boot · Spring Security · Gateway · Docker Compose</span>
+    </a>
+    <a class="portfolio-card" href="{{ '/portfolio/matchsimulation/' | relative_url }}">
+      <div class="portfolio-card-top">
+        <span class="portfolio-card-number">03</span>
+      </div>
+      <h3>MatchSimulation — 매칭 서비스 백엔드 <span class="portfolio-period">2026.06– 진행 중</span></h3>
+      <p class="portfolio-summary">추천 엔진·DB·인증을 나중에 교체할 수 있도록 경계를 먼저 설계 · 전체 API 스모크 확인</p>
+      <span class="portfolio-stack">Java 21 · Spring Boot 4 · Spring Data JPA · H2 · Gradle</span>
     </a>
   </div>
 </section>
