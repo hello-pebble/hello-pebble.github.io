@@ -6,7 +6,7 @@
     {%- assign is_project = true -%}
   {%- endif -%}
   <body>
-    <div class="wrapper{% if is_project %} has-toc-rail{% endif %}">
+    <div class="wrapper">
       {%- include sidebar.html -%}
       <main class="page-content" aria-label="Content">
         <div class="content-shell">
@@ -15,6 +15,8 @@
           </div>
           {%- if is_project -%}
           <aside class="page-toc" id="page-toc" aria-label="이 페이지의 섹션"></aside>
+          {%- else -%}
+          <aside class="page-toc" aria-hidden="true"></aside>
           {%- endif -%}
         </div>
         <!--{%- include footer.html -%}-->

@@ -46,16 +46,13 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-color);
 }
 
+/* 모든 페이지가 같은 가로 폭을 쓰도록 통일한다.
+   (상세 페이지의 목차 레일 자리는 다른 페이지에서도 비워 두어 본문 위치가 흔들리지 않게 한다) */
 .wrapper {
   display: flex;
   min-height: 100vh;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* 우측 목차 레일이 붙는 페이지는 본문 폭을 유지하기 위해 더 넓게 쓴다 */
-.wrapper.has-toc-rail {
   max-width: 1440px;
+  margin: 0 auto;
 }
 
 .sidebar {
@@ -246,8 +243,9 @@ h1, h2, h3, h4, h5, h6 {
   overflow-y: auto;
 }
 
+/* 목차가 없는 페이지에서도 레일 자리는 그대로 남겨 본문 폭/위치를 고정한다 */
 .page-toc:empty {
-  display: none;
+  visibility: hidden;
 }
 
 /* Emphasis: bold text only, monochrome accents */
@@ -665,16 +663,15 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid var(--border-color);
   color: var(--text-color);
   text-decoration: none;
-  transition: padding-left 0.2s, background-color 0.2s;
 }
 
 .main-content .portfolio-card {
   text-decoration: none;
 }
 
+/* 호버/포커스 시 배경색만 바뀐다 (이동 애니메이션 없음) */
 .portfolio-card:hover,
 .portfolio-card:focus-visible {
-  padding-left: 12px;
   background-color: var(--border-color);
   outline: none;
 }
@@ -706,10 +703,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
-.portfolio-card:hover h3::after,
-.portfolio-card:focus-visible h3::after {
-  color: var(--text-color);
-}
 
 .portfolio-period {
   margin-left: 6px;
@@ -821,11 +814,6 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 40px minmax(0, 1fr);
     column-gap: 12px;
     padding: 16px 2px;
-  }
-
-  .portfolio-card:hover,
-  .portfolio-card:focus-visible {
-    padding-left: 8px;
   }
 
   .resume-title {
