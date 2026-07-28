@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "DelayNoMore - AI 계획 실행 서비스"
-permalink: /portfolio/1/
+permalink: /portfolio/delaynomore/
 category: portfolio
 tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 ---

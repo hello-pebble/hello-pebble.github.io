@@ -103,7 +103,7 @@ permalink: /
 <p class="resume-tech">저장소 · <span class="resume-placeholder">작성 필요 — GitHub 저장소 주소</span></p>
 
 <div class="entry-header">
-  <h3><a href="/portfolio/1/">DelayNoMore 계획 실행 지원 서비스</a></h3>
+  <h3><a href="/portfolio/delaynomore/">DelayNoMore 계획 실행 지원 서비스</a></h3>
   <span class="entry-date">2026.04 ~ 2026.06</span>
 </div>
 

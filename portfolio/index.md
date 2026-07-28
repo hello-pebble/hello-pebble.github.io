@@ -46,7 +46,7 @@ permalink: /portfolio/
       <p class="portfolio-summary">추천 엔진·DB·인증을 나중에 교체할 수 있도록 경계를 먼저 설계 · 전체 API 스모크 확인</p>
       <span class="portfolio-stack">Java 21 · Spring Boot 4 · Spring Data JPA · H2 · Gradle</span>
     </a>
-    <a class="portfolio-card" href="{{ '/portfolio/1/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/delaynomore/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">02</span>
       </div>
