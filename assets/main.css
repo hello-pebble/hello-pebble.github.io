@@ -319,6 +319,34 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.04em;
 }
 
+/* 상세 페이지 상단 30초 요약 — 무엇을/왜/담당 범위/검증한 것 */
+.project-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 26px 0 0;
+}
+
+.project-summary-grid > div {
+  padding: 14px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.project-summary-grid dt {
+  margin-bottom: 6px;
+  color: var(--sidebar-text);
+  font-size: 0.72em;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+}
+
+.project-summary-grid dd {
+  margin: 0;
+  font-size: 0.88em;
+  line-height: 1.55;
+}
+
 .project-page-nav {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -789,6 +817,10 @@ h1, h2, h3, h4, h5, h6 {
 
   .portfolio-index-header {
     margin-bottom: 34px;
+  }
+
+  .project-summary-grid {
+    grid-template-columns: 1fr;
   }
 
   .project-page-nav {
