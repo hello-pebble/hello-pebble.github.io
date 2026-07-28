@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "AI 활용"
+title: "ai"
 permalink: /ai/
 ---
 

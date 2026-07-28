@@ -2,7 +2,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title | default: site.title }}</title>
+  {%- assign slug = page.url | split: '/' | last -%}
+  {%- if page.url contains '/portfolio/' and page.url != '/portfolio/' -%}
+    {%- assign tab_title = slug -%}
+  {%- else -%}
+    {%- assign tab_title = page.title | default: site.title -%}
+  {%- endif -%}
+  <title>{{ tab_title }}_kwon</title>
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
 </head>

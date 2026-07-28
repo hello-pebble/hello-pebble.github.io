@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Study
+title: study
 permalink: /study/
 ---
 
