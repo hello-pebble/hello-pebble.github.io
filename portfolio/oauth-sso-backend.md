@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Gateway 단일 진입점에서의 인증/인가 검증 — 공개·보호 라우트 분리와 JWT 분산 검증 실험"
-permalink: /portfolio/oauth-sso-backend/
+permalink: /portfolio/oauth-sso/
 category: portfolio
 tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 ---
