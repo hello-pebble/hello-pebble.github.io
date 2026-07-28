@@ -10,9 +10,40 @@ permalink: /portfolio/process-management-solution/
 
 > 담당자의 수작업에 의존하던 배포 단계를 Docker와 GitLab CI 파이프라인으로 구성하고, 반복 오류의 대응 순서를 문서화한 프로젝트입니다.
 
+<nav class="project-page-nav" aria-label="공정 관리 솔루션(PMS) 프로젝트 목차">
+  <a href="#overview">
+    <span>Overview</span>
+    <small>기간·기술 스택·담당 범위</small>
+  </a>
+  <a href="#intent">
+    <span>설계 의도</span>
+    <small>배포와 장애 대응의 표준화</small>
+  </a>
+  <a href="#problem">
+    <span>문제 정의</span>
+    <small>담당자에게 묶인 수동 배포</small>
+  </a>
+  <a href="#solution">
+    <span>해결 과정</span>
+    <small>Docker 패키징과 GitLab CI/CD</small>
+  </a>
+  <a href="#evidence">
+    <span>구현 근거</span>
+    <small>파이프라인과 대응 절차 문서</small>
+  </a>
+  <a href="#results">
+    <span>결과</span>
+    <small>인적 오류 제거와 문의 감소</small>
+  </a>
+  <a href="#limitations">
+    <span>한계와 후속 과제</span>
+    <small>남은 운영 리스크</small>
+  </a>
+</nav>
+
 ---
 
-## Project Overview
+## Project Overview {#overview}
 
 - **구분**: 회사 프로젝트
 - **기간**: 2022.11 ~ 2024.12 (2년 1개월)
@@ -21,20 +52,20 @@ permalink: /portfolio/process-management-solution/
 
 ---
 
-## Intent (설계 의도)
+## Intent (설계 의도) {#intent}
 
 같은 소스를 배포하더라도 실행 환경과 작업 순서가 다르면 결과가 달라질 수 있습니다. 실행 단위는 Docker 이미지로 맞추고, 배포 순서는 파이프라인으로 고정하며, 장애 조치 과정은 문서로 남기는 방향으로 개선했습니다.
 
 ---
 
-## Problem (문제 정의 및 원인 분석)
+## Problem (문제 정의 및 원인 분석) {#problem}
 
 - **문제**: 빌드와 배포가 여러 수작업 단계로 나뉘어 있었고, 환경별 실행 방식과 장애 조치 방법이 문서로 통일되어 있지 않았습니다.
 - **원인**: 애플리케이션 실행 환경, 배포 순서, 장애 대응 지식이 자동화된 절차보다 담당자의 경험에 의존하고 있었습니다.
 
 ---
 
-## Solution (해결 과정)
+## Solution (해결 과정) {#solution}
 
 1. **Docker 및 GitLab CI/CD 파이프라인 구축**
    - 애플리케이션과 실행 환경을 **Docker 이미지로 패키징**했습니다.
@@ -50,7 +81,7 @@ permalink: /portfolio/process-management-solution/
 
 ---
 
-## Implementation Evidence (구현 근거)
+## Implementation Evidence (구현 근거) {#evidence}
 
 - 배포 다이어그램에 `소스 빌드 → 이미지 빌드 → 컨테이너 배포`의 3단계와 단계별 산출물을 표시했습니다.
 - 장애 대응 다이어그램에 `로그 확인 → 오류 유형 분류 → 매뉴얼 조회 → 조치 및 기록` 흐름을 정리했습니다.
@@ -58,7 +89,7 @@ permalink: /portfolio/process-management-solution/
 
 ---
 
-## Results (확인 가능한 변화)
+## Results (확인 가능한 변화) {#results}
 
 - 개발·스테이징·운영 환경에서 동일한 Docker 이미지를 배포 단위로 사용할 수 있게 했습니다.
 - 빌드와 배포 순서를 GitLab CI 설정으로 관리해 담당자가 같은 절차를 반복할 수 있게 했습니다.
@@ -66,7 +97,7 @@ permalink: /portfolio/process-management-solution/
 
 ---
 
-## Limitations (한계 및 후속 과제)
+## Limitations (한계 및 후속 과제) {#limitations}
 
 - 현재 설명에는 배포 시간, 실패율, 장애 문의 건수의 전후 데이터가 없어 자동화 효과를 수치로 제시하지 못했습니다. 향후 배포 로그와 장애 티켓을 기준으로 측정할 필요가 있습니다.
 - 배포 실패 시 자동 롤백, 이미지 취약점 검사, 비밀정보 관리 방식은 별도 운영 기준이 필요합니다.

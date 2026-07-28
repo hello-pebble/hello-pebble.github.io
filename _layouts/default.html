@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
   {%- include head.html -%}
+  {%- assign is_project = false -%}
+  {%- if page.url contains '/portfolio/' and page.url != '/portfolio/' -%}
+    {%- assign is_project = true -%}
+  {%- endif -%}
   <body>
-    <div class="wrapper">
+    <div class="wrapper{% if is_project %} has-toc-rail{% endif %}">
       {%- include sidebar.html -%}
       <main class="page-content" aria-label="Content">
-        <div class="main-content">
-          {{ content }}
+        <div class="content-shell">
+          <div class="main-content">
+            {{ content }}
+          </div>
+          {%- if is_project -%}
+          <aside class="page-toc" id="page-toc" aria-label="이 페이지의 섹션"></aside>
+          {%- endif -%}
         </div>
         <!--{%- include footer.html -%}-->
       </main>
     </div>
+    {%- if is_project -%}{%- include page-toc.html -%}{%- endif -%}
   </body>
   </html>

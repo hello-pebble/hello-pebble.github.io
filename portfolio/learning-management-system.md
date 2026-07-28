@@ -10,9 +10,32 @@ permalink: /portfolio/learning-management-system/
 
 > RBAC 기반의 세밀한 권한 검증과 Oracle BLOB 파일 저장 설계로, 기업용 플랫폼의 두 가지 생명선인 **보안 무결성과 데이터 정합성**을 확보한 프로젝트입니다.
 
+<nav class="project-page-nav" aria-label="사내 교육 플랫폼(LMS) 프로젝트 목차">
+  <a href="#overview">
+    <span>Overview</span>
+    <small>기간·기술 스택·담당 범위</small>
+  </a>
+  <a href="#intent">
+    <span>설계 의도</span>
+    <small>보안 무결성과 데이터 정합성</small>
+  </a>
+  <a href="#problem">
+    <span>문제 정의</span>
+    <small>비인가 접근과 첨부파일 유실</small>
+  </a>
+  <a href="#solution">
+    <span>해결 과정</span>
+    <small>SSO 기반 RBAC와 BLOB 저장</small>
+  </a>
+  <a href="#results">
+    <span>최종 성과</span>
+    <small>단일 트랜잭션으로 묶은 파일·업무 데이터</small>
+  </a>
+</nav>
+
 ---
 
-## Project Overview
+## Project Overview {#overview}
 
 - **구분**: 회사 프로젝트
 - **기간**: 2020.12 ~ 2021.03 (4개월)
@@ -21,7 +44,7 @@ permalink: /portfolio/learning-management-system/
 
 ---
 
-## Intent (설계 의도)
+## Intent (설계 의도) {#intent}
 
 다수 부서와 직군이 함께 쓰는 기업용 시스템에서 보안 사고와 데이터 유실은 발생 후 수습이 불가능에 가깝습니다. 그래서 기능 구현보다 먼저, **"비인가 접근이 구조적으로 불가능한 권한 체계"와 "백업 시점이 어긋날 수 없는 저장 구조"**를 설계의 최우선 순위로 두었습니다.
 
@@ -29,14 +52,14 @@ permalink: /portfolio/learning-management-system/
 
 ---
 
-## Problem (문제 정의 및 원인 분석)
+## Problem (문제 정의 및 원인 분석) {#problem}
 
 - **문제**: 기업용 통합 플랫폼 특성상 민감한 사내 정보 노출과 비인가 유저의 기능 접근 위협이 있었고, 데이터베이스 백업 시 파일 누락으로 인한 정합성 불일치 리스크가 존재했습니다.
 - **원인**: 여러 부서·직군이 혼재된 다수 유저를 제어할 세분화된 권한 체계(SSO 연동 권한 인가)가 부재했습니다. 또한 첨부파일을 웹 서버 로컬 디스크에 직접 보관하는 전통적인 방식은 **DB 백업과 파일 스토리지 백업 간의 시점 불일치**를 일으켜, 데이터 유실 시 복구가 매우 까다로웠습니다.
 
 ---
 
-## Solution (해결 과정)
+## Solution (해결 과정) {#solution}
 
 1. **SSO 연동 및 RBAC(Role-Based Access Control) 설계**
    - 사내 싱글사인온(SSO) 시스템과 연동한 사용자 세션 정보를 수집했습니다.
@@ -51,7 +74,7 @@ permalink: /portfolio/learning-management-system/
 
 ---
 
-## Results (최종 성과)
+## Results (최종 성과) {#results}
 
 - **보안 무결성 보장**: API 엔드포인트 레벨의 정밀한 역할 권한 제어를 통해 **비인가 접근을 구조적으로 차단**하고 사내 배포를 완료했습니다.
 - **데이터 유실 차단**: 파일 데이터를 RDBMS 테이블에 완전 통합하여 백업·복구 정합성 불일치로 인한 **데이터 유실 리스크를 근본적으로 차단**했습니다.

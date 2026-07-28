@@ -10,9 +10,40 @@ permalink: /portfolio/gov-document-ai-data-service/
 
 > 외부 통신이 제한된 환경에서 Java 서버가 로컬 Python 프로세스를 실행하도록 구성해 HWP 문서 파싱 기능을 구현한 프로젝트입니다.
 
+<nav class="project-page-nav" aria-label="정부 공문서 AI 학습데이터 조회 서비스 프로젝트 목차">
+  <a href="#overview">
+    <span>Overview</span>
+    <small>기간·기술 스택·담당 범위</small>
+  </a>
+  <a href="#intent">
+    <span>설계 의도</span>
+    <small>폐쇄망에서의 문서 처리 자동화</small>
+  </a>
+  <a href="#problem">
+    <span>문제 정의</span>
+    <small>외부 통신 없이 HWP 파싱하기</small>
+  </a>
+  <a href="#solution">
+    <span>해결 과정</span>
+    <small>ProcessBuilder 기반 Java–Python 브릿지</small>
+  </a>
+  <a href="#evidence">
+    <span>구현 근거</span>
+    <small>파싱 파이프라인 동작 확인</small>
+  </a>
+  <a href="#results">
+    <span>결과</span>
+    <small>시범 사업 납품 완수</small>
+  </a>
+  <a href="#limitations">
+    <span>한계와 후속 과제</span>
+    <small>브릿지 방식의 비용</small>
+  </a>
+</nav>
+
 ---
 
-## Project Overview
+## Project Overview {#overview}
 
 - **구분**: 회사 프로젝트
 - **기간**: 2023.08 ~ 2024.02 (6개월)
@@ -22,20 +53,20 @@ permalink: /portfolio/gov-document-ai-data-service/
 
 ---
 
-## Intent (설계 의도)
+## Intent (설계 의도) {#intent}
 
 외부 서비스 호출 없이 폐쇄망 내부에서 문서 파싱을 완료해야 했습니다. 기존 Java 서버는 유지하면서 Python의 로컬 문서 처리 기능을 사용할 수 있도록, 두 실행 환경을 네트워크가 아닌 서브프로세스로 연결했습니다.
 
 ---
 
-## Problem (문제 정의 및 원인 분석)
+## Problem (문제 정의 및 원인 분석) {#problem}
 
 - **문제**: 폐쇄망 내부의 Java 서버에서 HWP 문서의 텍스트와 메타데이터를 추출해야 했습니다.
 - **원인**: 운영 환경에서는 외부 SaaS를 호출할 수 없었고, 기존 Java 문서 처리 기능만으로 필요한 파싱 범위를 구현하기 어려웠습니다.
 
 ---
 
-## Solution (해결 과정)
+## Solution (해결 과정) {#solution}
 
 ![폐쇄망 브릿지 아키텍처](/assets/images/portfolio/gov-bridge.svg)
 
@@ -48,7 +79,7 @@ permalink: /portfolio/gov-document-ai-data-service/
 
 ---
 
-## Implementation Evidence (구현 근거)
+## Implementation Evidence (구현 근거) {#evidence}
 
 - 아키텍처 다이어그램에 `Java 요청 → ProcessBuilder 실행 → Python 파싱 → 결과 수신 → MariaDB 저장` 경계를 표시했습니다.
 - 외부 API 호출 없이 같은 서버 안에서 Java와 Python 프로세스가 동작하도록 구성했습니다.
@@ -56,7 +87,7 @@ permalink: /portfolio/gov-document-ai-data-service/
 
 ---
 
-## Results (확인 가능한 변화)
+## Results (확인 가능한 변화) {#results}
 
 - 폐쇄망 내부에서 외부 통신 없이 HWP 문서 파싱 기능을 실행할 수 있게 했습니다.
 - 기존 Java 웹 애플리케이션을 유지하면서 Python 문서 처리 기능을 서브프로세스로 연동했습니다.
@@ -64,7 +95,7 @@ permalink: /portfolio/gov-document-ai-data-service/
 
 ---
 
-## Limitations (한계 및 후속 과제)
+## Limitations (한계 및 후속 과제) {#limitations}
 
 - 서브프로세스 실행 시간이 길어지거나 종료되지 않을 때를 대비한 타임아웃과 강제 종료 정책이 필요합니다.
 - 여러 문서를 동시에 처리하면 프로세스 수와 메모리 사용량이 증가하므로 동시 실행 개수 제한과 작업 큐 검토가 필요합니다.

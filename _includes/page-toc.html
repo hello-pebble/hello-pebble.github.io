@@ -1,0 +1,61 @@
+<script>
+  (function () {
+    const rail = document.getElementById('page-toc');
+    const nav = document.querySelector('.main-content .project-page-nav');
+    if (!rail || !nav) return;
+
+    // 좁은 화면에서 되돌릴 원위치를 주석 노드로 표시해 둔다.
+    const home = document.createComment('project-page-nav');
+    nav.parentNode.insertBefore(home, nav);
+
+    const wide = window.matchMedia('(min-width: 1201px)');
+
+    function place() {
+      if (wide.matches) {
+        if (nav.parentNode !== rail) rail.appendChild(nav);
+      } else if (nav.parentNode === rail) {
+        home.parentNode.insertBefore(nav, home.nextSibling);
+      }
+    }
+
+    // 목차 링크가 가리키는 섹션들 (본문에 없는 앵커는 버린다)
+    const targets = Array.prototype.map
+      .call(nav.querySelectorAll('a[href^="#"]'), function (link) {
+        const section = document.getElementById(link.getAttribute('href').slice(1));
+        return section ? { link: link, section: section } : null;
+      })
+      .filter(Boolean);
+
+    function highlight() {
+      let current = null;
+      for (let i = 0; i < targets.length; i++) {
+        if (targets[i].section.getBoundingClientRect().top <= 120) current = targets[i];
+      }
+      // 맨 위에서는 첫 항목을 현재로 본다.
+      if (!current && targets.length && window.scrollY < 40) current = targets[0];
+      for (let i = 0; i < targets.length; i++) {
+        targets[i].link.classList.toggle('active', targets[i] === current);
+      }
+    }
+
+    // requestAnimationFrame 은 백그라운드 탭 등에서 지연되고, 그 사이 잠금이 풀리지 않으면
+    // 갱신이 영구히 멈춘다. 타이머로 묶어 호출 빈도만 낮춘다.
+    let queued = false;
+    function onScroll() {
+      if (queued) return;
+      queued = true;
+      setTimeout(function () {
+        queued = false;
+        highlight();
+      }, 80);
+    }
+
+    place();
+    highlight();
+
+    // Safari 13 이하는 MediaQueryList.addEventListener 가 없다.
+    if (wide.addEventListener) wide.addEventListener('change', place);
+    else wide.addListener(place);
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>

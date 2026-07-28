@@ -27,27 +27,6 @@ permalink: /
 
 문제를 혼자 판단하기보다 동료의 의견을 듣고 서로의 이해 차이를 줄이려 합니다. 빠르게 실행하되 결과에 책임을 지고, 운영 경험을 다음 개선과 팀의 자산으로 연결하는 백엔드 개발자입니다.
 
-<h2 class="resume-section-heading">Skills</h2>
-
-<div class="portfolio-skill-list">
-  <div class="portfolio-skill-row">
-    <strong>Backend</strong>
-    <span>Java, Python · Spring Boot, Spring MVC, Spring Security, JPA, MyBatis, JUnit</span>
-  </div>
-  <div class="portfolio-skill-row">
-    <strong>Data</strong>
-    <span>MariaDB, Oracle</span>
-  </div>
-  <div class="portfolio-skill-row">
-    <strong>Infra</strong>
-    <span>Docker, GitLab CI/CD, Oracle Cloud Infrastructure(OCI), Tomcat, WildFly</span>
-  </div>
-  <div class="portfolio-skill-row">
-    <strong>Frontend & AI</strong>
-    <span>JavaScript, React, Vite · OpenRouter API 연동</span>
-  </div>
-</div>
-
 <h2 class="resume-section-heading">Work Experience</h2>
 
 <div class="entry-header">

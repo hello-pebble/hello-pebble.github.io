@@ -15,19 +15,19 @@ permalink: /portfolio/
   <div class="portfolio-skill-list">
     <div class="portfolio-skill-row">
       <strong>Backend</strong>
-      <span>Java, Python · Spring Boot, Security, JPA, MyBatis, JUnit</span>
-    </div>
-    <div class="portfolio-skill-row">
-      <strong>Data</strong>
-      <span>MariaDB, Oracle</span>
-    </div>
-    <div class="portfolio-skill-row">
-      <strong>Infra</strong>
-      <span>Docker, GitLab CI/CD, Tomcat, WildFly</span>
+      <span>Java, Python, Spring Boot, Security, JPA, MyBatis, JUnit</span>
     </div>
     <div class="portfolio-skill-row">
       <strong>Frontend & AI</strong>
-      <span>JavaScript, React, Vite · OpenRouter API 연동 · <a href="{{ '/ai/' | relative_url }}">AI 활용 상세</a></span>
+      <span>JavaScript, React, Vite, ClaudeCode, Codex <a href="{{ '/ai/' | relative_url }}">AI 활용 </a></span>
+    </div>    
+    <div class="portfolio-skill-row">
+      <strong>Data</strong>
+      <span>MariaDB, Oracle, PostgreSQL</span>
+    </div>
+    <div class="portfolio-skill-row">
+      <strong>Infra</strong>
+      <span>Docker, Oracle Cloud Infrastructure(OCI), Git CI/CD, Tomcat</span>
     </div>
   </div>
 </section>
