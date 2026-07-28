@@ -36,9 +36,9 @@ permalink: /
 
 > 공공데이터 조회, 제조 공정 관리, 문서 처리 시스템의 Java·Spring 백엔드를 설계·구현했습니다. PMS의 실제 운영과 유지보수를 담당하며 WAR 애플리케이션의 Docker 배포, GitLab CI/CD 구축, 운영 장애 대응 절차 표준화를 수행했습니다.
 
-- **[개방DB 관리 시스템](/portfolio/db-management-system/)** 메타데이터 기반 조회와 API 버전 라우팅 설계
-- **[공정 관리 솔루션(PMS)](/portfolio/process-management-solution/)** WAR 애플리케이션의 Docker 기반 배포·운영, GitLab CI/CD 구축, 유지보수 및 장애 대응 표준화
-- **[정부 공문서 AI 학습데이터 서비스](/portfolio/gov-document-ai-data-service/)** 폐쇄망 Java–Python 연동과 문서 처리 파이프라인 구현
+- **[개방DB API관리 시스템](/portfolio/db-api/)** 메타데이터 기반 조회와 API 버전 라우팅 설계
+- **[공정 관리 솔루션(PMS)](/portfolio/pma/)** WAR 애플리케이션의 Docker 기반 배포·운영, GitLab CI/CD 구축, 유지보수 및 장애 대응 표준화
+- **[정부 공문서 AI 학습데이터 서비스](/portfolio/gov-document-ai-data/)** 폐쇄망 Java–Python 연동과 문서 처리 파이프라인 구현
 
 <p class="resume-tech">사용 기술 · Java · Python · Spring Boot · Spring MVC · MyBatis · MariaDB · Docker · GitLab CI · WildFly · Tomcat</p>
 
@@ -49,7 +49,7 @@ permalink: /
 
 > 사내 교육 플랫폼의 인증·인가와 파일 저장 기능을 개발했습니다.
 
-- **[사내 교육 플랫폼(LMS)](/portfolio/learning-management-system/)** SSO 기반 RBAC 권한 검증과 Oracle BLOB 저장 흐름 구현
+- **[사내 교육 플랫폼(LMS)](/portfolio/lms/)** SSO 기반 RBAC 권한 검증과 Oracle BLOB 저장 흐름 구현
 
 <p class="resume-tech">사용 기술 · Java · Spring Boot · JPA · Oracle</p>
 
