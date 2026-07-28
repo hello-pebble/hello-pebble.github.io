@@ -38,7 +38,7 @@ permalink: /portfolio/
     <span class="portfolio-count">3 projects</span>
   </div>
   <div class="portfolio-grid">
-    <a class="portfolio-card" href="{{ '/portfolio/matchsimulation-backend/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/matchsimulation/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">01</span>
       </div>
@@ -54,7 +54,7 @@ permalink: /portfolio/
       <p class="portfolio-summary">계획 수정을 차단하는 잠금 모델과 AI 코치를 기획부터 배포까지 단독 구현 · SSE 스트리밍으로 20~30초 대기 이탈 구간 해소</p>
       <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · OpenRouter</span>
     </a>
-    <a class="portfolio-card" href="{{ '/portfolio/oauth-sso-backend/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/oauth-sso/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">03</span>
       </div>
@@ -71,7 +71,7 @@ permalink: /portfolio/
     <span class="portfolio-count">4 projects</span>
   </div>
   <div class="portfolio-grid">
-    <a class="portfolio-card" href="{{ '/portfolio/db-management-system/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/api-management/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">04</span>
       </div>
@@ -80,7 +80,7 @@ permalink: /portfolio/
       <span class="portfolio-stack">Java · Spring MVC · MyBatis · MariaDB</span>
     </a>
 
-    <a class="portfolio-card" href="{{ '/portfolio/process-management-solution/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/pms/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">05</span>
       </div>
@@ -89,7 +89,7 @@ permalink: /portfolio/
       <span class="portfolio-stack">Java · Spring Boot · Docker · GitLab CI</span>
     </a>
 
-    <a class="portfolio-card" href="{{ '/portfolio/gov-document-ai-data-service/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/gov-data-service/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">06</span>
       </div>
@@ -98,7 +98,7 @@ permalink: /portfolio/
       <span class="portfolio-stack">Java · Spring MVC · Python · MariaDB</span>
     </a>
 
-    <a class="portfolio-card" href="{{ '/portfolio/learning-management-system/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/lms/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">07</span>
       </div>
