@@ -17,7 +17,7 @@ permalink: /
   <div class="resume-contact-print">kwdk2323@gmail.com · github.com/hello-pebble</div>
 </div>
 
-> **Java·Spring 백엔드 3년 10개월** · 실제 서비스 개발·운영 및 유지보수 · WAR·Docker 배포 · GitLab CI/CD · 운영 장애 대응 · OCI 기반 Docker 데모 배포
+> **Java·Spring 백엔드 3년 10개월** · 서비스 개발·운영 및 유지보수 · Docker 배포 · GitLab CI/CD · 운영 장애 대응 · OCI 기반 Docker 데모 배포
 
 복잡하게 시작하기보다 문제를 작은 단위로 나누고, 실행 가능한 결과를 먼저 만드는 개발자입니다. 빠르게 구현한 뒤 실제 동작과 운영 결과를 확인하면서 부족한 부분을 점진적으로 개선하는 방식을 선호합니다.
 
@@ -58,16 +58,13 @@ permalink: /
   <span class="entry-date">2019.05 ~ 2020.07</span>
 </div>
 
-> 여수광양항만공사의 GIS 기반 업체·자산 관리 시스템에서 기능 개선과 유지보수를 담당했습니다.
+> 여수광양항만공사의 GIS 기반 항만 시설 사용료 관리 시스템에서 사용료 산정 기능을 개발하고 운영을 지원했습니다.
 
-- **기능 개선** 연도별·임시 세율 관리와 업체 관리 기능 개발
-- **운영 지원** 월 1회 현장 방문을 통한 서버 점검과 담당자 문의·개선 요청 반영
+- **항만 시설 사용료 관리 시스템** 연도별·임시 세율 관리와 업체 관리 기능 개발, 월 1회 현장 방문을 통한 서버 점검과 담당자 문의·개선 요청 반영
 
-<p class="resume-tech">사용 기술 · <span class="resume-placeholder">작성 필요 — 당시 사용한 언어·프레임워크·DB·GIS 도구</span></p>
+<p class="resume-tech">사용 기술 · Java · Spring MVC · MyBatis · Oracle</p>
 
 <h2 class="resume-section-heading print-page-start">Personal Projects</h2>
-
-**2026.01~07 백엔드 복귀 프로젝트** — Gateway 통합 인증 검증(01~03) · DelayNoMore(04~06) · MatchSimulation(06~ 진행 중)
 
 <div class="entry-header">
   <h3><a href="/portfolio/matchsimulation-backend/">MatchSimulation 매칭 서비스 백엔드</a></h3>
@@ -79,7 +76,7 @@ permalink: /
 - **검증 범위** 7개 기능 모듈 분리 및 설정에 따른 `MatchingEngine` 구현체 전환 확인
 - **검증 범위** 가입→추천→매칭 수락 상태 전이와 QnA·알림·관리자 통계 API 스모크 테스트
 
-<p class="resume-tech">저장소 · <span class="resume-placeholder">작성 필요 — GitHub 저장소 주소</span></p>
+<p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/MatchSimulation" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/MatchSimulation</a></p>
 
 <div class="entry-header">
   <h3><a href="/portfolio/delaynomore/">DelayNoMore 계획 실행 지원 서비스</a></h3>
@@ -92,7 +89,7 @@ permalink: /
 - **검증 범위** Vite 번들 청크 분리 후 분리된 결과물 생성과 빌드 경고 해소 확인
 - **검증 범위** OCI 환경에 Docker 기반 데모를 배포하고 애플리케이션 접속·실행 확인
 
-<p class="resume-tech">저장소 · <span class="resume-placeholder">작성 필요 — GitHub 저장소 주소 (배포 URL 있으면 함께)</span></p>
+<p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/DelayNoMore_Release" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/DelayNoMore_Release</a></p>
 
 <div class="entry-header">
   <h3><a href="/portfolio/oauth-sso-backend/">Gateway 기반 인증·인가 검증</a></h3>
@@ -104,7 +101,7 @@ permalink: /
 - **검증 범위** 공개 경로 정상 접근, 보호 경로 무토큰 요청 `401`, Gateway와 Resource Server의 권한 검증, 외부의 내부 경로 접근 시 `404` 응답 확인
 - **검증 범위** 6개 모듈을 기능·빌드·실행 단위로 분리하고 Docker Compose 통합 기동 확인
 
-<p class="resume-tech">저장소 · <span class="resume-placeholder">작성 필요 — GitHub 저장소 주소</span></p>
+<p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/oauth2-authorization" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/oauth2-authorization</a></p>
 
 <h2 class="resume-section-heading">Education</h2>
 
@@ -117,10 +114,3 @@ permalink: /
 - 네트워크관리사 2급
 - 리눅스마스터 2급
 
-<div class="resume-draft">
-  <h2 class="resume-section-heading">Other</h2>
-  <ul>
-    <li><strong>입사 가능 시기</strong> <span class="resume-placeholder">작성 필요 — 예: 즉시 가능</span></li>
-    <li><strong>병역</strong> <span class="resume-placeholder">작성 필요 — 예: 만기 전역 / 면제 (공개를 원치 않으면 삭제)</span></li>
-  </ul>
-</div>
