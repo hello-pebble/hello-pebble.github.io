@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "개방DB 관리 시스템 설계 및 프로토타입 개발"
-permalink: /portfolio/db-management-system/
+title: "개방DB API관리 시스템 설계 및 프로토타입 개발"
+permalink: /portfolio/api-management/
 ---
 
-# 개방DB 관리 시스템 설계 및 프로토타입 개발
+# 개방DB API관리 시스템 설계 및 프로토타입 개발
 
 <span class="badge outline">회사 프로젝트</span>
 
