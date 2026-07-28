@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "정부 공문서 AI 학습데이터 조회 서비스 개발"
-permalink: /portfolio/gov-document-ai-data-service/
+permalink: /portfolio/gov-data-service/
 ---
 
 # 행정안전부 정부 공문서 AI 학습데이터 조회 서비스
