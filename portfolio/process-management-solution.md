@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "공정 관리 솔루션(PMS) 개발 및 운영"
-permalink: /portfolio/process-management-solution/
+permalink: /portfolio/pms/
 ---
 
 # 공정 관리 솔루션(PMS) 개발 및 운영
