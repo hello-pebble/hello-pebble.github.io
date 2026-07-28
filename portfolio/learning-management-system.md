@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "사내 교육 플랫폼(LMS) 개발"
-permalink: /portfolio/learning-management-system/
+permalink: /portfolio/lms/
 ---
 
 # 사내 교육 플랫폼(LMS) 개발
