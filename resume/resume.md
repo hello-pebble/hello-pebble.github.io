@@ -38,7 +38,7 @@ permalink: /
 
 - **[개방DB API관리 시스템](/portfolio/db-api/)** 메타데이터 기반 조회와 API 버전 라우팅 설계
 - **[공정 관리 솔루션(PMS)](/portfolio/pma/)** WAR 애플리케이션의 Docker 기반 배포·운영, GitLab CI/CD 구축, 유지보수 및 장애 대응 표준화
-- **[정부 공문서 AI 학습데이터 서비스](/portfolio/gov-document-ai-data/)** 폐쇄망 Java–Python 연동과 문서 처리 파이프라인 구현
+- **[정부 공문서 AI 학습데이터 서비스](/portfolio/gov-data-service/)** 폐쇄망 Java–Python 연동과 문서 처리 파이프라인 구현
 
 <p class="resume-tech">사용 기술 · Java · Python · Spring Boot · Spring MVC · MyBatis · MariaDB · Docker · GitLab CI · WildFly · Tomcat</p>
 
@@ -67,7 +67,7 @@ permalink: /
 <h2 class="resume-section-heading print-page-start">Personal Projects</h2>
 
 <div class="entry-header">
-  <h3><a href="/portfolio/matchsimulation-backend/">MatchSimulation 매칭 서비스 백엔드</a></h3>
+  <h3><a href="/portfolio/matchsimulation/">MatchSimulation 매칭 서비스 백엔드</a></h3>
   <span class="entry-date">2026.06 ~ 진행 중</span>
 </div>
 
@@ -92,7 +92,7 @@ permalink: /
 <p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/DelayNoMore_Release" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/DelayNoMore_Release</a></p>
 
 <div class="entry-header">
-  <h3><a href="/portfolio/oauth-sso-backend/">Gateway 기반 인증·인가 검증</a></h3>
+  <h3><a href="/portfolio/oauth-sso/">Gateway 기반 인증·인가 검증</a></h3>
   <span class="entry-date">2026.01 ~ 2026.03</span>
 </div>
 
