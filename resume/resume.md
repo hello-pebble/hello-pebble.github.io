@@ -2,11 +2,12 @@
 layout: default
 title: resume
 permalink: /
+resume_name: 권다경
 ---
 
 <div class="resume-header">
   <div class="resume-identity">
-    <span class="resume-title">권다경</span>
+    <span class="resume-title">{{ page.resume_name }}</span>
     <span class="resume-tagline">Backend Developer · Java · Spring · Service Operations</span>
   </div>
   <div class="contact-icons">
