@@ -77,7 +77,7 @@ permalink: /portfolio/
       </div>
       <h3>개방DB 관리 시스템 <span class="portfolio-period">2024.09–2025.01</span></h3>
       <p class="portfolio-summary">요구사항마다 조회 API를 반복 개발하던 하드코딩 구조를 메타데이터 기반으로 재설계 · 핵심 구조를 공개 저장소(api-forge)로 재구현해 테스트 50건으로 검증 <em>(프로토타입 · 운영 반영 전)</em></p>
-      <span class="portfolio-stack">Java · Spring MVC · MyBatis · MariaDB</span>
+      <span class="portfolio-stack">Java 8 · Spring MVC · eGovFrame · MyBatis · Tibero</span>
     </a>
 
     <a class="portfolio-card" href="{{ '/portfolio/pms/' | relative_url }}">
