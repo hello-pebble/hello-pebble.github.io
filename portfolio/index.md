@@ -85,7 +85,7 @@ permalink: /portfolio/
         <span class="portfolio-card-number">05</span>
       </div>
       <h3>공정 관리 솔루션(PMS) <span class="portfolio-period">2022.11–2024.12</span></h3>
-      <p class="portfolio-summary">담당자에게 의존하던 수동 배포·장애 대응을 Docker와 GitLab CI/CD로 표준화 · 배포 인적 오류 제거와 반복 운영 문의 감소</p>
+      <p class="portfolio-summary">AI 학습데이터 라벨링 작업의 원격 운영 환경 구성 · Docker Compose와 GitLab CI 이미지 빌드, 수동 배포·로그 기반 장애 대응 절차 문서화</p>
       <span class="portfolio-stack">Java · Spring Boot · Docker · GitLab CI</span>
     </a>
 
