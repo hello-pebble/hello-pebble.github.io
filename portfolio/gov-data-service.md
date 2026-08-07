@@ -4,99 +4,22 @@ title: "정부 공문서 AI 학습데이터 조회 서비스 개발"
 permalink: /portfolio/gov-data-service/
 ---
 
-# 행정안전부 정부 공문서 AI 학습데이터 조회 서비스
+<span class="project-context">회사 프로젝트 · 2023.08 — 2024.02 · Java · Spring MVC · Python · Wildfly · MariaDB</span>
 
-<span class="badge outline">회사 프로젝트</span>
+# 정부 공문서 AI 조회 서비스 — 폐쇄망에서 HWP를 파싱하기
 
-> 외부 통신이 제한된 환경에서 Java 서버가 로컬 Python 프로세스를 실행하도록 구성해 HWP 문서 파싱 기능을 구현한 프로젝트입니다.
+행정안전부 시범 사업으로 납품된 공문서 AI 학습데이터 조회 서비스입니다. 핵심 과제는 **외부 통신이 완전히 차단된 폐쇄망 안에서** HWP 문서의 텍스트·메타데이터 추출을 자동화하는 것이었고, 파일 파싱 우회 통로 설계와 연동 파이프라인 개발을 담당했습니다. ([공공데이터포털의 오픈API](https://www.data.go.kr/data/15125451/openapi.do)로 공개돼 있습니다.)
 
-<nav class="project-page-nav" aria-label="정부 공문서 AI 학습데이터 조회 서비스 프로젝트 목차">
-  <a href="#overview">
-    <span>Overview</span>
-    <small>기간·기술 스택·담당 범위</small>
-  </a>
-  <a href="#intent">
-    <span>설계 의도</span>
-    <small>폐쇄망에서의 문서 처리 자동화</small>
-  </a>
-  <a href="#problem">
-    <span>문제 정의</span>
-    <small>외부 통신 없이 HWP 파싱하기</small>
-  </a>
-  <a href="#solution">
-    <span>해결 과정</span>
-    <small>ProcessBuilder 기반 Java–Python 브릿지</small>
-  </a>
-  <a href="#evidence">
-    <span>구현 근거</span>
-    <small>파싱 파이프라인 동작 확인</small>
-  </a>
-  <a href="#results">
-    <span>결과</span>
-    <small>시범 사업 납품 완수</small>
-  </a>
-  <a href="#limitations">
-    <span>한계와 후속 과제</span>
-    <small>브릿지 방식의 비용</small>
-  </a>
-</nav>
+## 제약이 설계를 결정했다
 
----
-
-## Project Overview {#overview}
-
-- **구분**: 회사 프로젝트
-- **기간**: 2023.08 ~ 2024.02 (6개월)
-- **기술 스택**: Java, Spring MVC, Python, Wildfly, MariaDB, JSP, Chart.js
-- **핵심 역할**: 파일 파싱 우회 통로 설계, ProcessBuilder 기반 연동 파이프라인 개발
-- **관련 자료**: [공공데이터포털 — 행정안전부_정부 공문서 AI 학습데이터 조회 서비스 (오픈API)](https://www.data.go.kr/data/15125451/openapi.do)
-
----
-
-## Intent (설계 의도) {#intent}
-
-외부 서비스 호출 없이 폐쇄망 내부에서 문서 파싱을 완료해야 했습니다. 기존 Java 서버는 유지하면서 Python의 로컬 문서 처리 기능을 사용할 수 있도록, 두 실행 환경을 네트워크가 아닌 서브프로세스로 연결했습니다.
-
----
-
-## Problem (문제 정의 및 원인 분석) {#problem}
-
-- **문제**: 폐쇄망 내부의 Java 서버에서 HWP 문서의 텍스트와 메타데이터를 추출해야 했습니다.
-- **원인**: 운영 환경에서는 외부 SaaS를 호출할 수 없었고, 기존 Java 문서 처리 기능만으로 필요한 파싱 범위를 구현하기 어려웠습니다.
-
----
-
-## Solution (해결 과정) {#solution}
+HWP 파싱에 필요한 처리 능력은 Python 생태계에 있었지만, 기존 서비스는 Java(Spring MVC) 서버였고 폐쇄망이라 외부 SaaS 호출은 선택지에 없었습니다. 두 실행 환경을 연결하는 방법으로 별도 Python 서버를 두고 HTTP로 통신할 수도 있었지만, 폐쇄망 납품 환경에서는 관리할 서비스·포트가 하나 늘어나는 것 자체가 비용입니다. 그래서 **같은 서버 안에서 서브프로세스로 연결**하는 쪽을 선택했습니다.
 
 ![폐쇄망 브릿지 아키텍처](/assets/images/portfolio/gov-bridge.svg)
 
-1. **Java-Python 브릿지 설계**
-   - 문서 파싱용 **Python 스크립트와 가상환경을 Java 서버의 로컬 환경에 배치**했습니다.
-2. **ProcessBuilder를 활용한 서브프로세스 제어**
-   - Java의 `ProcessBuilder` API로 Python 가상환경의 실행 파일과 스크립트를 서브프로세스로 호출했습니다.
-3. **격리형 데이터 파이프라인 구축**
-   - Java 서버가 입력 파일을 전달하고, Python의 파싱 결과를 표준 출력으로 받아 MariaDB에 저장하는 처리 흐름을 구성했습니다.
+- 문서 파싱용 Python 스크립트와 가상환경을 Java 서버의 로컬 환경에 배치했습니다.
+- Java가 `ProcessBuilder`로 가상환경의 Python 실행 파일과 스크립트를 서브프로세스로 호출합니다.
+- Java가 입력 파일을 전달하고, 파싱 결과를 표준 출력으로 받아 MariaDB에 저장합니다 — 파일 입력부터 저장까지가 수동 개입 없는 하나의 처리 흐름입니다.
 
----
+## 결과와 한계
 
-## Implementation Evidence (구현 근거) {#evidence}
-
-- 아키텍처 다이어그램에 `Java 요청 → ProcessBuilder 실행 → Python 파싱 → 결과 수신 → MariaDB 저장` 경계를 표시했습니다.
-- 외부 API 호출 없이 같은 서버 안에서 Java와 Python 프로세스가 동작하도록 구성했습니다.
-- 수동 복사·붙여넣기 대신 파일 입력부터 파싱 결과 저장까지 하나의 처리 흐름으로 연결했습니다.
-
----
-
-## Results (확인 가능한 변화) {#results}
-
-- 폐쇄망 내부에서 외부 통신 없이 HWP 문서 파싱 기능을 실행할 수 있게 했습니다.
-- 기존 Java 웹 애플리케이션을 유지하면서 Python 문서 처리 기능을 서브프로세스로 연동했습니다.
-- 파일 입력, 파싱 결과 수신, 데이터베이스 저장 과정을 하나의 파이프라인으로 구성해 시범 사업 납품 범위에 적용했습니다.
-
----
-
-## Limitations (한계 및 후속 과제) {#limitations}
-
-- 서브프로세스 실행 시간이 길어지거나 종료되지 않을 때를 대비한 타임아웃과 강제 종료 정책이 필요합니다.
-- 여러 문서를 동시에 처리하면 프로세스 수와 메모리 사용량이 증가하므로 동시 실행 개수 제한과 작업 큐 검토가 필요합니다.
-- Python 표준 오류, 종료 코드, 부분 파싱 결과를 구분해 저장하는 오류 처리 기준을 보강해야 합니다.
+폐쇄망 내부에서 외부 통신 없이 HWP 파싱을 자동화해 시범 사업 납품을 완수했습니다. 다만 서브프로세스 방식의 비용도 명확합니다 — 실행이 길어지거나 종료되지 않는 경우의 타임아웃·강제 종료 정책, 동시 처리 시 프로세스 수·메모리 증가에 대한 실행 개수 제한과 작업 큐, Python 표준 오류·종료 코드·부분 파싱 결과를 구분하는 오류 처리 기준이 보강 과제로 남았습니다. 지금 같은 요구를 다시 받는다면 이 세 가지를 초기 설계에 포함하는 것부터 시작할 것입니다.
