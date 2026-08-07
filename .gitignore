@@ -5,3 +5,5 @@
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+.github/
+PORTFOLIO_RELEASE_ROUTINE.md
