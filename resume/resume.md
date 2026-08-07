@@ -18,7 +18,7 @@ resume_name: 권다경
   <div class="resume-contact-print">kwdk2323@gmail.com · github.com/hello-pebble</div>
 </div>
 
-> **Java·Spring 백엔드 3년 10개월** · 서비스 개발·운영 및 유지보수 · JUnit 5 단위·통합 테스트(Unit·Integration Test) · SSE·WebSocket·Long Polling 비동기 처리 · Docker 배포 · GitLab CI/CD·GitHub Actions · 운영 장애 대응 · OCI 기반 Docker 데모 배포
+> **Java·Spring 백엔드 3년 10개월** · 서비스 개발·운영 및 유지보수 · JUnit 5 단위·통합 테스트(Unit·Integration Test) · SSE·WebSocket·Long Polling 비동기 처리 · Docker 배포 · GitLab CI/CD·GitHub Actions · 운영 장애 대응
 
 복잡하게 시작하기보다 문제를 작은 단위로 나누고, 실행 가능한 결과를 먼저 만드는 개발자입니다. 빠르게 구현한 뒤 실제 동작과 운영 결과를 확인하면서 부족한 부분을 점진적으로 개선하는 방식을 선호합니다.
 
