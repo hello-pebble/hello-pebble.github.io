@@ -91,7 +91,7 @@ if (col.getFilterType() == FilterType.NONE) {
 Field<Object> field = DSL.field(DSL.name(col.getSourceColumn())); // SQL에는 메타데이터의 컬럼명만 들어간다
 ```
 
-이 방어가 실제로 동작하는지는 재구현 저장소의 테스트가 CI에서 증명합니다 — 미등록 컬럼 필터 400, `BILL_ID; DROP TABLE …` 같은 파라미터명 위장 400, `' OR '1'='1` 값 주입은 문자열 리터럴 처리. 마지막 시나리오는 H2와 PostgreSQL(Testcontainers) 양쪽 통합 테스트에 동일하게 존재합니다.
+이 방어가 실제로 동작하는지는 재구현 저장소의 테스트 50건이 매 커밋 CI에서 증명합니다. SQL 조립기는 순수 단위 테스트(Unit Test)로, 등록→발행→조회 파이프라인은 MockMvc 통합 테스트(Integration Test)로 검증합니다 — 미등록 컬럼 필터 400, `BILL_ID; DROP TABLE …` 같은 파라미터명 위장 400, `' OR '1'='1` 값 주입은 문자열 리터럴 처리. 인젝션 시나리오는 H2와 PostgreSQL(Testcontainers) 양쪽 통합 테스트에 동일하게 존재해, DB 방언 차이까지 같은 엔진으로 확인합니다.
 
 ## 미완의 검증을 재구현으로 — api-forge {#reimpl}
 
