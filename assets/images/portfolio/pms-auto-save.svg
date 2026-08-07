@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="asArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#64748b"/>
+    </marker>
+    <marker id="asArrowDark" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect width="800" height="470" fill="#ffffff" rx="12"/>
+  <text x="400" y="36" text-anchor="middle" font-size="17" font-weight="bold" fill="#1e293b">자동 라벨링과 저장 단위가 맞물린 지점</text>
+
+  <!-- ── 이전 ── -->
+  <rect x="25" y="58" width="750" height="176" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect x="25" y="58" width="66" height="24" rx="10" fill="#334155"/>
+  <text x="58" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">이전</text>
+
+  <text x="48" y="103" font-size="12" font-weight="bold" fill="#1e293b">① 객체 지정</text>
+  <rect x="48" y="113" width="96" height="72" rx="6" fill="#1e293b"/>
+  <rect x="66" y="132" width="40" height="34" rx="3" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="96" y="200" text-anchor="middle" font-size="11" fill="#64748b">프레임 1</text>
+
+  <line x1="152" y1="149" x2="188" y2="149" stroke="#334155" stroke-width="1.5" marker-end="url(#asArrowDark)"/>
+  <text x="170" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#334155">auto</text>
+
+  <text x="198" y="103" font-size="12" font-weight="bold" fill="#1e293b">② 폴더 내 모든 프레임에서 같은 객체를 추적해 자동 생성</text>
+  <g fill="#1e293b">
+    <rect x="198" y="113" width="66" height="72" rx="6"/>
+    <rect x="272" y="113" width="66" height="72" rx="6"/>
+    <rect x="346" y="113" width="66" height="72" rx="6"/>
+    <rect x="420" y="113" width="66" height="72" rx="6"/>
+    <rect x="494" y="113" width="66" height="72" rx="6"/>
+  </g>
+  <g fill="none" stroke="#94a3b8" stroke-width="1.5">
+    <rect x="213" y="132" width="36" height="34" rx="3"/>
+    <rect x="288" y="134" width="34" height="32" rx="3"/>
+    <rect x="362" y="133" width="35" height="33" rx="3"/>
+    <rect x="437" y="135" width="33" height="31" rx="3"/>
+    <rect x="511" y="134" width="34" height="32" rx="3"/>
+  </g>
+  <text x="379" y="200" text-anchor="middle" font-size="11" fill="#64748b">클릭 한 번으로 폴더 전체에 결과가 생성됩니다</text>
+
+  <line x1="568" y1="149" x2="602" y2="149" stroke="#334155" stroke-width="1.5" marker-end="url(#asArrowDark)"/>
+  <text x="585" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#334155">저장</text>
+
+  <rect x="612" y="106" width="140" height="86" rx="8" fill="#ffffff" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="682" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="#b91c1c">요청 1개 = 폴더 전체</text>
+  <text x="682" y="152" text-anchor="middle" font-size="11" fill="#64748b">로드된 프레임의</text>
+  <text x="682" y="168" text-anchor="middle" font-size="11" fill="#64748b">모든 객체를 한 번에 전송</text>
+  <text x="682" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#b91c1c">✕ 저장 처리에 도달 실패</text>
+
+  <text x="400" y="222" text-anchor="middle" font-size="11" fill="#64748b">도달하더라도 INSERT 한 건마다 개별 커밋이라, 중간에 끊기면 앞부분만 남고 뒷부분은 사라졌습니다</text>
+
+  <!-- ── 이후 ── -->
+  <rect x="25" y="256" width="750" height="150" rx="10" fill="#f1f5f9" stroke="#334155"/>
+  <rect x="25" y="256" width="66" height="24" rx="10" fill="#334155"/>
+  <text x="58" y="273" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">이후</text>
+
+  <text x="48" y="301" font-size="12" font-weight="bold" fill="#1e293b">저장 단위를 프레임으로 분리 — 요청 크기가 폴더 전체에 비례하지 않습니다</text>
+
+  <g fill="#1e293b">
+    <rect x="48" y="312" width="66" height="48" rx="6"/>
+    <rect x="140" y="312" width="66" height="48" rx="6"/>
+    <rect x="232" y="312" width="66" height="48" rx="6"/>
+    <rect x="324" y="312" width="66" height="48" rx="6"/>
+    <rect x="416" y="312" width="66" height="48" rx="6"/>
+  </g>
+  <g fill="none" stroke="#94a3b8" stroke-width="1.5">
+    <rect x="64" y="323" width="34" height="26" rx="3"/>
+    <rect x="157" y="325" width="32" height="24" rx="3"/>
+    <rect x="248" y="324" width="34" height="25" rx="3"/>
+    <rect x="341" y="325" width="32" height="24" rx="3"/>
+    <rect x="432" y="324" width="34" height="25" rx="3"/>
+  </g>
+  <g stroke="#64748b" stroke-width="2" marker-end="url(#asArrow)">
+    <line x1="81" y1="364" x2="81" y2="384"/>
+    <line x1="173" y1="364" x2="173" y2="384"/>
+    <line x1="265" y1="364" x2="265" y2="384"/>
+    <line x1="357" y1="364" x2="357" y2="384"/>
+    <line x1="449" y1="364" x2="449" y2="384"/>
+  </g>
+  <text x="265" y="399" text-anchor="middle" font-size="11" fill="#64748b">프레임 이동 시점에 해당 프레임만 저장</text>
+
+  <rect x="510" y="300" width="242" height="76" rx="8" fill="#ffffff" stroke="#15803d" stroke-width="1.5"/>
+  <text x="631" y="324" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">✓ 요청 하나의 크기가 고정</text>
+  <text x="631" y="346" text-anchor="middle" font-size="11" fill="#64748b">자동 라벨링 결과가 늘어나도</text>
+  <text x="631" y="362" text-anchor="middle" font-size="11" fill="#64748b">한 요청에 실리는 양은 그대로</text>
+
+  <rect x="150" y="426" width="500" height="34" rx="17" fill="#334155"/>
+  <text x="400" y="448" text-anchor="middle" font-size="12" fill="#ffffff">각각은 정상인 두 기능이 맞물린 지점에서 장애가 났습니다</text>
+</svg>
