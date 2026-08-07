@@ -18,7 +18,7 @@ resume_name: 권다경
   <div class="resume-contact-print">kwdk2323@gmail.com · github.com/hello-pebble</div>
 </div>
 
-> **Java·Spring 백엔드 3년 10개월** · 서비스 개발·운영 및 유지보수 · JUnit 5 단위·통합 테스트(Unit·Integration Test) · SSE·WebSocket·Long Polling 비동기 처리 · Docker 배포 · GitLab CI/CD·GitHub Actions · 운영 장애 대응
+> **Java/Spring 백엔드 3년 10개월** · RESTful API 개발 · Docker 기반 배포 · GitLab CI/CD·GitHub Actions · 장애 원인 분석과 운영 개선 · 반복되는 운영 비용을 줄이는 설계와 절차화
 
 복잡하게 시작하기보다 문제를 작은 단위로 나누고, 실행 가능한 결과를 먼저 만드는 개발자입니다. 빠르게 구현한 뒤 실제 동작과 운영 결과를 확인하면서 부족한 부분을 점진적으로 개선하는 방식을 선호합니다.
 
@@ -37,8 +37,8 @@ resume_name: 권다경
 
 > 공공데이터 조회, 제조 공정 관리, 문서 처리 시스템의 Java·Spring 백엔드를 설계·구현했습니다. PMS의 실제 운영과 유지보수를 담당하며 WAR 애플리케이션의 Docker 배포, GitLab CI/CD 구축, 운영 장애 대응 절차 표준화를 수행했습니다.
 
-- **[개방DB API관리 시스템](/portfolio/api-management/)** 메타데이터 기반 조회와 API 버전 라우팅 설계 · 핵심 구조를 공개 저장소(api-forge)로 재구현해 테스트 50건과 CI로 검증
-- **[공정 관리 솔루션(PMS)](/portfolio/pms/)** WAR 애플리케이션의 Docker 기반 배포·운영, GitLab CI/CD 구축, 유지보수 및 장애 대응 표준화
+- **[공정 관리 솔루션(PMS)](/portfolio/pms/)** WAR 애플리케이션의 Docker 기반 배포·운영, GitLab CI/CD 구축 · 저장 장애 원인 규명·조치로 사용 문의 90% 감소(월 20건 → 1~2건)
+- **[개방DB API관리 시스템](/portfolio/api-management/)** 메타데이터 기반 조회 엔진 설계 — 신규 API 추가를 파일 5~6개 작성에서 등록 1건으로 단순화 · 핵심 구조를 공개 저장소(api-forge)로 재구현해 테스트 50건과 CI로 검증
 - **[정부 공문서 AI 학습데이터 서비스](/portfolio/gov-data-service/)** 폐쇄망 Java–Python 연동과 문서 처리 파이프라인 구현
 
 <p class="resume-tech">사용 기술 · Java · Python · Spring Boot · Spring MVC · MyBatis · MariaDB · Docker · GitLab CI · WildFly · Tomcat</p>
@@ -68,19 +68,6 @@ resume_name: 권다경
 <h2 class="resume-section-heading print-page-start">Personal Projects</h2>
 
 <div class="entry-header">
-  <h3><a href="/portfolio/matchsimulation/">MatchSimulation 매칭 서비스 백엔드</a></h3>
-  <span class="entry-date">2026.06 ~ 진행 중</span>
-</div>
-
-- **목표** 추천 엔진·DB·인증 구현을 변경하더라도 핵심 매칭 기능에 미치는 영향을 줄일 수 있는 백엔드 구조 검토
-- **담당 · 기간** 개인 프로젝트 · 백엔드 설계 및 구현 · 2026.06 ~ 진행 중
-- **검증 범위** 더미 인증 → Spring Security+JWT, `ddl-auto` → Flyway로 실제 교체 후 회귀 테스트 51건 통과 · 기능 단위 모듈 재편 리팩토링
-- **검증 범위** 채팅 수신을 Short Polling → Long Polling(`DeferredResult` 비동기 처리) → WebSocket으로 실측 진화 — 빈 응답 90% → 0, push 지연 9ms
-- **검증 범위** 동시 수락 경쟁을 낙관적 락으로 1건만 성공 확인 · 실제 WebSocket 연결 테스트(핸드셰이크 거부·세션 누수)
-
-<p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/MatchSimulation" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/MatchSimulation</a></p>
-
-<div class="entry-header">
   <h3><a href="/portfolio/delaynomore/">DelayNoMore 계획 실행 지원 서비스</a></h3>
   <span class="entry-date">2026.04 ~ 2026.06</span>
 </div>
@@ -92,6 +79,19 @@ resume_name: 권다경
 - **검증 범위** 에이전트 도구 선택 정확도를 평가 하네스 676회 실측 — 릴리스 스모크 57회 통과율 100% 확인 후 OCI Docker 데모 배포
 
 <p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/DelayNoMore_Release" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/DelayNoMore_Release</a></p>
+
+<div class="entry-header">
+  <h3><a href="/portfolio/matchsimulation/">MatchSimulation 매칭 서비스 백엔드</a></h3>
+  <span class="entry-date">2026.06 ~ 진행 중</span>
+</div>
+
+- **목표** 추천 엔진·DB·인증 구현을 변경하더라도 핵심 매칭 기능에 미치는 영향을 줄일 수 있는 백엔드 구조 검토
+- **담당 · 기간** 개인 프로젝트 · 백엔드 설계 및 구현 · 2026.06 ~ 진행 중
+- **검증 범위** 더미 인증 → Spring Security+JWT, `ddl-auto` → Flyway로 실제 교체 후 회귀 테스트 51건 통과 · 기능 단위 모듈 재편 리팩토링
+- **검증 범위** 채팅 수신을 Short Polling → Long Polling(`DeferredResult` 비동기 처리) → WebSocket으로 실측 진화 — 빈 응답 90% → 0, push 지연 9ms
+- **검증 범위** 동시 수락 경쟁을 낙관적 락으로 1건만 성공 확인 · 실제 WebSocket 연결 테스트(핸드셰이크 거부·세션 누수)
+
+<p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/MatchSimulation" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/MatchSimulation</a></p>
 
 <div class="entry-header">
   <h3><a href="/portfolio/oauth-sso/">Gateway 기반 인증·인가 검증</a></h3>
@@ -112,7 +112,6 @@ resume_name: 권다경
 
 <h2 class="resume-section-heading">Certifications</h2>
 
-- 정보처리기사 필기 합격
 - 네트워크관리사 2급
 - 리눅스마스터 2급
 
