@@ -68,7 +68,9 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 
 ![DelayNoMore 실제 서비스 화면 — 왼쪽 AI 코치와의 대화로 계획을 만들고, 가운데에 오늘 할 일이 모이며, 오른쪽 체크리스트에서 실행을 추적한다](/assets/images/portfolio/delaynomore-app.png){:.portfolio-hero-shot}
 
-작업 리듬은 트렁크 기반입니다. `main`은 항상 배포 가능한 상태로 두고, 기능마다 짧은 브랜치 → PR → 머지 → 버전 태그를 반복했습니다. 릴리스마다 [CHANGELOG](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/CHANGELOG.md)에 "무엇을, 왜"를 남기고, QA 체크리스트를 실제로 수행한 결과를 `QA_RESULT_vX.Y.Z.md`로 기록했습니다. 테스트도 같은 리듬의 일부입니다 — JUnit 5 기반 317건을 세 층으로 나눠, 순수 단위 테스트(Unit Test), 전체 컨텍스트 없이 컨트롤러만 띄우는 standalone MockMvc, 그리고 `*IT` 네이밍으로 분리한 통합 테스트(Integration Test — Testcontainers PostgreSQL, Docker가 없으면 스킵)를 구분해 둡니다. 실제 모델을 호출하는 평가는 JUnit `@Tag("eval")`로 일반 빌드에서 제외하고 `./gradlew evalAgent`로만 실행하며, 매 push마다 GitHub Actions CI가 프론트 lint·빌드와 백엔드 테스트를 돌립니다. 버전 사이의 인과는 [EVOLUTION.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVOLUTION.md)에 한 장의 그래프로 정리돼 있습니다.
+작업 리듬은 트렁크 기반입니다. `main`은 항상 배포 가능한 상태로 두고, 기능마다 짧은 브랜치 → PR → 머지 → 버전 태그를 반복했습니다. 릴리스마다 [CHANGELOG](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/CHANGELOG.md)에 "무엇을, 왜"를 남기고, QA 체크리스트를 실제로 수행한 결과를 `QA_RESULT_vX.Y.Z.md`로 기록했습니다. 버전 사이의 인과는 [EVOLUTION.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVOLUTION.md)에 한 장의 그래프로 정리돼 있습니다.
+
+테스트도 같은 리듬의 일부입니다. JUnit 5 기반 317건을 세 층으로 나눠 순수 단위 테스트(Unit Test), 전체 컨텍스트 없이 컨트롤러만 띄우는 standalone MockMvc, `*IT` 네이밍으로 분리한 통합 테스트(Integration Test — Testcontainers PostgreSQL, Docker가 없으면 스킵)를 구분해 둡니다. 실제 모델을 호출하는 평가는 JUnit `@Tag("eval")`로 일반 빌드에서 제외하고 `./gradlew evalAgent`로만 실행하며, 매 push마다 GitHub Actions CI가 프론트 lint·빌드와 백엔드 테스트를 돌립니다.
 
 구현의 상당 부분은 Claude Code와 협업했습니다. 릴리스 규칙과 작업 관례를 저장소의 `CLAUDE.md`에 고정해 매 세션이 같은 기준으로 움직이게 했고, 저는 버전마다 풀 문제를 정의하고, 결과를 리뷰하고, QA 실측으로 검증하는 역할을 맡았습니다. AI가 만든 코드도 같은 QA 체크리스트를 통과해야 릴리스에 들어갑니다. 전체 원칙은 [AI를 어떻게 쓰는가](/ai/)에 따로 정리했습니다.
 

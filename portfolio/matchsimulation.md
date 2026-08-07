@@ -87,15 +87,17 @@ tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT, WebSocket]
 | **3. Long Polling** | `DeferredResult`로 서버가 대기, 새 메시지 발생 시 즉시 응답 | **같은 조건에서 요청 2회·빈 응답 0~1회·전달 지연 ≈ 0** |
 | **4. WebSocket** | 연결 1개 유지, 양방향 push | **push 지연 9ms·핸드셰이크 13ms 실측** — 재요청 반복까지 제거 |
 
-단계마다 설계 결정이 하나씩 있었습니다. Long Polling은 서블릿 스레드를 점유하지 않는 비동기 처리(Asynchronous Processing)입니다 — `DeferredResult`를 반환하면 요청 스레드는 즉시 반납되고, 대기자는 `ConcurrentHashMap` 레지스트리가 보관하다가 `onTimeout`·`onCompletion` 콜백으로 제거해 누수를 막습니다. 비동기 디스패치에서 인증 필터가 다시 실행되는 서블릿 비동기 생명주기도 이 단계에서 명시적으로 다뤘습니다. 대기자 알림(publish)은 메시지 저장 트랜잭션 **커밋 이후**에 호출하도록 경계를 잡았습니다 — 트랜잭션 안에서 알리면 대기자가 커밋 전 데이터를 조회해 새 메시지를 놓칠 수 있기 때문입니다. WebSocket에서는 STOMP를 **쓰지 않기로** 결정했습니다. 구독 대상이 matchId 하나뿐이라 브로커·구독 프로토콜 계층이 과하고, 핸드셰이크·세션 관리·브로드캐스트를 직접 다뤄 저수준 동작을 드러내는 쪽이 이 프로젝트의 목적에 맞았습니다. 인증은 `HandshakeInterceptor`에서 연결 수립 전에 JWT·정지 계정·매칭 참여자를 검증해, 실패한 연결은 열리지도 않습니다.
+단계마다 설계 결정이 하나씩 있었습니다. Long Polling은 서블릿 스레드를 점유하지 않는 비동기 처리(Asynchronous Processing)입니다 — `DeferredResult`를 반환하면 요청 스레드는 즉시 반납되고, 대기자는 `ConcurrentHashMap` 레지스트리가 보관하다가 `onTimeout`·`onCompletion` 콜백으로 제거해 누수를 막습니다. 비동기 디스패치에서 인증 필터가 다시 실행되는 서블릿 비동기 생명주기도 이 단계에서 명시적으로 다뤘습니다. 대기자 알림(publish)은 메시지 저장 트랜잭션 **커밋 이후**에 호출하도록 경계를 잡았습니다 — 트랜잭션 안에서 알리면 대기자가 커밋 전 데이터를 조회해 새 메시지를 놓칠 수 있기 때문입니다.
+
+WebSocket에서는 STOMP를 **쓰지 않기로** 결정했습니다. 구독 대상이 matchId 하나뿐이라 브로커·구독 프로토콜 계층이 과하고, 핸드셰이크·세션 관리·브로드캐스트를 직접 다뤄 저수준 동작을 드러내는 쪽이 이 프로젝트의 목적에 맞았습니다. 인증은 `HandshakeInterceptor`에서 연결 수립 전에 JWT·정지 계정·매칭 참여자를 검증해, 실패한 연결은 열리지도 않습니다.
 
 이 동작들은 목(mock)이 아니라 **실제 연결로 검증**했습니다 — 롱폴링은 MockMvc의 `asyncDispatch`로 비동기 응답 사이클을, WebSocket은 `StandardWebSocketClient`로 랜덤 포트에 뜬 서버에 직접 접속해 핸드셰이크 거부·세션 누수·REST 전송→WebSocket 수신 교차까지 확인합니다.
 
 ## 03. 상태 전이와 동시성 — 잘못된 변경을 규칙에서 차단 {#states}
 
-계정 생명주기(User)와 매칭 요청(MatchRecord)은 각각 제한된 상태 머신으로 관리합니다. 수락·거절은 `REQUESTED` 상태에서만 허용되고 종결 상태는 재전이가 없습니다.
+계정 생명주기(User)와 매칭 요청(MatchRecord)은 각각 제한된 상태 머신으로 관리합니다. 수락·거절은 `REQUESTED` 상태에서만 허용되고 종결 상태는 재전이가 없습니다. 여기에 동시성과 원자성을 명시적으로 얹었습니다.
 
-![매칭 상태 전이도 — 가입 승인부터 수락·거절까지, 전이 규칙과 불변 조건](/assets/images/portfolio/matchsimulation-match-state.svg){:.portfolio-diagram} 여기에 동시성과 원자성을 명시적으로 얹었습니다.
+![매칭 상태 전이도 — 가입 승인부터 수락·거절까지, 전이 규칙과 불변 조건](/assets/images/portfolio/matchsimulation-match-state.svg){:.portfolio-diagram}
 
 - **동시 응답 경쟁** — 같은 매칭에 두 요청이 동시에 수락·거절을 시도하면 `@Version` 낙관적 락으로 한쪽만 성공하고 다른 쪽은 409를 받습니다. 상태는 정확히 1회만 전이됩니다.
 - **트랜잭션 경계** — 수락 시 상태 변경과 양측 알림 생성을 하나의 트랜잭션으로 묶어, 알림 저장이 실패하면 상태 변경도 롤백됩니다.
