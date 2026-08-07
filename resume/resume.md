@@ -18,7 +18,7 @@ resume_name: 권다경
   <div class="resume-contact-print">kwdk2323@gmail.com · github.com/hello-pebble</div>
 </div>
 
-> **Java·Spring 백엔드 3년 10개월** · 서비스 개발·운영 및 유지보수 · Docker 배포 · GitLab CI/CD · 운영 장애 대응 · OCI 기반 Docker 데모 배포
+> **Java·Spring 백엔드 3년 10개월** · 서비스 개발·운영 및 유지보수 · JUnit 5 단위·통합 테스트(Unit·Integration Test) · SSE·WebSocket·Long Polling 비동기 처리 · Docker 배포 · GitLab CI/CD·GitHub Actions · 운영 장애 대응 · OCI 기반 Docker 데모 배포
 
 복잡하게 시작하기보다 문제를 작은 단위로 나누고, 실행 가능한 결과를 먼저 만드는 개발자입니다. 빠르게 구현한 뒤 실제 동작과 운영 결과를 확인하면서 부족한 부분을 점진적으로 개선하는 방식을 선호합니다.
 
@@ -37,7 +37,7 @@ resume_name: 권다경
 
 > 공공데이터 조회, 제조 공정 관리, 문서 처리 시스템의 Java·Spring 백엔드를 설계·구현했습니다. PMS의 실제 운영과 유지보수를 담당하며 WAR 애플리케이션의 Docker 배포, GitLab CI/CD 구축, 운영 장애 대응 절차 표준화를 수행했습니다.
 
-- **[개방DB API관리 시스템](/portfolio/api-management/)** 메타데이터 기반 조회와 API 버전 라우팅 설계
+- **[개방DB API관리 시스템](/portfolio/api-management/)** 메타데이터 기반 조회와 API 버전 라우팅 설계 · 핵심 구조를 공개 저장소(api-forge)로 재구현해 테스트 50건과 CI로 검증
 - **[공정 관리 솔루션(PMS)](/portfolio/pms/)** WAR 애플리케이션의 Docker 기반 배포·운영, GitLab CI/CD 구축, 유지보수 및 장애 대응 표준화
 - **[정부 공문서 AI 학습데이터 서비스](/portfolio/gov-data-service/)** 폐쇄망 Java–Python 연동과 문서 처리 파이프라인 구현
 
@@ -74,8 +74,9 @@ resume_name: 권다경
 
 - **목표** 추천 엔진·DB·인증 구현을 변경하더라도 핵심 매칭 기능에 미치는 영향을 줄일 수 있는 백엔드 구조 검토
 - **담당 · 기간** 개인 프로젝트 · 백엔드 설계 및 구현 · 2026.06 ~ 진행 중
-- **검증 범위** 7개 기능 모듈 분리 및 설정에 따른 `MatchingEngine` 구현체 전환 확인
-- **검증 범위** 가입→추천→매칭 수락 상태 전이와 QnA·알림·관리자 통계 API 스모크 테스트
+- **검증 범위** 더미 인증 → Spring Security+JWT, `ddl-auto` → Flyway로 실제 교체 후 회귀 테스트 51건 통과 · 기능 단위 모듈 재편 리팩토링
+- **검증 범위** 채팅 수신을 Short Polling → Long Polling(`DeferredResult` 비동기 처리) → WebSocket으로 실측 진화 — 빈 응답 90% → 0, push 지연 9ms
+- **검증 범위** 동시 수락 경쟁을 낙관적 락으로 1건만 성공 확인 · 실제 WebSocket 연결 테스트(핸드셰이크 거부·세션 누수)
 
 <p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/MatchSimulation" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/MatchSimulation</a></p>
 
@@ -86,9 +87,9 @@ resume_name: 권다경
 
 - **목표** 계획을 반복해서 변경하거나 실행을 미루는 흐름을 줄이기 위한 잠금 모델과 AI 코치 기능 구현
 - **담당 · 기간** 개인 프로젝트 · 기획, 설계, 풀스택 구현, 데모 배포 · 2026.04 ~ 2026.06
-- **검증 범위** 20~30초가 걸리는 AI 응답을 실시간 스트리밍으로 표시하고 응답 생성 과정 확인
-- **검증 범위** Vite 번들 청크 분리 후 분리된 결과물 생성과 빌드 경고 해소 확인
-- **검증 범위** OCI 환경에 Docker 기반 데모를 배포하고 애플리케이션 접속·실행 확인
+- **검증 범위** JUnit 5 테스트 317건 — 순수 단위·standalone MockMvc·Testcontainers 통합(`*IT`) 분리, GitHub Actions CI
+- **검증 범위** 20~30초 AI 응답을 SSE 스트리밍 응답(Streaming Response)으로 전환, 스트림 실패 시 비스트리밍→mock 폴백 확인
+- **검증 범위** 에이전트 도구 선택 정확도를 평가 하네스 676회 실측 — 릴리스 스모크 57회 통과율 100% 확인 후 OCI Docker 데모 배포
 
 <p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/DelayNoMore_Release" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/DelayNoMore_Release</a></p>
 
@@ -100,7 +101,7 @@ resume_name: 권다경
 - **목표** Gateway를 단일 진입점으로 구성했을 때 공개·보호·내부 경로의 접근 제어가 의도대로 동작하는지 확인
 - **담당 · 기간** 개인 프로젝트 · 인증 구조 설계 및 백엔드 구현 · 2026.01 ~ 2026.03
 - **검증 범위** 공개 경로 정상 접근, 보호 경로 무토큰 요청 `401`, Gateway와 Resource Server의 권한 검증, 외부의 내부 경로 접근 시 `404` 응답 확인
-- **검증 범위** 6개 모듈을 기능·빌드·실행 단위로 분리하고 Docker Compose 통합 기동 확인
+- **검증 범위** 6개 모듈을 기능·빌드·실행 단위로 분리하고 Docker Compose 통합 기동 확인 · 동시 매칭 경쟁 10스레드 테스트 · TDR·Decision Log 등 기술 문서 56건 공개
 
 <p class="resume-tech">저장소 · <a href="https://github.com/hello-pebble/oauth2-authorization" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/oauth2-authorization</a></p>
 

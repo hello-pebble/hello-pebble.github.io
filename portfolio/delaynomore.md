@@ -68,7 +68,7 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 
 ![DelayNoMore 실제 서비스 화면 — 왼쪽 AI 코치와의 대화로 계획을 만들고, 가운데에 오늘 할 일이 모이며, 오른쪽 체크리스트에서 실행을 추적한다](/assets/images/portfolio/delaynomore-app.png){:.portfolio-hero-shot}
 
-작업 리듬은 트렁크 기반입니다. `main`은 항상 배포 가능한 상태로 두고, 기능마다 짧은 브랜치 → PR → 머지 → 버전 태그를 반복했습니다. 릴리스마다 [CHANGELOG](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/CHANGELOG.md)에 "무엇을, 왜"를 남기고, QA 체크리스트를 실제로 수행한 결과를 `QA_RESULT_vX.Y.Z.md`로 기록했습니다. 버전 사이의 인과는 [EVOLUTION.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVOLUTION.md)에 한 장의 그래프로 정리돼 있습니다.
+작업 리듬은 트렁크 기반입니다. `main`은 항상 배포 가능한 상태로 두고, 기능마다 짧은 브랜치 → PR → 머지 → 버전 태그를 반복했습니다. 릴리스마다 [CHANGELOG](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/CHANGELOG.md)에 "무엇을, 왜"를 남기고, QA 체크리스트를 실제로 수행한 결과를 `QA_RESULT_vX.Y.Z.md`로 기록했습니다. 테스트도 같은 리듬의 일부입니다 — JUnit 5 기반 317건을 세 층으로 나눠, 순수 단위 테스트(Unit Test), 전체 컨텍스트 없이 컨트롤러만 띄우는 standalone MockMvc, 그리고 `*IT` 네이밍으로 분리한 통합 테스트(Integration Test — Testcontainers PostgreSQL, Docker가 없으면 스킵)를 구분해 둡니다. 실제 모델을 호출하는 평가는 JUnit `@Tag("eval")`로 일반 빌드에서 제외하고 `./gradlew evalAgent`로만 실행하며, 매 push마다 GitHub Actions CI가 프론트 lint·빌드와 백엔드 테스트를 돌립니다. 버전 사이의 인과는 [EVOLUTION.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVOLUTION.md)에 한 장의 그래프로 정리돼 있습니다.
 
 구현의 상당 부분은 Claude Code와 협업했습니다. 릴리스 규칙과 작업 관례를 저장소의 `CLAUDE.md`에 고정해 매 세션이 같은 기준으로 움직이게 했고, 저는 버전마다 풀 문제를 정의하고, 결과를 리뷰하고, QA 실측으로 검증하는 역할을 맡았습니다. AI가 만든 코드도 같은 QA 체크리스트를 통과해야 릴리스에 들어갑니다. 전체 원칙은 [AI를 어떻게 쓰는가](/ai/)에 따로 정리했습니다.
 
@@ -92,7 +92,7 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 | **CONFIRMED** | 완료 체크, 서버가 통제하는 오늘→내일 이월, 완료, 중단 |
 | **COMPLETED / CANCELLED** | 모든 변경 차단 — 기록 조회만 유지 |
 
-전이는 트랜잭션과 `SELECT … FOR UPDATE` 행 잠금 안에서 원자적으로 실행됩니다. 두 세션이 동시에 완료를 요청하면 첫 요청만 성공하고 뒤 요청은 409를 받습니다. 저장소는 Repository 인터페이스를 유지한 채 인메모리에서 PostgreSQL로 이전했고(v0.12.0), 4×4 전이 매트릭스와 재시작 복원을 Testcontainers 기반 테스트로 고정했습니다.
+전이는 트랜잭션과 `SELECT … FOR UPDATE` 행 잠금 안에서 원자적으로 실행됩니다. 두 세션이 동시에 완료를 요청하면 첫 요청만 성공하고 뒤 요청은 409를 받습니다. 저장소는 Repository 인터페이스를 유지한 채 인메모리에서 PostgreSQL로 이전했습니다(v0.12.0 — 이관 과정은 [BACKEND_MIGRATION.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/BACKEND_MIGRATION.md)에 기록). 4×4 전이 매트릭스는 전수 검증 테스트로, 소유자당 생성 한도 같은 동시 요청 경쟁은 20개 스레드가 `CountDownLatch` 이중 배리어로 같은 순간에 진입하는 동시성 테스트(TOCTOU 검증)로, 재시작 복원은 Testcontainers 기반 통합 테스트로 각각 고정했습니다.
 
 ![Immutable Lock — 확정 계획을 서버와 트랜잭션에서 잠금](/assets/images/portfolio/delaynomore-lock.svg){:.portfolio-diagram}
 
@@ -100,7 +100,9 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 
 ## 02. 20~30초의 대기를 진행 경험으로 {#ai-streaming}
 
-테스트 환경에서 고품질 계획 생성에 20~30초가 걸렸습니다. 모델을 낮추는 대신 응답을 SSE 스트리밍으로 바꿔 생성 과정을 그대로 보여주고, 계획 전체를 매번 재전송하던 방식을 **변경분(patch)만 주고받는 방식**으로 바꿔 토큰을 줄였습니다.
+테스트 환경에서 고품질 계획 생성에 20~30초가 걸렸습니다. 모델을 낮추는 대신 응답을 SSE(Server-Sent Events) 기반 스트리밍 응답(Streaming Response)으로 바꿔 생성 과정을 그대로 보여주고, 계획 전체를 매번 재전송하던 방식을 **변경분(patch)만 주고받는 방식**으로 바꿔 토큰을 줄였습니다.
+
+구현은 Spring MVC의 `SseEmitter` 기반 비동기 처리(Asynchronous Processing)입니다. 컨트롤러는 emitter를 즉시 반환하고, 전용 SSE 스레드 풀이 업스트림(OpenRouter)의 SSE 스트림을 직접 파싱해 다운스트림으로 릴레이합니다. 에이전트 루프와 SSE 전송 사이에는 `AgentEventSink` 함수형 인터페이스를 이음매로 둬서, 루프는 "무슨 일이 일어났는지"만 알리고 그걸 SSE로 보낼지 테스트용 리스트에 모을지는 호출부가 정합니다 — 루프 로직을 SSE 없이 단위 테스트하기 위한 분리입니다. 프론트는 `EventSource`가 POST를 지원하지 않아 `fetch` + `ReadableStream`으로 스트림을 직접 파싱합니다.
 
 ![AI 응답 전달 방식 전후 비교 — 빈 화면 대기에서 SSE 순차 표시와 patch 교환으로](/assets/images/portfolio/delaynomore-streaming-compare.svg){:.portfolio-diagram}
 
@@ -162,4 +164,5 @@ AI 코치를 도구 호출 에이전트로 전환하자(v0.15.0) 새 종류의 �
 - [DelayNoMore Release](https://github.com/hello-pebble/DelayNoMore_Release) — 소스 코드·API·배포 스크립트
 - [EVOLUTION.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVOLUTION.md) — v0.1.0부터 v0.17.0까지 버전별 의도와 인과
 - [CHANGELOG](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/CHANGELOG.md) — 릴리스별 변경 이력과 설계 결정
+- [EVAL.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVAL.md) — "권한 모델이 말뿐인지 숫자로 확인하는 장치" · 반복 횟수와 검출 확률의 통계 논리
 - [데모](http://delaynomoreapp.duckdns.org/) · [원본 프로토타입](https://github.com/hello-pebble/DelayNoMore)

@@ -62,13 +62,15 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 이 프로젝트에서 기능 하나를 만드는 순서는 고정돼 있었습니다. **① 왜 만드는지 한 문장으로 정의 → ② 접근법 A/B/C 비교(선택하지 않은 이유까지) → ③ API·아키텍처 설계 문서 → ④ 실패하는 테스트부터 쓰는 TDD → ⑤ 버그가 나면 현상·원인·수정·회귀 테스트를 리포트로 → ⑥ 완료 후 시나리오 정리.** 이 사이클 자체를 [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md)로 문서화했고, 일자별 설계·구현 기록이 [docs/how-i-work/](https://github.com/hello-pebble/oauth2-authorization/tree/main/docs/how-i-work)에 남아 있습니다.
 
-예를 들어 인증 상태 저장 방식은 이렇게 비교하고 선택했습니다.
+이 사이클이 저장소에 남긴 문서는 56건입니다 — 기술 결정 기록(TDR, Technical Decision Record) 5건, [Decision Log](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/DECISION_LOG_WHY.md), 버그 리포트와 트러블슈팅 노트가 코드와 같은 저장소에서 함께 버전 관리됩니다. 예를 들어 인증 상태 저장 방식은 이렇게 비교하고 선택했습니다.
 
 | 플랜 | 방식 | 선택 / 미선택 이유 |
 | :--- | :--- | :--- |
 | **A (선택)** | Stateless JWT | 일반 요청이 중앙 저장소 조회에 의존하지 않음 |
 | B | Redis 세션 | 즉시 무효화가 가능하지만 Redis가 단일 장애점이 됨 |
 | C | Opaque Token | 매 요청 introspection 호출로 레이턴시 증가 |
+
+선택하지 않은 것은 코드에서도 걷어냈습니다 — 초기 검토 흔적으로 남아 있던 미사용 Redis 연동 의존성을 제거하는 리팩토링(-60줄)으로, 비교표의 결론과 실제 의존 그래프를 일치시켰습니다.
 
 구현은 AI 코딩 도구와 협업했습니다. 설계 문서와 계획을 먼저 쓰고 구현을 위임한 뒤, 테스트와 실제 요청으로 검증하는 분업입니다. 어느 단계를 AI에 맡기고 어느 단계를 직접 판단했는지는 [claude-code-workflow.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/claude-code-workflow.md)에 있고, 전반적인 원칙은 [AI를 어떻게 쓰는가](/ai/)에 정리했습니다.
 
@@ -82,7 +84,7 @@ Auth는 RSA 개인키로 JWT를 서명하고 공개키를 JWKS 엔드포인트�
 
 ## 02. 경계별 책임 — Gateway는 통과, 서비스는 재검증 {#gateway-auth}
 
-Compose 환경에서 호스트에 공개한 포트는 Gateway의 8000 하나입니다. Gateway는 라우팅과 Cookie→Bearer 변환만 담당하고, JWT 서명과 역할 정책은 각 Resource Server가 자신의 규칙으로 다시 판단합니다. Gateway만 검사하고 내부를 신뢰하는 구조는 진입점이 뚫리는 순간 전부 뚫리기 때문입니다.
+Compose 환경에서 호스트에 공개한 포트는 Gateway의 8000 하나입니다. Gateway는 Spring Cloud Gateway(WebFlux) 기반의 논블로킹(Non-blocking) 필터 체인으로 라우팅과 Cookie→Bearer 변환만 담당하고, JWT 서명과 역할 정책은 각 Resource Server가 자신의 규칙으로 다시 판단합니다. Gateway만 검사하고 내부를 신뢰하는 구조는 진입점이 뚫리는 순간 전부 뚫리기 때문입니다.
 
 이 역할 분담이 실제로 성립하는지를 네 가지 시나리오의 **실제 요청**으로 확인했습니다.
 
@@ -101,13 +103,13 @@ Compose 환경에서 호스트에 공개한 포트는 Gateway의 8000 하나입�
 
 초기 스모크 테스트에서 정상 JWT가 보호 API에서 401을 받았습니다. 원인을 추적하니 `JwtProvider`가 토큰 **검증에도 RSA 개인키**를 쓰고 있었습니다 — 발급자와 검증자가 같은 코드였을 때는 드러나지 않다가, 검증을 각 서비스로 분산하자 바로 깨진 것입니다.
 
-디코더가 공개키를 사용하도록 수정하고 스모크 테스트를 다시 수행했습니다. 이 버그를 고치면서 "개인키는 발급 주체만, 공개키는 검증 주체 누구나"라는 비대칭 키 모델의 책임 분리가 설정 문법이 아니라 실제 요청 흐름으로 이해됐습니다. 버그를 발견하면 고치기 전에 현상·원인·수정·회귀 테스트를 기록하는 것이 이 프로젝트의 규칙이었고, 이 사례가 그 규칙이 값을 한 순간입니다.
+디코더가 공개키를 사용하도록 수정하고 스모크 테스트를 다시 수행했습니다. 이 버그를 고치면서 "개인키는 발급 주체만, 공개키는 검증 주체 누구나"라는 비대칭 키 모델의 책임 분리가 설정 문법이 아니라 실제 요청 흐름으로 이해됐습니다. 버그를 발견하면 고치기 전에 현상·원인·수정·회귀 테스트(Regression Test)를 기록하는 것이 이 프로젝트의 규칙이었고, 이 사례가 그 규칙이 값을 한 순간입니다. 같은 규칙으로 고정한 다른 버그 — 노출 설정 변경이 관리자 차단 상태를 덮어쓰던 BUG-001 — 도 지금은 리그레션 테스트가 지키고 있습니다.
 
 ## 04. 동시성 — 작은 ID부터 잠근다 {#concurrency}
 
 인증 흐름 검증 위에 매칭 도메인을 올리면서 동시성 문제를 만났습니다. 두 사용자가 서로를 동시에 선택하면 매칭이 누락되거나(Lost Match) 중복 생성될(Double Matching) 수 있고, 사용자 쌍마다 락을 잡으면 서로 반대 순서로 락을 획득하다 데드락이 됩니다.
 
-구현 전에 시나리오를 분석하고 **항상 작은 ID부터 락을 획득하는 Ordered Locking** 원칙을 설계 문서로 먼저 세웠습니다. 락 순서가 전역적으로 일정하면 순환 대기가 성립하지 않아 데드락이 구조적으로 불가능해집니다. 이후 구현하고, 패널티 정책과 매칭이 얽히는 복합 시나리오를 통합 테스트로 검증했습니다. 설계 문서와 일자별 기록은 [concurrency design](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/engineering/2026-05-21-matching-concurrency-design.md)에 있습니다.
+구현 전에 시나리오를 분석하고 **항상 작은 ID부터 락을 획득하는 Ordered Locking** 원칙을 설계 문서로 먼저 세웠습니다. 락 순서가 전역적으로 일정하면 순환 대기가 성립하지 않아 데드락이 구조적으로 불가능해집니다. 구현 후에는 10개 스레드가 두 사용자를 동시에 상호 선택하는 동시성 테스트로 매칭이 정확히 1건만 생성되는 것을 검증했고, 마무리 리팩토링에서 락 해제를 try-finally로 보장하며 락 범위를 상태 변경 구간으로만 최소화했습니다. 설계 문서와 일자별 기록은 [concurrency design](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/engineering/2026-05-21-matching-concurrency-design.md)에 있습니다.
 
 ## 검증 결과와 한계 {#verification}
 
@@ -116,7 +118,7 @@ Compose 환경에서 호스트에 공개한 포트는 Gateway의 8000 하나입�
 | 시나리오 ①~④ | 실제 요청으로 전부 확인 (02 표 참조) |
 | 모듈별 빌드 | 6개 애플리케이션 모듈 빌드와 전체 테스트 통과 |
 | 통합 실행 | 6개 애플리케이션 + PostgreSQL을 Compose로 기동하고 health 확인 |
-| 동시 매칭 경쟁 | Ordered Lock 적용 후 복합 시나리오 통합 테스트 통과 |
+| 동시 매칭 경쟁 | Ordered Lock 적용 후 10스레드 동시 상호 선택 테스트에서 매칭 정확히 1건 생성 확인 |
 
 직접 구현해 본 결론은 역설적입니다. JWT 발급과 검증 자체는 구현 가능했지만, 키 관리·Refresh Token 보안·표준 준수까지 고려하면 인증 서버의 책임은 빠르게 복잡해졌습니다. **실제 서비스에서 검증된 인증 솔루션을 써야 하는 이유**와, 도입 시 확인해야 할 지점(키 순환, 토큰 폐기, 경계별 재검증)을 몸으로 이해한 것이 이 실험의 가장 큰 수확입니다.
 
