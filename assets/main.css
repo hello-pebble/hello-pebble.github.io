@@ -215,37 +215,15 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box;
 }
 
-.content-shell {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  width: 100%;
-  flex: 1;
-}
-
 .main-content {
-  max-width: 900px;
+  max-width: 860px;
   width: 100%;
-  flex: 1;
   min-width: 0;
   margin: 0 auto;
   word-break: keep-all;
   overflow-wrap: break-word;
-}
-
-/* 우측 섹션 이동 메뉴 */
-.page-toc {
-  position: sticky;
-  top: 60px;
-  flex: 0 0 200px;
-  width: 200px;
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
-}
-
-/* 목차가 없는 페이지에서도 레일 자리는 그대로 남겨 본문 폭/위치를 고정한다 */
-.page-toc:empty {
-  visibility: hidden;
+  font-size: 1.02em;
+  line-height: 1.85;
 }
 
 /* Emphasis: bold text only, monochrome accents */
@@ -253,10 +231,33 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-color);
 }
 
+.main-content h1 {
+  font-size: 1.9em;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  margin: 18px 0 20px;
+}
+
 .main-content h2 {
   border-bottom: 2px solid var(--border-color);
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   scroll-margin-top: 24px;
+  font-size: 1.45em;
+  line-height: 1.4;
+  margin: 56px 0 20px;
+}
+
+.main-content h3 {
+  font-size: 1.12em;
+  margin: 32px 0 12px;
+}
+
+.main-content p {
+  margin: 0 0 18px;
+}
+
+.main-content li {
+  margin: 6px 0;
 }
 
 .main-content blockquote {
@@ -395,18 +396,18 @@ h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
 }
 
-/* 레일 안으로 옮겨졌을 때는 카드가 아니라 세로 링크 목록으로 그린다.
+/* 사이드바(왼쪽 메뉴)로 옮겨졌을 때는 카드가 아니라 세로 링크 목록으로 그린다.
    위 카드 규칙은 좁은 화면 폴백에서 그대로 쓰인다. */
-.page-toc .project-page-nav {
+.sidebar-submenu .project-page-nav {
   display: block;
   gap: 0;
-  margin: 0;
+  margin: 2px 0 6px 8px;
   border-left: 1px solid var(--border-color);
 }
 
-.page-toc .project-page-nav a {
+.sidebar-submenu .project-page-nav a {
   display: block;
-  padding: 7px 12px;
+  padding: 4px 10px;
   margin-left: -1px;
   border: 0;
   border-left: 2px solid transparent;
@@ -417,32 +418,32 @@ h1, h2, h3, h4, h5, h6 {
   transition: color 0.2s, border-color 0.2s;
 }
 
-.page-toc .project-page-nav a:hover,
-.page-toc .project-page-nav a:focus-visible {
+.sidebar-submenu .project-page-nav a:hover,
+.sidebar-submenu .project-page-nav a:focus-visible {
   background-color: transparent;
   border-color: transparent;
   border-left-color: var(--border-color);
-  color: var(--text-color);
+  color: var(--sidebar-active);
 }
 
-.page-toc .project-page-nav a.active {
+.sidebar-submenu .project-page-nav a.active {
   background-color: transparent;
   border-color: transparent;
-  border-left-color: var(--text-color);
-  color: var(--text-color);
+  border-left-color: var(--sidebar-active);
+  color: var(--sidebar-active);
 }
 
-.page-toc .project-page-nav span {
-  font-size: 0.8em;
+.sidebar-submenu .project-page-nav span {
+  font-size: 0.76em;
   font-weight: normal;
   line-height: 1.4;
 }
 
-.page-toc .project-page-nav a.active span {
+.sidebar-submenu .project-page-nav a.active span {
   font-weight: bold;
 }
 
-.page-toc .project-page-nav small {
+.sidebar-submenu .project-page-nav small {
   display: none;
 }
 
@@ -766,18 +767,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Mobile Responsive */
-/* 레일을 놓을 가로 여유가 없으면 목차를 본문 상단 카드로 되돌린다.
-   (JS가 nav를 마크다운상의 원위치로 다시 옮긴다) */
-@media (max-width: 1200px) {
-  .content-shell {
-    display: block;
-  }
-
-  .page-toc {
-    display: none;
-  }
-}
-
 @media (max-width: 768px) {
   .wrapper {
     flex-direction: column;
@@ -878,14 +867,6 @@ h1, h2, h3, h4, h5, h6 {
     display: block !important;
     margin-left: 0 !important;
     padding: 0 !important;
-  }
-
-  .content-shell {
-    display: block !important;
-  }
-
-  .page-toc {
-    display: none !important;
   }
 
   .main-content {

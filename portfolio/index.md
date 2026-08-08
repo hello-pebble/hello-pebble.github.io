@@ -77,9 +77,9 @@ permalink: /portfolio/
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">04</span>
       </div>
-      <h3>개방DB 관리 시스템 <span class="portfolio-period">2024.09–2025.01</span></h3>
-      <p class="portfolio-summary">요구사항마다 조회 API를 반복 개발하던 하드코딩 구조를 메타데이터 기반으로 재설계 · 핵심 구조를 공개 저장소(api-forge)로 재구현해 테스트 50건으로 검증 <em>(프로토타입 · 운영 반영 전)</em></p>
-      <span class="portfolio-stack">Java 8 · Spring MVC · eGovFrame · MyBatis · Tibero</span>
+      <h3>api-forge — 메타데이터 기반 조회 API 엔진 <span class="portfolio-period">2024.09–2025.01</span></h3>
+      <p class="portfolio-summary">조회 API 하나를 메타데이터 행 하나로 만드는 엔진 · 문자열 연결 SQL과 블랙리스트 필터를 jOOQ 타입 세이프 DSL과 식별자 화이트리스트로 대체하고 인젝션 차단을 테스트 50건·CI로 증명 <em>(회사 프로토타입의 클린룸 재구현)</em></p>
+      <span class="portfolio-stack">Java 21 · Spring Boot 3.5 · jOOQ · Testcontainers</span>
     </a>
 
     <a class="portfolio-card" href="{{ '/portfolio/pms/' | relative_url }}">
@@ -87,7 +87,7 @@ permalink: /portfolio/
         <span class="portfolio-card-number">05</span>
       </div>
       <h3>공정 관리 솔루션(PMS) <span class="portfolio-period">2022.11–2024.12</span></h3>
-      <p class="portfolio-summary">AI 학습데이터 라벨링 작업의 원격 운영 환경 구성 · Docker Compose와 GitLab CI 이미지 빌드, 수동 배포·로그 기반 장애 대응 절차 문서화</p>
+      <p class="portfolio-summary">라벨링 저장 유실을 개별 커밋으로 인한 부분 커밋으로 진단해 프레임 단위 저장으로 전환 · 3D 중복 저장은 2D와의 경로 비교로 누락된 정리 호출을 찾아 해소</p>
       <span class="portfolio-stack">Java · Spring Boot · Docker · GitLab CI</span>
     </a>
 
