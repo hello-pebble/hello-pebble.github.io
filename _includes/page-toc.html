@@ -1,19 +1,20 @@
 <script>
   (function () {
-    const rail = document.getElementById('page-toc');
     const nav = document.querySelector('.main-content .project-page-nav');
-    if (!rail || !nav) return;
+    const activeItem = document.querySelector('.sidebar-submenu .submenu-item.active');
+    if (!nav || !activeItem) return;
 
     // 좁은 화면에서 되돌릴 원위치를 주석 노드로 표시해 둔다.
     const home = document.createComment('project-page-nav');
     nav.parentNode.insertBefore(home, nav);
 
-    const wide = window.matchMedia('(min-width: 1201px)');
+    // 사이드바가 세로 레이아웃인 화면에서만 왼쪽 메뉴로 옮긴다.
+    const wide = window.matchMedia('(min-width: 769px)');
 
     function place() {
       if (wide.matches) {
-        if (nav.parentNode !== rail) rail.appendChild(nav);
-      } else if (nav.parentNode === rail) {
+        if (nav.previousSibling !== activeItem) activeItem.after(nav);
+      } else if (nav.parentNode !== home.parentNode) {
         home.parentNode.insertBefore(nav, home.nextSibling);
       }
     }
@@ -56,6 +57,8 @@
     // Safari 13 이하는 MediaQueryList.addEventListener 가 없다.
     if (wide.addEventListener) wide.addEventListener('change', place);
     else wide.addListener(place);
+    // 일부 환경에서 matchMedia change가 누락되는 경우 대비
+    window.addEventListener('resize', place, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
   })();
 </script>
