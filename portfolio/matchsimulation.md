@@ -31,7 +31,7 @@ tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT, WebSocket]
     <small>낙관적 락·트랜잭션 경계</small>
   </a>
   <a href="#chat">
-    <span>03. 채팅 수신 4단계</span>
+    <span>03. 채팅 수신의 진화 </span>
     <small>측정이 다음 단계를 정했다</small>
   </a>
   <a href="#verification">
