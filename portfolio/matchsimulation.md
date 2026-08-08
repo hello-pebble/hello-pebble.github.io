@@ -16,6 +16,8 @@ AI 소개팅 서비스를 가정하고 가입·추천·매칭 수락·1:1 채팅
 
 진행 방식은 phase마다 계획서(엣지케이스 정의)를 먼저 쓰고, 구현 후 완료 보고서(실측 기록)를 남기는 사이클입니다 — 이렇게 쌓인 문서 29건이 저장소에 공개돼 있습니다.
 
+![MatchSimulation 회원 콘솔 — 추천 받기부터 매칭 요청·채팅까지 전체 흐름을 실제 API 응답(추천 점수·이유 포함)과 함께 확인한다](/assets/images/portfolio/matchsimulation-console.png){:.portfolio-hero-shot}
+
 <nav class="project-page-nav" aria-label="MatchSimulation 프로젝트 목차">
   <a href="#boundaries">
     <span>01. 경계 설계와 실제 교체</span>
@@ -69,6 +71,8 @@ AI 소개팅 서비스를 가정하고 가입·추천·매칭 수락·1:1 채팅
 
 상태 전이 지점을 명시적으로 남긴 것은 확장을 위해서였고, 실제로 채팅 WebSocket 단계에서 "매칭이 ACCEPTED인 경우에만 연결 허용" 같은 규칙이 이 전이 지점을 그대로 재사용했습니다.
 
+![관리자 콘솔의 매칭 현황 통계 — REQUESTED·ACCEPTED·EXPIRED·REJECTED 상태별 분포와 성사율을 실데이터로 집계한다](/assets/images/portfolio/matchsimulation-admin-stats.png){:.portfolio-detail-shot}
+
 ## 03. 채팅 수신의 4단계 진화 — 측정이 다음 단계를 정했다 {#chat}
 
 매칭이 성사된 상대와의 1:1 채팅은 처음부터 WebSocket으로 가지 않았습니다. 가장 단순한 구조부터 시작해 **각 단계의 비용을 숫자로 확인한 뒤** 다음 단계로 넘어갔고, 서버 API 계약(`afterId` 증분 조회)은 1단계에서 고정해 재사용했습니다.
@@ -85,6 +89,8 @@ AI 소개팅 서비스를 가정하고 가입·추천·매칭 수락·1:1 채팅
 WebSocket에서는 STOMP를 **쓰지 않기로** 결정했습니다. 구독 대상이 matchId 하나뿐이라 브로커·구독 프로토콜 계층이 과하고, 핸드셰이크·세션 관리·브로드캐스트를 직접 다뤄 저수준 동작을 드러내는 쪽이 이 프로젝트의 목적에 맞았습니다. 인증은 `HandshakeInterceptor`에서 연결 수립 전에 JWT·정지 계정·매칭 참여자를 검증해, 실패한 연결은 열리지도 않습니다.
 
 이 동작들은 목(mock)이 아니라 **실제 연결로 검증**했습니다 — 롱폴링은 MockMvc의 `asyncDispatch`로 비동기 응답 사이클을, WebSocket은 `StandardWebSocketClient`로 랜덤 포트에 뜬 서버에 직접 접속해 핸드셰이크 거부·세션 누수·REST 전송→WebSocket 수신 교차까지 확인합니다.
+
+![WebSocket 단계의 1:1 채팅 — 연결 1개를 유지한 채 새 메시지가 push되어 폴링 요청 0회로 수신된다](/assets/images/portfolio/matchsimulation-chat-ws.png){:.portfolio-detail-shot}
 
 ## 검증 결과와 한계 {#verification}
 
