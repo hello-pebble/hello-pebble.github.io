@@ -10,26 +10,11 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 # Gateway 단일 진입점에서의 인증/인가 검증
 
-- 인증 서버가 JWT를 중앙 발급하고 Gateway·Resource Server가 각자 검증하는 구조를 6개 모듈로 직접 구성한 실험입니다. 결과보다 **결정의 근거를 남기는 방식**으로 진행했습니다 — 설계마다 대안을 비교해 기록하고, 선택이 가져온 비용까지 같은 문서에 적었습니다.
+인증 서버가 JWT를 중앙 발급하고 Gateway와 각 Resource Server가 JWKS 공개키로 직접 검증하는 구조가 **실제로 성립하는지**를, 6개 모듈(Auth·Gateway·Matching·Task·Preview·Admin)을 직접 구성해 확인한 기술 검증 프로젝트입니다. 인증 구조 설계부터 토큰 발급·검증, Gateway 라우팅, Docker Compose 통합까지 혼자 구성했습니다.
 
-<dl class="project-summary-grid">
-  <div>
-    <dt>무엇을</dt>
-    <dd>Auth가 JWT를 중앙 발급하고 Gateway·Resource Server가 JWKS로 분산 검증하는 구조를 6개 모듈 테스트 베드로 구성</dd>
-  </div>
-  <div>
-    <dt>어떻게</dt>
-    <dd>문제 정의 → 접근법 A/B/C 비교 → 설계 문서 → TDD → 버그 리포트의 사이클을 기능마다 반복 — 과정 전체가 저장소 문서로 공개</dd>
-  </div>
-  <div>
-    <dt>담당 범위</dt>
-    <dd>인증 구조 설계 · JWT/Refresh Token 발급 · JWKS 기반 검증 · Gateway 라우팅 · 매칭 동시성 락 설계 · Docker Compose 통합 구성</dd>
-  </div>
-  <div>
-    <dt>검증한 것</dt>
-    <dd>공개 경로 접근 · 무토큰 401 · 양측 권한 검증 · 내부 경로 404 · 동시 매칭 경쟁 시나리오 · 6개 모듈 Compose 통합 기동</dd>
-  </div>
-</dl>
+검증은 주장이 아니라 실제 요청으로 했습니다 — 공개 경로는 토큰 없이 통과하는지, 보호 API는 무토큰 시 401을 주는지, Admin 경유 호출에서 양쪽 서비스가 각각 권한을 검증하는지, 외부에서 내부 경로에 접근하면 404가 나는지를 Compose로 띄운 6개 모듈에 직접 요청해 확인했고, 매칭 도메인의 동시 경쟁은 10스레드 동시성 테스트로 매칭이 정확히 1건만 생성됨을 확인했습니다.
+
+진행 방식은 기능마다 문제 정의 → 접근법 A/B/C 비교 → 설계 문서 → TDD → 버그 리포트를 반복하는 사이클입니다. 결과보다 **결정의 근거를 남기는 것**이 목적이라, 선택하지 않은 대안과 선택이 가져온 비용까지 같은 문서에 적었고 그 문서 56건이 저장소에 공개돼 있습니다.
 
 <nav class="project-page-nav" aria-label="Gateway 인증/인가 검증 프로젝트 목차">
   <a href="#process">
