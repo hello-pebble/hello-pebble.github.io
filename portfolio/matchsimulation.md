@@ -10,30 +10,11 @@ tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT, WebSocket]
 
 # 교체 가능한 경계를 먼저 설계한 매칭 서비스 백엔드
 
-가입·추천·매칭 수락·1:1 채팅 기능을 갖춘 매칭 서비스 백엔드를 구현했습니다. 초기 구현에 머무르지 않고, 인증·스키마·채팅 수신 방식을 **실제로 교체하며 변경 경계와 회귀 안전성을 검증**했습니다.
+AI 소개팅 서비스를 가정하고 가입·추천·매칭 수락·1:1 채팅·관리자 흐름을 갖춘 백엔드를 요구사항 정의부터 혼자 구현했습니다. 이 프로젝트의 목적은 기능 완성이 아니라 **"나중에 반드시 바뀔 부분"의 경계를 먼저 긋고, 실제로 교체해 보며 그 설계가 통하는지 확인하는 것**이었습니다.
 
-- **인증**: 더미 토큰을 Spring Security·JWT·BCrypt로 실제 교체
-- **DB 스키마**: Hibernate 자동 생성에서 Flyway 마이그레이션으로 이전
-- **채팅**: 새로고침 → Polling → Long Polling → WebSocket을 실측 후 단계적으로 전환
+실제로 교체한 것은 세 곳입니다. 인증은 더미 토큰에서 Spring Security·JWT·BCrypt로, DB 스키마는 Hibernate 자동 생성에서 Flyway 마이그레이션으로 갈아탔고, 채팅 수신은 새로고침 → Polling → Long Polling → WebSocket으로 각 단계의 비용을 실측한 뒤에만 다음 단계로 넘어갔습니다. 교체할 때마다 회귀 테스트로 기존 동작이 깨지지 않았음을 확인했습니다.
 
-<dl class="project-summary-grid">
-  <div>
-    <dt>무엇을</dt>
-    <dd>AI 소개팅 서비스를 가정한 매칭 백엔드 — 가입·추천·수락·1:1 채팅·관리자 흐름과 설정 하나로 전환되는 추천 엔진 경계</dd>
-  </div>
-  <div>
-    <dt>어떻게</dt>
-    <dd>phase마다 계획서(엣지케이스 정의) → 구현 → 완료 보고서(실측 기록)를 쌍으로 남기는 사이클 — 문서 29건이 저장소에 공개</dd>
-  </div>
-  <div>
-    <dt>담당 범위</dt>
-    <dd>요구사항 정의 · 도메인 경계 설계 · API 구현 · 인증/스키마 교체 · 채팅 수신 구조 진화 · 상태 전이와 동시성 검증</dd>
-  </div>
-  <div>
-    <dt>검증한 것</dt>
-    <dd>더미 토큰 → JWT 실제 교체 · ddl-auto → Flyway 이전 · 동시 응답 낙관적 락 · Short Polling 빈 응답 90% 실측 · 전체 API 회귀 테스트</dd>
-  </div>
-</dl>
+진행 방식은 phase마다 계획서(엣지케이스 정의)를 먼저 쓰고, 구현 후 완료 보고서(실측 기록)를 남기는 사이클입니다 — 이렇게 쌓인 문서 29건이 저장소에 공개돼 있습니다.
 
 <nav class="project-page-nav" aria-label="MatchSimulation 프로젝트 목차">
   <a href="#boundaries">
