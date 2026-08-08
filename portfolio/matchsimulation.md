@@ -16,9 +16,8 @@ tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT, WebSocket]
 실제로 교체한 것은 세 곳입니다. 
 1. 인증은 더미 토큰에서 Spring Security·JWT·BCrypt로 변경
 2. DB 스키마는 Hibernate 자동 생성에서 Flyway 마이그레이션으로 변경
-3. 채팅 수신은 ** 새로고침 → Polling → Long Polling → WebSocket ** 으로 각 단계의 비용을 실측한 뒤에 다음 단계로 넘어갔습니다. 교체할 때마다 회귀 테스트로 기존 동작이 깨지지 않았음을 확인했습니다.
+3. 채팅 수신은 새로고침 → Polling → Long Polling → WebSocket으로 각 단계의 비용을 실측한 뒤에 다음 단계로 넘어갔습니다. 교체할 때마다 회귀 테스트로 기존 동작이 깨지지 않았음을 확인했습니다.
 
-진행 방식은 phase마다 계획서(엣지케이스 정의)를 먼저 쓰고, 구현 후 완료 보고서(실측 기록)를 남기는 사이클입니다.
 
 ![MatchSimulation 회원 콘솔 — 추천 받기부터 매칭 요청·채팅까지 전체 흐름을 실제 API 응답(추천 점수·이유 포함)과 함께 확인한다](/assets/images/portfolio/matchsimulation-console.png){:.portfolio-hero-shot}
 
@@ -49,9 +48,9 @@ tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT, WebSocket]
   </a>
 </nav>
 
-## 01. 교체 가능한 경계 — 설계로 끝내지 않고 실제로 교체했다 {#boundaries}
+## 01. 교체 가능한 경계 {#boundaries}
 
-"나중에 반드시 바뀔 부분" 세 곳의 경계를 먼저 긋고, 경계 바깥의 코드가 교체에 영향 받지 않는지를 확인했습니다. 
+나중에 반드시 바뀔 부분을 먼저 예상하고 관련 코드가 변경되어도 다른 코드가 교체에 영향 받지 않는지를 확인했습니다. 
 세 곳 중 두 곳은 이미 실제 교체로 답을 확인했습니다.
 
 | 교체 접점 | 초기 구현 | 교체 결과 |
@@ -66,7 +65,7 @@ tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT, WebSocket]
 실제 교체 시 위조 서명, 만료 토큰, 정지 계정의 유효 토큰 같은 엣지케이스를 계획서에 먼저 정의하고, 기존 에러 응답 포맷(`{status, message}`)까지 유지하며 전환했습니다. 
 추천 엔진을 규칙 기반으로 먼저 만든 것도 같은 순서 규칙입니다.
 
-추후 외부 AI와의 계약을 인터페이스로 고정해 두면 이후 연동은 어댑터 작업으로 좁혀집니다. 다만 규칙 기반 점수(지역, 나이, 직군)가 추천 품질을 보장하지 않는다는 한계는 그대로입니다.
+추후 외부 연동을 인터페이스로 고정해 두면 이후 연동은 어댑터 작업으로 좁혀집니다. 다만 규칙 기반 점수(지역, 나이, 직군)가 추천 품질을 보장하지 않는다는 한계는 그대로입니다.
 
 ## 02. 상태 전이와 동시성 — 잘못된 변경을 규칙에서 차단 {#states}
 
@@ -83,7 +82,7 @@ tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT, WebSocket]
 
 ![관리자 콘솔의 매칭 현황 통계 — REQUESTED·ACCEPTED·EXPIRED·REJECTED 상태별 분포와 성사율을 실데이터로 집계한다](/assets/images/portfolio/matchsimulation-admin-stats.png){:.portfolio-detail-shot}
 
-## 03. 채팅 수신의 4단계 진화 — 측정이 다음 단계를 정했다 {#chat}
+## 03. 채팅 수신의 진화 {#chat}
 
 매칭이 성사된 상대와의 1:1 채팅은 처음부터 WebSocket으로 가지 않았습니다. 
 가장 단순한 구조부터 시작해 **각 단계의 비용을 숫자로 확인한 뒤** 다음 단계로 넘어갔고, 서버 API 계약(`afterId` 증분 조회)은 1단계에서 고정해 재사용했습니다.
@@ -95,7 +94,7 @@ tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT, WebSocket]
 | **Long Polling** | `DeferredResult`로 서버가 대기, 새 메시지 발생 시 즉시 응답 | **같은 조건에서 요청 2회·빈 응답 0~1회·전달 지연 ≈ 0** |
 | **WebSocket** | 연결 1개 유지, 양방향 push | **push 지연 9ms·핸드셰이크 13ms 실측** — 재요청 반복까지 제거 |
 
-단계마다 설계 결정이 하나씩 있었습니다. 
+단계마다 설계 결정이 하나씩 있었습니다. <br>
 Long Polling은 서블릿 스레드를 점유하지 않는 비동기 처리입니다 — `DeferredResult`를 반환하면 요청 스레드는 즉시 반납되고, 대기자는 `ConcurrentHashMap` 레지스트리가 보관하다가 `onTimeout`·`onCompletion` 콜백으로 제거해 누수를 막습니다. 비동기 디스패치에서 인증 필터가 다시 실행되는 서블릿 비동기 생명주기도 이 단계에서 명시적으로 다뤘습니다. 대기자 알림(publish)은 메시지 저장 트랜잭션 **커밋 이후**에 호출하도록 경계를 잡았습니다 — 트랜잭션 안에서 알리면 대기자가 커밋 전 데이터를 조회해 새 메시지를 놓칠 수 있기 때문입니다.
 
 WebSocket에서는 STOMP를 **쓰지 않기로** 결정했습니다. 구독 대상이 matchId 하나뿐이라 브로커, 구독 프로토콜 계층이 과하고 핸드셰이크, 세션 관리, 브로드캐스트를 직접 다뤄 동작을 드러내는 쪽이 이 프로젝트의 목적에 맞았습니다. 인증은 `HandshakeInterceptor`에서 연결 수립 전에 JWT, 정지 계정, 매칭 참여자를 검증해 실패한 연결은 열리지도 않습니다.
