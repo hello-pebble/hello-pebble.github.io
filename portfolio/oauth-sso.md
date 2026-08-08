@@ -45,7 +45,7 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 ## 만든 방식 — 코드보다 문서가 먼저 {#process}
 
-이 프로젝트에서 기능 하나를 만드는 순서는 고정돼 있었습니다. **① 왜 만드는지 한 문장으로 정의 → ② 접근법 A/B/C 비교(선택하지 않은 이유까지) → ③ API·아키텍처 설계 문서 → ④ 실패하는 테스트부터 쓰는 TDD → ⑤ 버그가 나면 현상·원인·수정·회귀 테스트를 리포트로 → ⑥ 완료 후 시나리오 정리.** 이 사이클 자체를 [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md)로 문서화했고, 일자별 설계·구현 기록이 [docs/how-i-work/](https://github.com/hello-pebble/oauth2-authorization/tree/main/docs/how-i-work)에 남아 있습니다.
+이 프로젝트에서 기능 하나를 만드는 순서는 고정돼 있었습니다. **왜 만드는지 한 문장으로 정의 → 접근법 A/B/C 비교(선택하지 않은 이유까지) → API·아키텍처 설계 문서 → 실패하는 테스트부터 쓰는 TDD → 버그가 나면 현상·원인·수정·회귀 테스트를 리포트로 → 완료 후 시나리오 정리.** 이 사이클 자체를 [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md)로 문서화했고, 일자별 설계·구현 기록이 [docs/how-i-work/](https://github.com/hello-pebble/oauth2-authorization/tree/main/docs/how-i-work)에 남아 있습니다.
 
 이 사이클이 저장소에 남긴 문서는 56건입니다 — 기술 결정 기록(TDR, Technical Decision Record) 5건, [Decision Log](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/DECISION_LOG_WHY.md), 버그 리포트와 트러블슈팅 노트가 코드와 같은 저장소에서 함께 버전 관리됩니다. 예를 들어 인증 상태 저장 방식은 이렇게 비교하고 선택했습니다.
 
@@ -75,10 +75,10 @@ Compose 환경에서 호스트에 공개한 포트는 Gateway의 8000 하나입�
 
 | 시나리오 | 보장해야 하는 동작 | 확인 결과 |
 | :--- | :--- | :--- |
-| **① 공개 경로** | 로그인 화면·JWKS·OIDC metadata는 토큰 없이 접근 | Gateway 경유 접근 확인 |
-| **② 보호 경로 · 토큰 없음** | 보호 API 호출 시 401 | Task·Admin API에서 확인 |
-| **③ Admin 경유 인가** | Admin → Matching 호출에서 **양쪽 서비스가 각각** JWT와 관리자 권한 검증 | 양측 검증 확인 |
-| **④ 내부 경로 직접 접근** | Gateway에 `/internal/**` 라우트가 없어 외부에서는 404 | `/internal/admin/users` 404 확인 |
+| **공개 경로** | 로그인 화면·JWKS·OIDC metadata는 토큰 없이 접근 | Gateway 경유 접근 확인 |
+| **보호 경로 · 토큰 없음** | 보호 API 호출 시 401 | Task·Admin API에서 확인 |
+| **Admin 경유 인가** | Admin → Matching 호출에서 **양쪽 서비스가 각각** JWT와 관리자 권한 검증 | 양측 검증 확인 |
+| **내부 경로 직접 접근** | Gateway에 `/internal/**` 라우트가 없어 외부에서는 404 | `/internal/admin/users` 404 확인 |
 
 ![Gateway 인증/인가 분기 — 공개·보호·관리자·내부 경로가 서로 다른 응답을 보장](/assets/images/portfolio/oauth-architecture.svg){:.portfolio-diagram}
 
@@ -100,7 +100,7 @@ Compose 환경에서 호스트에 공개한 포트는 Gateway의 8000 하나입�
 
 | 검증 항목 | 확인 결과 |
 | :--- | :--- |
-| 시나리오 ①~④ | 실제 요청으로 전부 확인 (02 표 참조) |
+| 경계별 시나리오 4건 | 실제 요청으로 전부 확인 (02 표 참조) |
 | 모듈별 빌드 | 6개 애플리케이션 모듈 빌드와 전체 테스트 통과 |
 | 통합 실행 | 6개 애플리케이션 + PostgreSQL을 Compose로 기동하고 health 확인 |
 | 동시 매칭 경쟁 | Ordered Lock 적용 후 10스레드 동시 상호 선택 테스트에서 매칭 정확히 1건 생성 확인 |

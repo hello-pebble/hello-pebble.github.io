@@ -232,24 +232,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main-content h1 {
-  font-size: 1.9em;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
-  margin: 18px 0 20px;
+  font-size: 1.5em;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  margin: 16px 0 18px;
 }
 
 .main-content h2 {
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 7px;
   scroll-margin-top: 24px;
-  font-size: 1.45em;
-  line-height: 1.4;
-  margin: 56px 0 20px;
+  font-size: 1.12em;
+  line-height: 1.45;
+  margin: 48px 0 18px;
 }
 
 .main-content h3 {
-  font-size: 1.12em;
-  margin: 32px 0 12px;
+  font-size: 1em;
+  margin: 28px 0 10px;
 }
 
 .main-content p {
