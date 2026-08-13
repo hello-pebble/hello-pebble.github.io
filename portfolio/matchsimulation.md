@@ -1,147 +1,120 @@
 ---
 layout: default
-title: "교체 가능한 경계를 먼저 설계한 매칭 서비스 백엔드 — 그리고 실제로 교체하며 검증한 기록"
+title: "MatchSimulation — 관리자 모드로 계정과 매칭을 통제하고 관측하기"
 permalink: /portfolio/matchsimulation/
 category: portfolio
-tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT, WebSocket]
+tags: [Java21, SpringBoot4, JPA, Flyway, SpringSecurity, JWT]
 ---
 
-<span class="project-context">개인 프로젝트 · 2026.06 — 진행 중</span>
+<span class="project-context">개인 프로젝트 · 2026.06 — 진행 중 · Java 21 · Spring Boot 4.1 · JPA · Flyway · Spring Security/JWT</span>
 
-# 교체 가능한 경계를 먼저 설계한 매칭 서비스 백엔드
+# MatchSimulation — 관리자 모드
 
-- **서비스** 소개팅 서비스를 가정하고 가입, 추천, 매칭 수락, 1:1 채팅, 관리자 모드 흐름을 갖췄습니다.
-- **목적** 기능 완성이 아니라, 나중에 바뀔 부분을 미리 알고 실제로 교체해 보며 그 설계가 통하는지 확인하는 것입니다.
-- **교체한 곳** 인증은 더미 토큰에서 Spring Security·JWT·BCrypt로, DB 스키마는 Hibernate 자동 생성에서 Flyway 마이그레이션으로 바꿨습니다.
-- **측정하며 바꾼 곳** 채팅 수신은 새로고침 → Polling → Long Polling → WebSocket으로, 각 단계의 비용을 실측한 뒤에만 다음 단계로 넘어갔습니다.
-- **안전장치** 교체할 때마다 회귀 테스트로 기존 동작이 깨지지 않았음을 확인했습니다.
+- **서비스** 소개팅 서비스를 가정한 백엔드입니다. 가입·추천·매칭·1:1 채팅 위에 **계정과 매칭을 통제·관측하는 관리자 모드**를 얹었습니다.
+- **관리자가 하는 일** 가입을 승인하고 문제 계정을 정지시키며, 문의에 답하고 공지를 보내고, 매칭이 어떻게 흘러가는지 봅니다.
+- **이 페이지** 관리자 모드만 다룹니다. 사용자 기능은 [저장소 `docs/`](https://github.com/hello-pebble/MatchSimulation/tree/main/docs)에 phase별 계획서·완료 보고서로 기록돼 있습니다.
 
-![MatchSimulation 회원 콘솔 — 추천 받기부터 매칭 요청·채팅까지 전체 흐름을 실제 API 응답(추천 점수·이유 포함)과 함께 확인한다](/assets/images/portfolio/matchsimulation-console.png){:.portfolio-hero-shot}
+![관리자 콘솔의 매칭 현황 통계 — 전체·성사 건수와 성사율, 일별·성별·상태별 매칭 분포를 집계한다](/assets/images/portfolio/matchsimulation-admin-stats.png){:.portfolio-hero-shot}
 
-<nav class="project-page-nav" aria-label="MatchSimulation 프로젝트 목차">
-  <a href="#boundaries">
-    <span>01. 경계 설계와 실제 교체</span>
-    <small>인증·스키마·엔진</small>
-  </a>
-  <a href="#states">
-    <span>02. 상태 전이와 동시성</span>
-    <small>낙관적 락·트랜잭션 경계</small>
-  </a>
-  <a href="#chat">
-    <span>03. 채팅 수신의 진화</span>
-    <small>측정이 다음 단계를 정했다</small>
-  </a>
-  <a href="#verification">
-    <span>검증과 한계</span>
-    <small>확인한 범위·남은 과제</small>
-  </a>
-  <a href="#conclusion">
-    <span>마무리</span>
-    <small>기능 구현에서 교체 검증으로</small>
-  </a>
-  <a href="#process">
-    <span>개발·검증 방식</span>
-    <small>계획서와 보고서를 쌍으로</small>
-  </a>
-</nav>
-
-## 01. 교체 가능한 경계 {#boundaries}
-
-나중에 반드시 바뀔 부분을 먼저 예상하고, 그 코드가 변경돼도 다른 코드가 영향받지 않는지를 확인했습니다. 세 곳 중 두 곳은 이미 실제 교체로 답을 확인했습니다.
-
-| 교체 접점 | 초기 구현 | 교체 결과 |
-| :--- | :--- | :--- |
-| **인증** | UUID 더미 토큰 `TokenStore` + 평문 비밀번호 | **교체 완료** — Spring Security + JWT(HS256) + BCrypt로 바꿨습니다. 인증 헤더(`X-AUTH-TOKEN`)를 유지해 콘솔·API 계약은 그대로 두고, Controller는 `@AuthenticationPrincipal` 주입으로 전환했습니다. |
-| **스키마 소유권** | Hibernate `ddl-auto: create-drop` | **교체 완료** — Flyway `V1__init.sql`로 옮기고, Hibernate는 `validate`로 강등해 엔티티-스키마 불일치 시 기동 실패가 안전장치가 되게 했습니다. |
-| **추천 엔진** | 규칙 기반 `LocalMatchingEngine` | 인터페이스를 유지한 채 `matching.engine` 설정만으로 구현체가 전환되는 것을 확인했습니다. 외부 AI 어댑터는 실연동 전 단계입니다. |
-
-![MatchSimulation 구조 — 기능 모듈과 MatchingEngine 인터페이스의 설정 기반 분기](/assets/images/portfolio/matchsimulation-architecture.svg){:.portfolio-diagram}
-
-- **더미 토큰으로 시작한 이유** 핵심 매칭 흐름을 먼저 완성해 회귀 테스트를 갖춘 뒤 표준 스택으로 갈아타기 위해서였습니다.
-- **교체 시 고정한 것** 위조 서명, 만료 토큰, 정지 계정의 유효 토큰 같은 엣지케이스를 계획서에 먼저 정의하고, 기존 에러 응답 포맷(`{status, message}`)까지 유지하며 전환했습니다.
-- **추천 엔진도 같은 순서** 외부 연동을 인터페이스로 고정해 두면 이후 연동은 어댑터 작업으로 좁혀집니다.
-- **남은 한계** 규칙 기반 점수(지역, 나이, 직군)가 추천 품질을 보장하지는 않습니다.
-
-## 02. 상태 전이와 동시성 — 잘못된 변경을 규칙에서 차단 {#states}
-
-계정 생명주기(User)와 매칭 요청(MatchRecord)을 각각 제한된 상태 머신으로 관리합니다. 수락과 거절은 `REQUESTED` 상태에서만 허용되고, 종결 상태는 재전이가 없습니다.
-
-![매칭 상태 전이도 — 가입 승인부터 수락·거절까지, 전이 규칙과 불변 조건](/assets/images/portfolio/matchsimulation-match-state.svg){:.portfolio-diagram}
-
-| 항목 | 처리 방식 |
+| 기능 | 내용 |
 | :--- | :--- |
-| **동시 응답 경쟁** | 같은 매칭에 두 요청이 동시에 수락·거절을 시도하면 `@Version` 낙관적 락으로 한쪽만 성공하고 다른 쪽은 409를 받습니다. 상태는 정확히 1회만 전이됩니다. |
-| **트랜잭션 경계** | 수락 시 상태 변경과 양측 알림 생성을 하나의 트랜잭션으로 묶어, 알림 저장이 실패하면 상태 변경도 롤백됩니다. |
-| **방치된 요청** | 7일 무응답 매칭은 스케줄러가 자동으로 만료시킵니다. |
+| **회원 관리** | 전체 목록 조회(페이징), 상태 변경 — `PENDING`(가입 대기) / `ACTIVE`(승인) / `SUSPENDED`(정지) |
+| **Q&A 관리** | 전체·상태별 문의 조회, 답변 작성(→ `ANSWERED`, 답변 시각 기록) |
+| **알림 등록** | 전체 공지(대상 미지정) 또는 개별 회원 대상 알림 생성 |
+| **매칭 통계** | 전체·성사 건수, 성사율, 일별·성별(요청자 기준)·상태별 분포 |
 
-- **확장으로 이어진 지점** 상태 전이 지점을 명시적으로 남긴 덕에, 채팅 WebSocket 단계에서 "매칭이 ACCEPTED인 경우에만 연결 허용" 규칙이 이 전이 지점을 그대로 재사용했습니다.
+관리자 API는 전부 `/api/admin/**` → `hasRole('ADMIN')` 한 규칙으로 묶여 있고, 아니면 `403`입니다.
 
-![관리자 콘솔의 매칭 현황 통계 — REQUESTED·ACCEPTED·EXPIRED·REJECTED 상태별 분포와 성사율을 실데이터로 집계한다](/assets/images/portfolio/matchsimulation-admin-stats.png){:.portfolio-detail-shot}
+## 01. 정지시켰는데 토큰은 아직 살아 있다 {#suspended}
 
-## 03. 채팅 수신의 진화 {#chat}
+관리자 모드에서 가장 손이 많이 간 지점입니다.
 
-매칭이 성사된 상대와의 1:1 채팅은 처음부터 WebSocket으로 가지 않았습니다. 가장 단순한 구조부터 시작해 각 단계의 비용을 숫자로 확인한 뒤 다음 단계로 넘어갔고, 서버 API 계약(`afterId` 증분 조회)은 1단계에서 고정해 재사용했습니다.
+{% include diagrams/matchsim-suspended-decision.svg %}
 
-| 단계 | 방식 | 이 단계가 남긴 것 |
-| :--- | :--- | :--- |
-| **새로고침** | 버튼 클릭 시 `afterId` 이후 메시지만 증분 조회합니다. | 이후 모든 단계가 재사용하는 API 계약을 남겼습니다. |
-| **Short Polling** | 3초 주기로 자동 조회합니다. | **30초에 1건 수신하는 동안 요청 10회·빈 응답 9회(90%)·전달 지연 최대 3초**를 실측해 낭비를 데이터로 기록했습니다. |
-| **Long Polling** | `DeferredResult`로 서버가 대기하다 새 메시지 발생 시 즉시 응답합니다. | 같은 조건에서 **요청 2회·빈 응답 0~1회·전달 지연 ≈ 0**으로 줄었습니다. |
-| **WebSocket** | 연결 1개를 유지하며 양방향 push합니다. | **push 지연 9ms·핸드셰이크 13ms**를 실측했고, 재요청 반복까지 제거했습니다. |
+**JWT는 서버가 세션 상태를 들고 있지 않습니다.** 로그인 시점에만 정지 여부를 보면, 정지 이전에 발급된 토큰은 만료될 때까지 그대로 통과합니다. 정지 처리가 "지금부터 로그인 불가"까지만 의미하고 "지금 접속 중인 사람 차단"은 못 하는 상태가 됩니다.
 
-단계마다 설계 결정이 하나씩 있었습니다.
+| 검사 지점 | 정지 계정 처리 |
+| :--- | :--- |
+| **로그인** | `AuthService`에서 정지 계정의 로그인 자체를 거부합니다. |
+| **매 요청** | `JwtAuthFilter`가 서명 검증 후 사용자를 조회해 **정지 상태면 인증 자체를 부여하지 않습니다.** 서명이 멀쩡해도 통과하지 못합니다. |
 
-- **Long Polling의 스레드 모델** `DeferredResult`를 반환하면 요청 스레드는 즉시 반납되고, 대기자는 `ConcurrentHashMap` 레지스트리가 보관합니다. `onTimeout`·`onCompletion` 콜백으로 제거해 누수를 막습니다.
-- **비동기 디스패치 재인증** 비동기 디스패치에서 인증 필터가 다시 실행되는 서블릿 비동기 생명주기를 이 단계에서 명시적으로 다뤘습니다.
-- **publish 시점** 대기자 알림은 메시지 저장 트랜잭션 커밋 이후에 호출하도록 경계를 잡았습니다. 트랜잭션 안에서 알리면 대기자가 커밋 전 데이터를 조회해 새 메시지를 놓칠 수 있기 때문입니다.
-- **STOMP 미채택** 구독 대상이 matchId 하나뿐이라 브로커·구독 프로토콜 계층이 과했고, 핸드셰이크·세션 관리·브로드캐스트를 직접 다뤄 동작을 드러내는 쪽이 이 프로젝트의 목적에 맞았습니다.
-- **WebSocket 인증** `HandshakeInterceptor`에서 연결 수립 전에 JWT, 정지 계정, 매칭 참여자를 검증해 실패한 연결은 열리지도 않습니다.
+- **엣지케이스를 먼저 정의했다** 계획서에 "위조 서명 / 만료 토큰 / **정지 계정의 유효 토큰**" 세 가지를 적고 구현했습니다. 앞의 둘은 라이브러리가 잡아주고, 실제로 놓치기 쉬운 것은 세 번째였습니다.
+- **여기서 배운 것** 인증(토큰이 진짜인가)과 인가(지금도 유효한 사용자인가)는 다른 질문입니다. JWT를 쓰면 후자는 자동으로 따라오지 않습니다.
+- **이 선택의 조건** 차단은 진입점마다 잊지 않고 검사할 때만 성립합니다. 규칙이 아니라 습관에 기대는 구조라, 진입점이 늘면 빠뜨릴 자리도 같이 늘어납니다. 토큰 만료를 짧게 두고 갱신 시점에 거르는 방식이 대안이었습니다.
 
-목이 아니라 실제 연결로 검증했습니다.
+## 02. 상태 변경과 알림을 한 트랜잭션으로 {#transaction}
 
-- **Long Polling** MockMvc의 `asyncDispatch`로 비동기 응답 사이클을 확인했습니다.
-- **WebSocket** `StandardWebSocketClient`로 랜덤 포트에 뜬 서버에 직접 접속해 핸드셰이크 거부, 세션 누수, REST 전송 → WebSocket 수신 교차까지 확인했습니다.
+회원을 승인하거나 정지시키면 대상 회원에게 알림이 생성됩니다. 이 둘을 **하나의 트랜잭션으로 묶었습니다.**
 
-![WebSocket 단계의 1:1 채팅 — 연결 1개를 유지한 채 새 메시지가 push되어 폴링 요청 0회로 수신된다](/assets/images/portfolio/matchsimulation-chat-ws.png){:.portfolio-detail-shot}
+```java
+@Transactional
+public UserResponse changeStatus(Long userId, UserStatus status) {
+    User user = userRepository.findById(userId)
+            .orElseThrow(() -> ApiException.notFound("사용자를 찾을 수 없습니다: " + userId));
+    UserStatus before = user.getStatus();
+    user.setStatus(status);
+    if (before != status) {
+        if (status == UserStatus.ACTIVE) {
+            notificationService.notify(userId, "회원 승인 완료", "...");
+        } else if (status == UserStatus.SUSPENDED) {
+            notificationService.notify(userId, "계정 정지 안내", "...");
+        }
+    }
+    return UserResponse.from(user);
+}
+```
 
-## 검증 결과와 한계 {#verification}
+- **왜 묶었나** 알림 저장이 실패하면 상태 변경도 롤백됩니다. **계정이 정지됐는데 당사자는 이유를 모르는 상태**가 생기지 않게 하기 위해서입니다.
+- **`before != status` 가드** 같은 상태로 다시 저장하는 요청에 알림이 중복 발송되지 않게 막습니다.
+- **다르게 볼 수 있는 지점** 알림을 비동기 이벤트로 뺐다면 상태 변경이 알림 실패에 발목 잡히지 않습니다. 이 규모에서는 "통지 없는 정지"를 막는 쪽이 중요하다고 봤지만, 알림 채널이 외부(메일·푸시)로 늘어나면 뒤집어야 할 판단입니다.
 
-Java 21 + Spring Boot 4.1.0 + Gradle 9 기반이며, 시드 데이터(관리자 1명 + 회원 20명, 매칭 30건)를 Flyway 스키마 위에 기동 시 적재해 매 실행마다 동일한 시나리오를 재현합니다.
+## 03. 통계는 무겁고, 관리자는 방금 바뀐 값을 본다 {#stats}
+
+매칭 통계는 **전체 매칭과 전체 회원을 훑는 집계**입니다. 관리자가 새로고침할 때마다 전부 조회하면 낭비지만, 캐시만 걸면 방금 바꾼 상태가 반영되지 않습니다.
+
+| | 처리 |
+| :--- | :--- |
+| **캐시** | `@Cacheable("matchStats")` 60초 TTL — 반복 조회 시 집계를 다시 돌지 않습니다. |
+| **즉시 무효화** | 매칭 요청·응답(`MatchingService`)과 자동 만료(`MatchExpiryScheduler`)에서 `@CacheEvict`로 캐시를 비웁니다. |
+| **결과** | 읽기는 캐시로 싸게, 쓰기가 일어나면 그 즉시 최신값. |
+
+- **TTL만 뒀다면** 관리자가 회원을 정지시키고 통계를 봤을 때 최대 60초 낡은 숫자를 봅니다. 관측 도구가 방금 한 조작을 안 보여주면 신뢰를 잃습니다.
+- **무효화만 뒀다면** 쓰기가 잦으면 캐시가 거의 안 먹습니다. 둘 다 둔 이유입니다.
+- **한계** 인메모리 캐시라 다중 인스턴스에서는 자기 노드만 비웁니다. 단일 인스턴스 전제의 선택입니다.
+
+## 04. 관측과 자동 정리 {#observability}
+
+- **집계 내용** 전체·성사 건수와 성사율, 일별 추이, 성별(요청자 기준) 분포, 상태별 분포(`REQUESTED`·`ACCEPTED`·`REJECTED`·`EXPIRED`).
+- **자동 만료** 7일 무응답 매칭은 스케줄러가 `EXPIRED`로 전이시킵니다. 관리자가 손대지 않아도 `REQUESTED`가 무한정 쌓이지 않고, 성사율 분모가 오염되지 않습니다.
+- **페이징 방어** 회원·문의 목록은 `size`를 최대 100으로 강제(`PageRequests.clamp`)하고, 존재하지 않는 정렬 필드는 `400`으로 막습니다. 관리자 화면이라도 파라미터를 신뢰하지 않습니다.
+- **성사율의 한계** 규칙 기반 추천(지역·나이·직군)이라 품질을 직접 잴 수단이 없어, 성사율을 대리 지표로 두었습니다. 시드 데이터 위의 숫자라 실제 선호를 설명하지는 못합니다.
+
+## 05. 검증과 한계 {#verification}
 
 | 검증 항목 | 확인 결과 |
 | :--- | :--- |
-| **인증 교체** | 더미 토큰에서 JWT·BCrypt로 전환한 뒤 전체 회귀 테스트가 통과했고, 위조·만료·정지 계정 엣지케이스를 확인했습니다. |
-| **스키마 이전** | Flyway V1 적용 이력을 검증했고, `validate` 모드에서 전체 테스트가 통과해 스키마와 엔티티의 일치를 증명했습니다. |
-| **엔진 전환** | `matching.engine` 설정 변경만으로 구현체가 전환되고 `MatchingService` 코드는 바뀌지 않았습니다. |
-| **매칭 동시성** | 동시 응답 시 1건만 성공(409)하고, 알림 실패 시 롤백을 확인했습니다. |
-| **채팅 4단계** | 단계별 엣지케이스(타임아웃 보정, 대기자 누수, 비참여자 차단 등)를 계획서에 정의하고 실측으로 확인했습니다. |
-| **API 문서·회귀** | Swagger UI와 JUnit 5 `@SpringBootTest` 기반 회귀 테스트 51건을 phase마다 green으로 유지했습니다. |
+| **정지 계정 차단** | 유효 서명을 가진 정지 계정 토큰이 인증 단계에서 차단되는 것을 확인했습니다. |
+| **권한 분리** | ADMIN이 아닌 토큰의 `/api/admin/**` 접근이 `403`으로 거부되는 것을 확인했습니다. |
+| **트랜잭션 경계** | 알림 저장 실패 시 상태 변경도 롤백되는 것을 확인했습니다. |
+| **자동 만료** | 스케줄러 실행 후 대상 매칭이 `EXPIRED`로 전이되고 통계에 반영되는 것을 확인했습니다. |
+| **회귀** | JUnit 5 `@SpringBootTest` 기반 회귀 테스트를 phase마다 green으로 유지했습니다. |
 
-### 한계와 다음 검증 과제
+<span class="section-note">시드 데이터(관리자 1명 + 회원 20명 + 매칭 30여 건) 기반의 로컬 검증입니다. 실사용 트래픽이나 실제 사용자 대상의 추천 품질을 측정한 것은 아닙니다.</span>
 
-- 실제 추천 품질은 검증하지 못했습니다. 지역, 나이, 직군 세 신호는 실제 매칭 선호를 설명하기에 얕습니다.
-- H2 인메모리 기반이라 대규모 트래픽·다중 인스턴스 상황은 검증 범위 밖입니다. 외부 RDBMS 전환을 다음 과제로 두었습니다.
-- AI 엔진은 어댑터 구조까지만 준비된 상태로, 실연동과 timeout·fallback이 남아 있습니다.
+### 남은 과제
 
-<span class="section-note">시드 데이터 기반의 로컬 검증 결과이며, 실사용 트래픽이나 실제 사용자 대상의 추천 품질을 측정한 것은 아닙니다. 교체 접점이 설계대로 동작하는지를 실제 교체로 확인해 가는 구조 실험입니다.</span>
+- **관리자 조작 이력(누가 언제 누구를 정지시켰는가)을 남기지 않습니다.** 운영 시스템이라면 감사 로그가 이 기능들보다 먼저 필요합니다.
+- 정지 반영이 진입점마다 검사하는 규율에 기대고 있습니다. 토큰 수명을 줄이고 갱신에서 거르는 구조가 더 안전합니다.
+- 통계 캐시가 인메모리라 다중 인스턴스에서는 무효화가 자기 노드에만 적용됩니다.
 
-## 마무리 — 기능 구현에서 교체 검증으로 {#conclusion}
+## 개발·검증 방식 {#process}
 
-- **시작** H2, 더미 토큰, 단순 조회 방식으로 가입 → 추천 → 수락의 핵심 흐름을 먼저 검증했습니다.
-- **교체** 인증을 JWT·BCrypt로, 스키마 관리를 Flyway로 실제로 바꿨고, 채팅은 각 단계의 비용을 측정하며 WebSocket까지 발전시켰습니다.
-- **보호** 동시 응답은 낙관적 락과 트랜잭션으로 보호해 상태가 한 번만 전이되도록 했습니다.
-- **남은 것** 외부 AI 추천 엔진 실연동, 외부 RDBMS(PostgreSQL) 전환, 운영 관측성(Actuator·메트릭)이 남아 있습니다. Flyway 이전은 이 전환을 위한 포석이었습니다.
-
-## 개발·검증 방식 — 계획서와 보고서를 쌍으로 {#process}
-
-- **계획 문서** 시작 전에 배경·설계·엣지케이스(E1, E2, …)·테스트 계획을 고정합니다.
-- **완료 보고서** 구현 후에 회귀 테스트 결과와 curl 실측을 기록합니다.
-- **실제 사례** Short Polling 계획서는 "구조적 비용(빈 요청)을 실측으로 기록해 다음 단계(Long Polling)의 필요성을 데이터로 남긴다"를 목표에 명시했고, 그 실측(빈 응답 90%)이 다음 phase의 첫 문장이 됐습니다. 이렇게 쌓인 plan→report는 [docs/](https://github.com/hello-pebble/MatchSimulation/tree/main/docs)에 기록돼 있습니다.
-- **패키지 구조** 초기 계층형 구조를 함께 변경되는 기능 단위 모듈(user·matching·chat·qna·notification·admin)로 재편했습니다. 변경 범위가 한 패키지에 갇히고, 필요해지면 패키지를 모듈로 승격할 수 있습니다.
-- **그 구조의 비용** 현재 규모에서는 계층형보다 탐색 비용이 있고, 의존 방향을 컴파일 타임에 강제하지 못합니다.
-- **AI 협업** phase 단위로 브랜치를 파서 PR로 머지하며, 계획서의 엣지케이스 표가 곧 AI에게 주는 명세이자 제가 결과를 검수하는 채점표입니다. 계획서에 정의하지 않은 동작이 나오면 되돌립니다.
+- **계획서와 보고서를 쌍으로** 시작 전에 배경·설계·엣지케이스(E1, E2, …)·테스트 계획을 고정하고, 구현 후에 회귀 결과와 curl 실측을 기록합니다.
+- **패키지 구조** 함께 변경되는 기능 단위 모듈(user·matching·chat·qna·notification·**admin**)로 재편해, 관리자 기능 변경이 한 패키지 안에 갇히게 했습니다.
+- **AI 협업** phase 단위로 브랜치를 파서 PR로 머지하며, 계획서의 엣지케이스 표가 곧 명세이자 제가 결과를 검수하는 채점표입니다. 계획서에 정의하지 않은 동작이 나오면 되돌립니다.
 
 ## Source
 
 - [github.com/hello-pebble/MatchSimulation](https://github.com/hello-pebble/MatchSimulation) — 소스 코드
-- [Architecture](https://github.com/hello-pebble/MatchSimulation/blob/main/docs/architecture.md) · [docs/](https://github.com/hello-pebble/MatchSimulation/tree/main/docs) — 계획서, 완료 보고서
+- [docs/admin_mode.md](https://github.com/hello-pebble/MatchSimulation/blob/main/docs/admin_mode.md) — 관리자 모드 기능·API 명세
+- [docs/](https://github.com/hello-pebble/MatchSimulation/tree/main/docs) — phase별 계획서·완료 보고서

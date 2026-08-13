@@ -576,6 +576,78 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.55;
 }
 
+/* ── 의사결정 다이어그램 ──
+   인라인 SVG라서 data-theme 을 그대로 따라간다. 색은 여기서만 정의한다. */
+.dg {
+  --dg-surface: #fafafa;
+  --dg-line: var(--border-color);
+  --dg-good: #15803d;
+  --dg-cost: #b45309;
+  --dg-stop: #9f1239;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 20px 0 8px;
+  font-family: inherit;
+}
+
+[data-theme="dark"] .dg {
+  --dg-surface: #0d0d0d;
+  --dg-good: #4ade80;
+  --dg-cost: #fbbf24;
+  --dg-stop: #fb7185;
+}
+
+.dg-band { fill: var(--dg-surface); stroke: var(--dg-line); }
+.dg-band--foot { fill: none; stroke-dasharray: 4 4; }
+.dg-card { fill: var(--dg-surface); stroke: var(--dg-line); }
+.dg-card--out { fill: none; stroke-dasharray: 5 4; }
+.dg-rule { stroke: var(--dg-line); }
+
+.dg-tag--in { fill: var(--text-color); }
+.dg-tag--out { fill: none; stroke: var(--sidebar-text); stroke-dasharray: 3 3; }
+.dg-tagtext { font-size: 16px; font-weight: 700; }
+.dg-tagtext--in { fill: var(--bg-color); }
+.dg-tagtext--out { fill: var(--sidebar-text); }
+
+.dg-eyebrow { fill: var(--sidebar-text); font-size: 16px; letter-spacing: 0.04em; }
+.dg-lead { fill: var(--text-color); font-size: 24px; font-weight: 700; }
+.dg-title { fill: var(--text-color); font-size: 23px; font-weight: 700; }
+.dg-title--out { fill: var(--sidebar-text); }
+.dg-axis { fill: var(--sidebar-text); font-size: 16px; letter-spacing: 0.12em; }
+.dg-label { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; }
+.dg-label--good { fill: var(--dg-good); }
+.dg-label--cost { fill: var(--dg-cost); }
+.dg-label--stop { fill: var(--dg-stop); }
+.dg-body { fill: var(--text-color); font-size: 18.5px; }
+.dg-body--out { fill: var(--sidebar-text); }
+.dg-body--cost { fill: var(--dg-cost); font-weight: 700; }
+.dg-muted { fill: var(--sidebar-text); font-size: 17px; }
+.dg-strong { fill: var(--text-color); font-weight: 700; }
+
+/* 좁은 화면에서는 축소 대신 가로 스크롤 — 2단 비교라 더 줄이면 글자가 뭉개진다 */
+@media (max-width: 700px) {
+  .dg-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .dg {
+    min-width: 620px;
+    margin: 14px 0 4px;
+  }
+}
+
+.career-nonemp {
+  margin-left: 4px;
+  padding: 0 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  color: var(--sidebar-text);
+  font-size: 0.72em;
+  font-weight: normal;
+  white-space: nowrap;
+}
+
 .resume-placeholder {
   display: inline-block;
   padding: 1px 8px;

@@ -53,13 +53,9 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 - **5. 버그 리포트** 버그가 나면 현상·원인·수정·회귀 테스트를 기록합니다.
 - **6. 시나리오 정리** 완료 후 검증 시나리오를 정리합니다.
 
-이 사이클은 [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md)로 문서화했고, 저장소에 남은 문서는 56건입니다. 예를 들어 인증 상태 저장 방식은 이렇게 비교하고 선택했습니다.
+이 사이클은 [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md)로 문서화했습니다. 설계 결정마다 대안을 최소 둘 함께 적고, **왜 그것을 고르지 않았는지까지 같은 문서에 남깁니다.** 인증 상태 저장 방식이 그 예입니다.
 
-| 플랜 | 방식 | 선택 / 미선택 이유 |
-| :--- | :--- | :--- |
-| **A (선택)** | Stateless JWT | 일반 요청이 중앙 저장소 조회에 의존하지 않습니다. |
-| B | Redis 세션 | 즉시 무효화가 가능하지만 Redis가 단일 장애점이 됩니다. |
-| C | Opaque Token | 매 요청 introspection 호출로 레이턴시가 늘어납니다. |
+{% include diagrams/oauth-token-decision.svg %}
 
 - **문서와 코드의 일치** 선택하지 않은 것은 코드에서도 걷어냈습니다. 초기 검토 흔적으로 남아 있던 미사용 Redis 연동 의존성을 제거해(-60줄) 비교표의 결론과 실제 의존 그래프를 맞췄습니다.
 - **AI 협업** 설계 문서와 계획을 먼저 쓰고 구현을 위임한 뒤, 테스트와 실제 요청으로 검증하는 분업입니다. 상세는 [claude-code-workflow.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/claude-code-workflow.md)와 [AI를 어떻게 쓰는가](/ai/)에 정리했습니다.
@@ -71,14 +67,8 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 ![로그인부터 API 응답까지 — Gateway를 거쳐 각 서비스가 JWKS 공개키로 JWT를 직접 검증하는 흐름](/assets/images/portfolio/oauth-request-flow.svg){:.portfolio-diagram}
 
-| 구분 | 내용 |
-| :--- | :--- |
-| **얻은 것** | 요청 경로에서 원격 의존을 제거하고, 발급과 인가의 책임을 분리했습니다. |
-| **감수한 것 1** | 발급된 토큰을 만료 전에 중앙에서 회수하기 어렵습니다. |
-| **감수한 것 2** | 권한을 변경해도 기존 토큰에 즉시 반영되지 않습니다. |
-| **감수한 것 3** | 서명 키가 전체 신뢰의 뿌리가 되면서 키 보관·순환이 새로운 핵심 과제가 됐습니다. |
-
-- **기록** 전문은 [Decision Log](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/DECISION_LOG_WHY.md)에 있으며, "아직 검증하지 않은 것"(동시 처리량, 장애 시 사용자 흐름)도 성과와 구분해 같은 문서에 적었습니다.
+- **Refresh Token** 재발급 시 기존 토큰을 교체하는 Rotation 흐름입니다. 다만 현재 저장소가 `ConcurrentHashMap` 인메모리라 **재시작 시 초기화되고 다중 인스턴스 상태를 공유하지 못합니다.** 인터페이스는 유지해 외부 저장소 구현으로 교체할 수 있게 뒀습니다.
+- **기록** 전문은 [Decision Log](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/DECISION_LOG_WHY.md)에 있으며, "아직 검증하지 않은 것"(동시 처리량, 인스턴스 증가에 따른 변화, Auth·DB 장애 시 사용자 흐름)도 성과와 구분해 같은 문서에 적었습니다.
 
 ## 02. 경계별 책임 — Gateway는 통과, 서비스는 재검증 {#gateway-auth}
 

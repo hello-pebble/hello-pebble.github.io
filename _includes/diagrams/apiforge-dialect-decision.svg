@@ -1,0 +1,64 @@
+<!-- 색·폰트는 assets/main.css 의 .dg-* 규칙이 담당한다 (인라인 삽입이라 data-theme 를 따라간다) -->
+<div class="dg-wrap">
+<svg class="dg" viewBox="0 0 840 830" role="img"
+     aria-label="다중 DB 지원 방식의 의사결정 — 레거시는 5종 지원 구조를 갖췄지만 SQL 맵은 1종뿐이라 검증된 적이 없었고, 지원 수를 늘리는 대신 2종을 실제 컨테이너로 검증하는 형태로 바꿨다.">
+
+  <!-- 발견 -->
+  <rect class="dg-band" x="16" y="14" width="808" height="126" rx="12"/>
+  <text class="dg-eyebrow" x="40" y="46">발견 · 레거시 구조를 다시 정리하면서</text>
+  <text class="dg-lead" x="40" y="82">5종 DB를 지원한다고 되어 있었다</text>
+  <text class="dg-muted" x="40" y="112">그런데 방언 SQL 맵 디렉터리는 <tspan class="dg-strong">Tibero 1종만</tspan> 존재했고, 실제 운영도 Tibero</text>
+  <text class="dg-muted" x="40" y="134">단독이었다. 전환 구조는 있었지만 한 번도 검증된 적이 없었다.</text>
+
+  <text class="dg-axis" x="420" y="176" text-anchor="middle">선택 지점</text>
+  <line class="dg-rule" x1="16" y1="190" x2="824" y2="190"/>
+
+  <!-- ── 버린 길 ── -->
+  <rect class="dg-card dg-card--out" x="16" y="208" width="392" height="428" rx="12"/>
+  <rect class="dg-tag dg-tag--out" x="40" y="230" width="132" height="30" rx="15"/>
+  <text class="dg-tagtext dg-tagtext--out" x="106" y="251" text-anchor="middle">검토 후 버림</text>
+
+  <text class="dg-title dg-title--out" x="40" y="300">방언별 SQL 맵을 복제해</text>
+  <text class="dg-title dg-title--out" x="40" y="330">지원 DB를 늘린다</text>
+  <text class="dg-muted" x="40" y="360">레거시 구조의 연장</text>
+
+  <line class="dg-rule" x1="40" y1="386" x2="384" y2="386"/>
+
+  <text class="dg-label dg-label--good" x="40" y="420">얻는 것</text>
+  <text class="dg-body dg-body--out" x="40" y="450">지원 목록에 적을 수 있는</text>
+  <text class="dg-body dg-body--out" x="40" y="476">DB 수가 늘어난다.</text>
+
+  <text class="dg-label dg-label--stop" x="40" y="520">버린 이유</text>
+  <text class="dg-body dg-body--out" x="40" y="550">DB 하나당 전체 SQL 자산을</text>
+  <text class="dg-body dg-body--out" x="40" y="576">복제해야 한다. 복제본이 늘수록</text>
+  <text class="dg-body dg-body--out" x="40" y="602">검증 안 된 지원도 함께 는다.</text>
+
+  <!-- ── 선택한 길 ── -->
+  <rect class="dg-card dg-card--in" x="432" y="208" width="392" height="428" rx="12"/>
+  <rect class="dg-tag dg-tag--in" x="456" y="230" width="72" height="30" rx="15"/>
+  <text class="dg-tagtext dg-tagtext--in" x="492" y="251" text-anchor="middle">선택</text>
+
+  <text class="dg-title" x="456" y="300">지원 수를 늘리는 대신</text>
+  <text class="dg-title" x="456" y="330">검증되는 형태로 바꾼다</text>
+  <text class="dg-muted" x="456" y="360">방언 렌더링을 jOOQ에 위임</text>
+
+  <line class="dg-rule" x1="456" y1="386" x2="800" y2="386"/>
+
+  <text class="dg-label dg-label--good" x="456" y="420">얻은 것</text>
+  <text class="dg-body" x="456" y="450">SQL을 파일로 관리하지 않아</text>
+  <text class="dg-body" x="456" y="476">복제할 자산 자체가 없다.</text>
+  <text class="dg-body" x="456" y="502">H2·PostgreSQL 2종을 실제</text>
+  <text class="dg-body" x="456" y="528">컨테이너로 띄워 검증한다.</text>
+
+  <text class="dg-label dg-label--cost" x="456" y="572">치른 대가</text>
+  <text class="dg-body dg-body--cost" x="456" y="602">명목상 지원 DB 수는</text>
+  <text class="dg-body dg-body--cost" x="456" y="628">5종에서 2종으로 줄었다.</text>
+
+  <!-- 이 교체가 말하는 것 -->
+  <rect class="dg-band dg-band--foot" x="16" y="660" width="808" height="152" rx="12"/>
+  <text class="dg-label dg-label--cost" x="40" y="696">이 교체가 말하는 것</text>
+  <text class="dg-lead" x="40" y="736">“지원한다고 적혀 있는 것”과 “동작이 검증된 것”은 다르다.</text>
+  <text class="dg-muted" x="40" y="770">지원 DB 수를 늘린 것이 아니라, 검증되지 않았던 구조를 검증 가능한 형태로 바꾼 것이다.</text>
+  <text class="dg-muted" x="40" y="794">숫자가 줄어든 쪽이 실제로는 늘어난 결과다.</text>
+</svg>
+</div>

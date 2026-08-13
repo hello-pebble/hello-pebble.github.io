@@ -20,8 +20,8 @@ permalink: /portfolio/
       <span>Java, Kotlin, Python, Spring Boot, Security, JPA, MyBatis, JUnit 5, Testcontainers</span>
     </div>
     <div class="portfolio-skill-row">
-      <strong>Frontend & AI</strong>
-      <span>JavaScript, React, Vite, ClaudeCode, Codex <a href="{{ '/ai/' | relative_url }}">AI 활용 </a></span>
+      <strong>Frontend</strong>
+      <span>JavaScript, React, Vite</span>
     </div>    
     <div class="portfolio-skill-row">
       <strong>Data</strong>
@@ -32,12 +32,13 @@ permalink: /portfolio/
       <span>Docker, Oracle Cloud Infrastructure(OCI), GitHub Actions, GitLab CI, Tomcat</span>
     </div>
   </div>
+  <span class="section-note">개발 도구로 Claude Code·Codex를 사용합니다 — <a href="{{ '/ai/' | relative_url }}">활용 방식 보기</a></span>
 </section>
 
 <section class="portfolio-section" aria-labelledby="personal-projects">
   <div class="portfolio-section-heading">
     <h2 id="personal-projects">Personal Projects</h2>
-    <span class="portfolio-count">3 projects</span>
+    <span class="portfolio-count">4 projects</span>
   </div>
   <div class="portfolio-grid">
     <a class="portfolio-card" href="{{ '/portfolio/delaynomore/' | relative_url }}">
@@ -45,7 +46,7 @@ permalink: /portfolio/
         <span class="portfolio-card-number">01</span>
       </div>
       <h3>DelayNoMore <span class="portfolio-period">2026.04–2026.06</span></h3>
-      <p class="portfolio-summary">버전마다 문제 하나를 정해 v0.17.0까지 릴리스 · 잠금 규칙의 소유권을 서버로 이관하고, 에이전트 도구 선택 정확도를 평가 하네스 676회 실측으로 검증 · 테스트 317건</p>
+      <p class="portfolio-summary">버전마다 문제 하나를 정해 v0.17.0까지 릴리스 · "확정 후 수정 불가" 규칙을 프론트 차단 → 서버 가드 → 도구 권한으로 옮겨 구조적으로 불가능하게 만듦 · 육안 판단을 평가 하네스로 바꿔 모델의 권한 우회 경로 발견</p>
       <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · SSE Streaming · Testcontainers</span>
     </a>
     <a class="portfolio-card" href="{{ '/portfolio/oauth-sso/' | relative_url }}">
@@ -60,9 +61,17 @@ permalink: /portfolio/
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">03</span>
       </div>
-      <h3>MatchSimulation — 매칭 서비스 백엔드 <span class="portfolio-period">2026.06– 진행 중</span></h3>
-      <p class="portfolio-summary">교체 가능한 경계를 먼저 설계하고 더미 인증→JWT, 자동 스키마→Flyway로 실제 교체 검증 · 채팅 수신을 폴링→WebSocket 4단계로 실측하며 진화(push 지연 9ms)</p>
-      <span class="portfolio-stack">Java 21 · Spring Boot 4 · JPA · Flyway · Long Polling · WebSocket</span>
+      <h3>MatchSimulation — 매칭 서비스 관리자 모드 <span class="portfolio-period">2026.06– 진행 중</span></h3>
+      <p class="portfolio-summary">계정을 정지시켜도 이미 발급된 JWT가 만료까지 살아 있는 문제를, 인증 필터가 서명과 계정 상태를 함께 보게 해 차단 · 상태 변경과 통지를 한 트랜잭션으로 묶고, 통계는 TTL 캐시와 쓰기 시점 무효화를 함께 적용</p>
+      <span class="portfolio-stack">Java 21 · Spring Boot 4 · JPA · Flyway · Spring Security/JWT</span>
+    </a>
+    <a class="portfolio-card" href="{{ '/portfolio/api-management/' | relative_url }}">
+      <div class="portfolio-card-top">
+        <span class="portfolio-card-number">04</span>
+      </div>
+      <h3>api-forge — 메타데이터 기반 조회 API 엔진 <span class="portfolio-period">2026.07–</span></h3>
+      <p class="portfolio-summary"><strong>회사에서 설계했으나 운영 반영 전 이직해 검증하지 못한 구조를, 코드 없이 설계 의도만 옮겨 클린룸 재구현</strong> · 조회 API 하나를 메타데이터 행 하나로 만드는 엔진 · 문자열 연결 SQL과 블랙리스트 필터를 jOOQ 타입 세이프 DSL과 식별자 화이트리스트로 대체하고 인젝션 차단이 DB 방언과 무관하게 성립하는지 매 커밋 CI로 검증</p>
+      <span class="portfolio-stack">Java 21 · Spring Boot 3.5 · jOOQ · Testcontainers</span>
     </a>
   </div>
 </section>
@@ -70,18 +79,9 @@ permalink: /portfolio/
 <section class="portfolio-section" aria-labelledby="company-projects">
   <div class="portfolio-section-heading">
     <h2 id="company-projects">Work Experience</h2>
-    <span class="portfolio-count">4 projects</span>
+    <span class="portfolio-count">3 projects</span>
   </div>
   <div class="portfolio-grid">
-    <a class="portfolio-card" href="{{ '/portfolio/api-management/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">04</span>
-      </div>
-      <h3>api-forge — 메타데이터 기반 조회 API 엔진 <span class="portfolio-period">2024.09–2025.01</span></h3>
-      <p class="portfolio-summary">조회 API 하나를 메타데이터 행 하나로 만드는 엔진 · 문자열 연결 SQL과 블랙리스트 필터를 jOOQ 타입 세이프 DSL과 식별자 화이트리스트로 대체하고 인젝션 차단을 테스트 50건·CI로 증명 <em>(회사 프로토타입의 클린룸 재구현)</em></p>
-      <span class="portfolio-stack">Java 21 · Spring Boot 3.5 · jOOQ · Testcontainers</span>
-    </a>
-
     <a class="portfolio-card" href="{{ '/portfolio/pms/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">05</span>
@@ -105,7 +105,7 @@ permalink: /portfolio/
         <span class="portfolio-card-number">07</span>
       </div>
       <h3>사내 교육 플랫폼(LMS) <span class="portfolio-period">2020.12–2021.03</span></h3>
-      <p class="portfolio-summary">다부서 교육 플랫폼의 비인가 접근·첨부파일 유실 위험을 SSO 기반 RBAC와 BLOB 저장으로 해결 · 파일과 업무 데이터를 단일 트랜잭션으로 관리</p>
+      <p class="portfolio-summary">화면 분기로 흩어진 권한 검증을 SSO 기반 RBAC와 공통 인터셉터로 모아 엔드포인트 레벨에서 차단 · 사내 보관 요건으로 BLOB 저장이 전제된 상태에서 파일 변경을 업무 데이터와 같은 트랜잭션에 묶어 구현</p>
       <span class="portfolio-stack">Java · Spring Boot · JPA · Oracle</span>
     </a>
   </div>

@@ -1,0 +1,65 @@
+<!-- 색·폰트는 assets/main.css 의 .dg-* 규칙이 담당한다 (인라인 삽입이라 data-theme 를 따라간다) -->
+<div class="dg-wrap">
+<svg class="dg" viewBox="0 0 840 830" role="img"
+     aria-label="정지 계정 차단의 의사결정 — 로그인 시점에만 검사하면 이미 발급된 토큰이 만료까지 유효하므로, 매 요청마다 계정 상태를 다시 확인하는 쪽을 택했고 그 대가로 요청당 조회가 한 번 늘었다.">
+
+  <!-- 문제 -->
+  <rect class="dg-band" x="16" y="14" width="808" height="126" rx="12"/>
+  <text class="dg-eyebrow" x="40" y="46">문제 · 관리자가 계정을 정지시킨 직후</text>
+  <text class="dg-lead" x="40" y="82">정지시켰는데 토큰은 아직 살아 있다</text>
+  <text class="dg-muted" x="40" y="112">JWT는 서버가 세션 상태를 들고 있지 않다. <tspan class="dg-strong">정지 이전에 발급된 토큰은</tspan></text>
+  <text class="dg-muted" x="40" y="134">만료될 때까지 그대로 통과한다.</text>
+
+  <text class="dg-axis" x="420" y="176" text-anchor="middle">선택 지점</text>
+  <line class="dg-rule" x1="16" y1="190" x2="824" y2="190"/>
+
+  <!-- ── 버린 길 ── -->
+  <rect class="dg-card dg-card--out" x="16" y="208" width="392" height="428" rx="12"/>
+  <rect class="dg-tag dg-tag--out" x="40" y="230" width="132" height="30" rx="15"/>
+  <text class="dg-tagtext dg-tagtext--out" x="106" y="251" text-anchor="middle">불충분해서 버림</text>
+
+  <text class="dg-title dg-title--out" x="40" y="300">발급된 토큰을 믿는다</text>
+  <text class="dg-title dg-title--out" x="40" y="330">— 로그인에서만 검사</text>
+  <text class="dg-muted" x="40" y="360">JWT의 기본 사용법</text>
+
+  <line class="dg-rule" x1="40" y1="386" x2="384" y2="386"/>
+
+  <text class="dg-label dg-label--good" x="40" y="420">얻는 것</text>
+  <text class="dg-body dg-body--out" x="40" y="450">검증이 한 곳에 모인다.</text>
+  <text class="dg-body dg-body--out" x="40" y="476">요청마다 DB를 보지 않아</text>
+  <text class="dg-body dg-body--out" x="40" y="502">stateless가 그대로 유지된다.</text>
+
+  <text class="dg-label dg-label--stop" x="40" y="546">버린 이유</text>
+  <text class="dg-body dg-body--out" x="40" y="576">정지가 “앞으로 로그인 불가”</text>
+  <text class="dg-body dg-body--out" x="40" y="602">까지만 뜻하게 된다.</text>
+  <text class="dg-body dg-body--out" x="40" y="628">이미 들어온 사람은 못 막는다.</text>
+
+  <!-- ── 선택한 길 ── -->
+  <rect class="dg-card dg-card--in" x="432" y="208" width="392" height="428" rx="12"/>
+  <rect class="dg-tag dg-tag--in" x="456" y="230" width="72" height="30" rx="15"/>
+  <text class="dg-tagtext dg-tagtext--in" x="492" y="251" text-anchor="middle">선택</text>
+
+  <text class="dg-title" x="456" y="300">요청마다 계정 상태를</text>
+  <text class="dg-title" x="456" y="330">다시 확인한다</text>
+  <text class="dg-muted" x="456" y="360">인증 필터가 서명 + 상태를 함께 본다</text>
+
+  <line class="dg-rule" x1="456" y1="386" x2="800" y2="386"/>
+
+  <text class="dg-label dg-label--good" x="456" y="420">얻은 것</text>
+  <text class="dg-body" x="456" y="450">서명이 멀쩡해도 정지 계정은</text>
+  <text class="dg-body" x="456" y="476">인증 자체를 받지 못한다.</text>
+  <text class="dg-body" x="456" y="502">정지가 다음 요청부터 듣는다.</text>
+
+  <text class="dg-label dg-label--cost" x="456" y="546">치른 대가</text>
+  <text class="dg-body" x="456" y="576">요청마다 사용자 조회 1회.</text>
+  <text class="dg-body dg-body--cost" x="456" y="602">JWT의 stateless 이점을</text>
+  <text class="dg-body dg-body--cost" x="456" y="628">일부 되돌린 셈이다.</text>
+
+  <!-- 남은 것 -->
+  <rect class="dg-band dg-band--foot" x="16" y="660" width="808" height="152" rx="12"/>
+  <text class="dg-label dg-label--stop" x="40" y="696">이 선택의 조건</text>
+  <text class="dg-lead" x="40" y="736">차단은 진입점마다 “잊지 않고 검사할 때만” 성립한다.</text>
+  <text class="dg-muted" x="40" y="770">규칙이 아니라 습관에 기대는 구조라, 진입점이 늘면 그만큼 빠뜨릴 자리도 늘어난다.</text>
+  <text class="dg-muted" x="40" y="794">토큰 만료를 짧게 두고 갱신에서 거르는 방식이 대안이었다.</text>
+</svg>
+</div>
