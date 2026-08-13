@@ -57,13 +57,13 @@ permalink: /portfolio/
       <p class="portfolio-summary">설계마다 대안 비교(A/B/C)와 결정 기록을 남기며 6개 모듈 인증 구조를 구성 · 무토큰 401과 내부 경로 404를 실제 요청으로 확인</p>
       <span class="portfolio-stack">Kotlin · Spring Boot · Spring Security · WebFlux Gateway · JWT · Docker Compose</span>
     </a>
-    <a class="portfolio-card" href="{{ '/portfolio/matchsimulation/' | relative_url }}">
+    <a class="portfolio-card" href="{{ '/portfolio/admincore/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">03</span>
       </div>
-      <h3>MatchSimulation — 매칭 서비스 관리자 모드 <span class="portfolio-period">2026.06– 진행 중</span></h3>
-      <p class="portfolio-summary">계정을 정지시켜도 이미 발급된 JWT가 만료까지 살아 있는 문제를, 인증 필터가 서명과 계정 상태를 함께 보게 해 차단 · 상태 변경과 통지를 한 트랜잭션으로 묶고, 통계는 TTL 캐시와 쓰기 시점 무효화를 함께 적용</p>
-      <span class="portfolio-stack">Java 21 · Spring Boot 4 · JPA · Flyway · Spring Security/JWT</span>
+      <h3>AdminCore — 운영 관리자 콘솔 백엔드 <span class="portfolio-period">2026.06– 진행 중</span></h3>
+      <p class="portfolio-summary">사용자 모드를 제거하고 회원·Q&A·알림·매칭 통계에 집중한 관리자 전용 백엔드로 재정의 · 정지 계정의 기존 JWT를 다음 요청부터 차단 · 통계는 PostgreSQL GROUP BY 집계와 60초 캐시, 만료 배치 시점 무효화를 적용</p>
+      <span class="portfolio-stack">Java 21 · Spring Boot 4 · PostgreSQL · JPA · Flyway · Spring Security/JWT</span>
     </a>
     <a class="portfolio-card" href="{{ '/portfolio/api-management/' | relative_url }}">
       <div class="portfolio-card-top">
