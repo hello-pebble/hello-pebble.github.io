@@ -576,6 +576,85 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.55;
 }
 
+.resume-lead {
+  margin: 16px 0 6px;
+  font-size: 1.05em;
+  line-height: 1.65;
+}
+
+.resume-summary {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.resume-compact-section {
+  margin-top: 22px;
+}
+
+.resume-compact-section .resume-section-heading {
+  margin: 0 0 8px;
+}
+
+.resume-compact-section > p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.resume-entry {
+  margin-top: 14px;
+}
+
+.resume-entry .entry-header {
+  margin-bottom: 3px;
+}
+
+.resume-entry p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.resume-links,
+.resume-more-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 5px !important;
+  font-size: 0.9em;
+}
+
+.resume-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.resume-project-grid article {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--code-bg);
+}
+
+.resume-project-grid h3,
+.resume-project-grid p {
+  margin: 0;
+}
+
+.resume-project-grid h3 {
+  font-size: 0.96em;
+}
+
+.resume-project-grid p {
+  margin-top: 6px;
+  color: var(--sidebar-text);
+  font-size: 0.86em;
+  line-height: 1.55;
+}
+
+.resume-bottom {
+  margin-bottom: 20px;
+}
+
 /* ── 의사결정 다이어그램 ──
    인라인 SVG라서 data-theme 을 그대로 따라간다. 색은 여기서만 정의한다. */
 .dg {
@@ -922,6 +1001,10 @@ h1, h2, h3, h4, h5, h6 {
   .resume-tagline {
     font-size: 0.8em;
   }
+
+  .resume-project-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Print Styles */
@@ -983,6 +1066,38 @@ h1, h2, h3, h4, h5, h6 {
   .resume-tech {
     margin: 4px 0 0;
     font-size: 9pt;
+  }
+
+  .resume-lead {
+    margin: 8px 0 3px;
+    font-size: 10pt;
+    line-height: 1.45;
+  }
+
+  .resume-summary {
+    line-height: 1.45;
+  }
+
+  .resume-compact-section {
+    margin-top: 10px;
+  }
+
+  .resume-entry {
+    margin-top: 7px;
+  }
+
+  .resume-project-grid {
+    gap: 6px;
+  }
+
+  .resume-project-grid article {
+    padding: 7px;
+  }
+
+  .resume-project-grid p {
+    margin-top: 2px;
+    font-size: 8.5pt;
+    line-height: 1.35;
   }
 
   .portfolio-skill-row {
