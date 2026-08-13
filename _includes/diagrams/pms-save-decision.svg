@@ -1,0 +1,65 @@
+<!-- 색은 assets/main.css 의 .dg-* 규칙이 담당한다 (인라인 삽입이라 data-theme 를 따라간다).
+     본문 폭 550px 에서 viewBox 840 이 0.65배로 축소되므로 폰트를 그만큼 키워 잡았다. -->
+<div class="dg-wrap">
+<svg class="dg" viewBox="0 0 840 830" role="img"
+     aria-label="PMS 저장 유실 조치의 의사결정 — 근본 조치인 요청 전체 트랜잭션을 회귀 범위 때문에 버리고, 프레임 단위 분할을 선택했으며, 그 대가로 부분 커밋 가능성이 남았다.">
+
+  <!-- 증상과 진단 -->
+  <rect class="dg-band" x="16" y="14" width="808" height="126" rx="12"/>
+  <text class="dg-eyebrow" x="40" y="46">증상 · 문의가 가장 많았던 항목</text>
+  <text class="dg-lead" x="40" y="82">“앞은 저장됐는데 뒤가 사라졌어요”</text>
+  <text class="dg-muted" x="40" y="112">진단 — 부분 저장이 아니라 <tspan class="dg-strong">부분 커밋</tspan>. 객체 단위 INSERT를</text>
+  <text class="dg-muted" x="40" y="134">요청 전체 트랜잭션 없이 건별로 커밋하고 있었다.</text>
+
+  <text class="dg-axis" x="420" y="176" text-anchor="middle">선택 지점</text>
+  <line class="dg-rule" x1="16" y1="190" x2="824" y2="190"/>
+
+  <!-- ── 버린 길 ── -->
+  <rect class="dg-card dg-card--out" x="16" y="208" width="392" height="428" rx="12"/>
+  <rect class="dg-tag dg-tag--out" x="40" y="230" width="132" height="30" rx="15"/>
+  <text class="dg-tagtext dg-tagtext--out" x="106" y="251" text-anchor="middle">검토 후 버림</text>
+
+  <text class="dg-title dg-title--out" x="40" y="300">요청 전체를 한 트랜잭션으로</text>
+  <text class="dg-title dg-title--out" x="40" y="330">묶는다</text>
+  <text class="dg-muted" x="40" y="360">근본 조치</text>
+
+  <line class="dg-rule" x1="40" y1="386" x2="384" y2="386"/>
+
+  <text class="dg-label dg-label--good" x="40" y="420">얻는 것</text>
+  <text class="dg-body dg-body--out" x="40" y="450">실패하면 전부 롤백된다.</text>
+  <text class="dg-body dg-body--out" x="40" y="476">절반만 맞는 데이터가 남지</text>
+  <text class="dg-body dg-body--out" x="40" y="502">않는다.</text>
+
+  <text class="dg-label dg-label--stop" x="40" y="546">버린 이유</text>
+  <text class="dg-body dg-body--out" x="40" y="576">운영 중인 툴이라 저장 경로</text>
+  <text class="dg-body dg-body--out" x="40" y="602">전체를 수정하면 회귀 범위가</text>
+  <text class="dg-body dg-body--out" x="40" y="628">라벨링 작업 전체가 된다.</text>
+
+  <!-- ── 선택한 길 ── -->
+  <rect class="dg-card dg-card--in" x="432" y="208" width="392" height="428" rx="12"/>
+  <rect class="dg-tag dg-tag--in" x="456" y="230" width="72" height="30" rx="15"/>
+  <text class="dg-tagtext dg-tagtext--in" x="492" y="251" text-anchor="middle">선택</text>
+
+  <text class="dg-title" x="456" y="300">저장 단위를 프레임 단위로</text>
+  <text class="dg-title" x="456" y="330">분할한다</text>
+  <text class="dg-muted" x="456" y="360">유실을 먼저 멈추는 조치</text>
+
+  <line class="dg-rule" x1="456" y1="386" x2="800" y2="386"/>
+
+  <text class="dg-label dg-label--good" x="456" y="420">얻은 것</text>
+  <text class="dg-body" x="456" y="450">요청 하나의 크기가 폴더</text>
+  <text class="dg-body" x="456" y="476">전체에 비례하지 않는다 —</text>
+  <text class="dg-body" x="456" y="502">유실 발생 조건 제거.</text>
+
+  <text class="dg-label dg-label--cost" x="456" y="546">치른 대가</text>
+  <text class="dg-body" x="456" y="576">트랜잭션 경계는 여전히 없다.</text>
+  <text class="dg-body dg-body--cost" x="456" y="602">부분 커밋 가능성은 남아 있다.</text>
+
+  <!-- 남은 것 -->
+  <rect class="dg-band dg-band--foot" x="16" y="660" width="808" height="152" rx="12"/>
+  <text class="dg-label dg-label--cost" x="40" y="696">다시 한다면</text>
+  <text class="dg-lead" x="40" y="736">경계를 먼저 만들고, 그 위에서 전송량을 줄인다.</text>
+  <text class="dg-muted" x="40" y="770">부분 커밋은 절반만 맞는 데이터를 남겨, 아예 저장되지 않은 경우보다</text>
+  <text class="dg-muted" x="40" y="794">발견이 늦다. 방향이 아니라 순서의 문제였다.</text>
+</svg>
+</div>

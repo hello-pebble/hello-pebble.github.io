@@ -4,14 +4,15 @@ title: "메타데이터 기반 조회 API 엔진 — api-forge"
 permalink: /portfolio/api-management/
 ---
 
-<span class="project-context">Java 21 · Spring Boot 3.5 · jOOQ · Testcontainers · CI — 회사 프로토타입(2024.09—2025.01)의 재구현</span>
+<span class="project-context">개인 프로젝트 · 2026.07 — 진행 중 · Java 21 · Spring Boot 3.5 · jOOQ · Testcontainers · CI — 회사 프로토타입(사람과숲, 2024.09—2025.01)의 클린룸 재구현</span>
 
 # 메타데이터 기반 조회 API 엔진 — api-forge
 
 - **하는 일** 조회 API 하나를 메타데이터 테이블의 행 하나로 만듭니다.
 - **바꾼 것** 신규 조회마다 Controller·Service·DAO·SQL XML 5개 파일을 추가하던 것을, 메타데이터 등록 1건으로 바꿨습니다. 빌드와 재배포가 필요 없습니다.
-- **출발점** 회사 프로토타입(Java 8 · Spring MVC · eGovFrame · MyBatis · Tibero)을 개발 서버까지 적용한 상태에서 이직해 검증이 미완으로 남았습니다.
-- **현재** 핵심 구조를 클린룸으로 재구현한 **[api-forge](https://github.com/hello-pebble/api-forge)** 가 그 검증을 대신하며, 테스트 50건이 매 커밋 CI에서 실행됩니다.
+- **출발점** 회사 프로토타입(Java 8 · Spring MVC · eGovFrame · MyBatis · Tibero)을 개발 서버까지 적용한 상태에서 이직해, **운영 반영과 실트래픽 검증이 미완으로 남았습니다.**
+- **이 저장소** 회사 코드는 가져오지 않고 설계 의도만 옮겨 현대 스택으로 다시 구현한 개인 프로젝트입니다. 아래의 모든 코드·테스트·수치는 재구현물에서 나온 것입니다.
+- **현재** 공격 입력 시나리오를 매 커밋 CI에서 돌려 인젝션 차단을 확인하며, 이것이 회사에서 하지 못한 검증을 대신합니다.
 
 <nav class="project-page-nav" aria-label="api-forge 프로젝트 목차">
   <a href="#engine">
@@ -24,7 +25,7 @@ permalink: /portfolio/api-management/
   </a>
   <a href="#legacy">
     <span>03. 레거시에서 바꾼 것</span>
-    <small>문자열 SQL → jOOQ</small>
+    <small>지원 5종의 실체</small>
   </a>
   <a href="#limitations">
     <span>한계</span>
@@ -76,7 +77,7 @@ if (col.getFilterType() == FilterType.NONE) {
 Field<Object> field = DSL.field(DSL.name(col.getSourceColumn())); // SQL에는 메타데이터의 컬럼명만 들어간다
 ```
 
-이 방어의 동작은 테스트 50건이 매 커밋 CI에서 증명합니다.
+이 방어가 실제 공격 입력에서 성립하는지 매 커밋 CI에서 확인합니다.
 
 | 공격 시나리오 | 결과 |
 | :--- | :--- |
@@ -93,11 +94,17 @@ Field<Object> field = DSL.field(DSL.name(col.getSourceColumn())); // SQL에는 �
 | 레거시 | api-forge | 바꾼 이유 |
 | :--- | :--- | :--- |
 | 문자열 연결 SQL + 블랙리스트 필터 | jOOQ 타입 세이프 DSL + 식별자 화이트리스트 | 가장 위험했던 지점이었습니다. |
-| DB별 SQL 맵 디렉터리 교체 | jOOQ가 방언을 추상화 | 지원 DB 수만큼 같은 쿼리를 유지해야 했던 중복을 라이브러리에 위임했습니다. |
-| 3종 DB 단계별 수동 검증 | H2·PostgreSQL Testcontainers 매 커밋 검증 | 방언 차이를 통합 시점에 몰아서 확인해야 했습니다. |
 | Map 기반 파라미터 · 평문 인증키 | DTO + Bean Validation · 해시 저장 + 상수 시간 검증 | 컴파일 시점 검증이 없고 자격증명이 노출됐습니다. |
+| Oracle 계열 ROWNUM 래퍼 페이징 | jOOQ `limit().offset()` 하나로 통일 | 페이징이 방언에 결합돼 DB를 바꾸면 래퍼도 함께 바꿔야 했습니다. |
 
-- **디렉터리 교체 방식의 대가** 쿼리 내부 분기는 사라지지만, 지원 DB가 늘수록 같은 쿼리를 그 수만큼 유지해야 했습니다.
+### 지원 DB를 늘리는 대신 검증되는 형태로 {#dialect}
+
+{% include diagrams/apiforge-dialect-decision.svg %}
+
+레거시를 다시 정리하면서 나온 것이 이 항목입니다. **표준프레임워크가 제공하는 5종(mysql·oracle·altibase·tibero·cubrid) 중 하나를 고르는 구조였지만, 실제 SQL 맵 디렉터리는 Tibero 1종만 있었고 운영도 Tibero 단독이었습니다.** 전환 경로는 설정에 존재했으나 한 번도 실행된 적이 없습니다.
+
+- **api-forge의 처리** SQL을 파일로 관리하지 않으므로 방언별로 복제할 SQL 자산 자체가 없습니다. 같은 쿼리 정의를 jOOQ가 방언별로 렌더링합니다.
+- **검증 방식** H2·PostgreSQL 2종을 Spring Profile로 전환하고, Testcontainers로 실제 PostgreSQL 컨테이너를 띄워 **동일 동작과 인젝션 방어의 이식성**을 함께 확인합니다.
 - **실행** `./mvnw spring-boot:run` 한 줄로 실행되며, 시드된 가상 데이터셋으로 위 요청을 그대로 재현할 수 있습니다.
 
 ## 한계 {#limitations}

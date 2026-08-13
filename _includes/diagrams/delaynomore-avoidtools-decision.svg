@@ -1,0 +1,65 @@
+<!-- 색·폰트는 assets/main.css 의 .dg-* 규칙이 담당한다 (인라인 삽입이라 data-theme 를 따라간다) -->
+<div class="dg-wrap">
+<svg class="dg" viewBox="0 0 840 830" role="img"
+     aria-label="우회 도구를 어떻게 채점할지에 대한 의사결정 — 이월 도구를 금지 목록에 넣으면 정상 요청까지 사고로 잡히므로, 통과율에만 반영하고 빌드는 깨뜨리지 않는 채점 범주를 새로 만들었다.">
+
+  <!-- 발견 -->
+  <rect class="dg-band" x="16" y="14" width="808" height="126" rx="12"/>
+  <text class="dg-eyebrow" x="40" y="46">발견 · 반복 측정을 충분히 올린 뒤에야 드러난 것</text>
+  <text class="dg-lead" x="40" y="82">막힌 수정을 이월 도구로 대신하고 있었다</text>
+  <text class="dg-muted" x="40" y="112">이월은 그 상태에서 <tspan class="dg-strong">정상 노출되는 도구</tspan>다. 권한 모델이 뚫린 게 아니라,</text>
+  <text class="dg-muted" x="40" y="134">사용자가 요청하지 않은 변경을 한 것이다.</text>
+
+  <text class="dg-axis" x="420" y="176" text-anchor="middle">선택 지점</text>
+  <line class="dg-rule" x1="16" y1="190" x2="824" y2="190"/>
+
+  <!-- ── 버린 길 ── -->
+  <rect class="dg-card dg-card--out" x="16" y="208" width="392" height="428" rx="12"/>
+  <rect class="dg-tag dg-tag--out" x="40" y="230" width="132" height="30" rx="15"/>
+  <text class="dg-tagtext dg-tagtext--out" x="106" y="251" text-anchor="middle">검토 후 버림</text>
+
+  <text class="dg-title dg-title--out" x="40" y="300">이월 도구를 금지 목록에</text>
+  <text class="dg-title dg-title--out" x="40" y="330">넣는다</text>
+  <text class="dg-muted" x="40" y="360">가장 단순한 조치</text>
+
+  <line class="dg-rule" x1="40" y1="386" x2="384" y2="386"/>
+
+  <text class="dg-label dg-label--good" x="40" y="420">얻는 것</text>
+  <text class="dg-body dg-body--out" x="40" y="450">우회가 곧바로 실패로 잡히고</text>
+  <text class="dg-body dg-body--out" x="40" y="476">빌드가 깨진다.</text>
+
+  <text class="dg-label dg-label--stop" x="40" y="520">버린 이유</text>
+  <text class="dg-body dg-body--out" x="40" y="550">정상적인 이월 요청까지</text>
+  <text class="dg-body dg-body--out" x="40" y="576">사고로 보고된다. 금지 목록은</text>
+  <text class="dg-body dg-body--out" x="40" y="602">애초에 노출되면 안 되는</text>
+  <text class="dg-body dg-body--out" x="40" y="628">도구의 표다.</text>
+
+  <!-- ── 선택한 길 ── -->
+  <rect class="dg-card dg-card--in" x="432" y="208" width="392" height="428" rx="12"/>
+  <rect class="dg-tag dg-tag--in" x="456" y="230" width="72" height="30" rx="15"/>
+  <text class="dg-tagtext dg-tagtext--in" x="492" y="251" text-anchor="middle">선택</text>
+
+  <text class="dg-title" x="456" y="300">채점 범주를 하나</text>
+  <text class="dg-title" x="456" y="330">더 만든다</text>
+  <text class="dg-muted" x="456" y="360">avoidTools 신설</text>
+
+  <line class="dg-rule" x1="456" y1="386" x2="800" y2="386"/>
+
+  <text class="dg-label dg-label--good" x="456" y="420">얻은 것</text>
+  <text class="dg-body" x="456" y="450">통과율에는 실패로 반영되고,</text>
+  <text class="dg-body" x="456" y="476">빌드는 깨뜨리지 않는다.</text>
+
+  <text class="dg-label dg-label--cost" x="456" y="520">치른 대가</text>
+  <text class="dg-body" x="456" y="550">범주가 늘어 데이터셋 규칙이</text>
+  <text class="dg-body dg-body--cost" x="456" y="576">복잡해진다. 무결성 테스트로</text>
+  <text class="dg-body dg-body--cost" x="456" y="602">노출 여부를 강제해야</text>
+  <text class="dg-body dg-body--cost" x="456" y="628">범주가 썩지 않는다.</text>
+
+  <!-- 왜 나눴나 -->
+  <rect class="dg-band dg-band--foot" x="16" y="660" width="808" height="152" rx="12"/>
+  <text class="dg-label dg-label--cost" x="40" y="696">이 구분이 필요한 이유</text>
+  <text class="dg-lead" x="40" y="736">막혀서 못 하는 것과, 할 수 있는데 하지 말아야 하는 것은 다르다.</text>
+  <text class="dg-muted" x="40" y="770">둘을 같은 칸에 넣으면 진짜 사고가 모델 잡음에 묻힌다. 실패와 경고를 나눈 것도 같은 이유다 —</text>
+  <text class="dg-muted" x="40" y="794">시도했으나 서버가 막은 것은 설계가 약속한 대로 동작한 것이므로 경고로 통과시킨다.</text>
+</svg>
+</div>

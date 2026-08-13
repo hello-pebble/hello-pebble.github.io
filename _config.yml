@@ -1,8 +1,8 @@
 title: KwonDakyung
 email: kwdk2323@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. It will appear in your
-  document head meta (for Google search results) and in your feed.xml site description.
+description: >-
+  권다경 · 운영 중인 시스템의 반복 비용을 줄이는 백엔드 개발자 · Java / Spring ·
+  이력서, 경력기술서, 프로젝트 포트폴리오.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
@@ -12,3 +12,11 @@ github_username:  hello-pebble
 # theme: minima
 plugins:
   - jekyll-feed
+
+# 제출본이 아닌 내부 원고는 빌드에서 제외한다 (공개 URL 생성 방지)
+exclude:
+  - resume/career-description-variants.md
+  - PORTFOLIO_RELEASE_ROUTINE.md
+  - tmp/
+  - Gemfile
+  - Gemfile.lock
