@@ -97,7 +97,7 @@ resume_name: 권다경
     </ul>
   </article>
 </div>
-<p class="resume-more-links"><strong>Other</strong><a href="/portfolio/matchsimulation/">MatchSimulation</a><a href="/portfolio/oauth-sso/">Gateway 인증·인가 검증</a><a href="https://github.com/dadak2/searchvibe" target="_blank" rel="noopener noreferrer">searchvibe</a></p>
+<p class="resume-more-links"><strong>Other</strong><a href="/portfolio/admincore/">AdminCore</a><a href="/portfolio/oauth-sso/">Gateway 인증·인가 검증</a><a href="https://github.com/dadak2/searchvibe" target="_blank" rel="noopener noreferrer">searchvibe</a></p>
 </section>
 
 <section class="resume-compact-section resume-bottom">
