@@ -58,7 +58,7 @@
   <!-- 같은 축, 반대 선택 -->
   <rect class="dg-band dg-band--foot" x="16" y="702" width="808" height="152" rx="12"/>
   <text class="dg-label dg-label--cost" x="40" y="738">같은 축에서 반대로 고른 적도 있다</text>
-  <text class="dg-lead" x="40" y="778">MatchSimulation에서는 요청마다 계정 상태를 다시 봤다.</text>
+  <text class="dg-lead" x="40" y="778">AdminCore에서는 요청마다 계정 상태를 다시 봤다.</text>
   <text class="dg-muted" x="40" y="812">거기선 “관리자의 정지가 즉시 들어야 한다”가 우선이었고, 여기선 “중앙 조회를 없앤다”가 목적이었다.</text>
   <text class="dg-muted" x="40" y="836">같은 트레이드오프라도 무엇을 지킬지가 다르면 답이 갈린다.</text>
 </svg>

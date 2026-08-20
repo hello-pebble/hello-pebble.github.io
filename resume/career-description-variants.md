@@ -8,13 +8,13 @@
 | 공고 성격 | 주요 프로젝트 3에 올릴 것 |
 | :--- | :--- |
 | 콘텐츠 플랫폼 · AI · 서비스 백엔드 | **DelayNoMore** (기본값, 본문에 이미 반영) |
-| 운영 관리 도구 · 백오피스 · 일반 Java/Spring 백엔드 | **MatchSimulation** (아래 A) |
+| 운영 관리 도구 · 백오피스 · 일반 Java/Spring 백엔드 | **AdminCore** (아래 A) |
 | 인증 · 플랫폼 · MSA | **Gateway OAuth2** (아래 B) |
-| API 플랫폼 · 데이터 플랫폼 | 개방DB + api-forge 비중을 키우고 3번은 MatchSimulation |
+| API 플랫폼 · 데이터 플랫폼 | 개방DB + api-forge 비중을 키우고 3번은 AdminCore |
 
 ---
 
-# A. 주요 프로젝트 3. MatchSimulation — 매칭 서비스 관리자 모드 (개인)
+# A. 주요 프로젝트 3. AdminCore — 운영 관리자 콘솔 백엔드 (개인)
 
 | | |
 | :--- | :--- |
@@ -23,9 +23,9 @@
 | **핵심 성과** | 정지 계정의 **유효 토큰 통과 문제**를 인증 필터에서 차단 · 상태 변경과 통지를 **한 트랜잭션**으로 묶어 "통지 없는 정지" 제거 · 통계에 **TTL 캐시 + 쓰기 시점 무효화**를 함께 적용 |
 | **기술** | Java 21, Spring Boot 4.1, JPA, Flyway, Spring Security/JWT, Gradle 9 |
 
-[github.com/hello-pebble/MatchSimulation](https://github.com/hello-pebble/MatchSimulation) · [관리자 모드 명세](https://github.com/hello-pebble/MatchSimulation/blob/main/docs/admin_mode.md)
+[github.com/hello-pebble/AdminCore](https://github.com/hello-pebble/AdminCore) · [관리자 모드 명세](https://github.com/hello-pebble/AdminCore/blob/main/docs/admin_mode.md)
 
-소개팅 서비스를 가정한 매칭 백엔드 위에 **계정과 매칭을 통제·관측하는 관리자 모드**를 얹었다. 관리자는 가입을 승인하고 문제 계정을 정지시키며, 문의에 답하고 공지를 보내고, 매칭이 어떻게 흘러가는지 본다. 관리자 API는 전부 `/api/admin/**` → `hasRole('ADMIN')` 한 규칙으로 묶여 있다.
+기존 매칭 서비스의 사용자 모드를 제거하고 **계정과 매칭을 통제·관측하는 운영 관리자 전용 백엔드**로 재정의했다. 관리자는 가입을 승인하고 문제 계정을 정지시키며, 문의에 답하고 공지를 보내고, 매칭이 어떻게 흘러가는지 본다. 관리자 API는 전부 `/api/admin/**` → `hasRole('ADMIN')` 한 규칙으로 묶여 있다.
 
 ## 핵심 문제
 
@@ -43,7 +43,7 @@
 
 **다르게 볼 수 있는 지점** — 알림을 비동기 이벤트로 뺐다면 상태 변경이 알림 실패에 발목 잡히지 않는다. 이 규모에서는 "통지 없는 정지"를 막는 쪽이 중요하다고 봤지만, 알림 채널이 외부(메일·푸시)로 늘어나면 뒤집어야 할 판단이다.
 
-**3. 통계는 캐시하되 쓰기 시점에 즉시 버린다.** 매칭 통계는 전체 매칭과 전체 회원을 훑는 집계라 매 조회마다 돌리면 낭비다. 그렇다고 TTL만 걸면 관리자가 회원을 정지시키고 통계를 봤을 때 낡은 숫자를 본다. `@Cacheable` 60초 TTL을 걸되 매칭 요청·응답·자동 만료 지점에서 `@CacheEvict`로 비워, **읽기는 캐시로 싸게 하고 쓰기가 일어나면 그 즉시 최신값**이 되게 했다.
+**3. 통계는 DB가 집계하고 배치가 바꾸면 캐시를 버린다.** 상태·성별·일별 분포는 PostgreSQL의 `GROUP BY` 3개 쿼리로 계산하고, 전체·성사 건수와 성사율은 상태별 결과에서 파생한다. `@Cacheable` 60초 TTL을 걸되 7일 무응답 만료 배치가 실행되면 `@CacheEvict`로 비운다. 사용자 매칭 쓰기 API는 제거했기 때문에, 캐시 무효화 경계도 현재 남아 있는 유일한 매칭 상태 변경인 배치에 맞췄다.
 
 ## 대표 구현 — 관측과 자동 정리
 
