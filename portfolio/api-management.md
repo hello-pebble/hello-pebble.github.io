@@ -46,7 +46,9 @@ permalink: /portfolio/api-management/
 
 - **`DATASET`** 조회 대상 테이블과 URL 키를 정의합니다.
 - **`DATASET_COLUMN`** 노출 컬럼과 허용 필터·정렬을 정의하며, 여기 등록된 컬럼만 조회·필터·정렬에 쓸 수 있습니다.
-- **연산자** 클라이언트가 아니라 컬럼의 `filterType`이 결정합니다. 유형 이름(`EQUALS`·`WORDS`·`CHECK`·`DATE`)은 새로 짓지 않고 **공공데이터 개방에서 쓰는 필터 유형 용어를 그대로 따랐습니다** — 이 엔진으로 만든 API를 쓰는 쪽이 이미 아는 어휘여야 한다고 봤습니다. 아래 데이터는 전부 가상입니다.
+- **연산자** 클라이언트가 아니라 컬럼의 `filterType`이 결정합니다. 관리자가 등록하는 것은 연산자 문자열이 아니라 **닫힌 유형 5개 중 하나**라, 관리자조차 임의의 SQL 조각을 넣을 수 없습니다. 화이트리스트가 조회 시점이 아니라 **메타데이터 등록 시점부터** 성립합니다.
+- **유형 이름** 공공데이터포털의 검색 UI를 기준으로 붙였습니다 — `WORDS`는 검색어 입력창, `CHECK`는 체크박스 필터에 대응합니다.
+- **샘플 컬럼명** 행정안전부 [공공데이터 공통표준용어](https://www.data.go.kr/data/15156379/fileData.do)의 영문약어 규칙을 따랐습니다(`NM`=명, `DT`=일자). 아래 데이터는 전부 가상입니다.
 
 | sourceColumn | displayName | filterType | sortable | 요청 예시 |
 | :--- | :--- | :--- | :--- | :--- |
@@ -54,6 +56,7 @@ permalink: /portfolio/api-management/
 | **BILL_NM** | 의안명 | WORDS (LIKE) | ✗ | `?BILL_NM=데이터` |
 | **COMMITTEE** | 소관위원회 | CHECK (IN) | ✓ | `?COMMITTEE=행정안전위원회,정무위원회` |
 | **PROPOSE_DT** | 발의일자 | DATE (BETWEEN) | ✓ | `?PROPOSE_DT=2026-01-01,2026-06-30` |
+| **BILL_STATUS** | 처리상태 | NONE (필터 불가) | ✗ | 응답에는 나오지만 조건으로 쓰면 `400` |
 
 ```
 GET /api/v1/datasets/bills?COMMITTEE=행정안전위원회,정무위원회&PROPOSE_DT=2026-01-01,2026-06-30&sort=PROPOSE_DT,desc&page=0&size=20
