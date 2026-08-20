@@ -46,7 +46,7 @@ permalink: /portfolio/api-management/
 
 - **`DATASET`** 조회 대상 테이블과 URL 키를 정의합니다.
 - **`DATASET_COLUMN`** 노출 컬럼과 허용 필터·정렬을 정의하며, 여기 등록된 컬럼만 조회·필터·정렬에 쓸 수 있습니다.
-- **연산자** 클라이언트가 아니라 컬럼의 `filterType`이 결정합니다. 아래 데이터는 전부 가상입니다.
+- **연산자** 클라이언트가 아니라 컬럼의 `filterType`이 결정합니다. 유형 이름(`EQUALS`·`WORDS`·`CHECK`·`DATE`)은 새로 짓지 않고 **공공데이터 개방에서 쓰는 필터 유형 용어를 그대로 따랐습니다** — 이 엔진으로 만든 API를 쓰는 쪽이 이미 아는 어휘여야 한다고 봤습니다. 아래 데이터는 전부 가상입니다.
 
 | sourceColumn | displayName | filterType | sortable | 요청 예시 |
 | :--- | :--- | :--- | :--- | :--- |
