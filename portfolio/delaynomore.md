@@ -16,7 +16,7 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 - **대표 사례** 프론트 화면에만 있어 우회 가능하던 잠금 규칙을 서버 강제(409)로 옮기고, 20~30초의 AI 응답 대기를 SSE 스트리밍과 patch 교환으로 바꾸고, 육안으로 판단하던 에이전트 품질을 반복 측정 가능한 평가 하네스로 교체했습니다.
 - **고정한 것** 잠금 규칙의 서버 강제·스트리밍 폴백·PostgreSQL 재시작 복원을 자동 테스트로 고정해, 규칙의 위치를 옮기는 동안 기존 동작이 깨지지 않게 했습니다.
 
-**[▶ 실행해 보기](http://delaynomoreapp.duckdns.org/)**
+**[▶ 실행해 보기](https://delaynomoreapp.duckdns.org/)**
 
 <nav class="project-page-nav" aria-label="DelayNoMore 프로젝트 목차">
   <a href="#process">
@@ -194,4 +194,4 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 - [EVOLUTION.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVOLUTION.md) — v0.1.0부터 v0.17.0까지 버전별 의도와 인과
 - [CHANGELOG](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/CHANGELOG.md) — 릴리스별 변경 이력과 설계 결정
 - [EVAL.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVAL.md) — "권한 모델이 말뿐인지 숫자로 확인하는 장치" · 반복 횟수와 검출 확률의 통계 논리
-- [데모](http://delaynomoreapp.duckdns.org/) · [원본 프로토타입](https://github.com/hello-pebble/DelayNoMore)
+- [데모](https://delaynomoreapp.duckdns.org/)

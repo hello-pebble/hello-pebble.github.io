@@ -15,12 +15,14 @@ resume_name: 권다경
   <a href="mailto:kwdk2323@gmail.com" aria-label="Email" title="kwdk2323@gmail.com"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
   <a href="https://app.notion.com/p/Learning-328982649c3f80829e01d23c6a12a785?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="스터디" title="스터디"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></a>
   </div>
-  <div class="resume-contact-print">kwdk2323@gmail.com · github.com/hello-pebble</div>
+  <div class="resume-contact-print">kwdk2323@gmail.com · github.com/hello-pebble · 경력기술서 hello-pebble.github.io/resume/career-description/</div>
 </div>
 
 > **Java/Spring 백엔드 3년 10개월** · RESTful API 개발 · Docker 기반 배포 · GitLab CI/CD·GitHub Actions · 장애 원인 분석과 운영 개선 · 반복되는 운영 비용을 줄이는 설계와 절차화
 
 **운영 중인 시스템에서 반복해 발생하는 비용을 줄이는 일**을 해왔습니다. 라벨링 공정 시스템에서는 저장 유실 장애의 원인 3가지를 규명하고 매뉴얼·배포 체크리스트를 고정해 **사용 문의를 월 20건에서 1~2건으로** 줄였고, 개방데이터 API 시스템에서는 요구사항마다 파일 5~6개를 추가하던 조회 개발을 **메타데이터 등록 1건으로** 바꿨으며, 폐쇄망 문서 처리에서는 파일 입력부터 저장까지의 수동 개입을 없앴습니다.
+
+<p class="resume-tech">각 프로젝트의 담당 범위와 기술 스택은 <a href="{{ '/resume/career-description/' | relative_url }}">경력기술서</a>에, 설계 결정과 검증 근거는 <a href="{{ '/portfolio/' | relative_url }}">포트폴리오</a>에 있습니다.</p>
 
 장애가 발생하면 현상 조치에서 멈추지 않고 원인과 발생 흐름까지 확인한 뒤, 로그 확인 방법과 조치 순서를 문서로 남겨 다음 대응이 빨라지게 합니다. 확인하지 않은 것을 성과로 적지 않는 것도 같은 원칙으로 보고, **무엇을 확인하려 했는지·어떻게 확인했는지·그래서 무엇을 결정했는지**를 함께 남깁니다.
 
@@ -30,12 +32,12 @@ resume_name: 권다경
 
 | 기간 | 소속 · 활동 | 내용 |
 | :--- | :--- | :--- |
-| **2026.01 ~ 현재** | 개인 프로젝트 <span class="career-nonemp">비재직</span> | 인증·인가, 트랜잭션 경계, 동시성, 스키마 마이그레이션을 직접 설계·구현하고 검증했습니다. 회사에서 남긴 숙제를 그대로 주제로 삼았습니다. |
-| **2025.02 ~ 2025.12** | 백엔드 학습 · 사이드 프로젝트 <span class="career-nonemp">비재직</span> | 강의 수강과 실습으로 Spring Boot·JPA를 학습하고, AI 챗봇 서비스(searchvibe)를 만들며 에이전트와 스트리밍 응답을 다뤘습니다. |
-| **2022.11 ~ 2025.01** | **(주)미디어그룹사람과숲** | 공공데이터·제조 공정·문서 처리 시스템의 Java·Spring 백엔드를 개발하고, PMS의 운영·배포·장애 대응을 담당했습니다. |
-| **2021.04 ~ 2022.10** | 공무원 시험 준비 <span class="career-nonemp">비재직</span> | 시험을 준비했으나, 앞선 3년의 개발 경험이 더 맞는 일이라고 판단해 개발 직무로 복귀했습니다. |
-| **2020.12 ~ 2021.03** | **주식회사 에이아이넷** | 사내 교육 플랫폼의 인증·인가와 파일 저장 기능을 개발했습니다. |
-| **2019.05 ~ 2020.07** | **주식회사 엘에프아이티** | 항만 시설 사용료 관리 시스템을 개발하고 운영을 지원했습니다. |
+| **2026 ~ 현재** | 개인 프로젝트 <span class="career-nonemp">비재직</span> | 인증·인가, 트랜잭션 경계, 동시성, 스키마 마이그레이션을 직접 설계·구현하고 검증했습니다. 회사에서 남긴 숙제를 그대로 주제로 삼았습니다. |
+| **2025** | 백엔드 학습 · 사이드 프로젝트 <span class="career-nonemp">비재직</span> | 강의 수강과 실습으로 Spring Boot·JPA를 학습하고, AI 챗봇 서비스(searchvibe)를 만들며 에이전트와 스트리밍 응답을 다뤘습니다. |
+| **2022 ~ 2025** | **(주)미디어그룹사람과숲** | 공공데이터·제조 공정·문서 처리 시스템의 Java·Spring 백엔드를 개발하고, PMS의 운영·배포·장애 대응을 담당했습니다. |
+| **2021 ~ 2022** | 공무원 시험 준비 <span class="career-nonemp">비재직</span> | 시험을 준비했으나, 앞선 3년의 개발 경험이 더 맞는 일이라고 판단해 개발 직무로 복귀했습니다. |
+| **2020 ~ 2021** | **주식회사 에이아이넷** | 사내 교육 플랫폼의 인증·인가와 파일 저장 기능을 개발했습니다. |
+| **2019 ~ 2020** | **주식회사 엘에프아이티** | 항만 시설 사용료 관리 시스템을 개발하고 운영을 지원했습니다. |
 
 <p class="resume-tech">사용 기술 · Java · Kotlin · Python · Spring Boot · Spring MVC · Spring Security · JPA · MyBatis · jOOQ · PostgreSQL · MariaDB · Oracle · Docker · GitHub Actions · GitLab CI · WildFly · Tomcat</p>
 
@@ -65,7 +67,7 @@ resume_name: 권다경
 - **확인한 것** 20~30초 걸리던 AI 응답의 대기를 줄일 수 있는지 — 모델을 낮추면 기능 가치가 사라져 SSE 스트리밍으로 전환했고, 스트림을 실제로 끊어 비스트리밍→mock 폴백이 도는 것을 확인했습니다.
 - **확인한 것** 프롬프트나 모델을 바꿨을 때 좋아졌는지 — 육안 판단을 대신할 평가 하네스를 만들어 상태별 도구 선택을 실제 모델로 반복 측정했습니다. 그 과정에서 **모델이 금지된 도구 대신 허용된 인접 도구로 우회**하는 것을 발견했고(1회 실행으로는 보이지 않는 층), 이를 별도 채점 범주로 잡도록 하네스를 고쳤습니다.
 
-<p class="resume-tech">데모 · <a href="http://delaynomoreapp.duckdns.org/" target="_blank" rel="noopener noreferrer">delaynomoreapp.duckdns.org</a> · 저장소 · <a href="https://github.com/hello-pebble/DelayNoMore_Release" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/DelayNoMore_Release</a></p>
+<p class="resume-tech">데모 · <a href="https://delaynomoreapp.duckdns.org/" target="_blank" rel="noopener noreferrer">delaynomoreapp.duckdns.org</a> · 저장소 · <a href="https://github.com/hello-pebble/DelayNoMore_Release" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/DelayNoMore_Release</a></p>
 
 <div class="entry-header">
   <h3><a href="/portfolio/oauth-sso/">Gateway 기반 인증·인가 검증</a></h3>
@@ -87,10 +89,11 @@ resume_name: 권다경
 
 - **목표** 상품명을 자연어로 입력하면 여러 쇼핑몰의 가격·할인·배송비를 검색해 비교하는 챗봇을 만들었습니다.
 - **구성** FastAPI 백엔드에 LangGraph React Agent와 Gemini를 연결하고, 웹 검색 도구로 수집한 결과를 Streamlit 화면에 스트리밍으로 표시했습니다.
-- **검증** pytest로 에이전트·라우터·설정을 테스트하고 검색 실패 시 안내 응답으로 처리했으며, 발견한 계산 오류는 PR로 분리해 수정했습니다.
+- **검증** pytest로 에이전트·라우터·설정을 테스트하고 검색 실패 시 안내 응답으로 처리했으며, push와 PR마다 GitHub Actions가 백엔드·프론트 테스트를 돌리게 했습니다.
+- **절차** 이슈 라벨링·담당자 지정·PR 리뷰 코멘트를 Actions로 자동화한 뒤, **버그(`ZeroDivisionError`)를 의도적으로 main에 넣어** 이슈 → 브랜치 → PR → 머지 절차가 실제로 도는지 확인했습니다. 혼자 하는 프로젝트라 절차가 동작하는지 볼 방법이 그것뿐이었습니다.
 - **이어진 것** 여기서 처음 다룬 도구 호출 에이전트와 스트리밍 응답이, 이후 DelayNoMore의 SSE 스트리밍과 에이전트 평가 하네스로 이어졌습니다.
 
-<p class="resume-tech">Python · FastAPI · LangGraph · Gemini · Streamlit · pytest · 저장소 · <a href="https://github.com/dadak2/searchvibe" target="_blank" rel="noopener noreferrer">github.com/dadak2/searchvibe</a></p>
+<p class="resume-tech">Python · FastAPI · LangGraph · Gemini · Streamlit · pytest · 저장소 · <a href="https://github.com/hello-pebble/searchvibe" target="_blank" rel="noopener noreferrer">github.com/hello-pebble/searchvibe</a></p>
 
 <div class="entry-header print-page-start">
   <h3><a href="/portfolio/api-management/">개방DB API관리 — 메타데이터 기반 조회 API 엔진</a></h3>
@@ -131,7 +134,7 @@ resume_name: 권다경
 - **구현** 사내 정보 보관 요건으로 Oracle BLOB 저장이 전제된 상태에서, 파일 변경을 업무 데이터와 같은 트랜잭션에 묶어 한쪽만 반영되는 상태를 없앴습니다.
 
 <div class="entry-header">
-  <h3>항만 시설 사용료 관리 시스템</h3>
+  <h3><a href="/portfolio/port-fee/">항만 시설 사용료 관리 시스템</a></h3>
   <span class="entry-date">엘에프아이티 · 2019.05 ~ 2020.07</span>
 </div>
 

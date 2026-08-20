@@ -38,7 +38,7 @@ permalink: /portfolio/
 <section class="portfolio-section" aria-labelledby="personal-projects">
   <div class="portfolio-section-heading">
     <h2 id="personal-projects">Personal Projects</h2>
-    <span class="portfolio-count">4 projects</span>
+    <span class="portfolio-count">3 projects</span>
   </div>
   <div class="portfolio-grid">
     <a class="portfolio-card" href="{{ '/portfolio/delaynomore/' | relative_url }}">
@@ -65,23 +65,24 @@ permalink: /portfolio/
       <p class="portfolio-summary">계정을 정지시켜도 이미 발급된 JWT가 만료까지 살아 있는 문제를, 인증 필터가 서명과 계정 상태를 함께 보게 해 차단 · 상태 변경과 통지를 한 트랜잭션으로 묶고, 통계는 TTL 캐시와 쓰기 시점 무효화를 함께 적용</p>
       <span class="portfolio-stack">Java 21 · Spring Boot 4 · JPA · Flyway · Spring Security/JWT</span>
     </a>
-    <a class="portfolio-card" href="{{ '/portfolio/api-management/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">04</span>
-      </div>
-      <h3>api-forge — 메타데이터 기반 조회 API 엔진 <span class="portfolio-period">2026.07–</span></h3>
-      <p class="portfolio-summary"><strong>회사에서 설계했으나 운영 반영 전 이직해 검증하지 못한 구조를, 코드 없이 설계 의도만 옮겨 클린룸 재구현</strong> · 조회 API 하나를 메타데이터 행 하나로 만드는 엔진 · 문자열 연결 SQL과 블랙리스트 필터를 jOOQ 타입 세이프 DSL과 식별자 화이트리스트로 대체하고 인젝션 차단이 DB 방언과 무관하게 성립하는지 매 커밋 CI로 검증</p>
-      <span class="portfolio-stack">Java 21 · Spring Boot 3.5 · jOOQ · Testcontainers</span>
-    </a>
   </div>
 </section>
 
 <section class="portfolio-section" aria-labelledby="company-projects">
   <div class="portfolio-section-heading">
     <h2 id="company-projects">Work Experience</h2>
-    <span class="portfolio-count">3 projects</span>
+    <span class="portfolio-count">5 projects</span>
   </div>
   <div class="portfolio-grid">
+    <a class="portfolio-card" href="{{ '/portfolio/api-management/' | relative_url }}">
+      <div class="portfolio-card-top">
+        <span class="portfolio-card-number">04</span>
+      </div>
+      <h3>개방DB API관리 — 메타데이터 기반 조회 API 엔진 <span class="portfolio-period">2024.09–2025.01</span></h3>
+      <p class="portfolio-summary">요구사항마다 파일 5~6개를 추가하던 조회 개발을 메타데이터 등록 1건으로 바꾸는 엔진을 설계 · 개발 서버 적용 후 이직해 <strong>검증하지 못한 구조를 개인 프로젝트 api-forge(2026.07–)로 클린룸 재구현</strong>해, 인젝션 차단이 DB 방언과 무관하게 성립하는지 매 커밋 CI로 확인</p>
+      <span class="portfolio-stack">Java 8 · Spring MVC · eGovFrame · MyBatis · Tibero → 재구현 Java 21 · jOOQ</span>
+    </a>
+
     <a class="portfolio-card" href="{{ '/portfolio/pms/' | relative_url }}">
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">05</span>
@@ -107,6 +108,15 @@ permalink: /portfolio/
       <h3>사내 교육 플랫폼(LMS) <span class="portfolio-period">2020.12–2021.03</span></h3>
       <p class="portfolio-summary">화면 분기로 흩어진 권한 검증을 SSO 기반 RBAC와 공통 인터셉터로 모아 엔드포인트 레벨에서 차단 · 사내 보관 요건으로 BLOB 저장이 전제된 상태에서 파일 변경을 업무 데이터와 같은 트랜잭션에 묶어 구현</p>
       <span class="portfolio-stack">Java · Spring Boot · JPA · Oracle</span>
+    </a>
+
+    <a class="portfolio-card" href="{{ '/portfolio/port-fee/' | relative_url }}">
+      <div class="portfolio-card-top">
+        <span class="portfolio-card-number">08</span>
+      </div>
+      <h3>항만 시설 사용료 관리 시스템 <span class="portfolio-period">2019.05–2020.07</span></h3>
+      <p class="portfolio-summary">여수광양항만공사 GIS 기반 시스템에서 매년 개정되는 연도별·임시 세율을 코드가 아닌 데이터로 분리해 관리 · 월 1회 현장 방문으로 서버를 점검하며 담당자 요청을 직접 받아 반영</p>
+      <span class="portfolio-stack">Java · Spring MVC · MyBatis · Oracle</span>
     </a>
   </div>
 </section>
