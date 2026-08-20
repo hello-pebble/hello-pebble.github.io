@@ -133,4 +133,4 @@ Gateway를 단일 진입점으로 구성했을 때 공개·보호·내부 경로
 
 **DelayNoMore — AI 계획 실행 지원 서비스** · 2026.04 ~ 2026.06 · Java, Spring Boot, React, PostgreSQL, OpenRouter, Docker, GitHub Actions
 기획부터 데모 배포까지 단독 수행. 확정된 계획의 수정 차단 규칙을 **프론트 → 서버 가드(409) → 도구 노출 권한**으로 옮기며, 규칙을 어디에 두느냐가 곧 강제력임을 확인했다. 20~30초 AI 응답을 **SSE 스트리밍 + patch 교환**으로 전환하고 폴백을 실제로 끊어보며 검증했으며, 회귀를 단위·MockMvc·Testcontainers 3층으로 고정한 상태에서 리팩터링했다. 육안 판단을 대신할 평가 하네스를 만들어 도구 선택을 반복 측정했고, **"모델이 금지된 도구 대신 허용된 인접 도구로 우회"**하는 문제를 발견했다 — 1회 실행으로는 보이지 않고 구조로도 막을 수 없는 층이었다.
-[github.com/hello-pebble/DelayNoMore_Release](https://github.com/hello-pebble/DelayNoMore_Release) · [데모](http://delaynomoreapp.duckdns.org/)
+[github.com/hello-pebble/DelayNoMore_Release](https://github.com/hello-pebble/DelayNoMore_Release) · [데모](https://delaynomoreapp.duckdns.org/)

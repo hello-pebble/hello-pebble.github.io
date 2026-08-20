@@ -114,7 +114,7 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 | **검증** | 10개 스레드가 두 사용자를 동시에 상호 선택하는 테스트에서 매칭이 정확히 1건만 생성되는 것을 확인했습니다. |
 
 - **마무리 리팩토링** 락 해제를 try-finally로 보장하고 락 범위를 상태 변경 구간으로만 최소화했습니다.
-- **기록** 설계 문서와 일자별 기록은 [concurrency design](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/engineering/2026-05-21-matching-concurrency-design.md)에 있습니다.
+- **기록** 설계 문서는 [concurrency design](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/engineering/2026-05-21-matching-concurrency-design.md)에 있습니다.
 
 ## 검증 결과와 한계 {#verification}
 
@@ -140,4 +140,4 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 - [github.com/hello-pebble/oauth2-authorization](https://github.com/hello-pebble/oauth2-authorization) — 소스 코드
 - [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md) — 기능 하나를 만드는 실제 순서
-- [Decision Log](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/DECISION_LOG_WHY.md) · [Harness Engineering Note](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/engineering/2026-05-10-harness-engineering.md)
+- [Decision Log](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/DECISION_LOG_WHY.md) — 설계 결정마다 고르지 않은 대안과 그 이유

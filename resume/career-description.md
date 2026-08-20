@@ -191,7 +191,7 @@ API 엔드포인트 하나가 메타데이터 테이블의 행 하나다. 데이
 | **핵심 성과** | "확정 후 수정 불가" 규칙을 프론트 → 서버 가드 → **도구 권한**으로 이관해 구조적으로 불가능하게 만듦 · 육안 판단을 평가 하네스로 바꿔 **모델의 권한 우회 경로 발견** · 회귀를 3층으로 고정한 상태에서 리팩터링 |
 | **기술** | Java, Spring Boot, React, PostgreSQL, OpenRouter, Docker, GitHub Actions, Oracle Cloud |
 
-[github.com/hello-pebble/DelayNoMore_Release](https://github.com/hello-pebble/DelayNoMore_Release) · [데모](http://delaynomoreapp.duckdns.org/)
+[github.com/hello-pebble/DelayNoMore_Release](https://github.com/hello-pebble/DelayNoMore_Release) · [데모](https://delaynomoreapp.duckdns.org/)
 
 AI와 대화해 하루 단위 계획을 만들고, **확정 후에는 완료 체크와 이월만 허용**하는 서비스. 각 버전이 직전 버전이 드러낸 문제 하나를 해결하는 방식으로 진행했다.
 

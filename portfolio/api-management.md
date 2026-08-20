@@ -1,20 +1,23 @@
 ---
 layout: default
-title: "메타데이터 기반 조회 API 엔진 — api-forge"
+title: "개방DB API관리 — 메타데이터 기반 조회 API 엔진"
 permalink: /portfolio/api-management/
 ---
 
-<span class="project-context">개인 프로젝트 · 2026.07 — 진행 중 · Java 21 · Spring Boot 3.5 · jOOQ · Testcontainers · CI — 회사 프로토타입(사람과숲, 2024.09—2025.01)의 클린룸 재구현</span>
+<span class="project-context">회사 프로젝트 · 2024.09 — 2025.01 · Java 8 · Spring MVC · eGovFrame · MyBatis · Tibero</span>
 
-# 메타데이터 기반 조회 API 엔진 — api-forge
+# 개방DB API관리 — 메타데이터 기반 조회 API 엔진
 
-- **하는 일** 조회 API 하나를 메타데이터 테이블의 행 하나로 만듭니다.
-- **바꾼 것** 신규 조회마다 Controller·Service·DAO·SQL XML 5개 파일을 추가하던 것을, 메타데이터 등록 1건으로 바꿨습니다. 빌드와 재배포가 필요 없습니다.
-- **출발점** 회사 프로토타입(Java 8 · Spring MVC · eGovFrame · MyBatis · Tibero)을 개발 서버까지 적용한 상태에서 이직해, **운영 반영과 실트래픽 검증이 미완으로 남았습니다.**
-- **이 저장소** 회사 코드는 가져오지 않고 설계 의도만 옮겨 현대 스택으로 다시 구현한 개인 프로젝트입니다. 아래의 모든 코드·테스트·수치는 재구현물에서 나온 것입니다.
-- **현재** 공격 입력 시나리오를 매 커밋 CI에서 돌려 인젝션 차단을 확인하며, 이것이 회사에서 하지 못한 검증을 대신합니다.
+- **문제** 개방데이터 요구사항이 하나 늘 때마다 Controller·Service·DAO·SQL XML 등 파일 5~6개를 새로 쓰고 재배포해야 했습니다.
+- **설계** 조회 API 하나를 메타데이터 테이블의 행 하나로 만드는 엔진을 설계하고 프로토타입을 구현했습니다. 조회 추가에 빌드와 재배포가 필요 없어집니다.
+- **어디까지** **개발 서버 적용까지 마친 상태에서 이직해, 운영 반영과 실트래픽 검증은 남기지 못했습니다.**
+- **그래서** 검증하지 못한 그 구조가 실제로 성립하는지 확인하려고, 회사 코드는 가져오지 않고 설계 의도만 옮겨 개인 프로젝트 **api-forge**로 다시 구현했습니다. 아래 재구현 절의 모든 코드·테스트·수치는 그쪽에서 나온 것입니다.
 
-<nav class="project-page-nav" aria-label="api-forge 프로젝트 목차">
+<nav class="project-page-nav" aria-label="개방DB API관리 프로젝트 목차">
+  <a href="#reimplementation">
+    <span>재구현 — api-forge</span>
+    <small>개인 · 2026.07 — 진행 중</small>
+  </a>
   <a href="#engine">
     <span>01. 엔진이 하는 일</span>
     <small>메타데이터 행 하나 = API 하나</small>
@@ -33,7 +36,13 @@ permalink: /portfolio/api-management/
   </a>
 </nav>
 
-## 01. 엔진이 하는 일 — 메타데이터 행 하나가 API 하나 {#engine}
+## 재구현 — api-forge {#reimplementation}
+
+<span class="project-context">개인 프로젝트 · 2026.07 — 진행 중 · Java 21 · Spring Boot 3.5 · jOOQ · Testcontainers · CI</span>
+
+회사 프로토타입에서 가장 위험했던 지점(문자열 연결 SQL과 블랙리스트 필터)을 다시 설계하고, 공격 입력 시나리오를 매 커밋 CI에서 돌려 인젝션 차단을 확인합니다. **회사에서 하지 못한 검증을 이것으로 대신합니다.**
+
+### 01. 엔진이 하는 일 — 메타데이터 행 하나가 API 하나 {#engine}
 
 - **`DATASET`** 조회 대상 테이블과 URL 키를 정의합니다.
 - **`DATASET_COLUMN`** 노출 컬럼과 허용 필터·정렬을 정의하며, 여기 등록된 컬럼만 조회·필터·정렬에 쓸 수 있습니다.
@@ -62,7 +71,7 @@ LIMIT 20 OFFSET 0
 
 ![api-forge 아키텍처 — 메타데이터 등록 흐름과 조회 흐름, SQL Injection 차단 지점](/assets/images/portfolio/apiforge-architecture.svg){:.portfolio-diagram}
 
-## 02. 인젝션 차단 — 방어 지점이 엔진 한 곳 {#injection}
+### 02. 인젝션 차단 — 방어 지점이 엔진 한 곳 {#injection}
 
 - **SQL에 들어가는 식별자** 요청 파라미터명이 아니라 메타데이터에 저장된 컬럼명을 씁니다.
 - **요청 파라미터명의 역할** 조회 키로만 쓰이고 버려집니다.
@@ -89,7 +98,7 @@ Field<Object> field = DSL.field(DSL.name(col.getSourceColumn())); // SQL에는 �
 - **통합 테스트** 등록 → 발행 → 조회 파이프라인을 MockMvc로 검증합니다.
 - **방언 교차 검증** 인젝션 시나리오를 H2와 PostgreSQL(Testcontainers) 양쪽에 동일하게 두어, DB 방언 차이까지 같은 엔진으로 확인합니다.
 
-## 03. 레거시에서 바꾼 것 {#legacy}
+### 03. 레거시에서 바꾼 것 {#legacy}
 
 | 레거시 | api-forge | 바꾼 이유 |
 | :--- | :--- | :--- |
@@ -97,7 +106,7 @@ Field<Object> field = DSL.field(DSL.name(col.getSourceColumn())); // SQL에는 �
 | Map 기반 파라미터 · 평문 인증키 | DTO + Bean Validation · 해시 저장 + 상수 시간 검증 | 컴파일 시점 검증이 없고 자격증명이 노출됐습니다. |
 | Oracle 계열 ROWNUM 래퍼 페이징 | jOOQ `limit().offset()` 하나로 통일 | 페이징이 방언에 결합돼 DB를 바꾸면 래퍼도 함께 바꿔야 했습니다. |
 
-### 지원 DB를 늘리는 대신 검증되는 형태로 {#dialect}
+#### 지원 DB를 늘리는 대신 검증되는 형태로 {#dialect}
 
 {% include diagrams/apiforge-dialect-decision.svg %}
 
@@ -107,14 +116,14 @@ Field<Object> field = DSL.field(DSL.name(col.getSourceColumn())); // SQL에는 �
 - **검증 방식** H2·PostgreSQL 2종을 Spring Profile로 전환하고, Testcontainers로 실제 PostgreSQL 컨테이너를 띄워 **동일 동작과 인젝션 방어의 이식성**을 함께 확인합니다.
 - **실행** `./mvnw spring-boot:run` 한 줄로 실행되며, 시드된 가상 데이터셋으로 위 요청을 그대로 재현할 수 있습니다.
 
-## 한계 {#limitations}
+### 한계 {#limitations}
 
 - **검증 범위** 기능·보안 테스트 수준이며 부하 테스트는 포함하지 않았습니다. 회사 프로토타입도 운영 반영 전 이직해 실트래픽·동시성 검증 이력이 없습니다.
 - **성능 예측** 컬럼 조합이 늘수록 실행 계획을 예측하기 어렵습니다. 운영 확대 시 슬로우 쿼리 수집과 조합별 성능 검증이 필요합니다.
 - **메타데이터 오류** 등록 시 식별자 규칙 검증과 발행 전 소스 테이블 실존 확인으로 일부 보완했지만, 테스트 쿼리 실행 검증과 발행 후 스키마 변경 감지는 과제로 남았습니다.
 - **미구현** 데이터셋 버전과 일일 호출 제한은 로드맵으로 남겼고, Sheet 출력 속성은 화면 표현이 API 응답의 책임이 아니라고 판단해 제외했습니다.
 
-## Source {#source}
+### Source {#source}
 
 - [github.com/hello-pebble/api-forge](https://github.com/hello-pebble/api-forge) — Java 21 · Spring Boot 3.5 · jOOQ · Testcontainers
 - [README](https://github.com/hello-pebble/api-forge/blob/main/README.md) — 레거시 대비 재설계 포인트 · 실행 방법 · [아키텍처 다이어그램](https://github.com/hello-pebble/api-forge/blob/main/docs/architecture.svg)

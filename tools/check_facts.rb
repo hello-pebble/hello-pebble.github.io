@@ -15,15 +15,16 @@ RESUME = read("resume/resume.md")
 CAREER = read("resume/career-description.md")
 
 {
-  "사람과숲"   => "2022.11 ~ 2025.01",
-  "에이아이넷" => "2020.12 ~ 2021.03",
-  "엘에프아이티" => "2019.05 ~ 2020.07",
-}.each do |company, period|
-  # 경력기술서 표는 기간에 `~` 앞뒤 공백이 없는 형식도 쓴다
-  variants = [period, period.delete(" ")]
+  "사람과숲"   => %w[2022.11 2025.01],
+  "에이아이넷" => %w[2020.12 2021.03],
+  "엘에프아이티" => %w[2019.05 2020.07],
+}.each do |company, (from, to)|
+  # 이력서 항목은 `–`(en dash), 경력기술서 표는 `~` 를 쓴다.
+  # 구분자는 문서마다 달라도 되지만 기간 자체는 같아야 한다.
+  variants = ["#{from} – #{to}", "#{from} ~ #{to}", "#{from}~#{to}", "#{from} - #{to}"]
   [["resume.md", RESUME], ["career-description.md", CAREER]].each do |name, body|
     next if variants.any? { |v| body.include?(v) }
-    errors << "#{name}: #{company} 재직 기간 '#{period}' 이 없다 (다른 문서와 어긋남)"
+    errors << "#{name}: #{company} 재직 기간 '#{from} ~ #{to}' 이 없다 (다른 문서와 어긋남)"
   end
 end
 
