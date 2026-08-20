@@ -5,10 +5,10 @@
 
   <!-- 발견 -->
   <rect class="dg-band" x="16" y="14" width="808" height="126" rx="12"/>
-  <text class="dg-eyebrow" x="40" y="46">발견 · 레거시 구조를 다시 정리하면서</text>
-  <text class="dg-lead" x="40" y="82">5종 DB를 지원한다고 되어 있었다</text>
-  <text class="dg-muted" x="40" y="112">그런데 방언 SQL 맵 디렉터리는 <tspan class="dg-strong">Tibero 1종만</tspan> 존재했고, 실제 운영도 Tibero</text>
-  <text class="dg-muted" x="40" y="134">단독이었다. 전환 구조는 있었지만 한 번도 검증된 적이 없었다.</text>
+  <text class="dg-eyebrow" x="40" y="46">판단 · 방언 대응을 설계하면서</text>
+  <text class="dg-lead" x="40" y="82">지원 목록을 늘릴 것인가, 검증되는 수만 둘 것인가</text>
+  <text class="dg-muted" x="40" y="112">방언별 SQL 맵을 파일로 관리하는 구조에서는 <tspan class="dg-strong">지원 목록의 한 줄</tspan>이</text>
+  <text class="dg-muted" x="40" y="134">복제해야 할 SQL 자산 전체를 뜻하고, 그 경로는 검증되지 않은 채 남는다.</text>
 
   <text class="dg-axis" x="420" y="176" text-anchor="middle">선택 지점</text>
   <line class="dg-rule" x1="16" y1="190" x2="824" y2="190"/>
@@ -52,7 +52,7 @@
 
   <text class="dg-label dg-label--cost" x="456" y="572">치른 대가</text>
   <text class="dg-body dg-body--cost" x="456" y="602">명목상 지원 DB 수는</text>
-  <text class="dg-body dg-body--cost" x="456" y="628">5종에서 2종으로 줄었다.</text>
+  <text class="dg-body dg-body--cost" x="456" y="628">2종뿐이다.</text>
 
   <!-- 이 교체가 말하는 것 -->
   <rect class="dg-band dg-band--foot" x="16" y="660" width="808" height="152" rx="12"/>
