@@ -45,7 +45,7 @@ permalink: /portfolio/
       <div class="portfolio-card-top">
         <span class="portfolio-card-number">01</span>
       </div>
-      <h3>DelayNoMore <span class="portfolio-period">2026.04–2026.06</span></h3>
+      <h3>DelayNoMore <span class="portfolio-period">2026.04– 진행 중</span></h3>
       <p class="portfolio-summary">버전마다 문제 하나를 정해 v0.17.0까지 릴리스 · "확정 후 수정 불가" 규칙을 프론트 차단 → 서버 가드 → 도구 권한으로 옮겨 구조적으로 불가능하게 만듦 · 육안 판단을 평가 하네스로 바꿔 모델의 권한 우회 경로 발견</p>
       <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · SSE Streaming · Testcontainers</span>
     </a>
