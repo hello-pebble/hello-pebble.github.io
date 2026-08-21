@@ -2,22 +2,29 @@
 layout: default
 title: resume
 permalink: /
-resume_name: 운영 효율과 서비스 안정성을 높이는 백엔드 개발자 권다경입니다.
+resume_name: 권다경
 ---
 
 <div class="resume-print-page resume-print-page-first">
 <div class="resume-header">
   <div class="resume-identity">
     <span class="resume-title">{{ page.resume_name }}</span>
-    <span class="resume-tagline"><li>Java·Spring 백엔드 실무 3년 10개월</li><li>제조 공정·문서 처리 시스템을 개발하고, 배포와 장애 대응까지 담당</li></span>
+    <span class="resume-tagline">운영 효율과 서비스 안정성을 높이는 백엔드 개발자</span>
   </div>
   <div class="resume-contact-print">kwdk2323@gmail.com · github.com/hello-pebble · 경력기술서 hello-pebble.github.io/resume/career-description/</div>
 </div>
 
-  <p class="resume-summary">복잡한 문제를 작은 단위로 나누어 빠르게 구현하고, 운영 결과를 바탕으로 개선합니다. 장애 발생 시에는 현상 해결에 그치지 않고 원인과 발생 흐름을 분석하며, 로그 확인 방법과 조치 순서를 문서화해 재발 대응 시간을 줄여왔습니다.</p>
+<ul class="resume-skill-list resume-body-list">
+  <li>Java·Spring 백엔드 실무 3년 10개월</li>
+  <li>제조 공정·문서 처리 시스템을 개발하고, 배포와 장애 대응까지 담당</li>
+</ul>
+
+<p class="resume-summary">복잡한 문제를 작은 단위로 나누어 빠르게 구현하고, 운영 결과를 바탕으로 개선합니다. 장애 발생 시에는 현상 해결에 그치지 않고 원인과 발생 흐름을 분석하며, 로그 확인 방법과 조치 순서를 문서화해 재발 대응 시간을 줄여왔습니다.</p>
 <p class="resume-summary">요구사항과 사용자 흐름에 맞는 기술과 구조를 선택하고, 해결 과정과 시행착오를 동료와 공유해 반복 작업을 줄입니다. 빠른 실행력과 운영에 대한 책임감을 바탕으로, 관측 가능하고 운영하기 쉬운 시스템을 구축하는 데 기여하겠습니다.</p>
-<p class="resume-summary"><li>상세 근거와 설계 판단은 <a href="{{ '/resume/career-description/' | relative_url }}">경력기술서</a>와 각 <a href="{{ '/portfolio/' | relative_url }}">포트폴리오</a>에서 확인할 수 있습니다. </li>
-<li>개발 과정에서 Claude Code·Codex를 활용하고 있으며, 활용 방식을 정리해두었습니다 — <a href="{{ '/ai/' | relative_url }}">활용 방식 보기</a></li></p>
+<ul class="resume-skill-list resume-body-list">
+  <li>상세 근거와 설계 판단은 <a href="{{ '/resume/career-description/' | relative_url }}">경력기술서</a>와 각 <a href="{{ '/portfolio/' | relative_url }}">포트폴리오</a>에서 확인할 수 있습니다.</li>
+  <li>개발 과정에서 Claude Code·Codex를 활용하고 있으며, 활용 방식을 정리해두었습니다 — <a href="{{ '/ai/' | relative_url }}">활용 방식 보기</a></li>
+</ul>
 
 <section class="resume-compact-section">
 <h2 class="resume-section-heading">Core Skills</h2>
