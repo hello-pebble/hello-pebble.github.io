@@ -10,31 +10,6 @@ permalink: /portfolio/
 
 <span class="section-note">모든 개인 프로젝트는 소스 코드와 함께 의사결정 기록(Decision Log · 계획서/보고서 · CHANGELOG)을 공개합니다.</span>
 
-<section class="portfolio-section" aria-labelledby="technical-skills">
-  <div class="portfolio-section-heading">
-    <h2 id="technical-skills">Tech Stack</h2>
-  </div>
-  <div class="portfolio-skill-list">
-    <div class="portfolio-skill-row">
-      <strong>Backend</strong>
-      <span>Java, Kotlin, Python, Spring Boot, Security, JPA, MyBatis, JUnit 5, Testcontainers</span>
-    </div>
-    <div class="portfolio-skill-row">
-      <strong>Frontend</strong>
-      <span>JavaScript, React, Vite</span>
-    </div>    
-    <div class="portfolio-skill-row">
-      <strong>Data</strong>
-      <span>MariaDB, Oracle, PostgreSQL</span>
-    </div>
-    <div class="portfolio-skill-row">
-      <strong>Infra</strong>
-      <span>Docker, Oracle Cloud Infrastructure(OCI), GitHub Actions, GitLab CI, Tomcat</span>
-    </div>
-  </div>
-  <span class="section-note">개발 도구로 Claude Code·Codex를 사용합니다 — <a href="{{ '/ai/' | relative_url }}">활용 방식 보기</a></span>
-</section>
-
 <section class="portfolio-section" aria-labelledby="personal-projects">
   <div class="portfolio-section-heading">
     <h2 id="personal-projects">Personal Projects</h2>

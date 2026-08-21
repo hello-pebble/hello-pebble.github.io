@@ -53,9 +53,9 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 - **5. 버그 리포트** 버그가 나면 현상-원인-수정-회귀 테스트를 기록합니다.
 - **6. 시나리오 정리** 완료 후 검증 시나리오를 정리합니다.
 
-이 사이클은 [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md)로 문서화했습니다. 설계 결정마다 대안을 최소 둘 함께 적고, **왜 그것을 고르지 않았는지까지 같은 문서에 남깁니다.** 이 프로젝트의 첫 결정이었던 인증 상태 저장 방식은 [고려했지만 고르지 않은 것](#tradeoff)에 정리했습니다.
+이 사이클은 [dev-cycle.md](https://github.com/hello-pebble/auth-gateway-platform/blob/main/docs/how-i-work/dev-cycle.md)로 문서화했습니다. 설계 결정마다 대안을 최소 둘 함께 적고, **왜 그것을 고르지 않았는지까지 같은 문서에 남깁니다.** 이 프로젝트의 첫 결정이었던 인증 상태 저장 방식은 [고려했지만 고르지 않은 것](#tradeoff)에 정리했습니다.
 
-- **AI 협업** 설계 문서와 계획을 먼저 쓰고 구현을 위임한 뒤, 테스트와 실제 요청으로 검증하는 분업입니다. 상세는 [claude-code-workflow.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/claude-code-workflow.md)와 [AI를 어떻게 쓰는가](/ai/)에 정리했습니다.
+- **AI 협업** 설계 문서와 계획을 먼저 쓰고 구현을 위임한 뒤, 테스트와 실제 요청으로 검증하는 분업입니다. 상세는 [claude-code-workflow.md](https://github.com/hello-pebble/auth-gateway-platform/blob/main/docs/how-i-work/claude-code-workflow.md)와 [AI를 어떻게 쓰는가](/ai/)에 정리했습니다.
 
 ## 01. 매 요청마다 인증 서버에 묻지 않기로 했습니다 {#distributed-auth}
 
@@ -65,15 +65,16 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 문제는 이 선택이 공짜가 아니라는 것입니다. 서버가 토큰 상태를 들고 있지 않으니, 발급한 토큰을 중간에 무효화할 방법도 같이 사라집니다.
 
-- **Refresh Token** 재발급 시 기존 토큰을 교체하는 Rotation 흐름으로 이 공백을 일부 메웠습니다. 다만 현재 저장소가 `ConcurrentHashMap` 인메모리라 **재시작 시 초기화되고 다중 인스턴스 상태를 공유하지 못합니다.** 인터페이스는 유지해 외부 저장소 구현으로 교체할 수 있게 뒀습니다.
-- **기록** 전문은 [Decision Log](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/DECISION_LOG_WHY.md)에 있으며, "아직 검증하지 않은 것"(동시 처리량, 인스턴스 증가에 따른 변화, Auth·DB 장애 시 사용자 흐름)도 성과와 구분해 같은 문서에 적었습니다.
+- **Refresh Token Rotation** `/api/v1/refresh`는 Cookie의 Refresh Token을 서버 저장값과 대조합니다. 일치하면 기존 값을 지우고 새 토큰 쌍을 발급하고, **불일치하면 저장된 토큰까지 삭제하고 거부합니다.** 탈취된 옛 토큰이 다시 들어오면 정상 토큰도 함께 죽는 쪽을 택한 것입니다.
+- **남은 공백** 저장소가 `ConcurrentHashMap` 인메모리라 **재시작 시 초기화되고 다중 인스턴스 상태를 공유하지 못합니다.** 인터페이스는 유지해 외부 저장소 구현으로 교체할 수 있게 뒀고, 토큰 family 추적과 재사용 탐지 자동화 테스트는 아직 없습니다.
+- **기록** 전문은 [Decision Log](https://github.com/hello-pebble/auth-gateway-platform/blob/main/docs/DECISION_LOG_WHY.md)에 있으며, "아직 검증하지 않은 것"(동시 처리량, 인스턴스 증가에 따른 변화, Auth·DB 장애 시 사용자 흐름)도 성과와 구분해 같은 문서에 적었습니다.
 
 ## 02. Gateway만 믿으면, 뚫리는 순간 전부 뚫립니다 {#gateway-auth}
 
 검증을 분산했으니 다음 질문은 "그럼 Gateway는 뭘 하나"입니다. 흔한 답은 Gateway에서 인증을 전부 처리하고 내부는 신뢰하는 것이지만, 그러면 진입점 하나가 뚫리는 순간 뒤의 서비스가 전부 같이 뚫립니다. 그래서 Gateway는 **통과만**, 판단은 **각 서비스가 다시** 하도록 나눴습니다.
 
 - **공개 포트** Compose 환경에서 호스트에 연 포트는 Gateway의 8000 하나뿐입니다.
-- **Gateway 역할** Spring Cloud Gateway(WebFlux) 기반 논블로킹 필터 체인으로 라우팅과 Cookie→Bearer 변환만 담당합니다.
+- **Gateway 역할** Spring Cloud Gateway(WebFlux) 기반 논블로킹 필터 체인으로 라우팅과 Cookie→Bearer 변환만 담당합니다. 변환 필터는 `Authorization` 헤더가 이미 있으면 그대로 통과시키고, 없을 때만 `accessToken` Cookie 값으로 Bearer 헤더를 채웁니다. Cookie도 없으면 요청을 건드리지 않습니다.
 - **서비스 역할** JWT 서명과 역할 정책은 각 Resource Server가 자신의 규칙으로 다시 판단합니다.
 
 이 역할 분담이 말로만 성립하는 게 아니라는 것을, 네 가지 시나리오의 **실제 요청**으로 확인했습니다.
@@ -140,6 +141,9 @@ A를 고른 대가는 B가 주려던 것을 잃는 것입니다. 발급된 토�
 | 경계별 시나리오 4건 | 실제 요청으로 전부 확인했습니다. (02 표 참조) |
 | 모듈별 빌드 | 애플리케이션 모듈 빌드와 전체 테스트가 통과했습니다. |
 | 통합 실행 | 애플리케이션과 PostgreSQL을 Compose로 기동하고 health를 확인했습니다. |
+| JWT `aud` 클레임 | 발급 단위 테스트로 확인했습니다. **발급 쪽 테스트이지 Resource Server의 audience 검증 테스트는 아닙니다.** |
+| Cookie→Bearer 변환 · RTR | 코드로만 확인했고, 자동화 테스트는 아직 없습니다. |
+| JWKS 통합 검증 | 유효·위조·만료 JWT를 실제로 통과시켜 본 통합 테스트는 없습니다. 설정 확인까지입니다. |
 
 직접 구현해 본 결론은 역설적입니다. JWT 발급과 검증 자체는 구현할 수 있었지만, 키 관리·Refresh Token 보안·표준 준수까지 고려하면 인증 서버의 책임이 빠르게 복잡해졌습니다. **실제 서비스에서 검증된 인증 솔루션을 써야 하는 이유**와 도입 시 확인해야 할 지점(키 순환, 토큰 폐기, 경계별 재검증)을 몸으로 이해한 것이 이 실험의 가장 큰 수확입니다.
 
@@ -149,11 +153,15 @@ A를 고른 대가는 B가 주려던 것을 잃는 것입니다. 발급된 토�
 - Auth 재시작 시 RSA 키가 새로 생성되어 기존 JWT가 무효화되며, 키 교체·폐기 시나리오는 검증하지 못했습니다.
 - Refresh Token 탈취·재사용 대응은 검증하지 못했습니다.
 - Admin → Matching 호출은 사용자 JWT를 전달하므로 서비스 자체의 신원은 증명하지 않습니다. client credentials·토큰 교환·mTLS를 다음 과제로 두었습니다.
+- issuer·audience 검증과 JWKS 캐시 TTL·키 회전 정책은 **완료 기능으로 주장하지 않습니다.** 현재 확인된 범위는 서명 검증과 역할 매핑까지입니다.
+- 트래픽 제어용 Waiting Room은 auth-module에 등록 요청을 즉시 허용하는 프로토타입만 있습니다. Redis 기반 순번·배치 진입과 Rate Limit은 구현이 아니라 확장 방향입니다.
 
 <span class="section-note">실제 팀 프로젝트에 적용해 지표를 측정한 결과가 아니라, 단일 진입점 뒤에서 인증/인가 시나리오가 성립하는지를 실제 요청으로 확인한 아키텍처 실험입니다.</span>
 
 ## Source
 
-- [github.com/hello-pebble/oauth2-authorization](https://github.com/hello-pebble/oauth2-authorization) — 소스 코드
-- [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md) — 기능 하나를 만드는 실제 순서
-- [Decision Log](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/DECISION_LOG_WHY.md) — 설계 결정마다 고르지 않은 대안과 그 이유
+- [github.com/hello-pebble/auth-gateway-platform](https://github.com/hello-pebble/auth-gateway-platform) — 소스 코드
+- [dev-cycle.md](https://github.com/hello-pebble/auth-gateway-platform/blob/main/docs/how-i-work/dev-cycle.md) — 기능 하나를 만드는 실제 순서
+- [Decision Log](https://github.com/hello-pebble/auth-gateway-platform/blob/main/docs/DECISION_LOG_WHY.md) — 설계 결정마다 고르지 않은 대안과 그 이유
+- [token_strategy_guide.md](https://github.com/hello-pebble/auth-gateway-platform/blob/main/docs/auth/token_strategy_guide.md) — Access·Refresh Token 수명과 전달 방식
+- [TRAFFIC_CONTROL_STRATEGY.md](https://github.com/hello-pebble/auth-gateway-platform/blob/main/docs/TRAFFIC_CONTROL_STRATEGY.md) — Waiting Room·Rate Limit 확장 방향
