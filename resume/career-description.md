@@ -257,7 +257,7 @@ AI 코치를 도구 호출 에이전트로 전환하자 **프롬프트나 모델
 [github.com/hello-pebble/AdminCore](https://github.com/hello-pebble/AdminCore)
 
 **Gateway 기반 인증·인가 검증** · 2026.01 ~ 2026.03 · Kotlin, Spring Boot, Spring Security, OAuth2/JWT, Spring Cloud Gateway, Docker Compose
-Auth가 JWT를 중앙 발급하고 Gateway·Resource Server가 JWKS로 각자 검증하는 구조를 다중 모듈로 구성한 아키텍처 실험. 공개 경로 접근·무토큰 401·양측 권한 검증·내부 경로 404 **4개 시나리오를 실제 요청으로 검증**했고, Ordered Locking(항상 작은 ID부터 잠금)으로 데드락을 구조적으로 배제해 **10스레드 동시 상호 선택에서 매칭 정확히 1건** 생성을 확인했다. 설계마다 대안 A/B/C를 비교한 근거와 버그 리포트를 코드와 함께 버전 관리.
+Auth가 JWT를 중앙 발급하고 Gateway·Resource Server가 JWKS로 각자 검증하는 구조를 다중 모듈로 구성한 아키텍처 실험. 공개 경로 접근·무토큰 401·양측 권한 검증·내부 경로 404 **4개 시나리오를 실제 요청으로 검증**했다. 설계마다 대안 A/B/C를 비교한 근거와 버그 리포트를 코드와 함께 버전 관리.
 [github.com/hello-pebble/oauth2-authorization](https://github.com/hello-pebble/oauth2-authorization)
 
 ---
