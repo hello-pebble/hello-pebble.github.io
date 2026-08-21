@@ -57,9 +57,7 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 - **5. 버그 리포트** 버그가 나면 현상-원인-수정-회귀 테스트를 기록합니다.
 - **6. 시나리오 정리** 완료 후 검증 시나리오를 정리합니다.
 
-이 사이클은 [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md)로 문서화했습니다. 설계 결정마다 대안을 최소 둘 함께 적고, **왜 그것을 고르지 않았는지까지 같은 문서에 남깁니다.** 이 프로젝트의 첫 결정이었던 인증 상태 저장 방식이 그 예입니다.
-
-{% include diagrams/oauth-token-decision.svg %}
+이 사이클은 [dev-cycle.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/dev-cycle.md)로 문서화했습니다. 설계 결정마다 대안을 최소 둘 함께 적고, **왜 그것을 고르지 않았는지까지 같은 문서에 남깁니다.** 이 프로젝트의 첫 결정이었던 인증 상태 저장 방식은 [고려했지만 고르지 않은 것](#tradeoff)에 정리했습니다.
 
 - **AI 협업** 설계 문서와 계획을 먼저 쓰고 구현을 위임한 뒤, 테스트와 실제 요청으로 검증하는 분업입니다. 상세는 [claude-code-workflow.md](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/claude-code-workflow.md)와 [AI를 어떻게 쓰는가](/ai/)에 정리했습니다.
 
@@ -93,6 +91,21 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 ![Gateway 인증/인가 분기 — 공개·보호·관리자·내부 경로가 서로 다른 응답을 보장](/assets/images/portfolio/oauth-architecture.svg){:.portfolio-diagram}
 
+<ol class="diagram-callouts">
+<li markdown="1">
+**Gateway — 판단하지 않고 통과시킵니다.**
+Spring Cloud Gateway(WebFlux)의 논블로킹 필터 체인에서 경로 라우팅과 Cookie→Bearer 변환만 수행합니다. 토큰이 유효한지, 권한이 되는지는 여기서 결정하지 않습니다. Gateway가 인가까지 책임지면 규칙이 한곳에 모여 편하지만, 그 한곳이 뚫릴 때 전부 뚫립니다.
+</li>
+<li markdown="1">
+**보호 경로 — 검증 주체는 각 서비스입니다.**
+Resource Server가 JWKS로 받아 둔 공개키로 서명과 만료를 직접 판단합니다. Auth에 다시 묻지 않으므로 인증 서버가 트래픽 경로에서 빠지고, 대신 각 서비스가 자기 규칙으로 인가를 한 번 더 결정합니다. Admin → Matching 호출에서 양쪽이 각각 `ROLE_ADMIN`을 확인하는 것이 이 구조 때문입니다.
+</li>
+<li markdown="1">
+**내부 경로 — 막은 게 아니라 문을 안 냈습니다.**
+`/internal/**`은 Gateway에 라우트 자체가 없습니다. 필터로 차단하면 설정 한 줄이 빠질 때 열리지만, 라우트가 없으면 외부에서 도달할 경로가 존재하지 않아 404가 납니다. 방어를 규칙이 아니라 구성으로 옮긴 지점입니다.
+</li>
+</ol>
+
 모듈을 나눈 기준은 업무 기능이 아니라 이 시나리오를 재현할 수 있는가입니다. "공개 라우트를 가진 서비스 · 보호 API를 가진 서비스 · 내부 API만 가진 서비스"가 각각 하나씩 필요했고, 그만큼만 만들었습니다.
 
 ## 03. 검증을 분산하자 정상 토큰이 401을 받았습니다 {#bug}
@@ -124,7 +137,16 @@ tags: [Kotlin, SpringBoot, SpringSecurity, OAuth2, JWT, MSA, DockerCompose]
 
 ## 고려했지만 고르지 않은 것 {#tradeoff}
 
-- **서버 측 세션 저장소** 토큰 상태를 중앙에서 관리하면 즉시 폐기가 가능하지만, 검증 권한을 각 서비스로 내려보낸다는 01의 전제와 충돌합니다. 이 검증의 목적은 "인증 서버에 매번 묻지 않는 구조가 성립하는가"였으므로 선택하지 않았습니다.
+인증 상태를 어디에 둘 것인가가 이 프로젝트의 첫 결정이었습니다. 셋을 비교했습니다.
+
+| 대안 | 얻는 것 | 버린 이유 |
+| :--- | :--- | :--- |
+| **A · Stateless JWT** *(선택)* | 일반 API 요청이 중앙 세션 조회에 의존하지 않고, 발급 책임과 인가 책임이 갈립니다. | — |
+| B · Redis 세션 | 토큰을 즉시 무효화할 수 있습니다. | Redis가 단일 장애점이 됩니다. |
+| C · Opaque Token | 서버가 토큰 상태를 쥐고 있습니다. | 매 요청 introspection 호출로 레이턴시가 늘어납니다. |
+
+A를 고른 대가는 B가 주려던 것을 잃는 것입니다. 발급된 토큰을 만료 전에 회수하기 어렵고, 권한을 바꿔도 이미 나간 토큰에는 즉시 반영되지 않으며, 키 보관과 순환이 새 과제로 남습니다. 같은 축에서 반대로 고른 적도 있습니다. [AdminCore](/portfolio/admincore/)에서는 관리자의 정지가 즉시 들어야 한다는 요구가 우선이라 요청마다 계정 상태를 다시 봤습니다. **같은 트레이드오프라도 무엇을 지킬지가 다르면 답이 갈립니다.**
+
 - **문서와 코드를 일치시킨 방식** 고르지 않은 것은 코드에서도 걷어냈습니다. 초기 검토 흔적으로 남아 있던 미사용 Redis 연동 의존성을 제거해(-60줄) 비교표의 결론과 실제 의존 그래프를 맞췄습니다. 비교표만 남고 코드에 흔적이 남아 있으면, 그 문서는 다음 사람에게 거짓말이 됩니다.
 
 ## 확인한 것과, 확인하지 못한 것 {#verification}
