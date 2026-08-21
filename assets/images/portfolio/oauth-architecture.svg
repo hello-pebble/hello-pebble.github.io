@@ -79,5 +79,21 @@
   <line x1="835" y1="360" x2="851" y2="360" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
   <line x1="835" y1="468" x2="851" y2="468" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 
+
+  <!-- 카카오테크 스타일 번호 콜아웃 — 본문 [1][2][3] 주석과 대응 -->
+  <g class="callouts" fill="none">
+    <rect x="247" y="217" width="196" height="171" rx="20" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 4"/>
+    <rect x="537" y="200" width="306" height="104" rx="18" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 4"/>
+    <rect x="537" y="416" width="306" height="104" rx="18" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 4"/>
+  </g>
+  <g font-size="12" font-weight="700" text-anchor="middle">
+    <circle cx="247" cy="217" r="11" fill="#dc2626"/>
+    <text x="247" y="221" fill="#fff">1</text>
+    <circle cx="537" cy="200" r="11" fill="#dc2626"/>
+    <text x="537" y="204" fill="#fff">2</text>
+    <circle cx="537" cy="416" r="11" fill="#dc2626"/>
+    <text x="537" y="420" fill="#fff">3</text>
+  </g>
+
   <text x="520" y="540" text-anchor="middle" font-size="12" fill="#64748b">네 갈래 응답이 모두 화면이 아닌 서버 구성(라우트·JWT 검증·권한 규칙)으로 보장됩니다.</text>
 </svg>

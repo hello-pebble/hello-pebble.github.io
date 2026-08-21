@@ -528,6 +528,32 @@ h1, h2, h3, h4, h5, h6 {
 .main-content img.portfolio-detail-shot { width: auto; max-width: min(100%, 480px); }
 .main-content img.portfolio-hero-shot { width: 100%; max-width: 100%; }
 
+/* 다이어그램 아래 번호 주석 — 그림의 [1][2][3] 표식과 1:1로 대응한다 */
+.main-content .diagram-callouts {
+  list-style: none;
+  margin: 4px 0 24px;
+  padding: 0;
+  counter-reset: callout;
+}
+.main-content .diagram-callouts > li {
+  counter-increment: callout;
+  margin-bottom: 14px;
+  padding-left: 34px;
+  position: relative;
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+.main-content .diagram-callouts > li::before {
+  content: "[" counter(callout) "]";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+  color: #dc2626;
+  font-size: 0.88rem;
+}
+.main-content .diagram-callouts b { display: block; }
+
 /* 서비스 화면 위 3칸 안내 줄 (이미지를 가리지 않음) */
 .main-content .shot-labels {
   display: grid;
