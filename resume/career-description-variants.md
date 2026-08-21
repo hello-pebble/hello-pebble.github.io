@@ -78,14 +78,14 @@ phase마다 **계획 문서**로 배경·설계·엣지케이스·테스트 계�
 
 | | |
 | :--- | :--- |
-| **역할** | 인증 구조 설계 · JWT/Refresh Token 발급 · JWKS 기반 검증 · Gateway 라우팅 · 동시성 락 설계 · Compose 통합 구성 (단독) |
+| **역할** | 인증 구조 설계 · JWT/Refresh Token 발급 · JWKS 기반 검증 · Gateway 라우팅 · 동시성 락 설계 · Compose 통합 구성 |
 | **기간** | 2026.01 ~ 2026.03 · 기술 검증 프로젝트 |
-| **핵심 성과** | 접근 제어 **4개 시나리오 실요청 검증** · Ordered Lock으로 데드락을 구조적으로 배제해 **10스레드 동시 상호 선택에서 매칭 정확히 1건** · **6개 모듈** Compose 통합 기동 · 선택하지 않은 대안까지 TDR·Decision Log로 기록 |
+| **핵심 성과** | 접근 제어 **4개 시나리오 실요청 검증** · Ordered Lock으로 데드락을 구조적으로 배제해 **10스레드 동시 상호 선택에서 매칭 정확히 1건** · 다중 모듈 **Compose 통합 기동** · 선택하지 않은 대안까지 TDR·Decision Log로 기록 |
 | **기술** | Kotlin, Spring Boot, Spring Security, OAuth2/JWT, Spring Cloud Gateway(WebFlux), PostgreSQL, Docker Compose |
 
 [github.com/hello-pebble/oauth2-authorization](https://github.com/hello-pebble/oauth2-authorization)
 
-인증 서버가 JWT를 중앙 발급하고 Gateway·Resource Server가 각자 검증하는 구조를 6개 모듈(Auth·Gateway·Matching·Task·Preview·Admin)로 직접 구성한 실험이다. 각 모듈의 업무 기능이 아니라 "공개 라우트를 가진 서비스 · 보호 API를 가진 서비스 · 내부 API만 가진 서비스"라는 역할 구분이 핵심이다.
+인증 서버가 JWT를 중앙 발급하고 Gateway·Resource Server가 각자 검증하는 구조를 다중 모듈(Auth·Gateway·Matching·Task·Preview·Admin)로 구성한 실험이다. 각 모듈의 업무 기능이 아니라 "공개 라우트를 가진 서비스 · 보호 API를 가진 서비스 · 내부 API만 가진 서비스"라는 역할 구분이 핵심이다.
 
 ## 핵심 문제
 
@@ -115,8 +115,8 @@ Gateway를 단일 진입점으로 구성했을 때 공개·보호·내부 경로
 | 검증 항목 | 확인 결과 |
 | :--- | :--- |
 | 시나리오 1~4 | 실제 요청으로 전부 확인 |
-| 모듈별 빌드 | 6개 애플리케이션 모듈 빌드와 전체 테스트 통과 |
-| 통합 실행 | 6개 애플리케이션 + PostgreSQL을 Compose로 기동하고 health 확인 |
+| 모듈별 빌드 | 애플리케이션 모듈 빌드와 전체 테스트 통과 |
+| 통합 실행 | 전체 애플리케이션 + PostgreSQL을 Compose로 기동하고 health 확인 |
 | 동시 매칭 경쟁 | Ordered Lock 적용 후 10스레드 동시 상호 선택에서 매칭 정확히 1건 생성 |
 
 기능 하나를 만드는 순서를 **문제 정의 → 접근법 A/B/C 비교 → 설계 문서 → TDD → 버그 리포트 → 시나리오 정리**로 고정했고, 이 사이클이 남긴 TDR·Decision Log·버그 리포트가 코드와 같은 저장소에서 버전 관리된다.

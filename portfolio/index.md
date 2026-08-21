@@ -54,7 +54,7 @@ permalink: /portfolio/
         <span class="portfolio-card-number">02</span>
       </div>
       <h3>Gateway 단일 진입점 인증/인가 검증 <span class="portfolio-period">2026.01–2026.03</span></h3>
-      <p class="portfolio-summary">설계마다 대안 비교(A/B/C)와 결정 기록을 남기며 6개 모듈 인증 구조를 구성 · 무토큰 401과 내부 경로 404를 실제 요청으로 확인</p>
+      <p class="portfolio-summary">설계마다 대안 비교(A/B/C)와 결정 기록을 남기며 다중 모듈 인증 구조를 구성 · 무토큰 401과 내부 경로 404를 실제 요청으로 확인</p>
       <span class="portfolio-stack">Kotlin · Spring Boot · Spring Security · WebFlux Gateway · JWT · Docker Compose</span>
     </a>
     <a class="portfolio-card" href="{{ '/portfolio/admincore/' | relative_url }}">
