@@ -80,7 +80,7 @@ phase마다 **계획 문서**로 배경·설계·엣지케이스·테스트 계�
 | :--- | :--- |
 | **역할** | 인증 구조 설계 · JWT/Refresh Token 발급 · JWKS 기반 검증 · Gateway 라우팅 · 동시성 락 설계 · Compose 통합 구성 |
 | **기간** | 2026.01 ~ 2026.03 · 기술 검증 프로젝트 |
-| **핵심 성과** | 접근 제어 **4개 시나리오 실요청 검증** · Ordered Lock으로 데드락을 구조적으로 배제해 **10스레드 동시 상호 선택에서 매칭 정확히 1건** · 다중 모듈 **Compose 통합 기동** · 선택하지 않은 대안까지 TDR·Decision Log로 기록 |
+| **핵심 성과** | 접근 제어 **4개 시나리오 실요청 검증** · 다중 모듈 **Compose 통합 기동** · 선택하지 않은 대안까지 TDR·Decision Log로 기록 |
 | **기술** | Kotlin, Spring Boot, Spring Security, OAuth2/JWT, Spring Cloud Gateway(WebFlux), PostgreSQL, Docker Compose |
 
 [github.com/hello-pebble/oauth2-authorization](https://github.com/hello-pebble/oauth2-authorization)
@@ -96,8 +96,6 @@ Gateway를 단일 진입점으로 구성했을 때 공개·보호·내부 경로
 **1. 인증 상태는 Stateless JWT로.** Redis 세션은 즉시 무효화가 가능하지만 **Redis가 단일 장애점**이 되고, Opaque Token은 매 요청 introspection으로 레이턴시가 늘어난다. Auth가 RSA 개인키로 서명하고 공개키를 JWKS로 제공해, 각 서비스가 공개키로 서명·만료를 직접 검증하도록 했다. **감수한 것도 같은 문서에 적었다** — 발급된 토큰의 중앙 회수 어려움, 권한 변경의 즉시 미반영, 키 보관·순환이 새로운 핵심 과제가 된다는 점. 선택하지 않은 것은 코드에서도 걷어냈다(미사용 Redis 의존성 −60줄).
 
 **2. Gateway는 통과, 서비스는 재검증.** 호스트에 공개한 포트는 Gateway의 8000 하나이고, Gateway는 라우팅과 Cookie→Bearer 변환만 담당한다. JWT 서명과 역할 정책은 각 Resource Server가 자신의 규칙으로 다시 판단한다 — **Gateway만 검사하고 내부를 신뢰하는 구조는 진입점이 뚫리는 순간 전부 뚫리기 때문이다.**
-
-**3. 락은 항상 작은 ID부터.** 두 사용자가 서로를 동시에 선택하면 매칭이 누락되거나 중복 생성될 수 있고, 쌍마다 락을 잡으면 반대 순서로 획득하다 데드락이 된다. 구현 전에 **Ordered Locking** 원칙을 설계 문서로 먼저 세웠다 — 락 순서가 전역적으로 일정하면 순환 대기가 성립하지 않아 데드락이 구조적으로 불가능해진다.
 
 ## 대표 구현 — 경계별 책임을 실제 요청으로 검증
 
@@ -117,7 +115,6 @@ Gateway를 단일 진입점으로 구성했을 때 공개·보호·내부 경로
 | 시나리오 1~4 | 실제 요청으로 전부 확인 |
 | 모듈별 빌드 | 애플리케이션 모듈 빌드와 전체 테스트 통과 |
 | 통합 실행 | 전체 애플리케이션 + PostgreSQL을 Compose로 기동하고 health 확인 |
-| 동시 매칭 경쟁 | Ordered Lock 적용 후 10스레드 동시 상호 선택에서 매칭 정확히 1건 생성 |
 
 기능 하나를 만드는 순서를 **문제 정의 → 접근법 A/B/C 비교 → 설계 문서 → TDD → 버그 리포트 → 시나리오 정리**로 고정했고, 이 사이클이 남긴 TDR·Decision Log·버그 리포트가 코드와 같은 저장소에서 버전 관리된다.
 
