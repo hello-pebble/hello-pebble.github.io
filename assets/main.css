@@ -629,12 +629,18 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.7;
 }
 
+.resume-summary + .resume-summary {
+  margin-top: 12px;
+}
+
 .resume-compact-section {
-  margin-top: 22px;
+  margin-top: 40px;
 }
 
 .resume-compact-section .resume-section-heading {
-  margin: 0 0 8px;
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .resume-compact-section > p {
@@ -652,16 +658,16 @@ h1, h2, h3, h4, h5, h6 {
 .resume-skill-list li,
 .resume-entry li,
 .resume-project-list li {
-  margin: 4px 0;
-  line-height: 1.6;
+  margin: 7px 0;
+  line-height: 1.7;
 }
 
 .resume-entry {
-  margin-top: 14px;
+  margin-top: 26px;
 }
 
 .resume-entry .entry-header {
-  margin-bottom: 3px;
+  margin-bottom: 8px;
 }
 
 .resume-entry p {
@@ -669,7 +675,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.6;
 }
 
-.resume-links,
+.resume-detail-link {
+  margin-left: 2px;
+  text-decoration: none;
+}
+
 .resume-more-links {
   display: flex;
   flex-wrap: wrap;
@@ -680,12 +690,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .resume-project-list article {
   padding: 18px 0;
-  border-top: 1px solid var(--border-color);
 }
 
 .resume-project-list article:first-child {
   padding-top: 4px;
-  border-top: 0;
 }
 
 .resume-project-heading {
@@ -1112,8 +1120,19 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 10px;
   }
 
+  /* 인쇄본은 지면을 아껴야 하므로 화면에서 넓힌 간격을 되돌린다 */
+  .resume-compact-section .resume-section-heading {
+    margin: 0 0 6px;
+    padding-bottom: 4px;
+    border-bottom-width: 1px;
+  }
+
   .resume-entry {
     margin-top: 7px;
+  }
+
+  .resume-entry .entry-header {
+    margin-bottom: 3px;
   }
 
   .resume-print-page {
