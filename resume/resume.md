@@ -63,7 +63,7 @@ resume_name: 권다경
 </section>
 </div>
 
-<div class="resume-print-page resume-print-page-second print-page-start">
+<div class="resume-print-page">
 <section class="resume-compact-section resume-project-section">
 <h2 class="resume-section-heading">Selected Projects</h2>
 <div class="resume-project-list">
@@ -108,4 +108,8 @@ resume_name: 권다경
 <h2 class="resume-section-heading">Education & Certifications</h2>
 <p>국가평생교육진흥원 · 정보통신공학 &nbsp;·&nbsp; 동양미래대학교 · 정보통신공학 &nbsp;·&nbsp; 네트워크관리사 2급 &nbsp;·&nbsp; 리눅스마스터 2급</p>
 </section>
+</div>
+
+<div class="career-print" markdown="1">
+{% include career-description.md %}
 </div>
