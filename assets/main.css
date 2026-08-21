@@ -619,12 +619,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.55;
 }
 
-.resume-lead {
-  margin: 16px 0 6px;
-  font-size: 1.05em;
-  line-height: 1.65;
-}
-
 .resume-summary {
   margin: 0;
   line-height: 1.7;
@@ -654,6 +648,10 @@ h1, h2, h3, h4, h5, h6 {
 .resume-project-list ul {
   margin: 0;
   padding-left: 1.2em;
+}
+
+.resume-body-list {
+  margin: 16px 0;
 }
 
 .resume-skill-list li,
@@ -1086,12 +1084,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 9pt;
   }
 
-  .resume-lead {
-    margin: 8px 0 3px;
-    font-size: 10pt;
-    line-height: 1.45;
-  }
-
   .resume-summary {
     line-height: 1.45;
   }
@@ -1129,6 +1121,10 @@ h1, h2, h3, h4, h5, h6 {
   .resume-project-list ul {
     margin: 4px 0 0;
     padding-left: 16px;
+  }
+
+  .resume-body-list {
+    margin: 6px 0;
   }
 
   .resume-skill-list li,
