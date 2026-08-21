@@ -1122,6 +1122,29 @@ h1, h2, h3, h4, h5, h6 {
     page-break-before: always;
   }
 
+  /* 이력서와 함께 인쇄할 때는 인적사항·기술표·학력이 앞장과 중복이라 뺀다 */
+  .career-print .career-web-only {
+    display: none !important;
+  }
+
+  /* 경력기술서 본문은 이력서보다 한 단계 작게 — 지면을 줄이려는 의도적 선택 */
+  .career-print {
+    font-size: 9.5pt;
+  }
+
+  .career-print table {
+    font-size: 9pt;
+  }
+
+  .career-print h1 {
+    font-size: 15pt;
+    margin: 12px 0 6px;
+  }
+
+  .career-print h2 {
+    font-size: 12.5pt;
+  }
+
   .resume-skill-list,
   .resume-entry ul,
   .resume-project-list ul {
