@@ -74,7 +74,7 @@ phase마다 **계획 문서**로 배경·설계·엣지케이스·테스트 계�
 
 ---
 
-# B. 주요 프로젝트 3. Gateway 기반 인증·인가 검증 (개인)
+# B. 주요 프로젝트 3. Auth Gateway Platform — Gateway 기반 인증·인가 검증 (개인)
 
 | | |
 | :--- | :--- |
@@ -83,7 +83,7 @@ phase마다 **계획 문서**로 배경·설계·엣지케이스·테스트 계�
 | **핵심 성과** | 접근 제어 **4개 시나리오 실요청 검증** · 다중 모듈 **Compose 통합 기동** · 선택하지 않은 대안까지 TDR·Decision Log로 기록 |
 | **기술** | Kotlin, Spring Boot, Spring Security, OAuth2/JWT, Spring Cloud Gateway(WebFlux), PostgreSQL, Docker Compose |
 
-[github.com/hello-pebble/oauth2-authorization](https://github.com/hello-pebble/oauth2-authorization)
+[github.com/hello-pebble/auth-gateway-platform](https://github.com/hello-pebble/auth-gateway-platform)
 
 인증 서버가 JWT를 중앙 발급하고 Gateway·Resource Server가 각자 검증하는 구조를 다중 모듈(Auth·Gateway·Matching·Task·Preview·Admin)로 구성한 실험이다. 각 모듈의 업무 기능이 아니라 "공개 라우트를 가진 서비스 · 보호 API를 가진 서비스 · 내부 API만 가진 서비스"라는 역할 구분이 핵심이다.
 

@@ -32,7 +32,7 @@ permalink: /ai/
 
 - 이 이력서·포트폴리오 사이트의 구조 개편, 스타일링, 다이어그램 제작을 **Claude Code와 협업**으로 진행했습니다. 원하는 결과물의 의도를 정의하고, 결과를 리뷰하고, 방향을 교정하는 역할에 집중했습니다.
 - 반복적인 리팩토링, 형식 변환, 테스트 코드 초안처럼 **패턴이 명확한 작업을 위임**하여, 설계와 검증에 쓸 시간을 확보합니다.
-- 커밋 단위로 결과를 확인하며 작업 이력을 남겨, AI와의 협업 과정 자체를 추적 가능하게 관리합니다. 협업 방식은 각 저장소에 그대로 공개돼 있습니다 — [DelayNoMore의 릴리스 규칙(CLAUDE.md)](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/CLAUDE.md), [oauth2 프로젝트의 워크플로우 기록](https://github.com/hello-pebble/oauth2-authorization/blob/main/docs/how-i-work/claude-code-workflow.md), [AdminCore의 단계별 계획서·보고서](https://github.com/hello-pebble/AdminCore/tree/main/docs).
+- 커밋 단위로 결과를 확인하며 작업 이력을 남겨, AI와의 협업 과정 자체를 추적 가능하게 관리합니다. 협업 방식은 각 저장소에 그대로 공개돼 있습니다 — [DelayNoMore의 릴리스 규칙(CLAUDE.md)](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/CLAUDE.md), [Auth Gateway Platform의 워크플로우 기록](https://github.com/hello-pebble/auth-gateway-platform/blob/main/docs/how-i-work/claude-code-workflow.md), [AdminCore의 단계별 계획서·보고서](https://github.com/hello-pebble/AdminCore/tree/main/docs).
 
 ### 검증과 책임 — 개발자
 
