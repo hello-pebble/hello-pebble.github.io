@@ -41,23 +41,23 @@ resume_name: 권다경
 <div class="resume-entry">
   <div class="entry-header"><h3>㈜미디어그룹사람과숲</h3><span class="entry-date">2022.11 – 2025.01</span></div>
   <ul>
-    <li>최대 100명이 쓰는 공정 관리 솔루션(PMS)의 3D·2D 라벨링 API와 관리 기능을 개발하고, Docker 배포·GitLab CI 이미지 빌드와 로그 기반 장애 대응을 담당했습니다. <a class="resume-detail-link" href="/portfolio/pms/" aria-label="공정 관리 솔루션(PMS) 상세 보기">&rarr;</a></li>
-    <li>개방DB API관리 시스템의 메타데이터 기반 조회 엔진을 설계해, API마다 파일 5~6개를 추가하던 개발을 등록 1건으로 바꿨습니다. <a class="resume-detail-link" href="/portfolio/api-management/" aria-label="메타데이터 기반 조회 API 엔진 상세 보기">&rarr;</a></li>
-    <li>폐쇄망에 놓인 정부 공문서 AI 조회 서비스의 HWP 문서 파싱 기능을 Java–Python 브릿지로 구현했습니다. <a class="resume-detail-link" href="/portfolio/gov-data-service/" aria-label="정부 공문서 AI 조회 서비스 상세 보기">&rarr;</a></li>
+    <li><a class="resume-detail-link" href="/portfolio/pms/">공정 관리 솔루션(PMS)의 3D·2D 라벨링 API와 관리 기능을 개발하고, Docker 배포·GitLab CI 이미지 빌드와 로그 기반 장애 대응을 담당했습니다.</a></li>
+    <li><a class="resume-detail-link" href="/portfolio/api-management/">개방DB API관리 시스템의 메타데이터 기반 조회 엔진을 설계해, API마다 파일 5~6개를 추가하던 개발을 등록 1건으로 바꿨습니다.</a></li>
+    <li><a class="resume-detail-link" href="/portfolio/gov-data-service/">폐쇄망에 놓인 정부 공문서 AI 조회 서비스의 HWP 문서 파싱 기능을 Java–Python 브릿지로 구현했습니다.</a></li>
   </ul>
 </div>
 
 <div class="resume-entry">
   <div class="entry-header"><h3>㈜에이아이넷</h3><span class="entry-date">2020.12 – 2021.03</span></div>
   <ul>
-    <li>사내 교육 플랫폼의 SSO 기반 권한 인가와 Oracle BLOB 파일 저장 기능을 개발했습니다. <a class="resume-detail-link" href="/portfolio/lms/" aria-label="사내 교육 플랫폼(LMS) 상세 보기">→</a></li>
+    <li><a class="resume-detail-link" href="/portfolio/lms/">사내 교육 플랫폼의 SSO 기반 권한 인가와 Oracle BLOB 파일 저장 기능을 개발했습니다.</a></li>
   </ul>
 </div>
 
 <div class="resume-entry">
   <div class="entry-header"><h3>㈜엘에프아이티</h3><span class="entry-date">2019.05 – 2020.07</span></div>
   <ul>
-    <li>GIS 기반 항만 시설 사용료 관리 시스템의 사용료 산정·업체 관리 기능을 개발하고 운영을 지원했습니다. <a class="resume-detail-link" href="/portfolio/port-fee/" aria-label="항만 시설 사용료 관리 상세 보기">→</a></li>
+    <li><a class="resume-detail-link" href="/portfolio/port-fee/">GIS 기반 항만 시설 사용료 관리 시스템의 사용료 산정·업체 관리 기능을 개발하고 운영을 지원했습니다.</a></li>
   </ul>
 </div>
 </section>
@@ -84,7 +84,7 @@ resume_name: 권다경
       <span>회사 프로젝트 · Java · Spring Boot · FastAPI · Docker · GitLab CI</span>
     </div>
     <ul>
-      <li>최대 100명의 작업자가 3D·2D·PDF 라벨링을 수행하는 웹서비스의 API와 관리 기능을 개발했습니다.</li>
+      <li>3D·2D·PDF 라벨링을 수행하는 웹서비스의 API와 관리 기능을 개발했습니다.</li>
       <li>저장 유실과 3D 중복 저장을 재현해 저장 경로별 원인을 분리하고, 자동 저장·종료 확인과 코드 수정으로 대응했습니다.</li>
       <li>CI 이미지 빌드와 수동 승인 배포를 운영하고, 오류 문서·체크리스트·화면별 매뉴얼로 인계 기준을 고정했습니다.</li>
     </ul>
