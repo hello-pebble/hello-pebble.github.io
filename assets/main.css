@@ -608,7 +608,8 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.85em;
 }
 
-.resume-contact-print {
+.resume-contact-print,
+.career-print {
   display: none;
 }
 
@@ -1100,7 +1101,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .resume-entry {
-    margin-top: 7px;
+    margin-top: 12px;
   }
 
   .resume-entry .entry-header {
@@ -1111,7 +1112,8 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 0;
   }
 
-  .resume-print-page-second {
+  .career-print {
+    display: block;
     break-before: page;
     page-break-before: always;
   }
@@ -1124,14 +1126,14 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .resume-body-list {
-    margin: 6px 0;
+    margin: 9px 0;
   }
 
   .resume-skill-list li,
   .resume-entry li,
   .resume-project-list li {
-    margin: 3px 0;
-    line-height: 1.45;
+    margin: 6px 0;
+    line-height: 1.5;
   }
 
   .resume-project-section {
@@ -1168,11 +1170,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .resume-draft {
     display: none !important;
-  }
-
-  .print-page-start {
-    break-before: page !important;
-    page-break-before: always !important;
   }
 
   .entry-header {
