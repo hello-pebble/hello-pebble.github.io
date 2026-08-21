@@ -12,7 +12,7 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 
 - **가설** "계획을 세우는 것보다 계획을 계속 고치는 과정이 실행을 늦춘다"에서 출발했습니다.
 - **서비스** AI와 대화해 하루 단위 계획을 만들고, 확정 후에는 완료 체크와 다음 날 이월만 허용합니다.
-- **만든 방식** v0.1.0부터 v0.17.0까지 완성된 기능 목록을 향해 달리는 대신, 버전마다 직전 버전이 드러낸 문제 하나를 정해 풀었습니다.
+- **만든 방식** v0.1.0부터 v0.22.0까지 완성된 기능 목록을 향해 달리는 대신, 버전마다 직전 버전이 드러낸 문제 하나를 정해 풀었습니다.
 - **대표 사례** 프론트 화면에만 있어 우회 가능하던 잠금 규칙을 서버 강제(409)로 옮기고, 20~30초의 AI 응답 대기를 SSE 스트리밍과 patch 교환으로 바꾸고, 육안으로 판단하던 에이전트 품질을 반복 측정 가능한 평가 하네스로 교체했습니다.
 - **고정한 것** 잠금 규칙의 서버 강제·스트리밍 폴백·PostgreSQL 재시작 복원을 자동 테스트로 고정해, 규칙의 위치를 옮기는 동안 기존 동작이 깨지지 않게 했습니다.
 
@@ -38,6 +38,14 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
   <a href="#eval">
     <span>04. 육안을 하네스로</span>
     <small>반복 측정이 바꾼 결론</small>
+  </a>
+  <a href="#llm-troubleshoot">
+    <span>05. 느린 원인</span>
+    <small>모델이 아니라 추론 모드</small>
+  </a>
+  <a href="#challenge-concurrency">
+    <span>06. 정원 5명에 9명</span>
+    <small>판정을 쓰기 안으로</small>
   </a>
   <a href="#verification">
     <span>검증과 한계</span>
@@ -162,6 +170,100 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 
 ---
 
+## 05. 느린 원인은 모델이 아니라 추론 모드였습니다 {#llm-troubleshoot}
+
+v0.1.0 라인을 배포하고 나니 계획 생성이 쓸 수 없을 만큼 느렸습니다. 모델을 바꾸기 전에 왜 느린지부터 봤습니다. OpenRouter의 generation 통계 한 줄이 답이었습니다.
+
+| 지표 | 값 | 읽은 것 |
+| :--- | :--- | :--- |
+| `native_tokens_reasoning` | 4,017 | 답을 내기 **전에** 4천 토큰을 생각하는 데 씀 |
+| `generation_time` | 95,251ms | 요청당 약 95초 |
+| `finish_reason` | `stop` | 정상 종료 — 실패가 아니라 설계대로 느린 것 |
+
+기본 모델이 추론 전용이었습니다. 게다가 사고 텍스트가 `content`에 섞여 JSON 파싱까지 방해하고 있었습니다. 조치는 요청에 `reasoning: { enabled: false }` 한 줄이었고, 응답은 실사용 가능한 수준으로 돌아왔습니다.
+
+**"똑똑한 모델 = 좋은 선택"이 아니었습니다.** 정형 JSON을 빠르게 뽑는 작업에서는 추론이 지연과 비정형 출력만 만드는 독이 됩니다. 여기서 남은 20~30초를 경험으로 바꾼 것이 [02의 SSE 스트리밍](#ai-streaming)입니다.
+
+### 화면이 하얗게 죽던 것은 출력이 아니라 계약 문제였습니다
+
+같은 라운드에서 화이트스크린도 잡았습니다. 원인은 모델이 틀린 답을 준 게 아니라 **형태를 합의한 적이 없다는 것**이었습니다.
+
+- **기대한 형태** `{ "tasks": { "2026-07-13": [...] } }` — 날짜를 키로 하는 맵
+- **실제 받은 형태** `{ "plan": [ { "date": ..., "tasks": [...] } ] }` — 배열
+
+프론트가 날짜 대신 `"plan"`을 키로 잡아 "Day 1 · plan"만 뜨거나, 파싱에 실패하면 `Object.entries(undefined)`로 앱 전체가 죽었습니다. 조치는 세 겹입니다. 백엔드 `sanitizeJson`이 코드펜스와 설명 텍스트를 걷어 중괄호 균형으로 최상위 객체만 추출하고, `coerceToDateMap`이 래퍼·배열·날짜맵을 모두 날짜맵으로 흡수하고, 렌더링이 `Array.isArray` 확인 후 그립니다. 실제로 받았던 응답 형태 4가지로 변환을 단위 검증했습니다.
+
+- **여기서 얻은 규칙** 이번엔 `generation_time`과 `reasoning_tokens` 한 줄로 원인이 즉시 잡혔지만, 그건 운이었습니다. 당시 앱에는 지연도 토큰도 남기는 로그가 없었습니다. v0.15.2에서 모든 LLM 호출의 사용량을 경로별로 직접 로깅하게 만든 것이 이 회고의 결론입니다.
+- **기록** 전문은 [DEPLOY_RETROSPECTIVE.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/archive/DEPLOY_RETROSPECTIVE.md)에 있습니다.
+
+---
+
+## 06. 정원 5명짜리 챌린지에 9명이 들어갔습니다 {#challenge-concurrency}
+
+Goal Challenge(v0.21.0)에서 정원 5명·현재 4명인 챌린지에 다섯 명이 거의 동시에 참가를 요청하면 어떻게 되는가. 가장 자연스럽게 떠오르는 코드는 "세어 보고, 자리가 있으면 늘린다"입니다.
+
+```java
+int count = jdbc.queryForObject("SELECT participant_count FROM challenges WHERE id = ?", ...);
+if (count < capacity) {                 // ← 판정
+    jdbc.update("UPDATE challenges SET participant_count = participant_count + 1 WHERE id = ?", ...);
+}
+```
+
+읽기와 쓰기가 두 문장으로 갈라져 있어, 판정의 근거였던 `count`는 UPDATE 시점에 이미 낡은 값입니다.
+
+| 시각 | A | B | C | D | E | DB `participant_count` |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| t1 | SELECT → 4 | SELECT → 4 | SELECT → 4 | SELECT → 4 | SELECT → 4 | 4 |
+| t2 | `4 < 5` ✔ | `4 < 5` ✔ | `4 < 5` ✔ | `4 < 5` ✔ | `4 < 5` ✔ | 4 |
+| t3 | UPDATE +1 | UPDATE +1 | UPDATE +1 | UPDATE +1 | UPDATE +1 | **9** |
+
+**행 락은 이 문제를 못 막습니다.** 각자의 `+1`은 행 락으로 직렬화되므로 증가는 하나도 잃지 않습니다. 락이 보장하는 건 증가의 보존이지 판정의 정확성이 아닙니다.
+
+### 해법은 판정을 쓰기 안으로 넣는 것이었습니다
+
+읽기와 쓰기 사이에 틈이 있는 게 문제라면 틈을 없애면 됩니다.
+
+```sql
+UPDATE challenges
+   SET participant_count = participant_count + 1
+ WHERE id = :id AND participant_count < capacity
+```
+
+갱신된 행 수가 곧 결과입니다. `1`이면 자리를 얻은 것이고, `0`이면 그 사이 정원이 차서 `409 CHALLENGE_FULL`입니다. PostgreSQL 기본 격리 수준(READ COMMITTED)에서 두 번째 트랜잭션은 앞선 트랜잭션의 커밋을 기다린 뒤 **갱신된 최신 행으로 WHERE 조건을 다시 평가**(EvalPlanQual 재검사)하므로, 판정과 증가 사이에 다른 트랜잭션이 낄 물리적 틈이 없습니다.
+
+그래서 `ChallengeService.join`에는 `if (full)` 같은 검사가 **없습니다.** 서비스가 미리 세어 보고 던지는 순간 위의 문제로 되돌아가기 때문에, 없는 것이 실수가 아니라 규칙입니다. 중복 참가는 복합 PK가, 잔액 부족은 `WHERE balance >= :fee`가 판정합니다. 판정 주체는 언제나 쓰기 그 자체입니다.
+
+### 자리만 지켜서는 정합성이 아닙니다
+
+정원을 지켜도 자리를 못 얻은 네 명의 포인트가 사라지면 깨진 것입니다. 참가 1회는 네 가지가 함께 성립하거나 함께 무효여야 하고, `@Transactional` 하나로 묶었습니다.
+
+| 순서 | 판정하는 SQL 조각 | 0행일 때 |
+| :--- | :--- | :--- |
+| 1 | `INSERT ... ON CONFLICT DO NOTHING` | `409 CHALLENGE_ALREADY_JOINED` |
+| 2 | `UPDATE point_wallets ... WHERE balance >= :fee` | `400 POINTS_INSUFFICIENT` |
+| 3 | `UPDATE challenges ... WHERE participant_count < capacity` | `409 CHALLENGE_FULL` |
+
+3번에서 예외가 나면 1번의 참가자 등록과 2번의 포인트 차감이 함께 롤백됩니다. 모든 스레드가 자기 행(참가자·지갑) → 경합 행(챌린지) 순으로 동일하게 진행하므로 순환 대기도 생기지 않습니다.
+
+### 고려했지만 고르지 않은 것
+
+| 방법 | 버린 이유 |
+| :--- | :--- |
+| `synchronized` 애플리케이션 락 | 서버를 2대로 늘리는 순간 무력화됩니다. 이 저장소의 `PlanService.create`가 그 선례이고, 주석이 스스로 한계를 적어 두고 있습니다. |
+| `SELECT ... FOR UPDATE` 후 자바에서 검사 | 정확하지만 왕복이 2회이고 락을 더 오래 잡습니다. 카운터 하나의 비교-후-증가에는 과합니다. |
+| 낙관적 락(`@Version`) | 충돌 시 재시도 루프가 필요한데, 정원 경쟁은 **충돌이 정상이고 흔한** 상황이라 낙관적 가정 자체가 맞지 않습니다. |
+
+`CHECK (participant_count <= capacity)` 제약도 일부러 넣지 않았습니다. 제약을 걸면 틀린 구현이 정원을 넘길 때 오버부킹 대신 제약 위반 예외로 끝나서, **"틀린 구현은 실제로 정원을 넘는다"는 증거가 사라지기 때문입니다.**
+
+### 틀린 구현을 테스트로 남겼습니다
+
+주장 대신 대조군을 뒀습니다. `ChallengeJoinConcurrencyIT.naive_검사후쓰기는_동시요청에서_정원을_초과한다`가 Testcontainers의 실제 PostgreSQL 17에서 검사-후-쓰기 코드를 돌리고 `participant_count > capacity`를 assert합니다. 짝이 되는 `safe_조건부UPDATE는_동시요청에서도_정확히_1명만_받는다`가 성공 1건·나머지 409·탈락자 잔액 원복을 확인합니다.
+
+- **naive 코드는 그 테스트 파일 안에만 있습니다.** 프로덕션에 시연용 분기를 남기지 않았습니다.
+- **기록** 전문은 [CONCURRENCY.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/CONCURRENCY.md)에 있습니다.
+
+---
+
 ## 검증 범위와 한계 {#verification}
 
 - **배포의 성격** 운영이 아니라 데모 배포 환경 구축과 실행 확인입니다.
@@ -178,6 +280,7 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 | 허용되지 않은 전이·동시 완료 요청 | `409 INVALID_STATUS_TRANSITION`이 나고, 행 잠금으로 첫 요청만 성공했습니다. |
 | AI 스트리밍 응답 | 순차 표시와 스트림 실패 시 비스트리밍→mock 폴백을 확인했습니다. |
 | 재시작 후 상태 복원 | Testcontainers의 PostgreSQL 17에서 재조회로 검증했습니다. |
+| 챌린지 정원 경쟁 | 실제 PostgreSQL에서 검사-후-쓰기는 정원을 넘고, 조건부 UPDATE는 정확히 1명만 통과하며 탈락자 잔액이 원복되는 것을 확인했습니다. |
 | 에이전트 도구 선택 | 프롬프트를 바꿀 때마다 평가 하네스를 반복 실행해 기저 실패율과 비교했고, 남은 실패의 원인을 확인한 뒤 배포했습니다. |
 
 ### 한계와 다음 검증 과제
@@ -185,7 +288,7 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 - 실제 사용자 대상 효과는 측정하지 못했고, 유지율·이탈률 같은 KPI가 없습니다.
 - 데모 환경이므로 운영 트래픽과 장애 대응은 검증하지 못했습니다.
 - 게스트 ID가 데이터 접근 키라서 다른 브라우저에서 기존 데이터에 다시 연결할 수 없습니다.
-- 생성 한도 가드가 `synchronized` 기반이라 다중 서버에서는 한도가 최대 1건 초과될 수 있습니다.
+- 생성 한도 가드가 `synchronized` 기반이라 다중 서버에서는 한도가 최대 1건 초과될 수 있습니다. [06](#challenge-concurrency)에서 챌린지 참가는 조건부 UPDATE로 옮겼지만, 계획 생성 한도는 아직 이 방식입니다.
 - 다음 단계로 전문 에이전트에 도메인 지식(검색/RAG)을 연결하는 것과 로그인·분산 동시성을 두었습니다.
 
 ## Source
@@ -193,5 +296,7 @@ tags: [SpringBoot, Java, React, PostgreSQL, OpenRouter, Portfolio]
 - [DelayNoMore Release](https://github.com/hello-pebble/DelayNoMore_Release) — 소스 코드·API·배포 스크립트
 - [EVOLUTION.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVOLUTION.md) — v0.1.0부터 v0.17.0까지 버전별 의도와 인과
 - [CHANGELOG](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/CHANGELOG.md) — 릴리스별 변경 이력과 설계 결정
+- [CONCURRENCY.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/CONCURRENCY.md) — 정원 경쟁에서 데이터 정합성을 지키는 방법과 고르지 않은 대안들
+- [DEPLOY_RETROSPECTIVE.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/archive/DEPLOY_RETROSPECTIVE.md) — 95초 지연과 화이트스크린의 진단 기록
 - [EVAL.md](https://github.com/hello-pebble/DelayNoMore_Release/blob/main/docs/EVAL.md) — "권한 모델이 말뿐인지 숫자로 확인하는 장치" · 반복 횟수와 검출 확률의 통계 논리
 - [데모](https://delaynomoreapp.duckdns.org/)
