@@ -15,6 +15,8 @@ tags: [Kotlin, SpringBoot, Python, FastAPI, PostgreSQL, Supabase, Vercel, Railwa
 - **핵심 선택** 화면·API·자동화 워커를 각각 배포 가능한 단위로 분리했습니다. 브라우저 요청은 Kotlin API가 빠르게 판정하고, 시간이 걸리는 작업은 인증된 Python 워커로 위임합니다.
 - **배포 기준** 정적 화면은 Vercel, Kotlin API와 Python 워커는 Railway, 운영 데이터와 Gmail OAuth 토큰은 Supabase PostgreSQL에 둡니다.
 
+**[▶ Backoffice AI 접속하기](https://backoffice-ai-orpin.vercel.app/)**
+
 <nav class="project-page-nav" aria-label="Backoffice AI 프로젝트 목차">
   <a href="#architecture"><span>서비스 아키텍처</span><small>화면·API·워커 분리</small></a>
   <a href="#delivery"><span>배포 흐름</span><small>PR부터 운영 반영까지</small></a>
