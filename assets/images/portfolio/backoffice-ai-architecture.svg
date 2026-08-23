@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 590" role="img" aria-labelledby="title desc">
+  <title id="title">Backoffice AI 서비스 아키텍처</title>
+  <desc id="desc">Vercel 프런트엔드, Railway Kotlin API와 Python 워커, Supabase PostgreSQL 및 외부 서비스의 관계</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#1b1b1b"/></marker>
+    <style>text{font-family:Arial,'Apple SD Gothic Neo',sans-serif;fill:#161616}.h{font-size:19px;font-weight:700}.b{font-size:15px;font-weight:600}.s{font-size:13px;fill:#5f6368}.tiny{font-size:12px;fill:#5f6368}.box{fill:#fff;stroke:#161616;stroke-width:1.5}.soft{fill:#f5f5f3;stroke:#161616;stroke-width:1.5}.accent{fill:#eef5ff;stroke:#161616;stroke-width:1.5}.line{fill:none;stroke:#161616;stroke-width:1.7;marker-end:url(#arrow)}.dash{fill:none;stroke:#6b7280;stroke-width:1.5;stroke-dasharray:6 5;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="960" height="590" fill="#fff"/>
+  <text x="48" y="54" class="h">Backoffice AI · 서비스 경로와 실행 경로</text>
+  <text x="48" y="80" class="s">브라우저 요청은 API에서 끝내고, 긴 자동화는 별도 워커로 위임한다.</text>
+  <rect x="52" y="145" width="185" height="122" rx="10" class="accent"/>
+  <text x="72" y="183" class="h">Vercel</text><text x="72" y="210" class="b">정적 대시보드</text><text x="72" y="236" class="s">frontend/static</text>
+  <rect x="351" y="133" width="240" height="152" rx="10" class="box"/>
+  <text x="374" y="171" class="h">Railway · Kotlin API</text><text x="374" y="199" class="b">Spring Boot</text><text x="374" y="226" class="s">업무 · 승인 · 외부 연동</text><text x="374" y="251" class="tiny">X-API-Key · CORS · health check</text>
+  <rect x="719" y="142" width="190" height="132" rx="10" class="soft"/>
+  <text x="741" y="179" class="h">Supabase</text><text x="741" y="206" class="b">PostgreSQL</text><text x="741" y="232" class="s">업무 데이터 · OAuth 토큰</text>
+  <path d="M238 205 H349" class="line"/><text x="263" y="189" class="tiny">/api/* rewrite</text>
+  <path d="M593 207 H717" class="line"/><text x="614" y="190" class="tiny">JDBC · Flyway</text>
+  <rect x="351" y="370" width="240" height="150" rx="10" class="accent"/>
+  <text x="374" y="408" class="h">Railway · Python 워커</text><text x="374" y="436" class="b">FastAPI + scheduler</text><text x="374" y="462" class="s">수집 · 생성 · 발행 작업</text><text x="374" y="487" class="tiny">X-Worker-API-Key · 단일 실행 잠금</text>
+  <path d="M471 287 V368" class="line"/><text x="491" y="331" class="tiny">실행 위임</text>
+  <rect x="710" y="359" width="206" height="171" rx="10" class="soft"/>
+  <text x="733" y="395" class="h">외부 서비스</text><text x="733" y="424" class="b">OpenAI · Gmail · Toss</text><text x="733" y="451" class="b">Naver · Selenium</text><text x="733" y="481" class="s">실제 발행은 검토 전 차단</text>
+  <path d="M593 445 H708" class="line"/><text x="617" y="428" class="tiny">AI · 자동화</text>
+  <path d="M711 505 C650 566 552 558 540 522" class="dash"/><text x="581" y="565" class="tiny">결과·실행 이력</text>
+  <line x1="52" y1="321" x2="909" y2="321" stroke="#d1d5db"/><text x="52" y="343" class="tiny">동기 요청 경로</text><text x="351" y="343" class="tiny">비동기·장시간 작업 경로</text>
+</svg>
