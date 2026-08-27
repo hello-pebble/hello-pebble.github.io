@@ -1181,19 +1181,9 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 9pt;
   }
 
-  /* 반복 영역 요약은 본문의 재배치라 인쇄에서는 한 단계 더 조인다 */
-  .career-print .career-summary table {
-    font-size: 8.2pt;
-  }
-
-  .career-print .career-summary table td,
-  .career-print .career-summary table th {
-    padding: 2px 5px;
-  }
-
-  .career-print .career-summary h2 {
-    font-size: 11pt;
-    margin: 8px 0 4px;
+  /* 반복 영역 요약은 본문 내용을 다시 묶은 것이라 인쇄본에서는 뺀다 — 웹에는 남는다 */
+  .career-print .career-summary {
+    display: none !important;
   }
 
   .career-print blockquote.tradeoff {
