@@ -334,6 +334,51 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--sidebar-text);
 }
 
+/* 기각한 대안 — 본문 흐름과 구분되는 방주로 둔다 */
+.main-content blockquote.tradeoff {
+  margin: 14px 0 20px;
+  padding: 10px 0 10px 16px;
+  border-left: 3px solid var(--border-color);
+  color: var(--sidebar-text);
+  font-size: 0.94em;
+  line-height: 1.7;
+}
+
+.main-content blockquote.tradeoff strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text-color);
+}
+
+/* 경력기술서 가독성: 문단·표·헤딩 사이 호흡을 넓힌다 */
+.career-body h1 {
+  margin: 8px 0 20px;
+}
+
+.career-body h2 {
+  margin: 44px 0 16px;
+}
+
+.career-body h3 {
+  margin: 32px 0 12px;
+  font-size: 1.02em;
+}
+
+.career-body p {
+  line-height: 1.85;
+  margin: 0 0 16px;
+}
+
+.career-body li {
+  line-height: 1.8;
+  margin: 8px 0;
+}
+
+.career-body td,
+.career-body th {
+  line-height: 1.7;
+}
+
 .project-context {
   display: block;
   margin-bottom: 8px;
@@ -1129,7 +1174,7 @@ h1, h2, h3, h4, h5, h6 {
 
   /* 경력기술서 본문은 이력서보다 한 단계 작게 — 지면을 줄이려는 의도적 선택 */
   .career-print {
-    font-size: 9.5pt;
+    font-size: 9pt;
   }
 
   .career-print table {
@@ -1151,9 +1196,60 @@ h1, h2, h3, h4, h5, h6 {
     margin: 8px 0 4px;
   }
 
+  .career-print blockquote.tradeoff {
+    margin: 5px 0 7px;
+    padding: 0 0 0 8px;
+    border-left-width: 2px;
+    font-size: 8.8pt;
+    line-height: 1.45;
+  }
+
+  /* 인쇄에서는 제목을 같은 줄에 붙여 방주 하나당 한 줄을 아낀다 */
+  .career-print blockquote.tradeoff strong {
+    display: inline;
+    margin: 0;
+  }
+
+  .career-print blockquote.tradeoff strong::after {
+    content: "  ";
+    white-space: pre;
+  }
+
+  .career-print h3 {
+    font-size: 10pt;
+    margin: 9px 0 4px;
+    break-after: avoid;
+  }
+
+  .career-body p {
+    line-height: 1.45;
+    margin: 0 0 6px;
+  }
+
+  .career-body li {
+    line-height: 1.45;
+    margin: 2px 0;
+  }
+
   .career-print h1 {
     font-size: 15pt;
-    margin: 12px 0 6px;
+    margin: 10px 0 5px;
+  }
+
+  /* 웹에서 넓힌 호흡을 인쇄에서는 되돌린다 — 표 여백이 가장 크게 먹는다 */
+  .career-print th,
+  .career-print td {
+    padding: 3px 7px;
+  }
+
+  .career-print table {
+    margin: 8px 0;
+  }
+
+  .career-print ul,
+  .career-print ol {
+    margin: 6px 0 9px;
+    padding-left: 15px;
   }
 
   .career-print h2 {

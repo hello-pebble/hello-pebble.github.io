@@ -112,6 +112,6 @@ resume_name: 권다경
 </section>
 </div>
 
-<div class="career-print" markdown="1">
+<div class="career-print career-body" markdown="1">
 {% include career-description.md %}
 </div>
