@@ -56,7 +56,7 @@
   <rect x="25" y="256" width="66" height="24" rx="10" fill="#334155"/>
   <text x="58" y="273" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">이후</text>
 
-  <text x="48" y="301" font-size="12" font-weight="bold" fill="#1e293b">저장 단위를 프레임으로 분리 — 요청 크기가 폴더 전체에 비례하지 않습니다</text>
+  <text x="48" y="301" font-size="12" font-weight="bold" fill="#1e293b">선택된 객체만 전송 + 멱등 저장 — 요청 크기가 누적되지 않습니다</text>
 
   <g fill="#1e293b">
     <rect x="48" y="312" width="66" height="48" rx="6"/>
@@ -79,12 +79,12 @@
     <line x1="357" y1="364" x2="357" y2="384"/>
     <line x1="449" y1="364" x2="449" y2="384"/>
   </g>
-  <text x="265" y="399" text-anchor="middle" font-size="11" fill="#64748b">프레임 이동 시점에 해당 프레임만 저장</text>
+  <text x="265" y="399" text-anchor="middle" font-size="11" fill="#64748b">선택한 객체만 저장 · 같은 객체는 INSERT 대신 UPDATE</text>
 
   <rect x="510" y="300" width="242" height="76" rx="8" fill="#ffffff" stroke="#15803d" stroke-width="1.5"/>
-  <text x="631" y="324" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">✓ 요청 하나의 크기가 고정</text>
-  <text x="631" y="346" text-anchor="middle" font-size="11" fill="#64748b">자동 라벨링 결과가 늘어나도</text>
-  <text x="631" y="362" text-anchor="middle" font-size="11" fill="#64748b">한 요청에 실리는 양은 그대로</text>
+  <text x="631" y="324" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">✓ 다시 저장해도 결과가 같다</text>
+  <text x="631" y="346" text-anchor="middle" font-size="11" fill="#64748b">이미 저장된 작업은 남고</text>
+  <text x="631" y="362" text-anchor="middle" font-size="11" fill="#64748b">나머지가 채워진다 · 중복 없음</text>
 
   <rect x="150" y="426" width="500" height="34" rx="17" fill="#334155"/>
   <text x="400" y="448" text-anchor="middle" font-size="12" fill="#ffffff">각각은 정상인 두 기능이 맞물린 지점에서 장애가 났습니다</text>
