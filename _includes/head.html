@@ -3,7 +3,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- assign resume_page = site.pages | where: "permalink", "/" | first -%}
-  <title>{{ resume_page.resume_name }}</title>
+  {%- assign page_title = page.title | default: resume_page.resume_name -%}
+  {%- assign page_description = page.description | default: site.description | strip_html | normalize_whitespace -%}
+  <title>{% if page.url == '/' %}{{ resume_page.resume_name }}{% else %}{{ resume_page.resume_name }} | {{ page_title }}{% endif %}</title>
+  <meta name="description" content="{{ page_description | escape }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% if page.url == '/' %}{{ resume_page.resume_name }}{% else %}{{ resume_page.resume_name }} | {{ page_title }}{% endif %}">
+  <meta property="og:description" content="{{ page_description | escape }}">
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
