@@ -17,6 +17,7 @@ plugins:
 exclude:
   - resume/career-description-variants.md
   - PORTFOLIO_RELEASE_ROUTINE.md
+  - review/
   - tmp/
   - Gemfile
   - Gemfile.lock
