@@ -2,6 +2,6 @@
   <path d="M30 20C10 30 5 70 30 85c20 10 60-5 55-35C80 20 50 10 30 20Z" fill="#5f5c5c" transform="translate(-4 -4) scale(1.08)"/>
   <g fill="none" stroke="#1d3f6e" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
     <path d="M41 29c-5 13-6 30-2 44"/>
-    <path d="M64 34c-9 6-17 12-23 18 9 3 15 10 20 20"/>
+    <path d="M64 34c-9 6-17 12-23 18 4 10 10 16 20 20"/>
   </g>
 </svg>
