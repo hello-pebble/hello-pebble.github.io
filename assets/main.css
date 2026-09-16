@@ -9,6 +9,7 @@
   --border-color: #eeeeee;
   --toggle-bg: #000000;
   --toggle-text: #ffffff;
+  --link-color: #1d3f6e;
 }
 
 [data-theme="dark"] {
@@ -20,6 +21,7 @@
   --border-color: #333333;
   --toggle-bg: #ffffff;
   --toggle-text: #000000;
+  --link-color: #8fb3dd;
 }
 
 html {
@@ -243,9 +245,10 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* Emphasis: bold text only, monochrome accents */
+/* Emphasis: bold text only. 본문 인라인 링크에만 대표색을 쓴다
+   (이력서 항목·포트폴리오 카드는 각자 color를 고정해 두어 영향받지 않는다) */
 .main-content a {
-  color: var(--text-color);
+  color: var(--link-color);
 }
 
 .main-content h1 {
