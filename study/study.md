@@ -1,7 +1,6 @@
 ---
 layout: default
 title: study
-permalink: /study/
 ---
 
 # 스터디
