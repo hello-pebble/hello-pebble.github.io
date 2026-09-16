@@ -9,7 +9,7 @@ resume_name: 권다경
 <div class="resume-header">
   <div class="resume-identity">
     <span class="resume-title">{{ page.resume_name }}</span>
-    <span class="resume-tagline">운영 효율과 서비스 안정성을 높이는 백엔드 개발자</span>
+    <span class="resume-tagline">운영 중인 시스템의 반복 비용을 줄이는 백엔드 개발자</span>
   </div>
   <div class="resume-contact-print">kwdk2323@gmail.com · github.com/hello-pebble · 경력기술서 hello-pebble.github.io/resume/career-description/</div>
 </div>
@@ -19,20 +19,20 @@ resume_name: 권다경
   <li>제조 공정·문서 처리 시스템을 개발하고, 배포와 장애 대응까지 담당</li>
 </ul>
 
-<p class="resume-summary">복잡한 문제를 작은 단위로 나누어 빠르게 구현하고, 운영 결과를 바탕으로 개선합니다. 장애 발생 시에는 현상 해결에 그치지 않고 원인과 발생 흐름을 분석하며, 로그 확인 방법과 조치 순서를 문서화해 재발 대응 시간을 줄여왔습니다.</p>
-<p class="resume-summary">요구사항과 사용자 흐름에 맞는 기술과 구조를 선택하고, 해결 과정과 시행착오를 동료와 공유해 반복 작업을 줄입니다. 빠른 실행력과 운영에 대한 책임감을 바탕으로, 관측 가능하고 운영하기 쉬운 시스템을 구축하는 데 기여하겠습니다.</p>
+<p class="resume-summary">조회 API를 추가할 때마다 파일 5~6개를 만들던 개방DB API관리 시스템에, DB 메타데이터로 쿼리를 조립하는 엔진을 설계해 등록 1건으로 바꿨습니다. 파라미터 화이트리스트 검증과 바인드 처리도 엔진 한 곳에 모았습니다.</p>
+<p class="resume-summary">공정 관리 솔루션(PMS)에서 저장한 작업물이 사라지던 장애를 재현해 원인 3가지(전송 범위, 건별 커밋, 3D 경로의 기존 행 정리 누락)를 분리하고, 전송 범위 축소와 멱등 저장으로 조치했습니다. 매뉴얼·배포 체크리스트·분기별 시연까지 붙여 사용 문의를 월 20건에서 1~2건으로 줄였습니다.</p>
+<p class="resume-summary">2025.02부터는 개인 프로젝트로 Java 21, SSE 스트리밍, Testcontainers 기반 다중 방언 검증, AI 도구 호출 평가 하네스를 다뤘고, 각 판단을 계획서와 보고서로 남겼습니다.</p>
 <ul class="resume-skill-list resume-body-list">
   <li>상세 근거와 설계 판단은 <a href="{{ '/resume/career-description/' | relative_url }}">경력기술서</a>와 각 <a href="{{ '/portfolio/' | relative_url }}">포트폴리오</a>에서 확인할 수 있습니다.</li>
-  <li>개발 과정에서 Claude Code·Codex를 활용하고 있으며, 활용 방식을 정리해두었습니다 — <a href="{{ '/ai/' | relative_url }}">활용 방식 보기</a></li>
 </ul>
 
 <section class="resume-compact-section">
 <h2 class="resume-section-heading">Core Skills</h2>
 <ul class="resume-skill-list">
-  <li><strong>반복 개발 제거</strong> Java, Spring Boot, Spring MVC, MyBatis, jOOQ — 메타데이터 기반 동적 쿼리 엔진으로 조회 API 추가 공수 파일 5~6개 → 등록 1건</li>
+  <li><strong>웹·업무 시스템 개발</strong> Java 8/21, Spring Boot, Spring MVC, eGovFrame, JSP, HTML/CSS, JavaScript, jQuery, MyBatis — 메타데이터 기반 동적 쿼리 엔진으로 조회 API 추가 공수 파일 5~6개 → 등록 1건</li>
   <li><strong>인증·인가</strong> Spring Security, JWT, OAuth2, RBAC — 화면별 분기 → 엔드포인트 단일 차단 지점</li>
-  <li><strong>데이터 정합성</strong> PostgreSQL, MariaDB, Oracle, JPA, Flyway — 트랜잭션 경계, <code>FOR UPDATE</code> 행 잠금, TOCTOU 대조군 테스트</li>
-  <li><strong>운영·배포</strong> Docker, GitLab CI, GitHub Actions, Tomcat, Nginx — 환경은 이미지로 고정하되 배포 실행은 확인 가능한 시점에만</li>
+  <li><strong>RDBMS·데이터 설계</strong> MariaDB, Oracle, Tibero, PostgreSQL, MyBatis, JPA, Flyway — 데이터 모델링, 트랜잭션 경계, <code>FOR UPDATE</code> 행 잠금, TOCTOU 대조군 테스트</li>
+  <li><strong>WEB/WAS·운영·배포</strong> Tomcat, WildFly, Nginx, Docker, GitLab CI, GitHub Actions — 환경은 이미지로 고정하되 배포 실행은 확인 가능한 시점에만</li>
   <li><strong>검증</strong> JUnit 5, MockMvc, Testcontainers — 단위 / 통합 / 외부 의존 평가 3층 분리</li>
 </ul>
 </section>
@@ -41,7 +41,7 @@ resume_name: 권다경
 <h2 class="resume-section-heading">Work Experience</h2>
 
 <div class="resume-entry">
-  <div class="entry-header"><h3>㈜미디어그룹사람과숲</h3><span class="entry-date">2022.11 – 2025.01</span></div>
+  <div class="entry-header"><h3>㈜미디어그룹사람과숲 · 백엔드 개발자</h3><span class="entry-date">2022.11 – 2025.01</span></div>
   <ul>
     <li><a class="resume-detail-link" href="/portfolio/pms/">공정 관리 솔루션(PMS)을 26개월간 개발·운영하며 사용 문의를 월 20건에서 1~2건으로 줄이고, 저장 유실 장애의 원인 3건을 규명해 조치했습니다.</a></li>
     <li><a class="resume-detail-link" href="/portfolio/api-management/">개방DB API관리 시스템의 메타데이터 기반 조회 엔진을 설계해, API마다 파일 5~6개를 추가하던 개발을 등록 1건으로 바꾸고 검증 누락 가능 지점을 엔진 1곳으로 모았습니다.</a></li>
@@ -50,14 +50,14 @@ resume_name: 권다경
 </div>
 
 <div class="resume-entry">
-  <div class="entry-header"><h3>㈜에이아이넷</h3><span class="entry-date">2020.12 – 2021.03</span></div>
+  <div class="entry-header"><h3>㈜에이아이넷 · 백엔드 개발자</h3><span class="entry-date">2020.12 – 2021.03</span></div>
   <ul>
     <li><a class="resume-detail-link" href="/portfolio/lms/">사내 교육 플랫폼의 권한 확인 지점을 화면별 분기에서 인터셉터 1곳으로 모으고, Oracle BLOB 파일 저장을 비즈니스 트랜잭션에 묶었습니다.</a></li>
   </ul>
 </div>
 
 <div class="resume-entry">
-  <div class="entry-header"><h3>㈜엘에프아이티</h3><span class="entry-date">2019.05 – 2020.07</span></div>
+  <div class="entry-header"><h3>㈜엘에프아이티 · 백엔드 개발자</h3><span class="entry-date">2019.05 – 2020.07</span></div>
   <ul>
     <li><a class="resume-detail-link" href="/portfolio/port-fee/">GIS 기반 항만 시설 사용료 관리 시스템에서 세율을 업체별 값으로 분리해, 감면 1건마다 필요하던 개발 요청을 담당자 화면 조작으로 바꿨습니다.</a></li>
   </ul>
