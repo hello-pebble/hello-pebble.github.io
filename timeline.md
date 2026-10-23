@@ -42,6 +42,6 @@ permalink: /timeline/
 | 교육·재학습 | 2021.04 – 2022.10 | K-Digital 중급 JAVA 웹 교육 → 2022.11 입사 |
 | PMS·개방DB | 2022.11 – 2025.01 | PMS 26개월 운영(문의 월 20건 → 1~2건), 저장 유실 원인 3건, 메타데이터 조회 엔진, 폐쇄망 Java–Python 연동 |
 | 재정비 | 2025.02 – 2025.12 | searchvibe(LangGraph·Gemini), springjava로 Redis·Kafka·WebSocket 실습, 정보처리기사 필기 |
-| 개인 프로젝트 | 2026.01 – | 저장소 16개 · 커밋 약 1,500건 · 배포 2건([DelayNoMore](https://delaynomoreapp.duckdns.org/), [Backoffice AI](https://backoffice-ai-orpin.vercel.app/)) · [article-bot](https://app.notion.com/p/Learning-328982649c3f80829e01d23c6a12a785) 8개월째 매일 운영 |
+| 개인 프로젝트 | 2026.01 – | 배포 2건([DelayNoMore](https://delaynomoreapp.duckdns.org/), [Backoffice AI](https://backoffice-ai-orpin.vercel.app/)) · [article-bot](https://app.notion.com/p/Learning-328982649c3f80829e01d23c6a12a785) 8개월째 매일 운영 |
 
 </div>
