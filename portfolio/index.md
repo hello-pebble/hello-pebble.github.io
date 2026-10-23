@@ -70,7 +70,7 @@ permalink: /portfolio/
         <span class="portfolio-card-number">06</span>
       </div>
       <h3>DelayNoMore <span class="portfolio-period">2026.04– 진행 중</span></h3>
-      <p class="portfolio-summary">확정 계획의 수정 규칙을 프론트 차단 → 서버 가드 → 도구 권한으로 옮겨 우회 경로를 구조적으로 차단 · AI 응답 품질은 반복 실행 가능한 평가 하네스로 측정</p>
+      <p class="portfolio-summary">확정 계획의 수정 규칙을 프론트 차단 → 서버 가드 → 도구 권한으로 옮겨 우회 경로를 구조적으로 차단 · 챌린지 정원 경쟁과 정산은 조건부 UPDATE로 판정해 실제 PostgreSQL에서 검증 · 포인트 이동은 복식부기 원장과 멱등 키로 추적 · 에이전트 도구 선택은 반복 실행 가능한 평가 하네스로 측정</p>
       <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · SSE Streaming · Testcontainers</span>
     </a>
 
