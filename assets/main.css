@@ -1370,3 +1370,19 @@ h1, h2, h3, h4, h5, h6 {
     display: block !important;
   }
 }
+
+/* -- timeline (tools/build_timeline.rb -> _includes/diagrams/timeline.svg) -- */
+.tl-seg { fill: var(--dg-surface); stroke: var(--dg-line); }
+.tl-segtext { fill: var(--text-color); font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
+.tl-work { fill: var(--text-color); }
+.tl-edu { fill: none; stroke: var(--sidebar-text); stroke-width: 1.5; }
+.tl-label { fill: var(--text-color); font-size: 17px; }
+.tl-label--muted { fill: var(--sidebar-text); }
+.tl a:hover .tl-label { text-decoration: underline; }
+@media (max-width: 700px) { .tl { min-width: 1000px; } }
+.tl .dg-axis, .tl .dg-eyebrow { font-size: 18px; }
+.tl-mark { fill: var(--link-color); }
+.tl-dotnum { fill: var(--bg-color); font-size: 13px; font-weight: 700; }
+.tl-legend { columns: 2; column-gap: 24px; padding-left: 1.4em; margin: 4px 0 28px; font-size: 0.95em; }
+.tl-legend li { break-inside: avoid; margin: 2px 0; }
+.tl-legend small { color: var(--sidebar-text); margin-left: 4px; }

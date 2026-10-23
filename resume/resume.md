@@ -30,7 +30,7 @@ resume_name: 권다경
 <h2 class="resume-section-heading">Core Skills</h2>
 <ul class="resume-skill-list">
   <li><strong>웹·업무 시스템 개발</strong> Java 8/21, Spring Boot, Spring MVC, eGovFrame, JSP, HTML/CSS, JavaScript, jQuery, MyBatis — 메타데이터 기반 동적 쿼리 엔진으로 조회 API 추가 공수 파일 5~6개 → 등록 1건</li>
-  <li><strong>인증·인가</strong> Spring Security, JWT, OAuth2, RBAC — 화면별 분기 → 엔드포인트 단일 차단 지점</li>
+  <li><strong>인증·인가</strong> Spring Security, JWT, OAuth2, RBAC — 정지 계정의 유효 토큰 차단, Gateway 통과 후 서비스별 재검증</li>
   <li><strong>RDBMS·데이터 설계</strong> MariaDB, Oracle, Tibero, PostgreSQL, MyBatis, JPA, Flyway — 데이터 모델링, 트랜잭션 경계, <code>FOR UPDATE</code> 행 잠금, TOCTOU 대조군 테스트</li>
   <li><strong>WEB/WAS·운영·배포</strong> Tomcat, WildFly, Nginx, Docker, GitLab CI, GitHub Actions — 환경은 이미지로 고정하되 배포 실행은 확인 가능한 시점에만</li>
   <li><strong>검증</strong> JUnit 5, MockMvc, Testcontainers — 단위 / 통합 / 외부 의존 평가 3층 분리</li>
@@ -52,7 +52,7 @@ resume_name: 권다경
 <div class="resume-entry">
   <div class="entry-header"><h3>㈜에이아이넷 · 백엔드 개발자</h3><span class="entry-date">2020.12 – 2021.03</span></div>
   <ul>
-    <li><a class="resume-detail-link" href="/portfolio/lms/">사내 교육 플랫폼의 권한 확인 지점을 화면별 분기에서 인터셉터 1곳으로 모으고, Oracle BLOB 파일 저장을 비즈니스 트랜잭션에 묶었습니다.</a></li>
+    <li><a class="resume-detail-link" href="/portfolio/lms/">화상 교육 플랫폼의 회원·역할·운영관리 백엔드를 개발하며 역할 변경을 전체 교체로, 분류 유형을 이름 대신 코드 ID로 저장하도록 설계했습니다.</a></li>
   </ul>
 </div>
 

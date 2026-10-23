@@ -1,0 +1,85 @@
+<!-- tools/build_timeline.rb 가 _data/timeline.yml 에서 생성. 손으로 고치지 말 것. -->
+<div class="dg-wrap">
+<svg class="dg tl" viewBox="0 0 1000 340" role="img" aria-label="규칙이 우회되지 않는 위치를 찾아 옮기는 백엔드 개발자 — 재직·교육 레인과 개인 프로젝트 레인을 같은 시간축에 놓은 타임라인.">
+<line class="dg-rule" x1="0.0" y1="30" x2="0.0" y2="322"/>
+<text class="dg-axis" x="4.0" y="24">2019</text>
+<line class="dg-rule" x1="125.0" y1="30" x2="125.0" y2="322"/>
+<text class="dg-axis" x="129.0" y="24">2020</text>
+<line class="dg-rule" x1="250.0" y1="30" x2="250.0" y2="322"/>
+<text class="dg-axis" x="254.0" y="24">2021</text>
+<line class="dg-rule" x1="375.0" y1="30" x2="375.0" y2="322"/>
+<text class="dg-axis" x="379.0" y="24">2022</text>
+<line class="dg-rule" x1="500.0" y1="30" x2="500.0" y2="322"/>
+<text class="dg-axis" x="504.0" y="24">2023</text>
+<line class="dg-rule" x1="625.0" y1="30" x2="625.0" y2="322"/>
+<text class="dg-axis" x="629.0" y="24">2024</text>
+<line class="dg-rule" x1="750.0" y1="30" x2="750.0" y2="322"/>
+<text class="dg-axis" x="754.0" y="24">2025</text>
+<line class="dg-rule" x1="875.0" y1="30" x2="875.0" y2="322"/>
+<text class="dg-axis" x="879.0" y="24">2026</text>
+<rect class="tl-seg" x="41.7" y="46" width="156.2" height="30" rx="4"/>
+<text class="tl-segtext" x="119.8" y="67" text-anchor="middle">항만</text>
+<rect class="tl-seg" x="239.6" y="46" width="41.7" height="30" rx="4"/>
+<text class="tl-segtext" x="260.5" y="67" text-anchor="middle">LMS</text>
+<rect class="tl-seg" x="281.3" y="46" width="197.9" height="30" rx="4"/>
+<text class="tl-segtext" x="380.3" y="67" text-anchor="middle">교육·재학습</text>
+<rect class="tl-seg" x="479.2" y="46" width="281.2" height="30" rx="4"/>
+<text class="tl-segtext" x="619.8" y="67" text-anchor="middle">PMS·개방DB</text>
+<rect class="tl-seg" x="760.4" y="46" width="114.6" height="30" rx="4"/>
+<text class="tl-segtext" x="817.7" y="67" text-anchor="middle">재정비</text>
+<rect class="tl-seg" x="875.0" y="46" width="104.2" height="30" rx="4"/>
+<text class="tl-segtext" x="927.1" y="67" text-anchor="middle">개인 프로젝트</text>
+<text class="dg-eyebrow" x="0" y="96">재직 · 교육</text>
+<text class="dg-eyebrow" x="0" y="240">개인 프로젝트</text>
+<a href="/portfolio/port-fee/">
+<rect class="tl-work" x="41.7" y="104" width="156.2" height="28" rx="3"/>
+<text class="tl-label" x="41.7" y="152">엘에프아이티 · 항만 사용료</text>
+</a>
+<a href="/portfolio/lms/">
+<rect class="tl-work" x="239.6" y="104" width="41.7" height="28" rx="3"/>
+<text class="tl-label" x="239.6" y="152">에이아이넷 · LMS</text>
+</a>
+<a href="/portfolio/pms/">
+<rect class="tl-work" x="479.2" y="104" width="281.2" height="28" rx="3"/>
+<text class="tl-label" x="479.2" y="152">사람과숲 · PMS / 개방DB</text>
+</a>
+<path class="tl-edu" d="M187.5 174 l8 8 l-8 8 l-8 -8 z"/>
+<text class="tl-label tl-label--muted" x="201.5" y="188">JAVA 양성과정 2020</text>
+<path class="tl-edu" d="M437.5 174 l8 8 l-8 8 l-8 -8 z"/>
+<text class="tl-label tl-label--muted" x="451.5" y="188">K-Digital JAVA 2022</text>
+<a href="https://github.com/hello-pebble/searchvibe">
+<path class="tl-mark" d="M807.3 250 l12 12 l-12 12 l-12 -12 z"><title>searchvibe</title></path>
+<text class="tl-dotnum" x="807.3" y="267" text-anchor="middle">1</text>
+</a>
+<path class="tl-mark" d="M817.7 278 l12 12 l-12 12 l-12 -12 z"><title>springjava · Redis·Kafka·WebSocket 실습 (로컬)</title></path>
+<text class="tl-dotnum" x="817.7" y="295" text-anchor="middle">2</text>
+<a href="/portfolio/oauth-sso/">
+<path class="tl-mark" d="M901.0 250 l12 12 l-12 12 l-12 -12 z"><title>Auth Gateway Platform</title></path>
+<text class="tl-dotnum" x="901.0" y="267" text-anchor="middle">3</text>
+</a>
+<a href="https://app.notion.com/p/Learning-328982649c3f80829e01d23c6a12a785">
+<path class="tl-mark" d="M901.0 278 l12 12 l-12 12 l-12 -12 z"><title>article-bot 운영 시작</title></path>
+<text class="tl-dotnum" x="901.0" y="295" text-anchor="middle">4</text>
+</a>
+<a href="/portfolio/admincore/">
+<path class="tl-mark" d="M932.3 250 l12 12 l-12 12 l-12 -12 z"><title>AdminCore</title></path>
+<text class="tl-dotnum" x="932.3" y="267" text-anchor="middle">5</text>
+</a>
+<a href="https://delaynomoreapp.duckdns.org/">
+<path class="tl-mark" d="M942.7 278 l12 12 l-12 12 l-12 -12 z"><title>DelayNoMore 배포</title></path>
+<text class="tl-dotnum" x="942.7" y="295" text-anchor="middle">6</text>
+</a>
+<a href="/portfolio/api-management/#reimplementation">
+<path class="tl-mark" d="M953.1 306 l12 12 l-12 12 l-12 -12 z"><title>api-forge</title></path>
+<text class="tl-dotnum" x="953.1" y="323" text-anchor="middle">7</text>
+</a>
+<a href="https://backoffice-ai-orpin.vercel.app/">
+<path class="tl-mark" d="M963.5 250 l12 12 l-12 12 l-12 -12 z"><title>Backoffice AI 배포</title></path>
+<text class="tl-dotnum" x="963.5" y="267" text-anchor="middle">8</text>
+</a>
+<a href="https://github.com/hello-pebble/DelayNoMore_Release/releases">
+<path class="tl-mark" d="M974.0 278 l12 12 l-12 12 l-12 -12 z"><title>DelayNoMore v0.32.0</title></path>
+<text class="tl-dotnum" x="974.0" y="295" text-anchor="middle">9</text>
+</a>
+</svg>
+</div>

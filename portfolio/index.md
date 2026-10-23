@@ -37,8 +37,8 @@ permalink: /portfolio/
         <span class="portfolio-card-number">03</span>
       </div>
       <h3>사내 교육 플랫폼(LMS) <span class="portfolio-period">2020.12–2021.03</span></h3>
-      <p class="portfolio-summary">화면별로 흩어진 권한 검증을 SSO 기반 RBAC와 공통 인터셉터로 통합해 엔드포인트 레벨에서 차단 · Oracle BLOB 파일 저장을 비즈니스 데이터와 같은 트랜잭션으로 구현</p>
-      <span class="portfolio-stack">Java · Spring Boot · Spring Security · JPA · Oracle · SSO</span>
+      <p class="portfolio-summary">화상 교육 플랫폼의 회원·역할·운영관리(공지·FAQ·Q&A) 백엔드를 4개월간 개발 · 역할 변경을 전체 교체로 처리하고 유형을 이름 대신 코드 ID로 저장 · 외부 저장과 DB 저장이 한 트랜잭션이 아님을 배운 첫 프로젝트</p>
+      <span class="portfolio-stack">Java · Spring Boot · JPA · QueryDSL · MySQL · Azure Blob Storage</span>
     </a>
     <a class="portfolio-card" href="{{ '/portfolio/gov-data-service/' | relative_url }}">
       <div class="portfolio-card-top">

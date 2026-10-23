@@ -1,0 +1,37 @@
+# 타임라인 데이터. tools/build_timeline.rb 가 읽어 _includes/diagrams/timeline.svg 를 만든다.
+# 월은 "YYYY-MM". 커밋 수는 2026-10-23 기준 GitHub(hello-pebble, dadak2) + 로컬 git 집계.
+# 증거 등급: A 저장소·배포 URL / B 로컬 파일만 / C 본인 진술
+
+thesis: "규칙이 우회되지 않는 위치를 찾아 옮기는 백엔드 개발자"
+range: { from: "2019-01", to: "2026-12" }
+
+# 구간 이름은 6개까지만. 더 쪼개면 연표가 된다.
+segments:
+  - { name: "항만",        from: "2019-05", to: "2020-07" }
+  - { name: "LMS",         from: "2020-12", to: "2021-03" }
+  - { name: "교육·재학습", from: "2021-04", to: "2022-10" }
+  - { name: "PMS·개방DB",  from: "2022-11", to: "2025-01" }
+  - { name: "재정비",      from: "2025-02", to: "2025-12" }
+  - { name: "개인 프로젝트", from: "2026-01", to: "2026-10" }
+
+# 위 레인: 재직·교육
+work:
+  - { name: "엘에프아이티 · 항만 사용료", from: "2019-05", to: "2020-07", href: "/portfolio/port-fee/" }
+  - { name: "에이아이넷 · LMS",          from: "2020-12", to: "2021-03", href: "/portfolio/lms/" }
+  - { name: "사람과숲 · PMS / 개방DB",   from: "2022-11", to: "2025-01", href: "/portfolio/pms/" }
+education:
+  - { name: "JAVA 양성과정",   year: 2020 }
+  - { name: "K-Digital JAVA", year: 2022 }
+
+# 아래 레인: 개인 프로젝트. 교육과 같은 마름모 표식, 번호 순서대로. 없는 달은 비워 둔다.
+# href 가 없으면 링크 없이 그린다(로컬에만 있는 작업).
+artifacts:
+  - { month: "2025-06", name: "searchvibe", href: "https://github.com/hello-pebble/searchvibe" }
+  - { month: "2025-07", name: "springjava · Redis·Kafka·WebSocket 실습 (로컬)" }
+  - { month: "2026-03", name: "Auth Gateway Platform", href: "/portfolio/oauth-sso/" }
+  - { month: "2026-03", name: "article-bot 운영 시작", href: "https://app.notion.com/p/Learning-328982649c3f80829e01d23c6a12a785" }
+  - { month: "2026-06", name: "AdminCore", href: "/portfolio/admincore/" }
+  - { month: "2026-07", name: "DelayNoMore 배포", href: "https://delaynomoreapp.duckdns.org/" }
+  - { month: "2026-08", name: "api-forge", href: "/portfolio/api-management/#reimplementation" }
+  - { month: "2026-09", name: "Backoffice AI 배포", href: "https://backoffice-ai-orpin.vercel.app/" }
+  - { month: "2026-10", name: "DelayNoMore v0.32.0", href: "https://github.com/hello-pebble/DelayNoMore_Release/releases" }

@@ -13,6 +13,7 @@
   </div>
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">Resume</a>
+    <a class="sidebar-nav-item{% if page.url == '/timeline/' %} active{% endif %}" href="{{ '/timeline/' | relative_url }}">Timeline</a>
 
     <div class="sidebar-nav-group">
       <a class="sidebar-nav-item{% if page.url contains '/portfolio' %} active{% endif %}"
