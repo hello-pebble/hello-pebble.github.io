@@ -19,9 +19,9 @@ permalink: /
   <div class="portfolio-grid">
     <a class="portfolio-card portfolio-card--lead" href="{{ '/portfolio/api-management/' | relative_url }}">
       <h3>개방DB API관리: 메타데이터 기반 조회 API 엔진 <span class="portfolio-period">회사 / 2024.09–2025.01</span></h3>
-      <p class="portfolio-summary">조회 API 엔진을 설계해 개발 서버에 적용했습니다. 요구사항마다 파일 5~6개(작성자 경험 기준)를 새로 쓰고 재배포하던 일이 데이터셋 등록으로 바뀝니다.</p>
-      <p class="portfolio-meta">검증: 개인 재구현 api-forge의 단위 및 통합 테스트와 CI / 미검증: 운영 반영, 실트래픽</p>
-      <span class="portfolio-stack">회사 Java 8, Spring MVC, eGovFrame, MyBatis, Tibero / 재구현 Java 21, jOOQ, Testcontainers</span>
+      <p class="portfolio-summary">앞으로 들어올 프로젝트에서 쓸 기본 틀로 리팩토링하고, 조회 API 엔진을 설계해 개발 서버에 적용했습니다. 쓰지 않던 함수와 중복 모듈을 덜어냈고, 파일 5~6개(작성자 경험 기준)를 쓰던 조회 API 추가는 데이터셋 등록으로 바뀝니다.</p>
+      <p class="portfolio-meta">회사: 개발 서버까지, 운영 반영과 실트래픽은 미검증 / api-forge: 쿼리 조합 부분의 단위 및 통합 테스트와 CI</p>
+      <span class="portfolio-stack">회사 Java 8, Spring MVC, eGovFrame, MyBatis, MariaDB / 재구현 Java 21, jOOQ, Testcontainers</span>
     </a>
     <a class="portfolio-card portfolio-card--lead" href="{{ '/portfolio/pms/' | relative_url }}">
       <h3>공정 관리 솔루션(PMS) <span class="portfolio-period">회사 / 2022.11–2024.12</span></h3>
