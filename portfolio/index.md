@@ -1,105 +1,54 @@
 ---
 layout: default
-title: "portfolio"
-permalink: /portfolio/
+title: "권다경, 백엔드 개발자"
+permalink: /
 ---
 
 <header class="portfolio-index-header">
   <span class="portfolio-eyebrow">portfolio</span>
+  <h1>권다경, 백엔드 개발자</h1>
+  <p>Java, Spring 실무 3년 10개월. 운영 중인 시스템의 반복 비용을 줄이는 일을 해 왔습니다. 프로젝트마다 구현한 범위, 검증한 범위, 확인하지 못한 범위를 구분해 적었습니다.</p>
+  <p class="portfolio-links"><a href="{{ '/resume/' | relative_url }}">이력서</a><a href="{{ '/resume/career-description/' | relative_url }}">경력기술서</a><a href="https://github.com/hello-pebble" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 </header>
 
-<span class="section-note">프로젝트별 구현 범위와 검증한 범위를 구분해 공개합니다. 개인 프로젝트는 소스 코드와 의사결정 기록(Decision Log · 계획서/보고서 · CHANGELOG)을 함께 확인할 수 있습니다.</span>
-
-<section class="portfolio-section" aria-labelledby="company-projects">
+<section class="portfolio-section" aria-labelledby="lead-projects">
   <div class="portfolio-section-heading">
-    <h2 id="company-projects">Work Experience</h2>
-    <span class="portfolio-count">5 projects</span>
+    <h2 id="lead-projects">대표 프로젝트</h2>
+    <span class="portfolio-count">3 projects</span>
   </div>
   <div class="portfolio-grid">
-    <a class="portfolio-card" href="{{ '/portfolio/pms/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">01</span>
-      </div>
-      <h3>공정 관리 솔루션(PMS) <span class="portfolio-period">2022.11–2024.12</span></h3>
-      <p class="portfolio-summary">AI 학습데이터 공정 관리 시스템을 26개월간 개발·운영하며 저장 유실 원인 3건을 분석·조치 · 화면별 매뉴얼·인계 절차를 정비해 사용자 문의를 월 20건에서 1~2건으로 개선</p>
-      <span class="portfolio-stack">Java · Spring Boot · MyBatis · MariaDB · Docker · GitLab CI · Nginx</span>
+    <a class="portfolio-card portfolio-card--lead" href="{{ '/portfolio/api-management/' | relative_url }}">
+      <h3>개방DB API관리: 메타데이터 기반 조회 API 엔진 <span class="portfolio-period">회사 / 2024.09–2025.01</span></h3>
+      <p class="portfolio-summary">조회 API 엔진을 설계해 개발 서버에 적용했습니다. 요구사항마다 파일 5~6개(작성자 경험 기준)를 새로 쓰고 재배포하던 일이 데이터셋 등록으로 바뀝니다.</p>
+      <p class="portfolio-meta">검증: 개인 재구현 api-forge의 단위 및 통합 테스트와 CI / 미검증: 운영 반영, 실트래픽</p>
+      <span class="portfolio-stack">회사 Java 8, Spring MVC, eGovFrame, MyBatis, Tibero / 재구현 Java 21, jOOQ, Testcontainers</span>
     </a>
-    <a class="portfolio-card" href="{{ '/portfolio/api-management/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">02</span>
-      </div>
-      <h3>개방DB API관리 — 메타데이터 기반 조회 API 엔진 <span class="portfolio-period">2024.09–2025.01</span></h3>
-      <p class="portfolio-summary">조회 API마다 파일 5~6개를 추가하던 구조를 메타데이터 등록 1건으로 바꾸는 엔진을 설계·개발 서버에 적용 · 핵심 설계는 개인 재구현 api-forge에서 H2·PostgreSQL 양쪽의 인젝션 차단 시나리오로 검증</p>
-      <span class="portfolio-stack">Java 8 · Spring MVC · eGovFrame · MyBatis · Tibero · jOOQ · Testcontainers</span>
+    <a class="portfolio-card portfolio-card--lead" href="{{ '/portfolio/pms/' | relative_url }}">
+      <h3>공정 관리 솔루션(PMS) <span class="portfolio-period">회사 / 2022.11–2024.12</span></h3>
+      <p class="portfolio-summary">AI 학습데이터 공정 관리 시스템을 26개월간 개발하고 운영했습니다. 저장 유실 장애의 원인을 나눠 조치했고, 배포 후 3~4개월간 사용 문의가 월 20건에서 1~2건으로 줄었습니다.</p>
+      <p class="portfolio-meta">근거: 문의 응대 기록(엑셀)의 평균, 운영 중 큰 에러 없음 / 한계: 배포 시간과 복구 시간은 측정하지 않음</p>
+      <span class="portfolio-stack">Java, Spring Boot, MyBatis, MariaDB, Docker, GitLab CI</span>
     </a>
-    <a class="portfolio-card" href="{{ '/portfolio/lms/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">03</span>
-      </div>
-      <h3>사내 교육 플랫폼(LMS) <span class="portfolio-period">2020.12–2021.03</span></h3>
-      <p class="portfolio-summary">화상 교육 플랫폼의 회원·역할·운영관리(공지·FAQ·Q&A) 백엔드를 4개월간 개발 · 역할 변경을 전체 교체로 처리하고 유형을 이름 대신 코드 ID로 저장 · 외부 저장과 DB 저장이 한 트랜잭션이 아님을 배운 첫 프로젝트</p>
-      <span class="portfolio-stack">Java · Spring Boot · JPA · QueryDSL · MySQL · Azure Blob Storage</span>
-    </a>
-    <a class="portfolio-card" href="{{ '/portfolio/gov-data-service/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">04</span>
-      </div>
-      <h3>정부 공문서 학습데이터 조회 서비스 <span class="portfolio-period">2023.08–2024.02</span></h3>
-      <p class="portfolio-summary">폐쇄망에서 ProcessBuilder 기반 Java–Python 브릿지로 HWP 문서 파싱 자동화 · 파일 입력부터 DB 저장까지의 수동 등록 절차를 하나의 처리 흐름으로 묶어 시범 사업 납품 완료</p>
-      <span class="portfolio-stack">Java · Spring MVC · Python · WildFly · MariaDB</span>
-    </a>
-    <a class="portfolio-card" href="{{ '/portfolio/port-fee/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">05</span>
-      </div>
-      <h3>항만 시설 사용료 관리 시스템 <span class="portfolio-period">2019.05–2020.07</span></h3>
-      <p class="portfolio-summary">여수광양항만공사 GIS 기반 시스템에서 연도별·임시 세율을 코드가 아닌 데이터로 분리해 관리 · 월 1회 현장 방문으로 서버를 점검하며 담당자 요청을 직접 받아 반영</p>
-      <span class="portfolio-stack">Java · Spring MVC · MyBatis · Oracle</span>
+    <a class="portfolio-card portfolio-card--lead" href="{{ '/portfolio/delaynomore/' | relative_url }}">
+      <h3>DelayNoMore: AI 계획 실행 서비스 <span class="portfolio-period">개인 / 2026.04– 진행 중</span></h3>
+      <p class="portfolio-summary">확정한 계획을 고치지 못하게 하는 규칙을 화면에서 서버로 옮긴 서비스를 기획부터 배포까지 혼자 만들었습니다. 챌린지 정원 경쟁은 실제 PostgreSQL 테스트에서 정확히 1명만 통과하는 것을 확인했습니다.</p>
+      <p class="portfolio-meta">검증: 서버 규칙과 동시성 자동 테스트, 에이전트 평가 하네스 / 한계: 데모 환경, 실트래픽 없음, v0.37.0 기준</p>
+      <span class="portfolio-stack">Spring Boot, Java 21, React, PostgreSQL, Testcontainers</span>
     </a>
   </div>
 </section>
 
-<section class="portfolio-section" aria-labelledby="personal-projects">
+<section class="portfolio-section" aria-labelledby="other-projects">
   <div class="portfolio-section-heading">
-    <h2 id="personal-projects">Personal Projects</h2>
-    <span class="portfolio-count">4 projects</span>
+    <h2 id="other-projects">그 외 프로젝트</h2>
+    <span class="portfolio-count">6 projects</span>
   </div>
-  <div class="portfolio-grid">
-    <a class="portfolio-card" href="{{ '/portfolio/delaynomore/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">06</span>
-      </div>
-      <h3>DelayNoMore <span class="portfolio-period">2026.04– 진행 중</span></h3>
-      <p class="portfolio-summary">확정 계획의 수정 규칙을 프론트 차단 → 서버 가드 → 도구 권한으로 옮겨 우회 경로를 구조적으로 차단 · 챌린지 정원 경쟁과 정산은 조건부 UPDATE로 판정해 실제 PostgreSQL에서 검증 · 포인트 이동은 복식부기 원장과 멱등 키로 추적 · 에이전트 도구 선택은 반복 실행 가능한 평가 하네스로 측정</p>
-      <span class="portfolio-stack">Spring Boot · Java 21 · React · PostgreSQL · SSE Streaming · Testcontainers</span>
-    </a>
-
-    <a class="portfolio-card" href="{{ '/portfolio/oauth-sso/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">07</span>
-      </div>
-      <h3>Gateway 단일 진입점 인증/인가 검증 <span class="portfolio-period">2026.01–2026.03</span></h3>
-      <p class="portfolio-summary">다중 모듈 인증 구조의 대안을 비교·결정하고, 무토큰 401·내부 경로 404·서비스별 권한 검증을 실제 요청으로 확인</p>
-      <span class="portfolio-stack">Kotlin · Spring Boot · Spring Security · WebFlux Gateway · JWT · Docker Compose</span>
-    </a>
-
-    <a class="portfolio-card" href="{{ '/portfolio/admincore/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">08</span>
-      </div>
-      <h3>AdminCore — 운영 관리자 콘솔 백엔드 <span class="portfolio-period">2026.06– 진행 중</span></h3>
-      <p class="portfolio-summary">회원·Q&A·알림·매칭 통계에 집중한 관리자 전용 백엔드 · 정지 계정의 기존 JWT를 다음 요청부터 차단하고 PostgreSQL 집계 결과를 캐시로 관리</p>
-      <span class="portfolio-stack">Java 21 · Spring Boot 4 · PostgreSQL · JPA · Flyway · Spring Security/JWT</span>
-    </a>
-
-    <a class="portfolio-card" href="{{ '/portfolio/backoffice-ai/' | relative_url }}">
-      <div class="portfolio-card-top">
-        <span class="portfolio-card-number">09</span>
-      </div>
-      <h3>Backoffice AI — 업무·콘텐츠 자동화 운영 플랫폼 <span class="portfolio-period">2026.08– 진행 중</span></h3>
-      <p class="portfolio-summary">화면·API·자동화 워커를 분리 배포하고, 긴 작업을 요청 경로 밖으로 위임 · 단일 실행 잠금과 검토 전 발행 차단으로 자동화의 운영 경계를 설계</p>
-      <span class="portfolio-stack">Kotlin · Spring Boot · Python · FastAPI · PostgreSQL/Supabase · Vercel · Railway · Docker</span>
-    </a>
-
-  </div>
+  <ul class="portfolio-compact">
+    <li><a href="{{ '/portfolio/gov-data-service/' | relative_url }}"><strong>정부 공문서 학습데이터 조회 서비스</strong><span>폐쇄망 HWP 파싱</span><small>회사 / 2023.08–2024.02</small></a></li>
+    <li><a href="{{ '/portfolio/lms/' | relative_url }}"><strong>사내 교육 플랫폼(LMS)</strong><span>회원, 역할, 운영관리 백엔드</span><small>회사 / 2020.12–2021.03</small></a></li>
+    <li><a href="{{ '/portfolio/port-fee/' | relative_url }}"><strong>항만 시설 사용료 관리 시스템</strong><span>세율을 데이터로 분리</span><small>회사 / 2019.05–2020.07</small></a></li>
+    <li><a href="{{ '/portfolio/oauth-sso/' | relative_url }}"><strong>Gateway 단일 진입점 인증/인가 검증</strong><span>JWT, 서비스별 권한 검증</span><small>개인 / 2026.01–2026.03</small></a></li>
+    <li><a href="{{ '/portfolio/admincore/' | relative_url }}"><strong>AdminCore</strong><span>운영 관리자 콘솔 백엔드</span><small>개인 / 2026.06– 진행 중</small></a></li>
+    <li><a href="{{ '/portfolio/backoffice-ai/' | relative_url }}"><strong>Backoffice AI</strong><span>업무와 콘텐츠 자동화 플랫폼</span><small>개인 / 2026.08– 진행 중</small></a></li>
+  </ul>
 </section>

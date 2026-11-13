@@ -12,38 +12,36 @@
     </div>
   </div>
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">Resume</a>
-    <a class="sidebar-nav-item{% if page.url == '/timeline/' %} active{% endif %}" href="{{ '/timeline/' | relative_url }}">Timeline</a>
-
     <div class="sidebar-nav-group">
-      <a class="sidebar-nav-item{% if page.url contains '/portfolio' %} active{% endif %}"
-        href="{{ '/portfolio/' | relative_url }}"
+      <a class="sidebar-nav-item{% if page.url == '/' or page.url contains '/portfolio' %} active{% endif %}"
+        href="{{ '/' | relative_url }}"
         id="portfolio-toggle">Portfolio</a>
       <div class="sidebar-submenu" id="portfolio-submenu">
-        <span class="submenu-label">Personal Projects</span>
-        <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/delaynomore/' %} active{% endif %}"
-          href="{{ '/portfolio/delaynomore/' | relative_url }}">DelayNoMore</a>
-        <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/oauth-sso/' %} active{% endif %}"
-          href="{{ '/portfolio/oauth-sso/' | relative_url }}">Gateway 통합 인증 검증</a>
-        <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/admincore/' %} active{% endif %}"
-          href="{{ '/portfolio/admincore/' | relative_url }}">AdminCore</a>
-        <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/backoffice-ai/' %} active{% endif %}"
-          href="{{ '/portfolio/backoffice-ai/' | relative_url }}">Backoffice AI</a>
-        <span class="submenu-label">Work Experience</span>
+        <span class="submenu-label">대표 프로젝트</span>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/api-management/' %} active{% endif %}"
           href="{{ '/portfolio/api-management/' | relative_url }}">개방DB API관리 (+ api-forge)</a>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/pms/' %} active{% endif %}"
           href="{{ '/portfolio/pms/' | relative_url }}">공정 관리 솔루션(PMS)</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/delaynomore/' %} active{% endif %}"
+          href="{{ '/portfolio/delaynomore/' | relative_url }}">DelayNoMore</a>
+        <span class="submenu-label">그 외 프로젝트</span>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/gov-data-service/' %} active{% endif %}"
           href="{{ '/portfolio/gov-data-service/' | relative_url }}">정부 공문서 AI 조회 서비스</a>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/lms/' %} active{% endif %}"
           href="{{ '/portfolio/lms/' | relative_url }}">사내 교육 플랫폼(LMS)</a>
         <a class="sidebar-nav-item submenu-item{% if page.url == '/portfolio/port-fee/' %} active{% endif %}"
           href="{{ '/portfolio/port-fee/' | relative_url }}">항만 시설 사용료 관리</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/oauth-sso/' %} active{% endif %}"
+          href="{{ '/portfolio/oauth-sso/' | relative_url }}">Gateway 통합 인증 검증</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/admincore/' %} active{% endif %}"
+          href="{{ '/portfolio/admincore/' | relative_url }}">AdminCore</a>
+        <a class="sidebar-nav-item submenu-item{% if page.url contains '/portfolio/backoffice-ai/' %} active{% endif %}"
+          href="{{ '/portfolio/backoffice-ai/' | relative_url }}">Backoffice AI</a>
       </div>
     </div>
-    <a class="sidebar-nav-item" href="https://app.notion.com/p/Learning-328982649c3f80829e01d23c6a12a785?source=copy_link" target="_blank"
-      rel="noopener noreferrer">Study</a>
+    <a class="sidebar-nav-item{% if page.url == '/resume/' or page.url contains '/resume/' %} active{% endif %}" href="{{ '/resume/' | relative_url }}">Resume</a>
+    <a class="sidebar-nav-item" href="https://velog.io/@hello-pebble/series" target="_blank"
+      rel="noopener noreferrer">Velog</a>
   </nav>
 </div>
 
@@ -78,7 +76,7 @@
   });
 
   // Keep submenu open if active
-  if (window.location.pathname.includes('/portfolio')) {
+  if (window.location.pathname === '/' || window.location.pathname.includes('/portfolio')) {
     portfolioSubmenu.classList.add('show');
     portfolioToggle.classList.add('open');
   }

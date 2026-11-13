@@ -1,0 +1,52 @@
+<div class="dg-wrap">
+<svg class="dg" viewBox="0 0 840 530" role="img" aria-labelledby="query-flow-title query-flow-desc">
+  <title id="query-flow-title">필터 이름 검증과 값 전달 흐름</title>
+  <desc id="query-flow-desc">인증 후 값이 있는 필터 요청을 이름과 값으로 나눈다. 이름으로 등록된 컬럼을 찾아 필터 허용 여부를 확인한다. 미등록 컬럼과 NONE 유형은 400으로 거부한다. 허용된 컬럼명과 연산자로 SQL을 만들고, 요청 값은 별도 파라미터로 전달한다.</desc>
+  <defs>
+    <marker id="query-flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--sidebar-text)"/>
+    </marker>
+  </defs>
+
+  <rect class="dg-band" x="24" y="16" width="792" height="66" rx="4"/>
+  <text class="dg-body dg-strong" x="44" y="43">필터 요청</text>
+  <text class="dg-body" x="44" y="68">BOOK_ID = ' OR '1'='1</text>
+
+  <g fill="none" stroke="var(--sidebar-text)" stroke-width="1.3" marker-end="url(#query-flow-arrow)">
+    <path d="M420 82 V100 H214 V126"/>
+    <path d="M420 100 H628 V126"/>
+    <path d="M214 234 V256 H116 V294"/>
+    <path d="M214 256 H322 V294"/>
+    <path d="M322 364 V406"/>
+    <path d="M628 234 V406"/>
+  </g>
+  <text class="dg-muted" x="40" y="116">이름</text>
+  <text class="dg-muted" x="458" y="116">값</text>
+
+  <rect class="dg-card" x="24" y="126" width="380" height="108" rx="4"/>
+  <text class="dg-body dg-strong" x="44" y="156">등록된 컬럼 찾기</text>
+  <text class="dg-body" x="44" y="187">BOOK_ID가 등록되어 있는가</text>
+  <text class="dg-body" x="44" y="214">filterType이 NONE이 아닌가</text>
+
+  <rect class="dg-card" x="440" y="126" width="376" height="108" rx="4"/>
+  <text class="dg-body dg-strong" x="460" y="156">SQL 문장에 이어 붙이지 않음</text>
+  <text class="dg-body" x="460" y="187">' OR '1'='1</text>
+  <text class="dg-body" x="460" y="214">문자열 값으로 따로 전달</text>
+
+  <text class="dg-muted" x="38" y="253">미등록 / NONE</text>
+  <text class="dg-muted" x="282" y="280">허용</text>
+  <rect class="dg-card" x="24" y="294" width="184" height="70" rx="4"/>
+  <text class="dg-body dg-strong" x="44" y="323">400으로 거부</text>
+  <text class="dg-muted" x="44" y="348">DB 조회 전에 종료</text>
+
+  <rect class="dg-card" x="232" y="294" width="172" height="70" rx="4"/>
+  <text class="dg-body" x="248" y="323">등록된 이름 사용</text>
+  <text class="dg-body" x="248" y="349">EQUALS → =</text>
+
+  <rect class="dg-band" x="232" y="406" width="584" height="92" rx="4"/>
+  <text class="dg-body dg-strong" x="252" y="435">jOOQ로 SQL 생성과 실행</text>
+  <text class="dg-body" x="252" y="464">WHERE "BOOK_ID" = ?</text>
+  <text class="dg-muted" x="252" y="488">?에 값을 따로 전달하므로 SQL 명령으로 실행되지 않음</text>
+  <text class="dg-muted" x="24" y="523">테이블명도 요청이 아닌 등록된 메타데이터에서 가져옵니다.</text>
+</svg>
+</div>

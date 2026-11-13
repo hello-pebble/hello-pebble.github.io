@@ -12,7 +12,7 @@ errors = []
 
 # 1. 재직 기간은 이력서와 경력기술서에 같은 문자열로 나와야 한다.
 RESUME = read("resume/resume.md")
-CAREER = read("resume/career-description.md")
+CAREER = read("_includes/career-description.md")
 
 {
   "사람과숲"   => %w[2022.11 2025.01],
@@ -33,7 +33,7 @@ INDEX = read("portfolio/index.md")
 INDEX.split(/<section /).each do |section|
   next unless (label = section[/<h2 id="([^"]+)"/, 1])
   next unless (declared = section[/portfolio-count">(\d+) projects/, 1])
-  actual = section.scan(/class="portfolio-card"/).size
+  actual = section.scan(/<a\b[^>]*href="\{\{ '\/portfolio\//).size
   next if declared.to_i == actual
   errors << "portfolio/index.md: #{label} 섹션이 #{declared}개라고 적혀 있으나 카드는 #{actual}개다"
 end
